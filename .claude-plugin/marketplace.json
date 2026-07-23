@@ -1,10 +1,10 @@
 {
   "name": "claude-tier",
-  "owner": { "name": "Fenil K" },
+  "owner": { "name": "Fenil K Ventures LLC" },
   "plugins": [
     {
       "name": "tier",
-      "description": "Install a model/effort-tiering working preference into any project's CLAUDE.md — quality-first, cost-efficient.",
+      "description": "Install a model/effort-tiering working preference into any project's CLAUDE.md - quality-first, cost-efficient.",
       "source": {
         "source": "github",
         "repo": "thephenyl02-creator/claude-tier",
