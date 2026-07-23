@@ -1,0 +1,15 @@
+{
+  "name": "claude-tier",
+  "owner": { "name": "Fenil K" },
+  "plugins": [
+    {
+      "name": "tier",
+      "description": "Install a model/effort-tiering working preference into any project's CLAUDE.md — quality-first, cost-efficient.",
+      "source": {
+        "source": "github",
+        "repo": "thephenyl02-creator/claude-tier",
+        "path": "."
+      }
+    }
+  ]
+}

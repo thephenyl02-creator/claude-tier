@@ -1,0 +1,10 @@
+{
+  "name": "tier",
+  "description": "Install a model/effort-tiering working preference into any project's CLAUDE.md — quality-first, cost-efficient. Run /tier to make a project model-tiered on desktop, web, and mobile.",
+  "version": "1.0.0",
+  "author": { "name": "Fenil K" },
+  "homepage": "https://github.com/thephenyl02-creator/claude-tier",
+  "repository": "https://github.com/thephenyl02-creator/claude-tier",
+  "license": "MIT",
+  "keywords": ["model-routing", "cost-optimization", "tiering", "claude-code", "efficiency"]
+}
