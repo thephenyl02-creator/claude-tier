@@ -19,11 +19,19 @@ clear rule into the file Claude Code always reads, and gets out of the way.
 - **Fable is an escalation, not a default:** roughly 2x Opus cost and heavier
   token use for an overall lead that is now marginal (Opus 5 wins several
   areas outright). The rule reserves Fable for the longest, hardest
-  frontier-reasoning work, tie-break adjudication after strong models
-  disagree, or an explicit request.
+  frontier-reasoning work, high-stakes deep research where a wrong conclusion
+  is costly, tie-break adjudication after strong models disagree, or an
+  explicit request.
+- **Subscription-aware:** on plans without Fable (e.g. Claude Pro), Opus is
+  simply the top tier - would-be escalations run on Opus at max effort, and
+  the rule never stalls on an unavailable model. No configuration needed; it
+  adapts to whatever models the session actually has.
 - **Routing is free:** the rule is a lookup table, not a deliberation. The
   routing decision must never cost more tokens than it can save - small tasks
   skip routing entirely and just run on the current model.
+- **Written for the model:** the installed block is compact, imperative
+  markdown optimized for Claude to follow (and cheap to load every session),
+  not prose for humans to study.
 - **Per-task fit:** *downgrade* to a cheaper model directly when the work is
   clearly mechanical; *upgrade* only after asking you first.
 - **Hard rule that overrides everything: never compromise quality.** Any doubt
@@ -56,6 +64,11 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.2.0** - Subscription-aware (plans without Fable treat Opus as the top
+  tier automatically); high-stakes deep research added as a Fable escalation
+  trigger; canonical block rewritten model-first (compact, imperative, cheaper
+  per session); versioned upgrade tag (`tier-rule v1.2`) so `/tier` upgrades
+  reliably across future releases.
 - **1.1.0** - Opus 5 era routing. Opus is now the default top tier (including
   reviews, synthesis, and final judgment); Fable becomes an explicit
   escalation with named triggers. New "routing is free" principle. `/tier`
