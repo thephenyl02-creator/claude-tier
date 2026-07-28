@@ -19,8 +19,10 @@ clear rule into the file Claude Code always reads, and gets out of the way.
 - **Fable is an escalation, not a default:** roughly 2x Opus cost and heavier
   token use for an overall lead that is now marginal (Opus 5 wins several
   areas outright). The rule reserves Fable for the longest, hardest
-  frontier-reasoning work, high-stakes deep research where a wrong conclusion
-  is costly, tie-break adjudication after strong models disagree, or an
+  frontier-reasoning work, high-stakes deep research, large or high-stakes
+  work in the domains where Fable actually benchmarks ahead (long-horizon
+  software engineering, legal/compliance-critical analysis, deep security
+  analysis), tie-break adjudication after strong models disagree, or an
   explicit request.
 - **Subscription-aware:** on plans without Fable (e.g. Claude Pro), Opus is
   simply the top tier - would-be escalations run on Opus at max effort, and
@@ -65,10 +67,12 @@ keeps every session honest about tiering - and never trades quality for cost.
 ## Release notes
 
 - **1.2.0** - Subscription-aware (plans without Fable treat Opus as the top
-  tier automatically); high-stakes deep research added as a Fable escalation
-  trigger; canonical block rewritten model-first (compact, imperative, cheaper
-  per session); versioned upgrade tag (`tier-rule v1.2`) so `/tier` upgrades
-  reliably across future releases.
+  tier automatically); Fable escalation triggers now cover its benchmarked
+  strengths (high-stakes deep research, long-horizon software engineering,
+  legal/compliance-critical and deep security analysis); canonical block
+  rewritten model-first (compact, imperative, cheaper per session); versioned
+  upgrade tag (`tier-rule v1.2`) so `/tier` upgrades reliably across future
+  releases.
 - **1.1.0** - Opus 5 era routing. Opus is now the default top tier (including
   reviews, synthesis, and final judgment); Fable becomes an explicit
   escalation with named triggers. New "routing is free" principle. `/tier`

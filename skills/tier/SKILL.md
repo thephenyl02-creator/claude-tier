@@ -61,9 +61,11 @@ cheaper tiers — never from downgrading work that needs a strong model.
 - **Fable is an escalation, not a default** (≈2× Opus cost, heavier token use,
   marginal overall lead). Escalate ONLY for: the longest/hardest
   frontier-reasoning work (Fable's lead grows with task length + complexity) ·
-  high-stakes deep research where a wrong conclusion is costly · tie-break
-  adjudication after strong models disagree or an Opus attempt fails ·
-  explicit user request.
+  high-stakes deep research where a wrong conclusion is costly · large or
+  high-stakes tasks in Fable's benchmarked-lead domains — long-horizon
+  software-engineering marathons, legal/compliance-critical analysis, deep
+  security analysis · tie-break adjudication after strong models disagree or
+  an Opus attempt fails · explicit user request.
 - **Fable unavailable in this session** (subscription tier, e.g. Claude Pro)?
   → Opus IS the top tier: run would-be escalations on Opus at max effort;
   never stall on, or demand, an unavailable model.
