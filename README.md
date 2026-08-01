@@ -57,6 +57,10 @@ project already carries an **older version** of the rule, `/tier` upgrades the
 block in place automatically; if it's already current, it skips. Either way it
 offers to commit `CLAUDE.md` so web + mobile sessions pick it up too.
 
+Not inside a git repo? `/tier` still works: the rule lands in the current
+directory's `CLAUDE.md` as a machine-local install (sessions launched there
+load it; web + mobile only read committed repo config).
+
 ## Why "simple is best"
 
 Other routers auto-switch your model via hooks, or ship complex config
@@ -66,6 +70,10 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.2.1** - `/tier` now handles non-repo directories (home folder, scratch
+  space, unversioned code): it installs into the current directory's
+  `CLAUDE.md` as a machine-local rule instead of skipping. Installed block
+  unchanged (still `tier-rule v1.2`) - existing installs need nothing.
 - **1.2.0** - Subscription-aware (plans without Fable treat Opus as the top
   tier automatically); Fable escalation triggers now cover its benchmarked
   strengths (high-stakes deep research, long-horizon software engineering,

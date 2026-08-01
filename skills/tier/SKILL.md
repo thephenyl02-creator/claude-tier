@@ -1,6 +1,6 @@
 ---
 name: tier
-description: Install the model/effort-tiering working preference into the CURRENT project's CLAUDE.md so this project runs tiered — quality-first, cost-efficient — on every device. Use when the user wants to make a project/session model-tiered, "add the tiering rule", or types /tier. If the project carries an OLDER version of the rule, upgrade it in place automatically.
+description: Install the model/effort-tiering working preference into the CURRENT project's CLAUDE.md (or, outside any git repo, the current directory's CLAUDE.md) so this project runs tiered — quality-first, cost-efficient — on every device. Use when the user wants to make a project/session model-tiered, "add the tiering rule", or types /tier. If the project carries an OLDER version of the rule, upgrade it in place automatically.
 ---
 
 # Make this project model-tiered
@@ -11,14 +11,23 @@ COMMITTED repo `CLAUDE.md`, the result applies on desktop + web (claude.ai/code)
 + mobile for this project (those surfaces only read a project's committed
 config, never local machine config).
 
+Outside a git repo (home directory, scratch space, unversioned code) the skill
+still works: install into the current working directory's `CLAUDE.md` instead.
+That is a machine-local install — sessions launched from that directory load
+it; web/mobile won't see it. Do not refuse or skip the install just because
+there is no repo — the user asked for tiering where they are.
+
 The canonical block is written for the model, not for human prose style:
 compact, imperative, unambiguous. Install it verbatim — do not paraphrase,
 prettify, or reformat it.
 
 ## Steps
-1. Locate the project's `CLAUDE.md` at the repo/project root. If you are in a
-   git worktree, target the main checkout's root `CLAUDE.md`. If no `CLAUDE.md`
-   exists, create one at the project root.
+1. Locate the target `CLAUDE.md`:
+   - In a git repo → the repo root's `CLAUDE.md` (in a git worktree, target
+     the main checkout's root).
+   - NOT in a git repo → the current working directory's `CLAUDE.md` — a
+     machine-local install is exactly what a non-repo directory can get.
+   If the file doesn't exist at the target, create it.
 2. Search it for the marker `model & effort tiering`:
    - **Not found** → fresh install; go to step 3.
    - **Found, and the block contains the version tag `tier-rule v1.2`** → the
@@ -34,7 +43,9 @@ prettify, or reformat it.
    project's title/intro paragraph if there is one).
 4. If the project is a git repo, remind the user to commit `CLAUDE.md` so web +
    mobile sessions pick it up (`git add CLAUDE.md && git commit`). Offer to do
-   the commit.
+   the commit. If it is NOT a repo, say instead that the install is local to
+   this machine/directory, and that running /tier inside any git repo covers
+   that project on web + mobile too.
 5. Confirm in one line what you did.
 
 Maintainer note: any future edit to the canonical block MUST bump the

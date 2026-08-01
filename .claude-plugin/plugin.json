@@ -1,7 +1,7 @@
 {
   "name": "tier",
   "description": "Install a model/effort-tiering working preference into any project's CLAUDE.md - quality-first, cost-efficient. Run /tier to make a project model-tiered on desktop, web, and mobile.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": { "name": "Fenil K Ventures LLC" },
   "homepage": "https://github.com/thephenyl02-creator/claude-tier",
   "repository": "https://github.com/thephenyl02-creator/claude-tier",
