@@ -70,17 +70,20 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
-- **1.4.0** - Protects against *safety-fallback* downgrades, a failure mode
-  distinct from routing drift. Raw web content in a frontier model's context
-  can trip safeguards that silently switch the session model mid-task
-  (e.g. Fable to Opus 4.8), quietly degrading everything after. Two rules:
-  **a frontier main model never reads raw web content** (delegate fetches to
-  a Sonnet/Haiku sub-agent - it is Sonnet-tier work anyway, and it removes
-  the trigger surface), and a **safeguard-downgrade watch** (announce it,
-  pause judgment-heavy work, prompt the user to restore with `/model`).
-  Note the assistant *cannot* restore the model itself - `/model` is
-  user-only and a safeguard switch does not revert on its own - so the rule
-  makes the downgrade loud instead of silent.
+- **1.5.0** - Corrects 1.4.0's reasoning and hardens the response. 1.4.0
+  implied that keeping web content out of the frontier context would avoid
+  mid-task model downgrades. **That was wrong** - a downgrade was later
+  observed on a routine README edit with no web content involved. 1.5.0
+  therefore states plainly that **downgrades are unpredictable and cannot be
+  prevented**, keeps the delegate-bulk-content rule but justifies it purely
+  as *routing* (it is Sonnet-tier work regardless), and turns the response
+  into a numbered protocol ending in the step 1.4.0 missed: **after the model
+  is restored, re-verify any quality-critical output produced during the
+  downgrade window.** A silent tier loss is only harmless if nothing
+  important was decided inside it.
+- **1.4.0** - First attempt at guarding mid-task model downgrades: delegate
+  web fetches to cheap sub-agents, announce downgrades, pause judgment work.
+  Superseded by 1.5.0, whose rationale is correct.
 - **1.3.0** - Anti-drift rules, learned from a long session where the routing
   silently decayed. Three additions: **pin every sub-agent** (an unpinned
   agent inherits the session model, so mechanical fan-out silently runs at

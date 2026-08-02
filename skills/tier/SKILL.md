@@ -30,10 +30,10 @@ prettify, or reformat it.
    If the file doesn't exist at the target, create it.
 2. Search it for the marker `model & effort tiering`:
    - **Not found** → fresh install; go to step 3.
-   - **Found, and the block contains the version tag `tier-rule v1.4`** → the
+   - **Found, and the block contains the version tag `tier-rule v1.5`** → the
      project is already on the current rule. Tell the user it is already
      tiered and STOP — do not duplicate.
-   - **Found, WITHOUT `tier-rule v1.4`** (older version, including blocks with
+   - **Found, WITHOUT `tier-rule v1.5`** (older version, including blocks with
      no version tag at all) → REPLACE the entire old block in place — from its
      `## Working preferences — model & effort tiering` heading through its
      last line (up to the next `##` heading or end of file) — with the
@@ -55,7 +55,7 @@ Maintainer note: any future edit to the canonical block MUST bump the
 
 ```markdown
 ## Working preferences — model & effort tiering (committed: applies on desktop, web, AND mobile)
-<!-- tier-rule v1.4 -->
+<!-- tier-rule v1.5 -->
 
 Quality first. Efficiency comes ONLY from routing genuinely mechanical work to
 cheaper tiers — never from downgrading work that needs a strong model.
@@ -94,17 +94,24 @@ cheaper tiers — never from downgrading work that needs a strong model.
 - **State the routing before spending it.** Any fan-out of 3+ agents announces
   its plan in one line first (count × tier/effort, e.g. "6 × Sonnet/medium"),
   so a mis-route is visible to the user BEFORE the tokens are spent, not after.
-- **A frontier main model never reads raw web content.** Web search/fetch is
-  Sonnet-tier evidence-gathering anyway — and raw pages in a Fable/Opus
-  context can trip safety fallbacks that silently switch the session model
-  (e.g. Fable → Opus 4.8), degrading everything after. Delegate fetches to a
-  Sonnet/Haiku sub-agent; only distilled findings enter the main context.
-- **Safeguard-downgrade watch.** The assistant CANNOT switch the session model
-  back — /model is user-only, and a safeguard switch does NOT revert on its
-  own. When a downgrade is noticed or reported (harness banner, user mention):
-  say so immediately, pause judgment-heavy work, and prompt the user to
-  restore with /model. Never silently continue frontier-grade work on the
-  fallback model; mechanical work may proceed meanwhile.
+- **Keep raw bulk content out of the frontier context.** Web pages, large
+  logs, scraped text, long raw files: delegate the fetching/reading to a
+  Sonnet/Haiku sub-agent and let only distilled findings return. Justify this
+  as ROUTING (it is Sonnet-tier work), not as a safety measure.
+- **Model downgrades are UNPREDICTABLE — do not claim to prevent them.**
+  A session's model can change mid-task for reasons outside the routing plan
+  (usage limits; provider-side fallbacks that fire even on innocuous work
+  such as a routine doc edit). The target model varies. Any rule promising to
+  avoid them is false comfort; the defense is DETECTION and RESPONSE.
+- **Downgrade protocol — the assistant CANNOT restore the model** (/model is
+  user-only; the change does not self-revert):
+  1. Announce it the moment it is noticed or the user reports it.
+  2. PAUSE judgment-heavy work (design, review, synthesis, final calls).
+     Mechanical work may continue.
+  3. Ask the user to restore with /model.
+  4. After restore, RE-VERIFY any quality-critical output produced during
+     the downgrade window. A silent tier loss is only harmless if nothing
+     important was decided inside it — check, do not assume.
 - **HARD RULE (overrides all): never compromise quality.** Any doubt whether a
   downgrade would hurt → do NOT downgrade.
 ```
