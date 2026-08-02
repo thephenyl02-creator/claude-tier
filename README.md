@@ -70,6 +70,15 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.3.0** - Anti-drift rules, learned from a long session where the routing
+  silently decayed. Three additions: **pin every sub-agent** (an unpinned
+  agent inherits the session model, so mechanical fan-out silently runs at
+  frontier prices with no visible signal); a **capacity-error repair rule**
+  (a rate-limited tier means retry that agent elsewhere, never strip pins
+  globally - and restore them immediately if you do); and **state the routing
+  before spending it** (any 3+ agent fan-out announces "6 x Sonnet/medium"
+  first, so a mis-route is caught before the tokens, not after). Block tag is
+  now `tier-rule v1.3`; `/tier` auto-upgrades older installs in place.
 - **1.2.1** - `/tier` now handles non-repo directories (home folder, scratch
   space, unversioned code): it installs into the current directory's
   `CLAUDE.md` as a machine-local rule instead of skipping. Installed block

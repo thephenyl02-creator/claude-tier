@@ -30,10 +30,10 @@ prettify, or reformat it.
    If the file doesn't exist at the target, create it.
 2. Search it for the marker `model & effort tiering`:
    - **Not found** → fresh install; go to step 3.
-   - **Found, and the block contains the version tag `tier-rule v1.2`** → the
+   - **Found, and the block contains the version tag `tier-rule v1.3`** → the
      project is already on the current rule. Tell the user it is already
      tiered and STOP — do not duplicate.
-   - **Found, WITHOUT `tier-rule v1.2`** (older version, including blocks with
+   - **Found, WITHOUT `tier-rule v1.3`** (older version, including blocks with
      no version tag at all) → REPLACE the entire old block in place — from its
      `## Working preferences — model & effort tiering` heading through its
      last line (up to the next `##` heading or end of file) — with the
@@ -55,7 +55,7 @@ Maintainer note: any future edit to the canonical block MUST bump the
 
 ```markdown
 ## Working preferences — model & effort tiering (committed: applies on desktop, web, AND mobile)
-<!-- tier-rule v1.2 -->
+<!-- tier-rule v1.3 -->
 
 Quality first. Efficiency comes ONLY from routing genuinely mechanical work to
 cheaper tiers — never from downgrading work that needs a strong model.
@@ -83,6 +83,17 @@ cheaper tiers — never from downgrading work that needs a strong model.
 - **Main-model fit:** DOWNGRADE clearly-mechanical work to a cheaper sub-agent
   directly, no permission needed. UPGRADE only after informing/asking — never
   silently deliver a weaker result.
+- **PIN EVERY SUB-AGENT — never let one inherit the session model.** Fan-out
+  readers/searchers/gatherers get an explicit cheap tier on every call. An
+  unpinned agent silently runs on the session model, so a frontier main model
+  turns mechanical work into frontier-priced work without any visible signal.
+- **Capacity-error repair rule:** if a pinned tier fails on a rate/usage limit,
+  retry THAT agent on another tier. Never respond by removing pins globally —
+  and if you ever do, restore them on the very next fan-out. Silent
+  un-pinning is the most common way this whole rule decays in a long session.
+- **State the routing before spending it.** Any fan-out of 3+ agents announces
+  its plan in one line first (count × tier/effort, e.g. "6 × Sonnet/medium"),
+  so a mis-route is visible to the user BEFORE the tokens are spent, not after.
 - **HARD RULE (overrides all): never compromise quality.** Any doubt whether a
   downgrade would hurt → do NOT downgrade.
 ```
