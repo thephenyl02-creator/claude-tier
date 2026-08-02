@@ -30,10 +30,10 @@ prettify, or reformat it.
    If the file doesn't exist at the target, create it.
 2. Search it for the marker `model & effort tiering`:
    - **Not found** → fresh install; go to step 3.
-   - **Found, and the block contains the version tag `tier-rule v1.3`** → the
+   - **Found, and the block contains the version tag `tier-rule v1.4`** → the
      project is already on the current rule. Tell the user it is already
      tiered and STOP — do not duplicate.
-   - **Found, WITHOUT `tier-rule v1.3`** (older version, including blocks with
+   - **Found, WITHOUT `tier-rule v1.4`** (older version, including blocks with
      no version tag at all) → REPLACE the entire old block in place — from its
      `## Working preferences — model & effort tiering` heading through its
      last line (up to the next `##` heading or end of file) — with the
@@ -55,7 +55,7 @@ Maintainer note: any future edit to the canonical block MUST bump the
 
 ```markdown
 ## Working preferences — model & effort tiering (committed: applies on desktop, web, AND mobile)
-<!-- tier-rule v1.3 -->
+<!-- tier-rule v1.4 -->
 
 Quality first. Efficiency comes ONLY from routing genuinely mechanical work to
 cheaper tiers — never from downgrading work that needs a strong model.
@@ -94,6 +94,17 @@ cheaper tiers — never from downgrading work that needs a strong model.
 - **State the routing before spending it.** Any fan-out of 3+ agents announces
   its plan in one line first (count × tier/effort, e.g. "6 × Sonnet/medium"),
   so a mis-route is visible to the user BEFORE the tokens are spent, not after.
+- **A frontier main model never reads raw web content.** Web search/fetch is
+  Sonnet-tier evidence-gathering anyway — and raw pages in a Fable/Opus
+  context can trip safety fallbacks that silently switch the session model
+  (e.g. Fable → Opus 4.8), degrading everything after. Delegate fetches to a
+  Sonnet/Haiku sub-agent; only distilled findings enter the main context.
+- **Safeguard-downgrade watch.** The assistant CANNOT switch the session model
+  back — /model is user-only, and a safeguard switch does NOT revert on its
+  own. When a downgrade is noticed or reported (harness banner, user mention):
+  say so immediately, pause judgment-heavy work, and prompt the user to
+  restore with /model. Never silently continue frontier-grade work on the
+  fallback model; mechanical work may proceed meanwhile.
 - **HARD RULE (overrides all): never compromise quality.** Any doubt whether a
   downgrade would hurt → do NOT downgrade.
 ```

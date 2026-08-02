@@ -70,6 +70,17 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.4.0** - Protects against *safety-fallback* downgrades, a failure mode
+  distinct from routing drift. Raw web content in a frontier model's context
+  can trip safeguards that silently switch the session model mid-task
+  (e.g. Fable to Opus 4.8), quietly degrading everything after. Two rules:
+  **a frontier main model never reads raw web content** (delegate fetches to
+  a Sonnet/Haiku sub-agent - it is Sonnet-tier work anyway, and it removes
+  the trigger surface), and a **safeguard-downgrade watch** (announce it,
+  pause judgment-heavy work, prompt the user to restore with `/model`).
+  Note the assistant *cannot* restore the model itself - `/model` is
+  user-only and a safeguard switch does not revert on its own - so the rule
+  makes the downgrade loud instead of silent.
 - **1.3.0** - Anti-drift rules, learned from a long session where the routing
   silently decayed. Three additions: **pin every sub-agent** (an unpinned
   agent inherits the session model, so mechanical fan-out silently runs at
