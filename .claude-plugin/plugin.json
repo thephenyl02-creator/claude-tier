@@ -1,7 +1,7 @@
 {
   "name": "tier",
-  "description": "Install a model/effort-tiering working preference into any project's CLAUDE.md - quality-first, cost-efficient. Run /tier to make a project model-tiered on desktop, web, and mobile.",
-  "version": "1.5.0",
+  "description": "Install a model/effort-tiering working preference into the current project - quality-first, cost-efficient. /tier writes a machine-local CLAUDE.local.md by default (your repo stays clean); /tier repo writes the committed CLAUDE.md for web + mobile coverage.",
+  "version": "1.6.0",
   "author": {
     "name": "Fenil K Ventures LLC"
   },
