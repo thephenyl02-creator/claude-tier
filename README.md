@@ -36,8 +36,9 @@ $codex-tier
 <normal task>
 ```
 
-Users do not choose Luna, Terra, Sol, reasoning effort, worker count, or
-escalation paths. See [CODEX-TIER.md](CODEX-TIER.md) for architecture,
+Users do not choose a model, reasoning effort, worker count, or escalation
+path. The active matrix is discovered per Codex client/account. See
+[CODEX-TIER.md](CODEX-TIER.md) for architecture,
 enforcement, configuration, logging, tests, and current limitations.
 
 ---

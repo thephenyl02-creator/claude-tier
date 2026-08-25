@@ -1,0 +1,63 @@
+{
+  "measured_at": "2026-08-25T10:12:25.184054Z",
+  "profiles": {
+    "bulk_repository_scan": {
+      "candidates": [
+        {
+          "effort": "low",
+          "measured_output_tokens": 233,
+          "measured_total_exposed_tokens": 12382,
+          "measured_uncached_input_tokens": 501,
+          "model": "gpt-5.4-mini",
+          "quality": 100,
+          "relative_usage": 12382,
+          "usage_source": "real-codex-jsonl",
+          "verification": "pass"
+        }
+      ],
+      "evaluated_candidates": 29,
+      "fixture_id": "real-bulk-repository-scan-v1"
+    },
+    "difficult_debugging": {
+      "candidates": [
+        {
+          "effort": "low",
+          "measured_output_tokens": 442,
+          "measured_total_exposed_tokens": 12742,
+          "measured_uncached_input_tokens": 652,
+          "model": "gpt-5.4-mini",
+          "quality": 100,
+          "relative_usage": 12742,
+          "usage_source": "real-codex-jsonl",
+          "verification": "pass"
+        }
+      ],
+      "evaluated_candidates": 29,
+      "fixture_id": "real-difficult-debugging-v1"
+    },
+    "security_review": {
+      "candidates": [
+        {
+          "effort": "low",
+          "measured_output_tokens": 353,
+          "measured_total_exposed_tokens": 12492,
+          "measured_uncached_input_tokens": 491,
+          "model": "gpt-5.4-mini",
+          "quality": 100,
+          "relative_usage": 12492,
+          "usage_source": "real-codex-jsonl",
+          "verification": "pass"
+        }
+      ],
+      "evaluated_candidates": 29,
+      "fixture_id": "real-security-review-v1"
+    }
+  },
+  "schema_version": 1,
+  "status": "real-codex-measurement",
+  "usage_metric": {
+    "codex_credit_mapping": "unknown unless codex_usage_credits is populated",
+    "definition": "input_tokens + output_tokens from real Codex JSONL",
+    "primary": "total_exposed_tokens"
+  }
+}

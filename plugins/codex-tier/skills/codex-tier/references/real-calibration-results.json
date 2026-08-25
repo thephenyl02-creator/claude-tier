@@ -1,0 +1,4702 @@
+{
+  "candidate_count": 29,
+  "candidate_matrix_hash": "4ceb8b6cee5107b0e3ce966f973692413cf17b64aa09c516dd2f1cd50f464382",
+  "codex_cli_version": "codex-cli 0.149.1",
+  "frontiers": {
+    "bulk_repository_scan": {
+      "candidates": [
+        {
+          "effort": "low",
+          "measured_output_tokens": 233,
+          "measured_total_exposed_tokens": 12382,
+          "measured_uncached_input_tokens": 501,
+          "model": "gpt-5.4-mini",
+          "quality": 100,
+          "relative_usage": 12382,
+          "usage_source": "real-codex-jsonl",
+          "verification": "pass"
+        }
+      ],
+      "evaluated_candidates": 29,
+      "fixture_id": "real-bulk-repository-scan-v1"
+    },
+    "difficult_debugging": {
+      "candidates": [
+        {
+          "effort": "low",
+          "measured_output_tokens": 442,
+          "measured_total_exposed_tokens": 12742,
+          "measured_uncached_input_tokens": 652,
+          "model": "gpt-5.4-mini",
+          "quality": 100,
+          "relative_usage": 12742,
+          "usage_source": "real-codex-jsonl",
+          "verification": "pass"
+        }
+      ],
+      "evaluated_candidates": 29,
+      "fixture_id": "real-difficult-debugging-v1"
+    },
+    "security_review": {
+      "candidates": [
+        {
+          "effort": "low",
+          "measured_output_tokens": 353,
+          "measured_total_exposed_tokens": 12492,
+          "measured_uncached_input_tokens": 491,
+          "model": "gpt-5.4-mini",
+          "quality": 100,
+          "relative_usage": 12492,
+          "usage_source": "real-codex-jsonl",
+          "verification": "pass"
+        }
+      ],
+      "evaluated_candidates": 29,
+      "fixture_id": "real-security-review-v1"
+    }
+  },
+  "measured_at": "2026-08-25T10:12:25.184054Z",
+  "mode": "real-calibration",
+  "run_metrics": {
+    "error_events": 0,
+    "escalation_note": "Candidates are measured independently; routing escalation is triggered only after a live task verification failure.",
+    "escalations": 0,
+    "launch_probes": 29,
+    "retries": 0,
+    "verification_failures": 0,
+    "workload_runs": 87
+  },
+  "model_discovery": {
+    "cache_available": true,
+    "client_version": "0.149.0",
+    "fetched_at": "2026-08-25T09:50:22.812054300Z",
+    "path": "C:\\Users\\Fenil\\.codex\\models_cache.json",
+    "source": "codex-model-cache"
+  },
+  "probes": [
+    {
+      "duration_seconds": 5.46165,
+      "effort": "low",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4-mini",
+      "pair": "gpt-5.4-mini/low",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 4480,
+        "codex_usage_credits": null,
+        "input_tokens": 15700,
+        "output_tokens": 30,
+        "reasoning_output_tokens": 16,
+        "total_exposed_tokens": 15730,
+        "uncached_input_tokens": 11220
+      }
+    },
+    {
+      "duration_seconds": 5.181704,
+      "effort": "medium",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4-mini",
+      "pair": "gpt-5.4-mini/medium",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 4480,
+        "codex_usage_credits": null,
+        "input_tokens": 11899,
+        "output_tokens": 43,
+        "reasoning_output_tokens": 29,
+        "total_exposed_tokens": 11942,
+        "uncached_input_tokens": 7419
+      }
+    },
+    {
+      "duration_seconds": 5.642696,
+      "effort": "high",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4-mini",
+      "pair": "gpt-5.4-mini/high",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 3456,
+        "codex_usage_credits": null,
+        "input_tokens": 11897,
+        "output_tokens": 37,
+        "reasoning_output_tokens": 23,
+        "total_exposed_tokens": 11934,
+        "uncached_input_tokens": 8441
+      }
+    },
+    {
+      "duration_seconds": 6.952795,
+      "effort": "xhigh",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4-mini",
+      "pair": "gpt-5.4-mini/xhigh",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 3456,
+        "codex_usage_credits": null,
+        "input_tokens": 11897,
+        "output_tokens": 44,
+        "reasoning_output_tokens": 30,
+        "total_exposed_tokens": 11941,
+        "uncached_input_tokens": 8441
+      }
+    },
+    {
+      "duration_seconds": 4.923881,
+      "effort": "low",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4",
+      "pair": "gpt-5.4/low",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12251,
+        "output_tokens": 24,
+        "reasoning_output_tokens": 10,
+        "total_exposed_tokens": 12275,
+        "uncached_input_tokens": 10331
+      }
+    },
+    {
+      "duration_seconds": 6.471619,
+      "effort": "medium",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4",
+      "pair": "gpt-5.4/medium",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12251,
+        "output_tokens": 28,
+        "reasoning_output_tokens": 14,
+        "total_exposed_tokens": 12279,
+        "uncached_input_tokens": 10331
+      }
+    },
+    {
+      "duration_seconds": 6.964497,
+      "effort": "high",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4",
+      "pair": "gpt-5.4/high",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12249,
+        "output_tokens": 39,
+        "reasoning_output_tokens": 25,
+        "total_exposed_tokens": 12288,
+        "uncached_input_tokens": 10329
+      }
+    },
+    {
+      "duration_seconds": 4.544427,
+      "effort": "xhigh",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4",
+      "pair": "gpt-5.4/xhigh",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12253,
+        "output_tokens": 48,
+        "reasoning_output_tokens": 34,
+        "total_exposed_tokens": 12301,
+        "uncached_input_tokens": 10333
+      }
+    },
+    {
+      "duration_seconds": 4.530197,
+      "effort": "low",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.5",
+      "pair": "gpt-5.5/low",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13634,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 13646,
+        "uncached_input_tokens": 12226
+      }
+    },
+    {
+      "duration_seconds": 10.29283,
+      "effort": "medium",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.5",
+      "pair": "gpt-5.5/medium",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13636,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 13648,
+        "uncached_input_tokens": 12228
+      }
+    },
+    {
+      "duration_seconds": 4.043944,
+      "effort": "high",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.5",
+      "pair": "gpt-5.5/high",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13636,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 13648,
+        "uncached_input_tokens": 12228
+      }
+    },
+    {
+      "duration_seconds": 5.818432,
+      "effort": "xhigh",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.5",
+      "pair": "gpt-5.5/xhigh",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13636,
+        "output_tokens": 44,
+        "reasoning_output_tokens": 30,
+        "total_exposed_tokens": 13680,
+        "uncached_input_tokens": 12228
+      }
+    },
+    {
+      "duration_seconds": 3.79301,
+      "effort": "low",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-luna",
+      "pair": "gpt-5.6-luna/low",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 8960,
+        "codex_usage_credits": null,
+        "input_tokens": 12657,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 12669,
+        "uncached_input_tokens": 3697
+      }
+    },
+    {
+      "duration_seconds": 3.670785,
+      "effort": "medium",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-luna",
+      "pair": "gpt-5.6-luna/medium",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12659,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 12671,
+        "uncached_input_tokens": 12659
+      }
+    },
+    {
+      "duration_seconds": 3.350703,
+      "effort": "high",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-luna",
+      "pair": "gpt-5.6-luna/high",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12653,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 12665,
+        "uncached_input_tokens": 12653
+      }
+    },
+    {
+      "duration_seconds": 3.382307,
+      "effort": "xhigh",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-luna",
+      "pair": "gpt-5.6-luna/xhigh",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 8960,
+        "codex_usage_credits": null,
+        "input_tokens": 12657,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 12669,
+        "uncached_input_tokens": 3697
+      }
+    },
+    {
+      "duration_seconds": 3.404382,
+      "effort": "max",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-luna",
+      "pair": "gpt-5.6-luna/max",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12659,
+        "output_tokens": 27,
+        "reasoning_output_tokens": 13,
+        "total_exposed_tokens": 12686,
+        "uncached_input_tokens": 12659
+      }
+    },
+    {
+      "duration_seconds": 4.464203,
+      "effort": "low",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-terra",
+      "pair": "gpt-5.6-terra/low",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 6912,
+        "codex_usage_credits": null,
+        "input_tokens": 14215,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14227,
+        "uncached_input_tokens": 7303
+      }
+    },
+    {
+      "duration_seconds": 3.321664,
+      "effort": "medium",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-terra",
+      "pair": "gpt-5.6-terra/medium",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14213,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14225,
+        "uncached_input_tokens": 4229
+      }
+    },
+    {
+      "duration_seconds": 3.366472,
+      "effort": "high",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-terra",
+      "pair": "gpt-5.6-terra/high",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14215,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14227,
+        "uncached_input_tokens": 4231
+      }
+    },
+    {
+      "duration_seconds": 3.763963,
+      "effort": "xhigh",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-terra",
+      "pair": "gpt-5.6-terra/xhigh",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14217,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14229,
+        "uncached_input_tokens": 4233
+      }
+    },
+    {
+      "duration_seconds": 3.686676,
+      "effort": "max",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-terra",
+      "pair": "gpt-5.6-terra/max",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14215,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14227,
+        "uncached_input_tokens": 14215
+      }
+    },
+    {
+      "duration_seconds": 3.871159,
+      "effort": "ultra",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-terra",
+      "pair": "gpt-5.6-terra/ultra",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14224,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14236,
+        "uncached_input_tokens": 4240
+      }
+    },
+    {
+      "duration_seconds": 4.150658,
+      "effort": "low",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-sol",
+      "pair": "gpt-5.6-sol/low",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14215,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14227,
+        "uncached_input_tokens": 4231
+      }
+    },
+    {
+      "duration_seconds": 5.192194,
+      "effort": "medium",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-sol",
+      "pair": "gpt-5.6-sol/medium",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14219,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14231,
+        "uncached_input_tokens": 4235
+      }
+    },
+    {
+      "duration_seconds": 4.044321,
+      "effort": "high",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-sol",
+      "pair": "gpt-5.6-sol/high",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14215,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14227,
+        "uncached_input_tokens": 4231
+      }
+    },
+    {
+      "duration_seconds": 4.600213,
+      "effort": "xhigh",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-sol",
+      "pair": "gpt-5.6-sol/xhigh",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14217,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14229,
+        "uncached_input_tokens": 4233
+      }
+    },
+    {
+      "duration_seconds": 3.951788,
+      "effort": "max",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-sol",
+      "pair": "gpt-5.6-sol/max",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14215,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14227,
+        "uncached_input_tokens": 14215
+      }
+    },
+    {
+      "duration_seconds": 8.237804,
+      "effort": "ultra",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-sol",
+      "pair": "gpt-5.6-sol/ultra",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14226,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14238,
+        "uncached_input_tokens": 14226
+      }
+    }
+  ],
+  "records": [
+    {
+      "duration_seconds": 6.768663,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.4-mini",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.4-mini/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11648,
+        "codex_usage_credits": null,
+        "input_tokens": 12149,
+        "output_tokens": 233,
+        "reasoning_output_tokens": 75,
+        "total_exposed_tokens": 12382,
+        "uncached_input_tokens": 501
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 7.908467,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.4-mini",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.4-mini/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 12147,
+        "output_tokens": 293,
+        "reasoning_output_tokens": 135,
+        "total_exposed_tokens": 12440,
+        "uncached_input_tokens": 10739
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 8.257388,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.4-mini",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.4-mini/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 12147,
+        "output_tokens": 334,
+        "reasoning_output_tokens": 170,
+        "total_exposed_tokens": 12481,
+        "uncached_input_tokens": 10739
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 11.667304,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.4-mini",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.4-mini/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 12151,
+        "output_tokens": 597,
+        "reasoning_output_tokens": 459,
+        "total_exposed_tokens": 12748,
+        "uncached_input_tokens": 10743
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 8.287984,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.4",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.4/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 16306,
+        "output_tokens": 183,
+        "reasoning_output_tokens": 25,
+        "total_exposed_tokens": 16489,
+        "uncached_input_tokens": 14386
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 8.708764,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.4",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.4/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12505,
+        "output_tokens": 254,
+        "reasoning_output_tokens": 96,
+        "total_exposed_tokens": 12759,
+        "uncached_input_tokens": 10585
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 9.278275,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.4",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.4/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12501,
+        "output_tokens": 322,
+        "reasoning_output_tokens": 167,
+        "total_exposed_tokens": 12823,
+        "uncached_input_tokens": 10581
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 11.81997,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.4",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.4/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12501,
+        "output_tokens": 484,
+        "reasoning_output_tokens": 326,
+        "total_exposed_tokens": 12985,
+        "uncached_input_tokens": 10581
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 6.384356,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.5",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.5/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13890,
+        "output_tokens": 153,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14043,
+        "uncached_input_tokens": 12482
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 8.009626,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.5",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.5/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13888,
+        "output_tokens": 220,
+        "reasoning_output_tokens": 65,
+        "total_exposed_tokens": 14108,
+        "uncached_input_tokens": 12480
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 8.270386,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.5",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.5/high",
+      "quality_score": 95,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13884,
+        "output_tokens": 233,
+        "reasoning_output_tokens": 100,
+        "total_exposed_tokens": 14117,
+        "uncached_input_tokens": 12476
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 11.569074,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.5",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.5/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13886,
+        "output_tokens": 421,
+        "reasoning_output_tokens": 283,
+        "total_exposed_tokens": 14307,
+        "uncached_input_tokens": 12478
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 6.862103,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-luna/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12909,
+        "output_tokens": 186,
+        "reasoning_output_tokens": 34,
+        "total_exposed_tokens": 13095,
+        "uncached_input_tokens": 12909
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 9.467352,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-luna/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12909,
+        "output_tokens": 197,
+        "reasoning_output_tokens": 42,
+        "total_exposed_tokens": 13106,
+        "uncached_input_tokens": 12909
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 6.652544,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-luna/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12911,
+        "output_tokens": 199,
+        "reasoning_output_tokens": 49,
+        "total_exposed_tokens": 13110,
+        "uncached_input_tokens": 12911
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 10.726808,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-luna/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12905,
+        "output_tokens": 291,
+        "reasoning_output_tokens": 138,
+        "total_exposed_tokens": 13196,
+        "uncached_input_tokens": 12905
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 10.706944,
+      "effort": "max",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-luna/max",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12911,
+        "output_tokens": 316,
+        "reasoning_output_tokens": 171,
+        "total_exposed_tokens": 13227,
+        "uncached_input_tokens": 12911
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 6.31363,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-terra/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14471,
+        "output_tokens": 151,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14622,
+        "uncached_input_tokens": 14471
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 5.716553,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-terra/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14467,
+        "output_tokens": 151,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14618,
+        "uncached_input_tokens": 14467
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 8.112039,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-terra/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14467,
+        "output_tokens": 199,
+        "reasoning_output_tokens": 48,
+        "total_exposed_tokens": 14666,
+        "uncached_input_tokens": 14467
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 7.191915,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-terra/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14467,
+        "output_tokens": 196,
+        "reasoning_output_tokens": 43,
+        "total_exposed_tokens": 14663,
+        "uncached_input_tokens": 14467
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 7.838609,
+      "effort": "max",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-terra/max",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14467,
+        "output_tokens": 246,
+        "reasoning_output_tokens": 108,
+        "total_exposed_tokens": 14713,
+        "uncached_input_tokens": 14467
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 8.569826,
+      "effort": "ultra",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-terra/ultra",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14476,
+        "output_tokens": 208,
+        "reasoning_output_tokens": 70,
+        "total_exposed_tokens": 14684,
+        "uncached_input_tokens": 14476
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 12.663751,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-sol/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14469,
+        "output_tokens": 151,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14620,
+        "uncached_input_tokens": 14469
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 6.74003,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-sol/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14283,
+        "output_tokens": 153,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14436,
+        "uncached_input_tokens": 14283
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 7.009565,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-sol/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14469,
+        "output_tokens": 151,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14620,
+        "uncached_input_tokens": 14469
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 7.670839,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-sol/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14471,
+        "output_tokens": 149,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14620,
+        "uncached_input_tokens": 14471
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 9.884275,
+      "effort": "max",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-sol/max",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14465,
+        "output_tokens": 252,
+        "reasoning_output_tokens": 99,
+        "total_exposed_tokens": 14717,
+        "uncached_input_tokens": 14465
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 7.6583,
+      "effort": "ultra",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-bulk-repository-scan-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "generated",
+          "file": "generated/schema.py"
+        },
+        {
+          "category": "todo",
+          "file": "src/cache.py"
+        },
+        {
+          "category": "vendored",
+          "file": "vendor/lib.js"
+        },
+        {
+          "category": "fixme",
+          "file": "web/app.js"
+        }
+      ],
+      "pair": "gpt-5.6-sol/ultra",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14476,
+        "output_tokens": 196,
+        "reasoning_output_tokens": 43,
+        "total_exposed_tokens": 14672,
+        "uncached_input_tokens": 14476
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "bulk_repository_scan",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 10.095438,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.4-mini",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.4-mini/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11648,
+        "codex_usage_credits": null,
+        "input_tokens": 12300,
+        "output_tokens": 442,
+        "reasoning_output_tokens": 167,
+        "total_exposed_tokens": 12742,
+        "uncached_input_tokens": 652
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 14.625831,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.4-mini",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.4-mini/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11648,
+        "codex_usage_credits": null,
+        "input_tokens": 12302,
+        "output_tokens": 795,
+        "reasoning_output_tokens": 516,
+        "total_exposed_tokens": 13097,
+        "uncached_input_tokens": 654
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 15.531381,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.4-mini",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.4-mini/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12298,
+        "output_tokens": 814,
+        "reasoning_output_tokens": 516,
+        "total_exposed_tokens": 13112,
+        "uncached_input_tokens": 10378
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 143.429474,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.4-mini",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.4-mini/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11648,
+        "codex_usage_credits": null,
+        "input_tokens": 12300,
+        "output_tokens": 10017,
+        "reasoning_output_tokens": 9754,
+        "total_exposed_tokens": 22317,
+        "uncached_input_tokens": 652
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 14.370112,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.4",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.4/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 16455,
+        "output_tokens": 506,
+        "reasoning_output_tokens": 219,
+        "total_exposed_tokens": 16961,
+        "uncached_input_tokens": 14535
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 14.327867,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.4",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.4/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12652,
+        "output_tokens": 573,
+        "reasoning_output_tokens": 255,
+        "total_exposed_tokens": 13225,
+        "uncached_input_tokens": 10732
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 19.352792,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.4",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.4/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12652,
+        "output_tokens": 863,
+        "reasoning_output_tokens": 516,
+        "total_exposed_tokens": 13515,
+        "uncached_input_tokens": 10732
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 42.999809,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.4",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.4/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12652,
+        "output_tokens": 2107,
+        "reasoning_output_tokens": 1795,
+        "total_exposed_tokens": 14759,
+        "uncached_input_tokens": 10732
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 9.907724,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.5",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.5/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 14039,
+        "output_tokens": 305,
+        "reasoning_output_tokens": 84,
+        "total_exposed_tokens": 14344,
+        "uncached_input_tokens": 12631
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 12.958579,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.5",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.5/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11648,
+        "codex_usage_credits": null,
+        "input_tokens": 14037,
+        "output_tokens": 458,
+        "reasoning_output_tokens": 205,
+        "total_exposed_tokens": 14495,
+        "uncached_input_tokens": 2389
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 18.243979,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.5",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.5/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 14039,
+        "output_tokens": 760,
+        "reasoning_output_tokens": 516,
+        "total_exposed_tokens": 14799,
+        "uncached_input_tokens": 12631
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 17.80001,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.5",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.5/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 14037,
+        "output_tokens": 747,
+        "reasoning_output_tokens": 516,
+        "total_exposed_tokens": 14784,
+        "uncached_input_tokens": 12629
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 9.354428,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-luna/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 16863,
+        "output_tokens": 233,
+        "reasoning_output_tokens": 52,
+        "total_exposed_tokens": 17096,
+        "uncached_input_tokens": 16863
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 9.71042,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-luna/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 13058,
+        "output_tokens": 281,
+        "reasoning_output_tokens": 110,
+        "total_exposed_tokens": 13339,
+        "uncached_input_tokens": 13058
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 12.090312,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-luna/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 13056,
+        "output_tokens": 402,
+        "reasoning_output_tokens": 210,
+        "total_exposed_tokens": 13458,
+        "uncached_input_tokens": 13056
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 13.544411,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-luna/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 13058,
+        "output_tokens": 527,
+        "reasoning_output_tokens": 328,
+        "total_exposed_tokens": 13585,
+        "uncached_input_tokens": 13058
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 22.825399,
+      "effort": "max",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-luna/max",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 13058,
+        "output_tokens": 1033,
+        "reasoning_output_tokens": 841,
+        "total_exposed_tokens": 14091,
+        "uncached_input_tokens": 13058
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 11.266969,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-terra/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14614,
+        "output_tokens": 258,
+        "reasoning_output_tokens": 76,
+        "total_exposed_tokens": 14872,
+        "uncached_input_tokens": 14614
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 8.594022,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-terra/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14618,
+        "output_tokens": 260,
+        "reasoning_output_tokens": 94,
+        "total_exposed_tokens": 14878,
+        "uncached_input_tokens": 14618
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 9.438483,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-terra/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14618,
+        "output_tokens": 247,
+        "reasoning_output_tokens": 81,
+        "total_exposed_tokens": 14865,
+        "uncached_input_tokens": 14618
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 10.398933,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-terra/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14614,
+        "output_tokens": 353,
+        "reasoning_output_tokens": 175,
+        "total_exposed_tokens": 14967,
+        "uncached_input_tokens": 14614
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 15.59468,
+      "effort": "max",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-terra/max",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14614,
+        "output_tokens": 551,
+        "reasoning_output_tokens": 343,
+        "total_exposed_tokens": 15165,
+        "uncached_input_tokens": 14614
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 13.097661,
+      "effort": "ultra",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-terra/ultra",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11008,
+        "codex_usage_credits": null,
+        "input_tokens": 14625,
+        "output_tokens": 323,
+        "reasoning_output_tokens": 157,
+        "total_exposed_tokens": 14948,
+        "uncached_input_tokens": 3617
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 12.925127,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-sol/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14616,
+        "output_tokens": 342,
+        "reasoning_output_tokens": 95,
+        "total_exposed_tokens": 14958,
+        "uncached_input_tokens": 14616
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 10.895513,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-sol/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14614,
+        "output_tokens": 221,
+        "reasoning_output_tokens": 22,
+        "total_exposed_tokens": 14835,
+        "uncached_input_tokens": 14614
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 11.208823,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-sol/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14620,
+        "output_tokens": 269,
+        "reasoning_output_tokens": 49,
+        "total_exposed_tokens": 14889,
+        "uncached_input_tokens": 14620
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 12.821797,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-sol/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 18419,
+        "output_tokens": 356,
+        "reasoning_output_tokens": 137,
+        "total_exposed_tokens": 18775,
+        "uncached_input_tokens": 18419
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 19.320349,
+      "effort": "max",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-sol/max",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14614,
+        "output_tokens": 553,
+        "reasoning_output_tokens": 309,
+        "total_exposed_tokens": 15167,
+        "uncached_input_tokens": 14614
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 15.002854,
+      "effort": "ultra",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 3,
+      "expected_total": 3,
+      "fixture_id": "real-difficult-debugging-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "expiry-boundary",
+          "file": "session_store.py"
+        },
+        {
+          "category": "mutable-authorization-alias",
+          "file": "session_store.py"
+        },
+        {
+          "category": "revocation-race",
+          "file": "session_store.py"
+        }
+      ],
+      "pair": "gpt-5.6-sol/ultra",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11008,
+        "codex_usage_credits": null,
+        "input_tokens": 14629,
+        "output_tokens": 459,
+        "reasoning_output_tokens": 225,
+        "total_exposed_tokens": 15088,
+        "uncached_input_tokens": 3621
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "difficult_debugging",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 12.299241,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.4-mini",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.4-mini/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11648,
+        "codex_usage_credits": null,
+        "input_tokens": 12139,
+        "output_tokens": 353,
+        "reasoning_output_tokens": 114,
+        "total_exposed_tokens": 12492,
+        "uncached_input_tokens": 491
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 12.221592,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.4-mini",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.4-mini/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12135,
+        "output_tokens": 372,
+        "reasoning_output_tokens": 128,
+        "total_exposed_tokens": 12507,
+        "uncached_input_tokens": 10215
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 13.791648,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.4-mini",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.4-mini/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 12141,
+        "output_tokens": 652,
+        "reasoning_output_tokens": 394,
+        "total_exposed_tokens": 12793,
+        "uncached_input_tokens": 10733
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 14.431401,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.4-mini",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.4-mini/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11648,
+        "codex_usage_credits": null,
+        "input_tokens": 12139,
+        "output_tokens": 711,
+        "reasoning_output_tokens": 516,
+        "total_exposed_tokens": 12850,
+        "uncached_input_tokens": 491
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 11.359567,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.4",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.4/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12489,
+        "output_tokens": 321,
+        "reasoning_output_tokens": 27,
+        "total_exposed_tokens": 12810,
+        "uncached_input_tokens": 10569
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 13.840397,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.4",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.4/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 10624,
+        "codex_usage_credits": null,
+        "input_tokens": 12493,
+        "output_tokens": 312,
+        "reasoning_output_tokens": 38,
+        "total_exposed_tokens": 12805,
+        "uncached_input_tokens": 1869
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 13.802916,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.4",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.4/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 10624,
+        "codex_usage_credits": null,
+        "input_tokens": 12491,
+        "output_tokens": 513,
+        "reasoning_output_tokens": 263,
+        "total_exposed_tokens": 13004,
+        "uncached_input_tokens": 1867
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 24.07206,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.4",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.4/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 10624,
+        "codex_usage_credits": null,
+        "input_tokens": 12489,
+        "output_tokens": 1098,
+        "reasoning_output_tokens": 810,
+        "total_exposed_tokens": 13587,
+        "uncached_input_tokens": 1865
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 13.589327,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.5",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.5/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13876,
+        "output_tokens": 266,
+        "reasoning_output_tokens": 43,
+        "total_exposed_tokens": 14142,
+        "uncached_input_tokens": 12468
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 13.547007,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.5",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.5/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 17681,
+        "output_tokens": 257,
+        "reasoning_output_tokens": 42,
+        "total_exposed_tokens": 17938,
+        "uncached_input_tokens": 16273
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 12.718566,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.5",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.5/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11648,
+        "codex_usage_credits": null,
+        "input_tokens": 13876,
+        "output_tokens": 308,
+        "reasoning_output_tokens": 85,
+        "total_exposed_tokens": 14184,
+        "uncached_input_tokens": 2228
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 16.402244,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.5",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.5/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13876,
+        "output_tokens": 601,
+        "reasoning_output_tokens": 417,
+        "total_exposed_tokens": 14477,
+        "uncached_input_tokens": 12468
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 10.2751,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-luna/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12895,
+        "output_tokens": 204,
+        "reasoning_output_tokens": 42,
+        "total_exposed_tokens": 13099,
+        "uncached_input_tokens": 12895
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 9.599591,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-luna/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12897,
+        "output_tokens": 218,
+        "reasoning_output_tokens": 51,
+        "total_exposed_tokens": 13115,
+        "uncached_input_tokens": 12897
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 10.363486,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-luna/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12897,
+        "output_tokens": 243,
+        "reasoning_output_tokens": 67,
+        "total_exposed_tokens": 13140,
+        "uncached_input_tokens": 12897
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 10.57452,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-luna/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12893,
+        "output_tokens": 271,
+        "reasoning_output_tokens": 100,
+        "total_exposed_tokens": 13164,
+        "uncached_input_tokens": 12893
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 12.715014,
+      "effort": "max",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-luna",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-luna/max",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12897,
+        "output_tokens": 501,
+        "reasoning_output_tokens": 305,
+        "total_exposed_tokens": 13398,
+        "uncached_input_tokens": 12897
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 7.58582,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-terra/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11008,
+        "codex_usage_credits": null,
+        "input_tokens": 14455,
+        "output_tokens": 189,
+        "reasoning_output_tokens": 28,
+        "total_exposed_tokens": 14644,
+        "uncached_input_tokens": 3447
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 8.477298,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-terra/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14453,
+        "output_tokens": 210,
+        "reasoning_output_tokens": 51,
+        "total_exposed_tokens": 14663,
+        "uncached_input_tokens": 14453
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 8.196027,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-terra/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14457,
+        "output_tokens": 226,
+        "reasoning_output_tokens": 49,
+        "total_exposed_tokens": 14683,
+        "uncached_input_tokens": 14457
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 8.998767,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-terra/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14453,
+        "output_tokens": 243,
+        "reasoning_output_tokens": 66,
+        "total_exposed_tokens": 14696,
+        "uncached_input_tokens": 14453
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 10.066336,
+      "effort": "max",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-terra/max",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14453,
+        "output_tokens": 345,
+        "reasoning_output_tokens": 197,
+        "total_exposed_tokens": 14798,
+        "uncached_input_tokens": 14453
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 11.467962,
+      "effort": "ultra",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-terra",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-terra/ultra",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11008,
+        "codex_usage_credits": null,
+        "input_tokens": 14466,
+        "output_tokens": 353,
+        "reasoning_output_tokens": 178,
+        "total_exposed_tokens": 14819,
+        "uncached_input_tokens": 3458
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 11.391244,
+      "effort": "low",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-sol/low",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14455,
+        "output_tokens": 225,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14680,
+        "uncached_input_tokens": 14455
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 9.897158,
+      "effort": "medium",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-sol/medium",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14451,
+        "output_tokens": 269,
+        "reasoning_output_tokens": 24,
+        "total_exposed_tokens": 14720,
+        "uncached_input_tokens": 14451
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 10.796099,
+      "effort": "high",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-sol/high",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 18258,
+        "output_tokens": 230,
+        "reasoning_output_tokens": 21,
+        "total_exposed_tokens": 18488,
+        "uncached_input_tokens": 18258
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 9.144744,
+      "effort": "xhigh",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-sol/xhigh",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14455,
+        "output_tokens": 260,
+        "reasoning_output_tokens": 27,
+        "total_exposed_tokens": 14715,
+        "uncached_input_tokens": 14455
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 17.615002,
+      "effort": "max",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-sol/max",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14457,
+        "output_tokens": 458,
+        "reasoning_output_tokens": 228,
+        "total_exposed_tokens": 14915,
+        "uncached_input_tokens": 14457
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    },
+    {
+      "duration_seconds": 11.595314,
+      "effort": "ultra",
+      "error": null,
+      "error_event_count": 0,
+      "expected_found": 4,
+      "expected_total": 4,
+      "fixture_id": "real-security-review-v1",
+      "model": "gpt-5.6-sol",
+      "observed_signatures": [
+        {
+          "category": "open-redirect",
+          "file": "app.py"
+        },
+        {
+          "category": "path-traversal",
+          "file": "app.py"
+        },
+        {
+          "category": "sql-injection",
+          "file": "app.py"
+        },
+        {
+          "category": "unsafe-deserialization",
+          "file": "tokens.py"
+        }
+      ],
+      "pair": "gpt-5.6-sol/ultra",
+      "quality_score": 100,
+      "retry_count": 0,
+      "tool_item_count": 0,
+      "unexpected": 0,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 11008,
+        "codex_usage_credits": null,
+        "input_tokens": 14466,
+        "output_tokens": 336,
+        "reasoning_output_tokens": 115,
+        "total_exposed_tokens": 14802,
+        "uncached_input_tokens": 3458
+      },
+      "valid_json": true,
+      "verification": "pass",
+      "work_class": "security_review",
+      "worker_success": true
+    }
+  ],
+  "schema_version": 1,
+  "successful_combinations": [
+    "gpt-5.4-mini/low",
+    "gpt-5.4-mini/medium",
+    "gpt-5.4-mini/high",
+    "gpt-5.4-mini/xhigh",
+    "gpt-5.4/low",
+    "gpt-5.4/medium",
+    "gpt-5.4/high",
+    "gpt-5.4/xhigh",
+    "gpt-5.5/low",
+    "gpt-5.5/medium",
+    "gpt-5.5/high",
+    "gpt-5.5/xhigh",
+    "gpt-5.6-luna/low",
+    "gpt-5.6-luna/medium",
+    "gpt-5.6-luna/high",
+    "gpt-5.6-luna/xhigh",
+    "gpt-5.6-luna/max",
+    "gpt-5.6-terra/low",
+    "gpt-5.6-terra/medium",
+    "gpt-5.6-terra/high",
+    "gpt-5.6-terra/xhigh",
+    "gpt-5.6-terra/max",
+    "gpt-5.6-terra/ultra",
+    "gpt-5.6-sol/low",
+    "gpt-5.6-sol/medium",
+    "gpt-5.6-sol/high",
+    "gpt-5.6-sol/xhigh",
+    "gpt-5.6-sol/max",
+    "gpt-5.6-sol/ultra"
+  ],
+  "unavailable_combinations": [],
+  "usage_data": {
+    "codex_usage_credits_exposed": false,
+    "jsonl_tokens_exposed": true,
+    "primary_frontier_metric": "total_exposed_tokens",
+    "savings_percentage_published": false
+  },
+  "usage_log": "C:\\Users\\Fenil\\AppData\\Local\\Temp\\codex-tier-real-calibration-usage.jsonl"
+}

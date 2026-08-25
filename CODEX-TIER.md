@@ -86,25 +86,33 @@ Codex Tier has three execution modes:
   effort.
 
 Routing is deterministic and cheap. It does not benchmark multiple candidates
-during a live task and does not use a fixed Luna → Terra → Sol escalation
-ladder.
+during a live task and does not use a fixed cross-model escalation ladder.
 
 ## Model registry and frontiers
 
-The registry currently prefers:
+The active matrix is discovered from the current Codex client's visible model
+catalog. On August 25, 2026 this account exposed:
 
-- `gpt-5.6-luna`
-- `gpt-5.6-terra`
-- `gpt-5.6-sol`
+- `gpt-5.4-mini`: low, medium, high, xhigh
+- `gpt-5.4`: low, medium, high, xhigh
+- `gpt-5.5`: low, medium, high, xhigh
+- `gpt-5.6-luna`: low, medium, high, xhigh, max
+- `gpt-5.6-terra`: low, medium, high, xhigh, max, ultra
+- `gpt-5.6-sol`: low, medium, high, xhigh, max, ultra
 
-Each declares `none`, `low`, `medium`, `high`, `xhigh`, and
-`max` reasoning effort, subject to runtime availability.
+`none` is not exposed by this Codex surface and is excluded from active
+candidates. `ultra` is a client effort available only on Terra and Sol in this
+environment.
 
 Model IDs, supported efforts, compatibility, relative capability, and relative
 usage priors live in
 `plugins/codex-tier/skills/codex-tier/references/model-registry.json`.
 Workload-specific candidates live in `frontiers.json`. Future model changes
 update configuration and calibration rather than routing architecture.
+
+The checked-in `candidate-matrix.json` records real launch status for all 29
+pairs. Matching unavailable probes are automatically excluded; stale probe
+artifacts are ignored when the client matrix changes.
 
 Relative usage values are routing priors, not Codex subscription-credit
 prices. Runtime usage fields are recorded when Codex exposes them.
@@ -167,8 +175,10 @@ credentials, private form responses, and raw transcripts are never logged.
 
 ```text
 python plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py validate
+python plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py matrix
 python -m unittest discover -s tests/codex-tier -p "test_*.py" -v
 python plugins/codex-tier/skills/codex-tier/scripts/benchmark.py
+python plugins/codex-tier/skills/codex-tier/scripts/calibrate.py
 ```
 
 The first command validates registry/frontier integrity. The tests cover mode
@@ -179,7 +189,7 @@ default.
 
 ## Benchmarking
 
-The benchmark manifest covers:
+The deterministic executor-validation manifest covers:
 
 1. high-volume, low-reasoning work;
 2. mixed creative and execution work;
@@ -187,15 +197,15 @@ The benchmark manifest covers:
 4. difficult debugging;
 5. high-risk review.
 
-It compares only adjacent or economically competing candidates for each
-workload. A live run requires a callable Codex CLI and a controlled fixture
-repository:
+It compares adjacent candidates and can run with a CLI double to validate the
+executor. It is not the economic benchmark.
+
+Real calibration uses the official Codex CLI, dynamically sweeps the complete
+advertised matrix, and runs identical synthetic fixtures:
 
 ```text
-python plugins/codex-tier/skills/codex-tier/scripts/benchmark.py \
-  --run \
-  --repo <fixture-repository> \
-  --results-file <results.json>
+python plugins/codex-tier/skills/codex-tier/scripts/calibrate.py \
+  --run --codex-bin <official-codex-cli> --timeout 300
 ```
 
 Raw quality, verification, tokens, credits, retries, escalations, and latency
@@ -206,16 +216,27 @@ verified runs support one.
 
 As verified on August 25, 2026:
 
-- Official OpenAI model guidance lists GPT-5.6 Luna, Terra, and Sol with
-  `none` through `max` reasoning effort.
+- The current Codex client catalog exposed six models and 29 per-model effort
+  combinations listed above. It did not expose `none`; it did expose `ultra`
+  for Terra and Sol.
+- Official `codex-cli 0.149.1` successfully launched all 29 advertised pairs.
+- The separate real calibration completed 87/87 comparable fixture runs with
+  87 verification passes, zero retries, and zero error events.
+- Codex JSONL exposed input, cached input, output, and reasoning-output token
+  counters. It did not expose Codex subscription credits.
+- The first narrow measured frontier contains `gpt-5.4-mini/low` for bulk
+  scan, difficult debugging, and security review. GPT-5.5 is dominated on
+  these fixtures and is retained only as an available registry candidate for
+  other workloads or future calibration.
+- No savings percentage is published.
 - Current Codex documentation supports explicit subagent `model` and
   `model_reasoning_effort` pins.
 - Current `codex exec` supports `--model`, repeated `--config`,
   `--json`, `--output-last-message`, and explicit sandbox selection.
-- The Windows app package inspected during development was build
-  `26.818.8289.0`. Its bundled `codex.exe` was not callable from the
-  managed shell sandbox, so real native-worker execution is the primary app
-  path and the independent CLI wrapper remains the fallback.
+- The managed shell rejected the app-bundled executable and nested fixture
+  shell inspection. A standalone official CLI reused account authentication,
+  so calibration used inline synthetic repository snapshots and real model
+  calls without user repository data.
 - Codex surfaces do not guarantee that every documented model is enabled for
   every workspace or account. Availability is confirmed at execution time.
 

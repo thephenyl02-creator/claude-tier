@@ -1,0 +1,698 @@
+{
+  "candidate_count": 29,
+  "candidate_matrix_hash": "4ceb8b6cee5107b0e3ce966f973692413cf17b64aa09c516dd2f1cd50f464382",
+  "candidates": [
+    {
+      "duration_seconds": 5.46165,
+      "effort": "low",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4-mini",
+      "pair": "gpt-5.4-mini/low",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 4480,
+        "codex_usage_credits": null,
+        "input_tokens": 15700,
+        "output_tokens": 30,
+        "reasoning_output_tokens": 16,
+        "total_exposed_tokens": 15730,
+        "uncached_input_tokens": 11220
+      }
+    },
+    {
+      "duration_seconds": 5.181704,
+      "effort": "medium",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4-mini",
+      "pair": "gpt-5.4-mini/medium",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 4480,
+        "codex_usage_credits": null,
+        "input_tokens": 11899,
+        "output_tokens": 43,
+        "reasoning_output_tokens": 29,
+        "total_exposed_tokens": 11942,
+        "uncached_input_tokens": 7419
+      }
+    },
+    {
+      "duration_seconds": 5.642696,
+      "effort": "high",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4-mini",
+      "pair": "gpt-5.4-mini/high",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 3456,
+        "codex_usage_credits": null,
+        "input_tokens": 11897,
+        "output_tokens": 37,
+        "reasoning_output_tokens": 23,
+        "total_exposed_tokens": 11934,
+        "uncached_input_tokens": 8441
+      }
+    },
+    {
+      "duration_seconds": 6.952795,
+      "effort": "xhigh",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4-mini",
+      "pair": "gpt-5.4-mini/xhigh",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 3456,
+        "codex_usage_credits": null,
+        "input_tokens": 11897,
+        "output_tokens": 44,
+        "reasoning_output_tokens": 30,
+        "total_exposed_tokens": 11941,
+        "uncached_input_tokens": 8441
+      }
+    },
+    {
+      "duration_seconds": 4.923881,
+      "effort": "low",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4",
+      "pair": "gpt-5.4/low",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12251,
+        "output_tokens": 24,
+        "reasoning_output_tokens": 10,
+        "total_exposed_tokens": 12275,
+        "uncached_input_tokens": 10331
+      }
+    },
+    {
+      "duration_seconds": 6.471619,
+      "effort": "medium",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4",
+      "pair": "gpt-5.4/medium",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12251,
+        "output_tokens": 28,
+        "reasoning_output_tokens": 14,
+        "total_exposed_tokens": 12279,
+        "uncached_input_tokens": 10331
+      }
+    },
+    {
+      "duration_seconds": 6.964497,
+      "effort": "high",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4",
+      "pair": "gpt-5.4/high",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12249,
+        "output_tokens": 39,
+        "reasoning_output_tokens": 25,
+        "total_exposed_tokens": 12288,
+        "uncached_input_tokens": 10329
+      }
+    },
+    {
+      "duration_seconds": 4.544427,
+      "effort": "xhigh",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.4",
+      "pair": "gpt-5.4/xhigh",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1920,
+        "codex_usage_credits": null,
+        "input_tokens": 12253,
+        "output_tokens": 48,
+        "reasoning_output_tokens": 34,
+        "total_exposed_tokens": 12301,
+        "uncached_input_tokens": 10333
+      }
+    },
+    {
+      "duration_seconds": 4.530197,
+      "effort": "low",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.5",
+      "pair": "gpt-5.5/low",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13634,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 13646,
+        "uncached_input_tokens": 12226
+      }
+    },
+    {
+      "duration_seconds": 10.29283,
+      "effort": "medium",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.5",
+      "pair": "gpt-5.5/medium",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13636,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 13648,
+        "uncached_input_tokens": 12228
+      }
+    },
+    {
+      "duration_seconds": 4.043944,
+      "effort": "high",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.5",
+      "pair": "gpt-5.5/high",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13636,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 13648,
+        "uncached_input_tokens": 12228
+      }
+    },
+    {
+      "duration_seconds": 5.818432,
+      "effort": "xhigh",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.5",
+      "pair": "gpt-5.5/xhigh",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 1408,
+        "codex_usage_credits": null,
+        "input_tokens": 13636,
+        "output_tokens": 44,
+        "reasoning_output_tokens": 30,
+        "total_exposed_tokens": 13680,
+        "uncached_input_tokens": 12228
+      }
+    },
+    {
+      "duration_seconds": 3.79301,
+      "effort": "low",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-luna",
+      "pair": "gpt-5.6-luna/low",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 8960,
+        "codex_usage_credits": null,
+        "input_tokens": 12657,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 12669,
+        "uncached_input_tokens": 3697
+      }
+    },
+    {
+      "duration_seconds": 3.670785,
+      "effort": "medium",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-luna",
+      "pair": "gpt-5.6-luna/medium",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12659,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 12671,
+        "uncached_input_tokens": 12659
+      }
+    },
+    {
+      "duration_seconds": 3.350703,
+      "effort": "high",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-luna",
+      "pair": "gpt-5.6-luna/high",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12653,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 12665,
+        "uncached_input_tokens": 12653
+      }
+    },
+    {
+      "duration_seconds": 3.382307,
+      "effort": "xhigh",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-luna",
+      "pair": "gpt-5.6-luna/xhigh",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 8960,
+        "codex_usage_credits": null,
+        "input_tokens": 12657,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 12669,
+        "uncached_input_tokens": 3697
+      }
+    },
+    {
+      "duration_seconds": 3.404382,
+      "effort": "max",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-luna",
+      "pair": "gpt-5.6-luna/max",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 12659,
+        "output_tokens": 27,
+        "reasoning_output_tokens": 13,
+        "total_exposed_tokens": 12686,
+        "uncached_input_tokens": 12659
+      }
+    },
+    {
+      "duration_seconds": 4.464203,
+      "effort": "low",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-terra",
+      "pair": "gpt-5.6-terra/low",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 6912,
+        "codex_usage_credits": null,
+        "input_tokens": 14215,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14227,
+        "uncached_input_tokens": 7303
+      }
+    },
+    {
+      "duration_seconds": 3.321664,
+      "effort": "medium",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-terra",
+      "pair": "gpt-5.6-terra/medium",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14213,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14225,
+        "uncached_input_tokens": 4229
+      }
+    },
+    {
+      "duration_seconds": 3.366472,
+      "effort": "high",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-terra",
+      "pair": "gpt-5.6-terra/high",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14215,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14227,
+        "uncached_input_tokens": 4231
+      }
+    },
+    {
+      "duration_seconds": 3.763963,
+      "effort": "xhigh",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-terra",
+      "pair": "gpt-5.6-terra/xhigh",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14217,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14229,
+        "uncached_input_tokens": 4233
+      }
+    },
+    {
+      "duration_seconds": 3.686676,
+      "effort": "max",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-terra",
+      "pair": "gpt-5.6-terra/max",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14215,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14227,
+        "uncached_input_tokens": 14215
+      }
+    },
+    {
+      "duration_seconds": 3.871159,
+      "effort": "ultra",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-terra",
+      "pair": "gpt-5.6-terra/ultra",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14224,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14236,
+        "uncached_input_tokens": 4240
+      }
+    },
+    {
+      "duration_seconds": 4.150658,
+      "effort": "low",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-sol",
+      "pair": "gpt-5.6-sol/low",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14215,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14227,
+        "uncached_input_tokens": 4231
+      }
+    },
+    {
+      "duration_seconds": 5.192194,
+      "effort": "medium",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-sol",
+      "pair": "gpt-5.6-sol/medium",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14219,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14231,
+        "uncached_input_tokens": 4235
+      }
+    },
+    {
+      "duration_seconds": 4.044321,
+      "effort": "high",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-sol",
+      "pair": "gpt-5.6-sol/high",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14215,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14227,
+        "uncached_input_tokens": 4231
+      }
+    },
+    {
+      "duration_seconds": 4.600213,
+      "effort": "xhigh",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-sol",
+      "pair": "gpt-5.6-sol/xhigh",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 9984,
+        "codex_usage_credits": null,
+        "input_tokens": 14217,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14229,
+        "uncached_input_tokens": 4233
+      }
+    },
+    {
+      "duration_seconds": 3.951788,
+      "effort": "max",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-sol",
+      "pair": "gpt-5.6-sol/max",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14215,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14227,
+        "uncached_input_tokens": 14215
+      }
+    },
+    {
+      "duration_seconds": 8.237804,
+      "effort": "ultra",
+      "error": null,
+      "exit_code": 0,
+      "model": "gpt-5.6-sol",
+      "pair": "gpt-5.6-sol/ultra",
+      "retry_count": 0,
+      "status": "executed",
+      "success": true,
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "codex_usage_credits": null,
+        "input_tokens": 14226,
+        "output_tokens": 12,
+        "reasoning_output_tokens": null,
+        "total_exposed_tokens": 14238,
+        "uncached_input_tokens": 14226
+      }
+    }
+  ],
+  "codex_cli_version": "codex-cli 0.149.1",
+  "generated_at": "2026-08-25T10:12:25.184054Z",
+  "model_discovery": {
+    "cache_available": true,
+    "client_version": "0.149.0",
+    "fetched_at": "2026-08-25T09:50:22.812054300Z",
+    "path": "C:\\Users\\Fenil\\.codex\\models_cache.json",
+    "source": "codex-model-cache"
+  },
+  "models": [
+    {
+      "availability_evidence": "advertised-by-client-cache",
+      "available": true,
+      "id": "gpt-5.4-mini",
+      "supported_efforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    {
+      "availability_evidence": "advertised-by-client-cache",
+      "available": true,
+      "id": "gpt-5.4",
+      "supported_efforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    {
+      "availability_evidence": "advertised-by-client-cache",
+      "available": true,
+      "id": "gpt-5.5",
+      "supported_efforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    {
+      "availability_evidence": "advertised-by-client-cache",
+      "available": true,
+      "id": "gpt-5.6-luna",
+      "supported_efforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "availability_evidence": "advertised-by-client-cache",
+      "available": true,
+      "id": "gpt-5.6-terra",
+      "supported_efforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ]
+    },
+    {
+      "availability_evidence": "advertised-by-client-cache",
+      "available": true,
+      "id": "gpt-5.6-sol",
+      "supported_efforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ]
+    }
+  ],
+  "schema_version": 1
+}

@@ -78,6 +78,11 @@ Read [model-registry.md](references/model-registry.md) only when a model or
 effort is unavailable, compatibility is uncertain, or the registry needs
 maintenance.
 
+The active worker matrix comes from the current Codex client's model cache,
+then from matching real launch-probe results. Never add `none`: this Codex
+surface does not expose it. Do not assume a global model hierarchy or a common
+effort set across models.
+
 ## Verify and escalate selectively
 
 Run the cheapest reliable verification immediately after each unit. Prefer

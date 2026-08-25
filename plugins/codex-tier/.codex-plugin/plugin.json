@@ -1,7 +1,7 @@
 {
   "name": "codex-tier",
-  "version": "1.0.0",
-  "description": "Quality-constrained Codex routing across tools, direct execution, and pinned model × reasoning-effort workers.",
+  "version": "1.0.0+codex.20260825102200",
+  "description": "Quality-constrained Codex routing across tools, direct execution, and pinned model \u00d7 reasoning-effort workers.",
   "author": {
     "name": "Fenil K Ventures LLC",
     "url": "https://github.com/thephenyl02-creator"

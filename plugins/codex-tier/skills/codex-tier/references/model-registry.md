@@ -3,10 +3,11 @@
 Read this reference only for availability, compatibility, or calibration
 maintenance.
 
-`model-registry.json` is the compatibility layer. It records model IDs,
-supported efforts, relative capability, relative usage cost, availability
-status, and supported executors. Routing code must not encode Luna, Terra, or
-Sol names directly.
+`model-registry.json` is the maintained compatibility layer. At runtime,
+`scripts/codex_tier.py` overlays the current Codex client's
+`models_cache.json`; active candidates are the visible eligible coding models
+times each model's own exposed efforts. Routing code must not encode a fixed
+model ladder.
 
 `frontiers.json` contains workload-specific candidates. Each candidate has:
 
@@ -19,25 +20,30 @@ API invoices. Actual Codex usage and token fields win whenever exposed.
 
 ## Runtime availability
 
-Treat documentation and registry entries as candidates, not account
+Treat documentation and registry entries as metadata, not account
 entitlements. Prefer this order:
 
 1. native surface reports available models or accepts an explicit pin;
-2. callable Codex CLI accepts the model and effort;
+2. a matching real launch-probe artifact shows the callable Codex CLI accepted
+   the model and effort;
 3. registry entry remains `probe-at-runtime`.
 
-Do not probe every pair in normal use. If a selected pair is rejected, exclude
-that pair and choose the next viable candidate for the same work class.
+Do not probe every pair in normal use. A full sweep is appropriate only during
+explicit calibration. If a selected pair is rejected later, exclude that pair
+and choose the next viable candidate for the same work class.
 
-Current preferred registry entries are:
+The August 25, 2026 client catalog exposed:
 
-- gpt-5.6-luna
-- gpt-5.6-terra
-- gpt-5.6-sol
+- gpt-5.4-mini: low, medium, high, xhigh
+- gpt-5.4: low, medium, high, xhigh
+- gpt-5.5: low, medium, high, xhigh
+- gpt-5.6-luna: low, medium, high, xhigh, max
+- gpt-5.6-terra: low, medium, high, xhigh, max, ultra
+- gpt-5.6-sol: low, medium, high, xhigh, max, ultra
 
-Each currently declares none, low, medium, high, xhigh, and max. Older models
-belong in the registry only as compatibility fallbacks or measured
-alternatives.
+`none` is excluded because the current Codex surface does not expose it.
+`ultra` is client-specific and may delegate automatically; it is not recorded
+as an API reasoning-effort value.
 
 ## Updating
 
@@ -45,8 +51,8 @@ When models change:
 
 1. verify current official model and Codex documentation;
 2. update model IDs, efforts, and compatibility in the registry;
-3. benchmark only nearby competing points for affected work classes;
-4. update those class frontiers;
+3. launch probe every advertised pair during an authorized calibration;
+4. run real identical fixtures and update affected class frontiers;
 5. validate with `scripts/codex_tier.py validate`;
 6. keep the routing architecture unchanged.
 

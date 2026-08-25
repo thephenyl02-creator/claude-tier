@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "purpose": "Real, identical, read-only Codex coding fixtures. This suite is separate from the deterministic executor-validation harness.",
+  "probe": {
+    "fixture_dir": "calibration-fixtures/launch_probe",
+    "packet": "Return exactly CODEX_TIER_LAUNCH_OK and do not use tools."
+  },
+  "fixtures": [
+    {
+      "id": "real-bulk-repository-scan-v1",
+      "work_class": "bulk_repository_scan",
+      "fixture_dir": "calibration-fixtures/bulk_repository_scan",
+      "packet": "Analyze this authoritative synthetic repository snapshot without using tools.\n\nFILE src/cache.py\n# TODO: normalize Unicode before composing persistent keys.\n\ndef cache_key(namespace, value):\n    return f\"{namespace}:{value}\"\n\nFILE web/app.js\n// FIXME: escape untrusted status text before assigning it to HTML.\nexport function renderStatus(status) { return \"<strong>\" + status + \"</strong>\"; }\n\nFILE generated/schema.py\n# Generated file. Do not edit by hand.\nSCHEMA_VERSION = 7\n\nFILE vendor/lib.js\n// Vendored from widget-lib 2.4.1. Local edits will be overwritten.\nexport const WIDGET_PROTOCOL = 3;\n\nFILE docs/guide.md\nThe fixture intentionally contains source, generated, vendored, and documentation files.\n\nFind every explicit TODO, every explicit FIXME, and files declaring themselves generated or vendored. Return only the required JSON object. Category must be exactly one of: todo, fixme, generated, vendored. Do not report ordinary documentation.",
+      "verification": {
+        "required_quality": 80,
+        "expected": [
+          {"file": "src/cache.py", "category": "todo"},
+          {"file": "web/app.js", "category": "fixme"},
+          {"file": "generated/schema.py", "category": "generated"},
+          {"file": "vendor/lib.js", "category": "vendored"}
+        ]
+      }
+    },
+    {
+      "id": "real-difficult-debugging-v1",
+      "work_class": "difficult_debugging",
+      "fixture_dir": "calibration-fixtures/difficult_debugging",
+      "packet": "Analyze this authoritative synthetic session-store snapshot without using tools.\n\nFILE session_store.py\n@dataclass(frozen=True)\nclass Session:\n    session_id: str\n    user_id: str\n    scopes: list[str]\n    expires_at: float\n    last_seen_at: float\n\nclass SessionStore:\n    def __init__(self):\n        self._sessions = {}\n        self._lock = Lock()\n\n    def issue(self, session_id, user_id, scopes, *, now, ttl):\n        session = Session(session_id, user_id, scopes, now + ttl, now)\n        with self._lock:\n            self._sessions[session_id] = session\n        return session\n\n    def validate(self, session_id, *, now):\n        with self._lock:\n            session = self._sessions.get(session_id)\n        return bool(session and now <= session.expires_at)\n\n    def revoke(self, session_id):\n        with self._lock:\n            self._sessions.pop(session_id, None)\n\n    def touch(self, session_id, *, now):\n        with self._lock:\n            current = self._sessions.get(session_id)\n        if current is None or now > current.expires_at:\n            return False\n        updated = replace(current, last_seen_at=now)\n        with self._lock:\n            self._sessions[session_id] = updated\n        return True\n\nKNOWN REQUIREMENTS\nA session is invalid at expires_at. Revocation concurrent with touch must never restore the session. Authorization scopes must be immutable after issue returns.\n\nIdentify every material defect violating those requirements. Return only the required JSON object. Category must be exactly one of: revocation-race, expiry-boundary, mutable-authorization-alias. Report only confirmed defects.",
+      "verification": {
+        "required_quality": 80,
+        "expected": [
+          {"file": "session_store.py", "category": "revocation-race"},
+          {"file": "session_store.py", "category": "expiry-boundary"},
+          {"file": "session_store.py", "category": "mutable-authorization-alias"}
+        ]
+      }
+    },
+    {
+      "id": "real-security-review-v1",
+      "work_class": "security_review",
+      "fixture_dir": "calibration-fixtures/security_review",
+      "packet": "Analyze this authoritative synthetic application snapshot without using tools. Assume every argument can be supplied by an unauthenticated remote user.\n\nFILE app.py\nfrom pathlib import Path\n\ndef find_user(connection, username):\n    query = f\"SELECT id, username FROM users WHERE username = '{username}'\"\n    return connection.execute(query).fetchone()\n\ndef read_export(export_root, requested_name):\n    return (Path(export_root) / requested_name).read_bytes()\n\ndef login_redirect(next_url):\n    return {\"status\": \"302\", \"Location\": next_url}\n\nFILE tokens.py\nimport base64\nimport pickle\n\ndef decode_import_token(value):\n    payload = base64.urlsafe_b64decode(value.encode(\"ascii\"))\n    return pickle.loads(payload)\n\nReturn only confirmed exploitable findings in the required JSON object. Category must be exactly one of: sql-injection, path-traversal, open-redirect, unsafe-deserialization. Do not add speculative findings.",
+      "verification": {
+        "required_quality": 80,
+        "expected": [
+          {"file": "app.py", "category": "sql-injection"},
+          {"file": "app.py", "category": "path-traversal"},
+          {"file": "app.py", "category": "open-redirect"},
+          {"file": "tokens.py", "category": "unsafe-deserialization"}
+        ]
+      }
+    }
+  ]
+}

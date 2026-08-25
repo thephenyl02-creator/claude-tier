@@ -44,7 +44,7 @@ unrepresented workload, add a profile only after representative evidence.
 
 The frontier files are intentionally different by work class. A candidate that
 is efficient for extraction can be absent or dominated for architecture.
-There is no global Luna → Terra → Sol ladder.
+There is no global model or effort ladder.
 
 If the unit is deterministic, the script returns TOOL. If it is tiny, local,
 low-risk, and cheap to keep in the current context, it returns DIRECT. If no
@@ -54,14 +54,15 @@ usage.
 
 ## Availability
 
-Pass `--available-model MODEL` once per runtime-available model when that set
-is known. Pass `--unavailable-pair MODEL/EFFORT` after an actual
-model/effort rejection. Do not run all candidates merely to discover
-availability.
+The router reads the current client model cache and matching checked-in real
+launch probes. Pass `--available-model MODEL` only when the caller has narrower
+runtime evidence. Pass `--unavailable-pair MODEL/EFFORT` after a newer actual
+rejection. Do not run all candidates merely to discover availability outside
+an explicit calibration.
 
-The registry's `probe-at-runtime` status means API documentation says the
-pair exists but the user's current Codex workspace, plan, or provider can still
-deny it.
+If every measured-frontier point is unavailable, the router may consult the
+prior candidate pool. Dominated pairs are not normal economic choices; they are
+availability fallbacks after the dominating point is infeasible.
 
 ## Escalation
 

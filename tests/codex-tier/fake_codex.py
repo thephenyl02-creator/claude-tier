@@ -67,12 +67,12 @@ def run_exec(arguments: list[str]) -> int:
     if output:
         Path(output).write_text(final, encoding="utf-8")
     effort_tokens = {
-        "none": 0,
         "low": 10,
         "medium": 20,
         "high": 30,
         "xhigh": 40,
         "max": 50,
+        "ultra": 60,
     }.get(effort, 5)
     print(json.dumps({"type": "thread.started", "thread_id": "fake-thread"}))
     print(

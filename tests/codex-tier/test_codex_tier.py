@@ -15,6 +15,8 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 SKILL_ROOT = REPO_ROOT / "plugins" / "codex-tier" / "skills" / "codex-tier"
 ROUTER_PATH = SKILL_ROOT / "scripts" / "codex_tier.py"
 BENCHMARK_PATH = SKILL_ROOT / "scripts" / "benchmark.py"
+CALIBRATE_PATH = SKILL_ROOT / "scripts" / "calibrate.py"
+CALIBRATION_RESULTS = SKILL_ROOT / "references" / "real-calibration-results.json"
 FAKE_CODEX = Path(__file__).with_name("fake_codex.py")
 FAKE_CODEX_CMD = Path(__file__).with_name("fake-codex.cmd")
 FAKE_CODEX_SH = Path(__file__).with_name("fake-codex.sh")
@@ -42,10 +44,15 @@ class RoutingTests(unittest.TestCase):
         registry, frontiers = codex_tier.load_config()
         self.assertEqual([], codex_tier.validate_config(registry, frontiers))
         self.assertEqual(
-            ["none", "low", "medium", "high", "xhigh", "max"],
+            ["low", "medium", "high", "xhigh", "max", "ultra"],
             registry["effort_order"],
         )
-        self.assertEqual(3, len(registry["models"]))
+        self.assertEqual(6, len(registry["models"]))
+        matrix = codex_tier.active_candidate_matrix(registry)
+        self.assertEqual(29, len(matrix))
+        self.assertNotIn("none", {item["effort"] for item in matrix})
+        self.assertEqual("current", registry["runtime_probe_evidence"]["status"])
+        self.assertEqual([], registry["runtime_unavailable_pairs"])
 
     def test_deterministic_work_uses_tool(self):
         decision = route(complexity="deterministic", risk="production-critical")
@@ -57,7 +64,7 @@ class RoutingTests(unittest.TestCase):
         self.assertEqual("DIRECT", decision["execution_mode"])
         self.assertFalse(decision["requires_parent"])
 
-    def test_high_volume_mechanical_work_stays_in_luna_region(self):
+    def test_high_volume_mechanical_work_uses_measured_frontier(self):
         decision = route(
             work_class="bulk_repository_scan",
             complexity="mechanical",
@@ -66,22 +73,23 @@ class RoutingTests(unittest.TestCase):
             context="repository-wide",
         )
         self.assertEqual("WORKER", decision["execution_mode"])
-        self.assertEqual("gpt-5.6-luna/high", decision["selected"]["pair"])
+        self.assertEqual("gpt-5.4-mini/low", decision["selected"]["pair"])
+        self.assertEqual("real-codex-jsonl", decision["selected"]["usage_source"])
 
     def test_ordinary_refactor_uses_luna_high(self):
         decision = route()
         self.assertEqual("gpt-5.6-luna/high", decision["selected"]["pair"])
 
-    def test_difficult_debugging_uses_terra_xhigh(self):
+    def test_difficult_debugging_uses_measured_frontier(self):
         decision = route(
             work_class="difficult_debugging",
             complexity="substantial",
             risk="correctness-sensitive",
             context="repository-wide",
         )
-        self.assertEqual("gpt-5.6-terra/xhigh", decision["selected"]["pair"])
+        self.assertEqual("gpt-5.4-mini/low", decision["selected"]["pair"])
 
-    def test_high_risk_review_uses_strong_sol(self):
+    def test_high_risk_review_uses_quality_passing_measured_frontier(self):
         decision = route(
             work_class="security_review",
             complexity="frontier/ambiguous",
@@ -89,7 +97,10 @@ class RoutingTests(unittest.TestCase):
             risk="security-sensitive",
             context="large-context",
         )
-        self.assertEqual("gpt-5.6-sol/high", decision["selected"]["pair"])
+        self.assertEqual("gpt-5.4-mini/low", decision["selected"]["pair"])
+        self.assertGreaterEqual(
+            decision["selected"]["quality"], decision["selection_threshold"]
+        )
 
     def test_model_unavailable_selects_another_frontier_candidate(self):
         decision = route(
@@ -98,9 +109,10 @@ class RoutingTests(unittest.TestCase):
             volume="large",
             risk="low",
             context="repository-wide",
-            unavailable_pairs=["gpt-5.6-luna/high"],
+            unavailable_pairs=["gpt-5.4-mini/low"],
         )
-        self.assertEqual("gpt-5.6-terra/low", decision["selected"]["pair"])
+        self.assertEqual("gpt-5.6-luna/high", decision["selected"]["pair"])
+        self.assertIn("measured-frontier candidate is unavailable", decision["reason"])
 
     def test_effort_unavailable_selects_adjacent_candidate(self):
         decision = route(unavailable_pairs=["gpt-5.6-luna/high"])
@@ -292,6 +304,57 @@ class ExecutorTests(unittest.TestCase):
 
 
 class PackagingAndInstallerTests(unittest.TestCase):
+    def test_real_calibration_plan_covers_dynamic_matrix(self):
+        completed = subprocess.run(
+            [sys.executable, str(CALIBRATE_PATH)],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        result = json.loads(completed.stdout)
+        self.assertTrue(result["real_calibration"])
+        self.assertEqual(29, result["candidate_count"])
+        self.assertEqual(116, result["estimated_runs"])
+        self.assertFalse(any(pair.endswith("/none") for pair in result["candidates"]))
+
+    def test_real_calibration_rejects_deterministic_cli_double(self):
+        completed = subprocess.run(
+            [
+                sys.executable,
+                str(CALIBRATE_PATH),
+                "--run",
+                "--probe-only",
+                "--candidate",
+                "gpt-5.4-mini/low",
+                "--codex-bin",
+                str(FAKE_CODEX),
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(2, completed.returncode)
+        self.assertIn("official Codex CLI", completed.stderr)
+
+    def test_checked_in_real_calibration_has_verified_comparable_runs(self):
+        result = json.loads(CALIBRATION_RESULTS.read_text(encoding="utf-8"))
+        self.assertEqual(29, len(result["successful_combinations"]))
+        self.assertEqual([], result["unavailable_combinations"])
+        self.assertEqual(87, len(result["records"]))
+        self.assertTrue(all(item["verification"] == "pass" for item in result["records"]))
+        self.assertTrue(all(item["worker_success"] for item in result["records"]))
+        self.assertTrue(result["usage_data"]["jsonl_tokens_exposed"])
+        self.assertFalse(result["usage_data"]["codex_usage_credits_exposed"])
+        self.assertFalse(result["usage_data"]["savings_percentage_published"])
+        self.assertEqual(0, result["run_metrics"]["verification_failures"])
+        self.assertEqual(0, result["run_metrics"]["retries"])
+        self.assertEqual(0, result["run_metrics"]["escalations"])
+        self.assertEqual(
+            {"bulk_repository_scan", "difficult_debugging", "security_review"},
+            set(result["frontiers"]),
+        )
+
     def test_benchmark_plan_covers_representative_workloads(self):
         completed = subprocess.run(
             [sys.executable, str(BENCHMARK_PATH)],
