@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "purpose": "Representative workload-specific comparisons. Run only after the functional router passes integration tests.",
+  "cases": [
+    {
+      "id": "A-high-volume-low-reasoning",
+      "work_class": "bulk_repository_scan",
+      "classification": {
+        "complexity": "mechanical",
+        "volume": "repetitive/high-volume",
+        "risk": "low",
+        "context": "repository-wide"
+      },
+      "sandbox": "read-only",
+      "candidates": [
+        "gpt-5.6-luna/medium",
+        "gpt-5.6-luna/high"
+      ],
+      "packet": "OBJECTIVE\nInventory the repository by file type and identify generated or vendored areas.\n\nSCOPE\nRead-only repository scan.\n\nRELEVANT FILES / PATHS\nRepository root.\n\nKNOWN FACTS\nReturn distilled counts, not raw file contents.\n\nCONSTRAINTS\nDo not edit files. Do not include secrets or giant logs.\n\nQUALITY BAR / RISK\nMechanical, low risk, exact counts where tools can establish them.\n\nEXPECTED OUTPUT\nA concise report containing the headings SUMMARY, COUNTS, and EXCLUSIONS.\n\nDEFINITION OF DONE\nCounts are internally consistent and exclusions are explicit.\n\nVERIFICATION\nRecount with deterministic file listing commands.",
+      "verification": {
+        "type": "contains_all",
+        "values": ["SUMMARY", "COUNTS", "EXCLUSIONS"]
+      }
+    },
+    {
+      "id": "B-mixed-creative-execution",
+      "work_class": "creative_planning",
+      "classification": {
+        "complexity": "substantial",
+        "volume": "moderate",
+        "risk": "ordinary",
+        "context": "repository-wide"
+      },
+      "sandbox": "read-only",
+      "candidates": [
+        "gpt-5.6-terra/high",
+        "gpt-5.6-terra/xhigh",
+        "gpt-5.6-sol/medium"
+      ],
+      "packet": "OBJECTIVE\nCreate a polished promotional-video concept from repository assets.\n\nSCOPE\nConcept, narrative, shot plan, and production handoff only.\n\nRELEVANT FILES / PATHS\nRepository assets and existing product documentation.\n\nKNOWN FACTS\nAsset discovery and rendering should be routed separately through tools or cheaper workers.\n\nCONSTRAINTS\nDo not edit or render. Do not invent assets.\n\nQUALITY BAR / RISK\nStrong creative judgment; ordinary reversible planning.\n\nEXPECTED OUTPUT\nA concise concept, beat sheet, asset map, and verification plan.\n\nDEFINITION OF DONE\nThe concept is executable using only evidenced assets.\n\nVERIFICATION\nManual creative-quality review.",
+      "verification": {
+        "type": "manual"
+      }
+    },
+    {
+      "id": "C-ordinary-implementation",
+      "work_class": "routine_refactor",
+      "classification": {
+        "complexity": "routine",
+        "volume": "moderate",
+        "risk": "ordinary",
+        "context": "multi-file"
+      },
+      "sandbox": "workspace-write",
+      "candidates": [
+        "gpt-5.6-luna/high",
+        "gpt-5.6-terra/low",
+        "gpt-5.6-terra/medium"
+      ],
+      "packet": "OBJECTIVE\nRefactor one duplicated implementation path while preserving behavior.\n\nSCOPE\nOnly files explicitly identified by the parent.\n\nRELEVANT FILES / PATHS\nTo be supplied by the benchmark maintainer.\n\nKNOWN FACTS\nThe desired behavior already has deterministic tests.\n\nCONSTRAINTS\nPreserve public interfaces and unrelated code.\n\nQUALITY BAR / RISK\nOrdinary production-quality implementation.\n\nEXPECTED OUTPUT\nCode change plus concise summary.\n\nDEFINITION OF DONE\nExisting and targeted tests pass.\n\nVERIFICATION\nRun the targeted deterministic test command.",
+      "verification": {
+        "type": "manual"
+      }
+    },
+    {
+      "id": "D-difficult-debugging",
+      "work_class": "difficult_debugging",
+      "classification": {
+        "complexity": "substantial",
+        "volume": "moderate",
+        "risk": "correctness-sensitive",
+        "context": "repository-wide"
+      },
+      "sandbox": "workspace-write",
+      "candidates": [
+        "gpt-5.6-terra/high",
+        "gpt-5.6-terra/xhigh",
+        "gpt-5.6-sol/medium"
+      ],
+      "packet": "OBJECTIVE\nFind and fix an intermittent duplicate-session bug without invalidating existing sessions.\n\nSCOPE\nAuthentication and session lifecycle paths only.\n\nRELEVANT FILES / PATHS\nTo be supplied by the benchmark maintainer.\n\nKNOWN FACTS\nThe failure is intermittent and likely concurrency-related.\n\nCONSTRAINTS\nPreserve existing sessions and public auth behavior.\n\nQUALITY BAR / RISK\nCorrectness-sensitive, substantial root-cause reasoning.\n\nEXPECTED OUTPUT\nEvidence-backed root cause, minimal fix, and regression tests.\n\nDEFINITION OF DONE\nThe race is reproduced or otherwise proven, fixed, and covered.\n\nVERIFICATION\nTargeted concurrency and regression tests.",
+      "verification": {
+        "type": "manual"
+      }
+    },
+    {
+      "id": "E-high-risk-review",
+      "work_class": "security_review",
+      "classification": {
+        "complexity": "frontier/ambiguous",
+        "volume": "small",
+        "risk": "security-sensitive",
+        "context": "large-context"
+      },
+      "sandbox": "read-only",
+      "candidates": [
+        "gpt-5.6-terra/max",
+        "gpt-5.6-sol/medium",
+        "gpt-5.6-sol/high"
+      ],
+      "packet": "OBJECTIVE\nReview an authentication or migration change for exploitable correctness and security failures.\n\nSCOPE\nRead-only review of the supplied change and affected trust boundaries.\n\nRELEVANT FILES / PATHS\nTo be supplied by the benchmark maintainer.\n\nKNOWN FACTS\nFalse negatives are materially costly.\n\nCONSTRAINTS\nCite evidence. Separate confirmed findings from hypotheses.\n\nQUALITY BAR / RISK\nSecurity-sensitive and quality-first with a large confidence margin.\n\nEXPECTED OUTPUT\nPrioritized findings, evidence, exploit path, and verification steps.\n\nDEFINITION OF DONE\nEvery material trust boundary is assessed and uncertainty is explicit.\n\nVERIFICATION\nIndependent strong-model review plus deterministic tests where applicable.",
+      "verification": {
+        "type": "manual"
+      }
+    }
+  ]
+}

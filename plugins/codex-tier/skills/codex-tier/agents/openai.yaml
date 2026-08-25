@@ -1,0 +1,7 @@
+interface:
+  display_name: "Codex Tier"
+  short_description: "Quality-first model and effort routing"
+  default_prompt: "Use $codex-tier to complete this task with quality-first compute routing."
+
+policy:
+  allow_implicit_invocation: false

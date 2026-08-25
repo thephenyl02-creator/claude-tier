@@ -1,0 +1,36 @@
+{
+  "name": "codex-tier",
+  "version": "1.0.0",
+  "description": "Quality-constrained Codex routing across tools, direct execution, and pinned model × reasoning-effort workers.",
+  "author": {
+    "name": "Fenil K Ventures LLC",
+    "url": "https://github.com/thephenyl02-creator"
+  },
+  "homepage": "https://github.com/thephenyl02-creator/claude-tier/blob/main/CODEX-TIER.md",
+  "repository": "https://github.com/thephenyl02-creator/claude-tier",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "model-routing",
+    "reasoning-effort",
+    "quality-first",
+    "usage-optimization"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Codex Tier",
+    "shortDescription": "Quality-first model and effort routing for Codex",
+    "longDescription": "Route each meaningful work unit through deterministic tools, direct parent execution, or an explicitly pinned Codex worker. Verify results and selectively escalate only the affected unit.",
+    "developerName": "Fenil K Ventures LLC",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/thephenyl02-creator/claude-tier",
+    "defaultPrompt": [
+      "$codex-tier Complete this task with quality-first compute routing."
+    ]
+  }
+}
