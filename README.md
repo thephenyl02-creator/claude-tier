@@ -1,4 +1,48 @@
-# tier - model & effort tiering for Claude Code
+# Claude Tier + Codex Tier
+
+This repository ships two independent quality-first routing systems. They
+coexist, install separately, and do not share model-routing logic.
+
+| Product | Designed for | Routing model | Invocation |
+| --- | --- | --- | --- |
+| **Claude Tier** | Claude Code | Claude intelligence/model routing with deterministic tools and tiered delegation | `/tier` |
+| **Codex Tier** | Codex | Quality-constrained compute routing across tools, direct execution, and pinned model × reasoning effort workers | `$codex-tier` |
+
+## Codex Tier
+
+Codex Tier treats model and reasoning effort as separate dimensions. For each
+meaningful work unit it chooses TOOL, DIRECT, or the cheapest calibrated
+model × effort candidate expected to meet the quality bar with a confidence
+margin. It verifies the result and selectively escalates only the affected
+unit.
+
+**macOS / Linux / WSL:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/thephenyl02-creator/claude-tier/main/install-codex.sh | bash
+```
+
+**Windows PowerShell:**
+
+```powershell
+irm https://raw.githubusercontent.com/thephenyl02-creator/claude-tier/main/install-codex.ps1 | iex
+```
+
+Then start a new Codex task and invoke:
+
+```text
+$codex-tier
+
+<normal task>
+```
+
+Users do not choose Luna, Terra, Sol, reasoning effort, worker count, or
+escalation paths. See [CODEX-TIER.md](CODEX-TIER.md) for architecture,
+enforcement, configuration, logging, tests, and current limitations.
+
+---
+
+# Claude Tier
 
 A tiny, opinionated Claude Code skill: run **`/tier`** in any project and it
 installs a standing *model/effort-tiering* working preference for that
