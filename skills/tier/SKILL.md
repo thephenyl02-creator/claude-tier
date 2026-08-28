@@ -68,7 +68,7 @@ prettify, or reformat it.
      the CANONICAL BLOCK into `CLAUDE.md` (replacing its old block) and
      DELETE the block from `CLAUDE.local.md`.
    - **Found only in the file matching the chosen mode** → version check:
-     · block contains the tag `tier-rule v1.6` → already current. In local
+     · block contains the tag `tier-rule v1.7` → already current. In local
        mode in a git repo, still run step 4 first (verify/repair the
        exclusion — it may be missing even when the block is current), then
        say the project is already tiered and STOP — do not duplicate.
@@ -123,63 +123,60 @@ auto-upgrade breaks.
 
 ```markdown
 ## Working preferences — model & effort tiering
-<!-- tier-rule v1.6 -->
+<!-- tier-rule v1.7 -->
 
-Quality first. Efficiency comes ONLY from routing genuinely mechanical work to
-cheaper tiers — never from downgrading work that needs a strong model.
-- **Plan on the session's strongest model.** Every plan annotates each work
-  item with BOTH a model tier AND an effort level (low→max).
-- **Routing table** (a lookup, never a deliberation — the routing decision
-  must never cost more tokens than it can save; small/short task → skip
-  routing, do it on the current model):
-  · tests / builds / linters / migrations → local, no model
-  · mechanical evidence-gathering, search fan-out, doc refresh → Sonnet (low/med)
-  · substantive builds, adversarial verifiers, correctness/security reviews,
-    research synthesis, final judgment → Opus (high/xhigh), the default top
-    tier since Opus 5
-- **Fable is an escalation, not a default** (≈2× Opus cost, heavier token use,
-  marginal overall lead). Escalate ONLY for: the longest/hardest
-  frontier-reasoning work (Fable's lead grows with task length + complexity) ·
-  high-stakes deep research where a wrong conclusion is costly · large or
-  high-stakes tasks in Fable's benchmarked-lead domains — long-horizon
-  software-engineering marathons, legal/compliance-critical analysis, deep
-  security analysis · tie-break adjudication after strong models disagree or
-  an Opus attempt fails · explicit user request.
-- **Fable unavailable in this session** (subscription tier, e.g. Claude Pro)?
-  → Opus IS the top tier: run would-be escalations on Opus at max effort;
-  never stall on, or demand, an unavailable model.
-- **Main-model fit:** DOWNGRADE clearly-mechanical work to a cheaper sub-agent
-  directly, no permission needed. UPGRADE only after informing/asking — never
-  silently deliver a weaker result.
-- **PIN EVERY SUB-AGENT — never let one inherit the session model.** Fan-out
-  readers/searchers/gatherers get an explicit cheap tier on every call. An
-  unpinned agent silently runs on the session model, so a frontier main model
-  turns mechanical work into frontier-priced work without any visible signal.
-- **Capacity-error repair rule:** if a pinned tier fails on a rate/usage limit,
-  retry THAT agent on another tier. Never respond by removing pins globally —
-  and if you ever do, restore them on the very next fan-out. Silent
-  un-pinning is the most common way this whole rule decays in a long session.
-- **State the routing before spending it.** Any fan-out of 3+ agents announces
-  its plan in one line first (count × tier/effort, e.g. "6 × Sonnet/medium"),
-  so a mis-route is visible to the user BEFORE the tokens are spent, not after.
-- **Keep raw bulk content out of the frontier context.** Web pages, large
-  logs, scraped text, long raw files: delegate the fetching/reading to a
-  Sonnet/Haiku sub-agent and let only distilled findings return. Justify this
-  as ROUTING (it is Sonnet-tier work), not as a safety measure.
-- **Model downgrades are UNPREDICTABLE — do not claim to prevent them.**
-  A session's model can change mid-task for reasons outside the routing plan
-  (usage limits; provider-side fallbacks that fire even on innocuous work
-  such as a routine doc edit). The target model varies. Any rule promising to
-  avoid them is false comfort; the defense is DETECTION and RESPONSE.
-- **Downgrade protocol — the assistant CANNOT restore the model** (/model is
-  user-only; the change does not self-revert):
-  1. Announce it the moment it is noticed or the user reports it.
-  2. PAUSE judgment-heavy work (design, review, synthesis, final calls).
-     Mechanical work may continue.
-  3. Ask the user to restore with /model.
-  4. After restore, RE-VERIFY any quality-critical output produced during
-     the downgrade window. A silent tier loss is only harmless if nothing
-     important was decided inside it — check, do not assume.
-- **HARD RULE (overrides all): never compromise quality.** Any doubt whether a
-  downgrade would hurt → do NOT downgrade.
+Quality first. Efficiency comes ONLY from routing mechanical work to cheaper
+tiers — never from downgrading work that needs a strong model.
+**HARD RULE: any doubt whether a downgrade would hurt → do NOT downgrade.**
+
+**Routing** (a lookup, never a deliberation; small task → skip it, use the
+current model):
+· tests / builds / linters / migrations → local, no model
+· mechanical gathering, search fan-out, doc refresh → Sonnet (low/medium)
+· bounded short-context checks → Haiku (scope input under 200K; no effort dial)
+· substantive builds, verifiers, correctness/security review, synthesis,
+  final judgment → Opus (high, its default; xhigh only for demanding agentic
+  work) — the default top tier since Opus 5
+· Fable = escalation ONLY (≈2× Opus): longest/hardest frontier reasoning,
+  high-stakes research, tie-break after an Opus attempt fails, or explicit
+  request. Unavailable? Opus at max IS the ceiling — never stall on it.
+· Never Opus 4.6 or Sonnet 4.6 — same or higher price than their successors,
+  and neither supports `xhigh`.
+
+**Main session — model AND effort are frozen at session start**
+- The cache is keyed by both. Measured: changing either drops cache_read to
+  ZERO, and the next identical turn costs 20× more. Pick both at the start
+  and hold them; vary them ACROSS sessions, never within one. Switch
+  mid-session only if the whole REST of the session needs it.
+- Thrashing is worse than losing a discount: writes bill 1.25× and reads
+  0.1×, so a session that keeps invalidating pays ABOVE list price.
+- **Model fit:** DOWNGRADE clearly-mechanical work to a cheaper sub-agent
+  directly, no permission needed. UPGRADE only after informing/asking —
+  never silently deliver a weaker result.
+
+**Sub-agents — the only tier lever once a session is running**
+- A sub-agent runs at its own model and effort in its own context, costing
+  the main cache nothing. Delegate when EITHER the tier drops >1.7× OR the
+  material would otherwise sit in the main context being re-read every later
+  turn (web pages, logs, long files). Delegating costs ~1.6× the tokens of
+  working inline, so same-tier delegation buys only the second of those.
+- **PIN EVERY SUB-AGENT.** An unpinned agent inherits the session model, so a
+  frontier main model turns mechanical work into frontier-priced work with no
+  visible signal. Rate-limited? Retry THAT agent on another tier — never drop
+  pins globally. Weak or wrong result? Re-run THAT agent one tier UP: a bad
+  cheap answer costs more than the right tier would have.
+- The `Agent` tool has **no effort parameter**. Pin effort in the agent's
+  `.claude/agents/*.md` frontmatter (model, effort, tools), or via
+  `Workflow`'s `agent(prompt, {model, effort})`.
+- **Batch by configuration.** Dispatch INDEPENDENT same-tier agents in ONE
+  parallel batch — a fan-out shares the prefix the first agent cached. Never
+  parallelise steps that depend on each other.
+- Announce any fan-out of 3+ in one line first ("6 × Sonnet/medium") so a
+  mis-route is visible BEFORE the tokens are spent.
+- Give a sub-agent the DECISION explicitly — it did not watch it being made.
+
+**If the session model changes on its own** (usage limits, provider fallback —
+unpredictable, and `/model` is user-only so the assistant cannot restore it):
+announce it, pause judgment-heavy work, ask the user to restore, then
+re-verify anything quality-critical decided during that window.
 ```

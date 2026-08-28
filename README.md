@@ -191,6 +191,26 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.7.0** - Measured, not assumed. A live experiment changed the rule.
+  **(1) Model AND effort are both frozen at session start.** The prompt cache
+  is keyed by both, so changing either mid-session drops `cache_read` to zero
+  and rebuilds the entire prefix - measured at **20x the cost of the identical
+  turn** ($0.017 -> $0.346), with a control turn confirming the cache returned
+  as soon as the setting was held steady. 1.6.0 was silent on this, and an
+  earlier draft of 1.7 wrongly claimed effort changes were cache-free.
+  **(2) Delegation is now the only mid-session tier lever**, with a threshold:
+  delegating costs ~1.6x the tokens of working inline, so it pays when either
+  the tier drops >1.7x or the material would otherwise sit in the main context
+  being re-read on every later turn. Same-tier delegation buys only the second.
+  **(3) Effort is pinned in agent frontmatter**, not on the `Agent` call - that
+  tool has no effort parameter, so a plain delegation silently inherits session
+  effort. Also new: batch independent same-tier agents into ONE parallel
+  fan-out (they share the prefix the first one cached); thrashing the cache
+  costs *more* than not caching at all (writes bill 1.25x, reads 0.1x); re-run
+  a weak sub-agent one tier UP rather than accepting a cheap wrong answer;
+  never Opus 4.6 or Sonnet 4.6 (same or higher price than their successors and
+  no `xhigh`); Opus 5 starts at `high`, not `xhigh`. Block tag is now
+  `tier-rule v1.7` - `/tier` auto-upgrades older installs in place.
 - **1.6.0** - Butter-smooth install, clean repos. Two changes.
   **(1) One-command installers** for macOS/Linux (`install.sh`) and Windows
   (`install.ps1`) that absorb every blocker observed in the wild: missing
