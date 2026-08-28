@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["score", "passed", "dimensions", "critical_errors", "summary"],
+  "properties": {
+    "score": {"type": "integer", "minimum": 0, "maximum": 100},
+    "passed": {"type": "boolean"},
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["correctness", "evidence", "completeness", "actionability"],
+      "properties": {
+        "correctness": {"type": "integer", "minimum": 0, "maximum": 40},
+        "evidence": {"type": "integer", "minimum": 0, "maximum": 25},
+        "completeness": {"type": "integer", "minimum": 0, "maximum": 20},
+        "actionability": {"type": "integer", "minimum": 0, "maximum": 15}
+      }
+    },
+    "critical_errors": {"type": "array", "items": {"type": "string"}},
+    "summary": {"type": "string"}
+  }
+}

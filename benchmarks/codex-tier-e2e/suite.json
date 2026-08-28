@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "codex-tier-v1-real-repository-e2e",
+  "repository_commit": "75c2c69",
+  "repository_description": "The real Codex Tier implementation repository, not a generated calibration fixture.",
+  "parent": {"model": "gpt-5.6-sol", "effort": "low"},
+  "verifier": {"model": "gpt-5.6-sol", "effort": "max"},
+  "repetitions_per_condition": 5,
+  "random_seed": 20260825,
+  "quality_gate": {
+    "minimum_individual_score": 80,
+    "maximum_median_regression_points": 3,
+    "require_tiered_pass_rate_at_least_baseline": true
+  },
+  "workloads": [
+    {
+      "id": "real-bulk-release-audit",
+      "work_class": "bulk_repository_scan",
+      "classification": {"complexity": "mechanical", "volume": "large", "risk": "low", "context": "repository-wide"},
+      "task": "Audit this entire repository as if you are preparing a release-readiness handoff. Build a compact but complete map of the Codex Tier product surfaces, installers, plugin and skill packaging, routing and calibration code, tests, and generated benchmark evidence. Explain how the pieces connect; distinguish production files from test-only, generated, vendored, or local-account evidence; cite at least 12 exact repository paths; identify any stale-install or invalid-benchmark risks you can support from the current commit; and finish with five prioritized release checks. Inspect the repository with tools, do not edit files, distinguish confirmed facts from uncertainty, and stay under 900 words.",
+      "rubric": [
+        "Covers installers, plugin/skill packaging, router, calibration, tests, and evidence artifacts.",
+        "Cites at least 12 real paths and accurately distinguishes production from test/generated/local evidence.",
+        "Explains cross-file relationships rather than returning a flat file list.",
+        "Release risks and checks are evidence-backed and prioritized without invented defects."
+      ]
+    },
+    {
+      "id": "real-router-refactor-plan",
+      "work_class": "routine_refactor",
+      "classification": {"complexity": "routine", "volume": "moderate", "risk": "ordinary", "context": "multi-file"},
+      "task": "Prepare a behavior-preserving refactor plan for plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py. The goal is to separate client model discovery, launch-probe evidence, measured-frontier overlay, and routing policy into clearer units without changing CLI behavior or configuration formats. Inspect the implementation and tests. Name concrete functions and data flows, propose module or API boundaries, give an incremental migration sequence, identify compatibility and failure-mode risks, and specify exact tests that would prove preservation. Do not edit files. Cite exact repository paths and symbols, avoid generic advice, and stay under 900 words.",
+      "rubric": [
+        "Accurately traces the current discovery, probe, measured-frontier, and route control flow.",
+        "Proposes concrete boundaries and an incremental behavior-preserving migration.",
+        "Addresses CLI/config compatibility, stale evidence, availability fallback, and failure modes.",
+        "Specifies targeted tests grounded in the existing test suite and cites exact symbols and paths."
+      ]
+    },
+    {
+      "id": "real-probe-scope-debugging",
+      "work_class": "difficult_debugging",
+      "classification": {"complexity": "substantial", "volume": "moderate", "risk": "correctness-sensitive", "context": "repository-wide"},
+      "task": "Diagnose this production report against the current commit without changing files: 'After switching to a custom models_cache.json, Codex Tier still inherits launch-probe status from the default account, and measured-frontier fallback behaves inconsistently when the selected pair is unavailable.' Reproduce or refute each claim by tracing models_cache_path, apply_client_model_cache, apply_launch_probe_results, active_candidate_matrix, merge_measured_frontiers, load_config, and route_work_unit. Identify the exact conditions under which stale or cross-client evidence can and cannot apply, explain the unavailable-pair fallback behavior, separate confirmed defects from expected behavior, and propose the smallest fixes and regression tests only where justified. Use repository tools, cite exact symbols and paths, and stay under 900 words.",
+      "rubric": [
+        "Correctly reproduces or refutes both reported symptoms from the current code rather than accepting the report at face value.",
+        "Traces every named function and the relevant matrix-hash/path-scope checks accurately.",
+        "Explains measured-frontier and prior-candidate fallback behavior under explicit and probed unavailability.",
+        "Proposes minimal justified fixes/tests and clearly labels non-bugs or remaining uncertainty."
+      ]
+    },
+    {
+      "id": "real-security-trust-review",
+      "work_class": "security_review",
+      "classification": {"complexity": "frontier", "volume": "small", "risk": "security-sensitive", "context": "large-context"},
+      "task": "Perform an evidence-based security and trust-boundary review of Codex Tier's Windows and Unix installers, plugin marketplace integration, bounded codex exec wrapper, model-cache/probe ingestion, and content-free usage logging. Focus on command or argument injection, path traversal and unsafe writes, credential or prompt leakage, sandbox/approval weakening, cross-account calibration evidence, and plugin-source trust. Report only confirmed findings or clearly labeled defense-in-depth concerns; cite exact paths and symbols; explain exploit preconditions and impact; note existing mitigations; prioritize remediation; and explicitly dismiss plausible false positives when the code blocks them. Do not edit files and stay under 1,000 words.",
+      "rubric": [
+        "Covers all named trust boundaries with exact code evidence and accurate exploit preconditions.",
+        "Separates confirmed findings, defense-in-depth concerns, and blocked false positives.",
+        "Accurately evaluates sanitization, path containment, approval/sandbox flags, installer behavior, and local probe scope.",
+        "Prioritizes practical remediation without overstating severity or inventing vulnerabilities."
+      ]
+    },
+    {
+      "id": "real-distribution-architecture",
+      "work_class": "architecture",
+      "classification": {"complexity": "substantial", "volume": "small", "risk": "ordinary", "context": "repository-wide"},
+      "task": "Review the current Codex Tier architecture for distribution to many Codex users and design a concrete v2 evolution. The design must preserve dynamic per-client model discovery while separating distributable defaults from account-local launch probes, measured usage, and workload frontiers. Inspect the registry, candidate matrix, frontier overlay, installers, plugin packaging, and benchmark artifacts. Propose ownership boundaries, schemas, storage locations, freshness and invalidation rules, routing fallback behavior, migration from v1, and observability. Analyze quality-first and consumption tradeoffs without introducing a fixed model hierarchy. Cite exact current paths and symbols, include failure scenarios and rollout tests, do not edit files, and stay under 1,000 words.",
+      "rubric": [
+        "Accurately identifies which current artifacts are distributable versus account-local and how they are consumed.",
+        "Defines concrete v2 ownership, schema, storage, freshness, invalidation, and fallback rules.",
+        "Includes a compatible migration and realistic failure scenarios, observability, and rollout tests.",
+        "Preserves quality-first routing without a global hierarchy and addresses consumption-metric uncertainty."
+      ]
+    }
+  ]
+}
