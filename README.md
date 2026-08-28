@@ -191,6 +191,22 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.7.1** - Adds the floor 1.7.0 was missing. 1.7.0 told you *which* tier to
+  delegate to but never *whether* the task was worth delegating at all. Measured
+  on 222 real sub-agent runs: an agent pays **~35-50K tokens just to boot**
+  (system prompt, memory, tool definitions) before doing any work, and that cost
+  is flat regardless of task size. The one agent in the sample that ran three
+  turns or fewer spent **463x more on boot than the work it produced**. So a
+  small one-shot task is cheaper done INLINE however cheap the agent's model -
+  and 1.7.0's `>1.7x cheaper` test, taken alone, actively recommended the wrong
+  thing. The rule now requires BOTH: enough work to amortise the boot (roughly
+  10+ turns) AND either a meaningfully cheaper tier or context-hygiene grounds.
+  Consequences for the reference agent set: a Haiku agent scoped to "one small
+  bounded lookup" was exactly backwards and is recast for high-volume simple
+  work across many items; an executor agent is scoped to substantial changes,
+  with small edits explicitly left inline. Provenance note: the ~1.6x
+  token overhead of delegating comes from a single published measurement of
+  three tasks, whereas the boot-cost figures above are measured from 222 runs.
 - **1.7.0** - Measured, not assumed. A live experiment changed the rule.
   **(1) Model AND effort are both frozen at session start.** The prompt cache
   is keyed by both, so changing either mid-session drops `cache_read` to zero

@@ -68,7 +68,7 @@ prettify, or reformat it.
      the CANONICAL BLOCK into `CLAUDE.md` (replacing its old block) and
      DELETE the block from `CLAUDE.local.md`.
    - **Found only in the file matching the chosen mode** → version check:
-     · block contains the tag `tier-rule v1.7` → already current. In local
+     · block contains the tag `tier-rule v1.7.1` → already current. In local
        mode in a git repo, still run step 4 first (verify/repair the
        exclusion — it may be missing even when the block is current), then
        say the project is already tiered and STOP — do not duplicate.
@@ -123,7 +123,7 @@ auto-upgrade breaks.
 
 ```markdown
 ## Working preferences — model & effort tiering
-<!-- tier-rule v1.7 -->
+<!-- tier-rule v1.7.1 -->
 
 Quality first. Efficiency comes ONLY from routing mechanical work to cheaper
 tiers — never from downgrading work that needs a strong model.
@@ -156,10 +156,13 @@ current model):
 
 **Sub-agents — the only tier lever once a session is running**
 - A sub-agent runs at its own model and effort in its own context, costing
-  the main cache nothing. Delegate when EITHER the tier drops >1.7× OR the
-  material would otherwise sit in the main context being re-read every later
-  turn (web pages, logs, long files). Delegating costs ~1.6× the tokens of
-  working inline, so same-tier delegation buys only the second of those.
+  the main cache nothing — but it pays ~35-50K tokens to BOOT (system prompt,
+  memory, tool defs) before doing any work at all. So a small one-shot task is
+  cheaper INLINE however cheap the agent's model. Delegate only when the work
+  is big enough to amortise the boot (roughly 10+ turns) AND either the tier
+  drops >1.7× or the material would otherwise sit in the main context being
+  re-read every later turn (web pages, logs, long files). Same-tier
+  delegation (Opus→Opus) buys only the second of those.
 - **PIN EVERY SUB-AGENT.** An unpinned agent inherits the session model, so a
   frontier main model turns mechanical work into frontier-priced work with no
   visible signal. Rate-limited? Retry THAT agent on another tier — never drop
