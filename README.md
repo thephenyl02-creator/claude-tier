@@ -223,6 +223,35 @@ so small one-shot work is cheaper done inline however cheap the model.
 
 ## Release notes
 
+- **1.8.0** - The first release since 1.6.0, and the first whose every number
+  was measured rather than reasoned about. 1.6.0 was not broken; it was simply
+  built on assumptions nobody had tested. Everything between (1.7.0-1.7.10) was
+  unreleased development, including six retractions - those entries are kept
+  below because what was wrong is as useful as what is right.
+
+  **Measured, reproducible on any machine:**
+  - Switching model OR effort mid-session drops `cache_read` to zero and costs
+    **20x the identical turn** ($0.017 -> $0.346), with a control turn proving
+    the cache returns once the setting holds. Both are start-of-session choices.
+  - A cache WRITE costs ~20x a cache READ for the same tokens, so a thrashing
+    session pays roughly **double list price** - not merely losing a discount.
+  - A sub-agent pays a flat BOOT cost before doing any work: **~10K on Haiku,
+    ~44K on Opus** (~$0.28). It scales with the MODEL, not the agent's `tools:`
+    list - a controlled A/B differed by 0.6%. Small one-shot work is therefore
+    cheaper INLINE however cheap the model.
+  - An unpinned sub-agent really does inherit the session model - verified, and
+    it burned 44,363 tokens to reply "OK".
+  - A parallel fan-out shares the prefix the first agent cached: three agents
+    dispatched together wrote **17.9K boot tokens against ~29.4K separately**.
+  - Delegation overhead is not a constant. WITH a real tier drop it inverts -
+    a bounded task cost **0.82x** delegated versus inline.
+  - Haiku's effort dial works, with a narrow range: 1.7x low-to-max against
+    Sonnet's 9.5x.
+
+  **Also fixed:** the routing table no longer contradicts the boot floor; the
+  rule states each condition in one sentence instead of a paragraph of
+  evidence; and the README documents that pinning sub-agent effort needs
+  `.claude/agents/*.md` files, which `/tier` does not create.
 - **1.7.9** - Coherence pass. Correctness testing asks "is this claim true?";
   it does not ask "do these pieces contradict each other?" With the rule now
   paired with a reference agent set, that second question has teeth - and three

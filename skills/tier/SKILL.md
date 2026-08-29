@@ -68,7 +68,7 @@ prettify, or reformat it.
      the CANONICAL BLOCK into `CLAUDE.md` (replacing its old block) and
      DELETE the block from `CLAUDE.local.md`.
    - **Found only in the file matching the chosen mode** → version check:
-     · block contains the tag `tier-rule v1.7.9` → already current. In local
+     · block contains the tag `tier-rule v1.8.0` → already current. In local
        mode in a git repo, still run step 4 first (verify/repair the
        exclusion — it may be missing even when the block is current), then
        say the project is already tiered and STOP — do not duplicate.
@@ -123,7 +123,7 @@ auto-upgrade breaks.
 
 ```markdown
 ## Working preferences — model & effort tiering
-<!-- tier-rule v1.7.9 -->
+<!-- tier-rule v1.8.0 -->
 
 Quality first. Efficiency comes ONLY from routing mechanical work to cheaper
 tiers — never from downgrading work that needs a strong model.

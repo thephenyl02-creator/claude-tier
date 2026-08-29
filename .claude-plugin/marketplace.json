@@ -1,19 +1,21 @@
 {
   "name": "claude-tier",
-  "owner": { "name": "Fenil K Ventures LLC" },
+  "owner": {
+    "name": "Fenil K Ventures LLC"
+  },
   "metadata": {
     "description": "Model/effort tiering for Claude Code - /tier makes any project quality-first and cost-efficient with one durable rule, no hooks or moving parts.",
-    "version": "1.6.0"
+    "version": "1.8.0"
   },
   "plugins": [
     {
       "name": "tier",
       "description": "Install a model/effort-tiering working preference into the current project - quality-first, cost-efficient. /tier writes a machine-local CLAUDE.local.md by default (your repo stays clean); /tier repo writes the committed CLAUDE.md for web + mobile coverage.",
-      "version": "1.6.0",
+      "version": "1.8.0",
       "source": {
         "source": "archive",
-        "url": "https://github.com/thephenyl02-creator/claude-tier/releases/download/v1.6.0/tier-plugin-1.6.0.zip",
-        "sha256": "c0fb079c31cb6e68b6f496cd828245f175e838c82429b437e5746590986a3d8b"
+        "url": "https://github.com/thephenyl02-creator/claude-tier/releases/download/v1.8.0/tier-plugin-1.8.0.zip",
+        "sha256": "9b2082bf98704daac97cbf89c77223ba67263b10db6a48a7085a63eaa6075b01"
       }
     }
   ]
