@@ -68,7 +68,7 @@ prettify, or reformat it.
      the CANONICAL BLOCK into `CLAUDE.md` (replacing its old block) and
      DELETE the block from `CLAUDE.local.md`.
    - **Found only in the file matching the chosen mode** → version check:
-     · block contains the tag `tier-rule v1.7.2` → already current. In local
+     · block contains the tag `tier-rule v1.7.3` → already current. In local
        mode in a git repo, still run step 4 first (verify/repair the
        exclusion — it may be missing even when the block is current), then
        say the project is already tiered and STOP — do not duplicate.
@@ -123,7 +123,7 @@ auto-upgrade breaks.
 
 ```markdown
 ## Working preferences — model & effort tiering
-<!-- tier-rule v1.7.2 -->
+<!-- tier-rule v1.7.3 -->
 
 Quality first. Efficiency comes ONLY from routing mechanical work to cheaper
 tiers — never from downgrading work that needs a strong model.
@@ -157,10 +157,11 @@ current model):
 **Sub-agents — the only tier lever once a session is running**
 - A sub-agent runs at its own model and effort in its own context, costing
   the main cache nothing — but it pays to BOOT (system prompt, memory, tool
-  defs) before doing any work at all: measured ~10K for a tool-restricted
-  agent, ~35-50K for one with the full set. So a small one-shot task is
-  cheaper INLINE however cheap the agent's model, and **restricting an agent's
-  `tools:` cuts its boot ~4x** — a cost lever, not just a safety one. Delegate only when the work
+  defs) before doing any work at all: measured ~10K on Haiku, ~44K on Opus.
+  Boot scales with the MODEL, not with the agent's `tools:` list — a
+  controlled A/B on one model differed by 0.6%. So a small one-shot task is
+  cheaper INLINE however cheap the model, and a cheap tier does not make
+  delegation cheap. Delegate only when the work
   is big enough to amortise the boot (roughly 10+ turns) AND either the tier
   drops >1.7× or the material would otherwise sit in the main context being
   re-read every later turn (web pages, logs, long files). Same-tier

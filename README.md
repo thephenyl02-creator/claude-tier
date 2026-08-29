@@ -191,6 +191,21 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.7.3** - Retracts 1.7.2's central claim. 1.7.2 stated that declaring a
+  narrow `tools:` list cuts an agent's boot cost ~4x. **That was wrong.** It
+  rested on a group comparison - 23 "restricted" runs averaging 9.6K boot
+  against 17 "full-tool" runs averaging 37.7K - in which the two groups also
+  differed by MODEL. A controlled A/B run afterwards, same model (Opus 5), same
+  trivial task, one agent tool-restricted and one not, came back **44,148 vs
+  44,394 tokens - a 0.6% difference**. The `tools:` frontmatter governs what an
+  agent may call, not what is loaded into its prompt. Boot scales with the
+  model instead: ~10K on Haiku, ~44K on Opus, measured. The rule now says that.
+  The reference agents keep their tool lists, but on the honest justification:
+  the verifier and adjudicator have no write access because a checker that can
+  edit what it was asked to assess is a failure mode - that argument never
+  depended on cost. Lesson worth recording: 1.7.2 shipped a cause inferred from
+  correlated groups without an A/B, in a release whose own subject line was
+  "measured, not assumed".
 - **1.7.2** - Boot cost is not a constant; it depends on the agent's tool set.
   1.7.1 put a single "~35-50K tokens to boot" figure in the rule. Measured
   across 40 real sub-agent runs, boot splits cleanly: **~9.6K average for
