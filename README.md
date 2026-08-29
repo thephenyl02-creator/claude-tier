@@ -191,6 +191,24 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.7.6** - Delegation overhead is not a constant either; it depends on
+  whether the tier actually drops. Every version since 1.7.0 carried a `~1.6x
+  token overhead of delegating`, taken from one published measurement and used
+  to derive the `>1.7x` break-even. Tested directly - identical bounded task,
+  one session counting files itself, one spawning a Haiku sub-agent to do it,
+  both answers correct and the sub-agent's tokens included in the parent's
+  total via `modelUsage`:
+
+  ```
+  inline    (sonnet, 6 turns)              206,465 tokens   $0.1702
+  delegated (sonnet 2 turns + haiku)       102,829 tokens   $0.1399   0.82x
+  ```
+
+  Delegating was **cheaper**, not 1.6x dearer. The likely reconciliation: the
+  published figure delegated to the SAME model, so it measured pure overhead
+  with no tier drop, while a real drop lets the cheap tier work in its own
+  small context instead of growing the expensive one. The rule now says the
+  ~1.6x is a same-model figure and records the measured inversion, marked n=1.
 - **1.7.5** - The fan-out claim, now measured; and the last trusted number,
   now labelled. "Batch by configuration" entered the rule in 1.7.0 on the
   strength of documentation plus one blog measurement. Verified directly:

@@ -68,7 +68,7 @@ prettify, or reformat it.
      the CANONICAL BLOCK into `CLAUDE.md` (replacing its old block) and
      DELETE the block from `CLAUDE.local.md`.
    - **Found only in the file matching the chosen mode** → version check:
-     · block contains the tag `tier-rule v1.7.5` → already current. In local
+     · block contains the tag `tier-rule v1.7.6` → already current. In local
        mode in a git repo, still run step 4 first (verify/repair the
        exclusion — it may be missing even when the block is current), then
        say the project is already tiered and STOP — do not duplicate.
@@ -123,7 +123,7 @@ auto-upgrade breaks.
 
 ```markdown
 ## Working preferences — model & effort tiering
-<!-- tier-rule v1.7.5 -->
+<!-- tier-rule v1.7.6 -->
 
 Quality first. Efficiency comes ONLY from routing mechanical work to cheaper
 tiers — never from downgrading work that needs a strong model.
@@ -164,9 +164,12 @@ current model):
   however cheap the model. Delegate only when the work is big enough to
   amortise the boot (~10+ turns) AND either the tier drops meaningfully or
   the material would otherwise sit in the main context being re-read every
-  later turn. Same-tier delegation buys only the second of those. [the ~1.6×
-  overhead of delegating, and the >1.7× break-even derived from it, rest on
-  ONE published measurement of 3 tasks — unverified here]
+  later turn. Same-tier delegation buys only the second of those — the
+  often-cited ~1.6× delegation overhead is a SAME-MODEL figure. With a real
+  tier drop it can invert: measured on one bounded 6-turn task, delegating
+  sonnet→haiku cost 0.82× of doing it inline (102.8K tokens vs 206.5K),
+  because the cheap tier worked in its own small context instead of growing
+  the expensive one. [n=1; the same-model ~1.6× figure is single-source]
 - **PIN EVERY SUB-AGENT.** An unpinned agent inherits the session model, so a
   frontier main model turns mechanical work into frontier-priced work with no
   visible signal. Rate-limited? Retry THAT agent on another tier — never drop
