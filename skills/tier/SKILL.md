@@ -68,7 +68,7 @@ prettify, or reformat it.
      the CANONICAL BLOCK into `CLAUDE.md` (replacing its old block) and
      DELETE the block from `CLAUDE.local.md`.
    - **Found only in the file matching the chosen mode** → version check:
-     · block contains the tag `tier-rule v1.7.7` → already current. In local
+     · block contains the tag `tier-rule v1.7.8` → already current. In local
        mode in a git repo, still run step 4 first (verify/repair the
        exclusion — it may be missing even when the block is current), then
        say the project is already tiered and STOP — do not duplicate.
@@ -123,7 +123,7 @@ auto-upgrade breaks.
 
 ```markdown
 ## Working preferences — model & effort tiering
-<!-- tier-rule v1.7.7 -->
+<!-- tier-rule v1.7.8 -->
 
 Quality first. Efficiency comes ONLY from routing mechanical work to cheaper
 tiers — never from downgrading work that needs a strong model.
@@ -133,8 +133,8 @@ tiers — never from downgrading work that needs a strong model.
 current model):
 · tests / builds / linters / migrations → local, no model
 · mechanical gathering, search fan-out, doc refresh → Sonnet (low/medium)
-· bounded short-context checks → Haiku (scope input under 200K; effort
-  works but with a narrow range — measured 1.7× low→max, vs 9.5× on Sonnet)
+· bounded short-context checks → Haiku (scope input under 200K; its effort
+  dial works but has a narrow range)
 · substantive builds, verifiers, correctness/security review, synthesis,
   final judgment → Opus (high, its default; xhigh only for demanding agentic
   work) — the default top tier since Opus 5
@@ -149,31 +149,23 @@ current model):
   ZERO, and the next identical turn costs 20× more. Pick both at the start
   and hold them; vary them ACROSS sessions, never within one. Switch
   mid-session only if the whole REST of the session needs it.
-- Thrashing is worse than losing a discount: measured, a cache WRITE costs
-  ~20× a cache READ for the same tokens (1.25× base at 5-min TTL, ~2× at the
-  1-hour TTL a subscription uses). A session that keeps invalidating pays
-  roughly DOUBLE list price, not merely losing a discount.
+- Thrashing is worse than losing a discount: a cache WRITE costs ~20× a READ
+  for the same tokens, so a session that keeps invalidating pays roughly
+  DOUBLE list price.
 - **Model fit:** DOWNGRADE clearly-mechanical work to a cheaper sub-agent
   directly, no permission needed. UPGRADE only after informing/asking —
   never silently deliver a weaker result.
 
 **Sub-agents — the only tier lever once a session is running**
 - A sub-agent runs at its own model and effort in its own context, costing
-  the main cache nothing — but it pays to BOOT (system prompt, memory, tool
-  defs) before doing any work: measured ~10K on Haiku, ~44K on Opus. Boot
-  scales with the MODEL, not the agent's `tools:` list (a controlled A/B on
-  one model differed by 0.6%), so a small one-shot task is cheaper INLINE
-  however cheap the model. Delegate only when the work is big enough to
-  amortise that boot — quick to clear on Haiku, steep on Opus (~$0.28 spent
-  before any work: verified, an unpinned Opus agent burned 44,363 tokens to
-  reply "OK") — AND either the tier drops meaningfully or
-  the material would otherwise sit in the main context being re-read every
-  later turn. Same-tier delegation buys only the second of those — the
-  often-cited ~1.6× delegation overhead is a SAME-MODEL figure. With a real
-  tier drop it can invert: measured on one bounded 6-turn task, delegating
-  sonnet→haiku cost 0.82× of doing it inline (102.8K tokens vs 206.5K),
-  because the cheap tier worked in its own small context instead of growing
-  the expensive one. [n=1; the same-model ~1.6× figure is single-source]
+  the main cache nothing — but it pays to BOOT first: ~10K on Haiku, ~44K on
+  Opus (≈$0.28 before any work happens). Boot tracks the MODEL, not the
+  agent's `tools:` list. So small one-shot work is cheaper INLINE, however
+  cheap the model.
+- Delegate when the work is big enough to clear that boot AND either the tier
+  drops meaningfully or the material would otherwise sit in the main context
+  being re-read every later turn. A real tier drop can make delegation net
+  CHEAPER than inline; same-tier delegation buys only the context benefit.
 - **PIN EVERY SUB-AGENT.** An unpinned agent inherits the session model, so a
   frontier main model turns mechanical work into frontier-priced work with no
   visible signal. Rate-limited? Retry THAT agent on another tier — never drop
@@ -183,9 +175,8 @@ current model):
   `.claude/agents/*.md` frontmatter (model, effort, tools), or via
   `Workflow`'s `agent(prompt, {model, effort})`.
 - **Batch by configuration.** Dispatch INDEPENDENT same-tier agents in ONE
-  parallel batch — a fan-out shares the prefix the first agent cached
-  (measured: 3 parallel agents wrote 17.9K boot tokens vs 29.4K separately,
-  ~39% less). Never parallelise steps that depend on each other.
+  parallel batch — a fan-out shares the prefix the first agent cached (~39%
+  less boot). Never parallelise steps that depend on each other.
 - Announce any fan-out of 3+ in one line first ("6 × Sonnet/medium") so a
   mis-route is visible BEFORE the tokens are spent.
 - Give a sub-agent the DECISION explicitly — it did not watch it being made.

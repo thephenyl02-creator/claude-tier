@@ -191,6 +191,16 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.7.8** - Puts the rule back to being a rule. Versions 1.7.1 through 1.7.7
+  each folded a fresh measurement into the rule text, and by 1.7.7 the
+  delegation bullet had grown to **17 lines** carrying five separate ideas plus
+  a bracketed provenance note. The rule's own opening line demands that routing
+  be "a lookup, never a deliberation" - it had stopped being one. No instruction
+  is lost here: the boot figures, the tier-drop inversion and the single-source
+  caveats all live in these release notes, which is where evidence belongs. The
+  rule keeps the two numbers that actually change behaviour (~10K vs ~44K boot,
+  and the ~$0.28 an unpinned Opus agent costs before doing anything) and states
+  the condition in one sentence instead of a paragraph.
 - **1.7.7** - The thrashing penalty was understated, and the headline claim is
   now verified rather than assumed. **(1)** Every version said cache writes bill
   `1.25x` and reads `0.1x`. That is the FIVE-MINUTE TTL figure; a Claude
