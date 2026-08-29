@@ -191,6 +191,19 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.7.2** - Boot cost is not a constant; it depends on the agent's tool set.
+  1.7.1 put a single "~35-50K tokens to boot" figure in the rule. Measured
+  across 40 real sub-agent runs, boot splits cleanly: **~9.6K average for
+  tool-restricted agents vs ~37.7K for full-tool ones - a 3.9x gap**. The
+  expensive definitions are consistently `Skill`, `Agent`, `ToolSearch` and MCP
+  tool sets, not the count of tools as such. So **declaring a narrow `tools:`
+  list in agent frontmatter is a cost lever, not just a safety one** - it cuts
+  boot roughly fourfold and therefore lowers the amount of work an agent needs
+  to be worth spawning. The rule now states both figures and names the lever.
+  The reference agent set was updated to declare tool lists throughout; the
+  verifier and adjudicator additionally lose write access, which is a
+  correctness improvement as much as a cost one - a checker that can edit what
+  it was asked to assess is a failure mode, not a feature.
 - **1.7.1** - Adds the floor 1.7.0 was missing. 1.7.0 told you *which* tier to
   delegate to but never *whether* the task was worth delegating at all. Measured
   on 222 real sub-agent runs: an agent pays **~35-50K tokens just to boot**
