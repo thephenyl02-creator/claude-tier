@@ -184,10 +184,42 @@ manual fixes if you're doing it by hand.
 
 ## Why "simple is best"
 
-Other routers auto-switch your model via hooks, or ship complex config
-profiles. This one is deliberately minimal: one command, one durable rule, no
-moving parts to break. You stay in control of the actual model; the rule just
-keeps every session honest about tiering - and never trades quality for cost.
+Other routers auto-switch your model mid-session via hooks, or ship complex
+config profiles. This one deliberately does neither, and there is now a
+measurement behind that rather than a preference.
+
+The prompt cache is keyed by model AND effort. Switching either mid-session
+drops `cache_read` to zero and forces a full rebuild - measured at **20x the
+cost of the identical turn** ($0.017 -> $0.346), with a control turn confirming
+the cache returned as soon as the setting was held steady. An auto-switching
+router pays that toll every time it fires. Worse, a cache write costs about
+20x a cache read for the same tokens, so a session that keeps invalidating
+pays roughly double list price - not merely losing a discount.
+
+So: one command, one durable rule, no moving parts to break. You stay in
+control of the actual model; the rule keeps every session honest about
+tiering, and never trades quality for cost.
+
+### One dependency worth knowing
+
+The rule tells you to pin a sub-agent's effort in `.claude/agents/*.md`
+frontmatter, because the `Agent` tool exposes no effort parameter. **`/tier`
+does not create agent files** - that part is yours. The minimal shape is:
+
+```markdown
+---
+name: scout
+description: <one line on exactly when to reach for it>
+model: sonnet
+effort: low
+tools: Read, Grep, Glob, Bash
+---
+<the agent's instructions>
+```
+
+Boot cost is worth knowing before you write these: a sub-agent pays roughly
+10K tokens to start on Haiku and 44K on Opus, flat regardless of task size,
+so small one-shot work is cheaper done inline however cheap the model.
 
 ## Release notes
 
