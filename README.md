@@ -225,9 +225,10 @@ so small one-shot work is cheaper done inline however cheap the model.
 
 - **1.8.0** - The first release since 1.6.0, and the first whose every number
   was measured rather than reasoned about. 1.6.0 was not broken; it was simply
-  built on assumptions nobody had tested. Everything between (1.7.0-1.7.10) was
-  unreleased development, including six retractions - those entries are kept
-  below because what was wrong is as useful as what is right.
+  built on assumptions nobody had tested. Everything in between was unreleased
+  development - including several corrections that never reached anyone, which
+  is why it collapses into this one entry rather than a run of them. The commit
+  log carries that detail.
 
   **Measured, reproducible on any machine:**
   - Switching model OR effort mid-session drops `cache_read` to zero and costs
