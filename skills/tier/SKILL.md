@@ -68,7 +68,7 @@ prettify, or reformat it.
      the CANONICAL BLOCK into `CLAUDE.md` (replacing its old block) and
      DELETE the block from `CLAUDE.local.md`.
    - **Found only in the file matching the chosen mode** → version check:
-     · block contains the tag `tier-rule v1.7.4` → already current. In local
+     · block contains the tag `tier-rule v1.7.5` → already current. In local
        mode in a git repo, still run step 4 first (verify/repair the
        exclusion — it may be missing even when the block is current), then
        say the project is already tiered and STOP — do not duplicate.
@@ -123,7 +123,7 @@ auto-upgrade breaks.
 
 ```markdown
 ## Working preferences — model & effort tiering
-<!-- tier-rule v1.7.4 -->
+<!-- tier-rule v1.7.5 -->
 
 Quality first. Efficiency comes ONLY from routing mechanical work to cheaper
 tiers — never from downgrading work that needs a strong model.
@@ -158,15 +158,15 @@ current model):
 **Sub-agents — the only tier lever once a session is running**
 - A sub-agent runs at its own model and effort in its own context, costing
   the main cache nothing — but it pays to BOOT (system prompt, memory, tool
-  defs) before doing any work at all: measured ~10K on Haiku, ~44K on Opus.
-  Boot scales with the MODEL, not with the agent's `tools:` list — a
-  controlled A/B on one model differed by 0.6%. So a small one-shot task is
-  cheaper INLINE however cheap the model, and a cheap tier does not make
-  delegation cheap. Delegate only when the work
-  is big enough to amortise the boot (roughly 10+ turns) AND either the tier
-  drops >1.7× or the material would otherwise sit in the main context being
-  re-read every later turn (web pages, logs, long files). Same-tier
-  delegation (Opus→Opus) buys only the second of those.
+  defs) before doing any work: measured ~10K on Haiku, ~44K on Opus. Boot
+  scales with the MODEL, not the agent's `tools:` list (a controlled A/B on
+  one model differed by 0.6%), so a small one-shot task is cheaper INLINE
+  however cheap the model. Delegate only when the work is big enough to
+  amortise the boot (~10+ turns) AND either the tier drops meaningfully or
+  the material would otherwise sit in the main context being re-read every
+  later turn. Same-tier delegation buys only the second of those. [the ~1.6×
+  overhead of delegating, and the >1.7× break-even derived from it, rest on
+  ONE published measurement of 3 tasks — unverified here]
 - **PIN EVERY SUB-AGENT.** An unpinned agent inherits the session model, so a
   frontier main model turns mechanical work into frontier-priced work with no
   visible signal. Rate-limited? Retry THAT agent on another tier — never drop
@@ -176,8 +176,9 @@ current model):
   `.claude/agents/*.md` frontmatter (model, effort, tools), or via
   `Workflow`'s `agent(prompt, {model, effort})`.
 - **Batch by configuration.** Dispatch INDEPENDENT same-tier agents in ONE
-  parallel batch — a fan-out shares the prefix the first agent cached. Never
-  parallelise steps that depend on each other.
+  parallel batch — a fan-out shares the prefix the first agent cached
+  (measured: 3 parallel agents wrote 17.9K boot tokens vs 29.4K separately,
+  ~39% less). Never parallelise steps that depend on each other.
 - Announce any fan-out of 3+ in one line first ("6 × Sonnet/medium") so a
   mis-route is visible BEFORE the tokens are spent.
 - Give a sub-agent the DECISION explicitly — it did not watch it being made.

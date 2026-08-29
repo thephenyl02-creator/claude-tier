@@ -191,6 +191,18 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.7.5** - The fan-out claim, now measured; and the last trusted number,
+  now labelled. "Batch by configuration" entered the rule in 1.7.0 on the
+  strength of documentation plus one blog measurement. Verified directly:
+  three independent agents dispatched in one parallel batch produced
+  `read=0 / write=9,802` for the first and `read=5,755 / write=4,055` for each
+  of the other two - **17,912 boot tokens against ~29,406 run separately,
+  about 39% less** - and the shared portion bills as reads (0.1x) rather than
+  writes (1.25x), so the cost gap is wider than the token gap. The rule now
+  carries those figures. Separately, the `~1.6x` delegation overhead and the
+  `>1.7x` break-even derived from it are marked inline as resting on a single
+  published measurement of three tasks, unverified here - the direction is
+  sound, the exact threshold is not established.
 - **1.7.4** - Corrects the Haiku effort claim. Earlier versions said Haiku "has
   no effort dial", and the reference Haiku agent carried no `effort:` line on
   that basis. **Both were wrong.** Measured directly, same prompt, same model:
