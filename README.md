@@ -191,6 +191,21 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.7.7** - The thrashing penalty was understated, and the headline claim is
+  now verified rather than assumed. **(1)** Every version said cache writes bill
+  `1.25x` and reads `0.1x`. That is the FIVE-MINUTE TTL figure; a Claude
+  subscription's main conversation runs on the one-hour TTL, which bills writes
+  higher. Solved from the controlled run: 57,631 tokens written cost $0.3459
+  while 57,583 tokens read cost $0.0174 - **a write costs ~20x a read for the
+  same tokens**, implying ~2x base rather than 1.25x. So a thrashing session
+  pays roughly DOUBLE list price, not a quarter over. **(2)** "An unpinned
+  sub-agent inherits the session model" has been the skill's central claim since
+  1.0.0 and had never been tested. It holds: an unpinned agent spawned from an
+  Opus 5 session ran on Opus 5 - and burned **44,363 tokens to reply "OK"**,
+  about $0.28. That figure now stands in the rule as the concrete cost of
+  forgetting to pin. **(3)** The boot floor is stated per-tier instead of as a
+  flat "~10+ turns", since 10K on Haiku and 44K on Opus clear at very different
+  amounts of work.
 - **1.7.6** - Delegation overhead is not a constant either; it depends on
   whether the tier actually drops. Every version since 1.7.0 carried a `~1.6x
   token overhead of delegating`, taken from one published measurement and used

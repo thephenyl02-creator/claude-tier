@@ -68,7 +68,7 @@ prettify, or reformat it.
      the CANONICAL BLOCK into `CLAUDE.md` (replacing its old block) and
      DELETE the block from `CLAUDE.local.md`.
    - **Found only in the file matching the chosen mode** → version check:
-     · block contains the tag `tier-rule v1.7.6` → already current. In local
+     · block contains the tag `tier-rule v1.7.7` → already current. In local
        mode in a git repo, still run step 4 first (verify/repair the
        exclusion — it may be missing even when the block is current), then
        say the project is already tiered and STOP — do not duplicate.
@@ -123,7 +123,7 @@ auto-upgrade breaks.
 
 ```markdown
 ## Working preferences — model & effort tiering
-<!-- tier-rule v1.7.6 -->
+<!-- tier-rule v1.7.7 -->
 
 Quality first. Efficiency comes ONLY from routing mechanical work to cheaper
 tiers — never from downgrading work that needs a strong model.
@@ -149,8 +149,10 @@ current model):
   ZERO, and the next identical turn costs 20× more. Pick both at the start
   and hold them; vary them ACROSS sessions, never within one. Switch
   mid-session only if the whole REST of the session needs it.
-- Thrashing is worse than losing a discount: writes bill 1.25× and reads
-  0.1×, so a session that keeps invalidating pays ABOVE list price.
+- Thrashing is worse than losing a discount: measured, a cache WRITE costs
+  ~20× a cache READ for the same tokens (1.25× base at 5-min TTL, ~2× at the
+  1-hour TTL a subscription uses). A session that keeps invalidating pays
+  roughly DOUBLE list price, not merely losing a discount.
 - **Model fit:** DOWNGRADE clearly-mechanical work to a cheaper sub-agent
   directly, no permission needed. UPGRADE only after informing/asking —
   never silently deliver a weaker result.
@@ -162,7 +164,9 @@ current model):
   scales with the MODEL, not the agent's `tools:` list (a controlled A/B on
   one model differed by 0.6%), so a small one-shot task is cheaper INLINE
   however cheap the model. Delegate only when the work is big enough to
-  amortise the boot (~10+ turns) AND either the tier drops meaningfully or
+  amortise that boot — quick to clear on Haiku, steep on Opus (~$0.28 spent
+  before any work: verified, an unpinned Opus agent burned 44,363 tokens to
+  reply "OK") — AND either the tier drops meaningfully or
   the material would otherwise sit in the main context being re-read every
   later turn. Same-tier delegation buys only the second of those — the
   often-cited ~1.6× delegation overhead is a SAME-MODEL figure. With a real
