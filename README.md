@@ -191,6 +191,22 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.7.9** - Coherence pass. Correctness testing asks "is this claim true?";
+  it does not ask "do these pieces contradict each other?" With the rule now
+  paired with a reference agent set, that second question has teeth - and three
+  contradictions had accumulated. **(1)** The routing table still read
+  `bounded short-context checks -> Haiku`, the exact framing 1.7.1's boot-floor
+  measurement disproved, while the Haiku agent correctly said a single small
+  lookup is cheaper inline. The agent was fixed in 1.7.1; the table never was,
+  so anyone reading the table alone got the retracted advice. **(2)** The two
+  reading agents overlapped - "wide searches" against "extract one field from
+  30 files" - so choosing between them was a deliberation, which the rule's own
+  opening line forbids. They are now split on COMPREHENSION versus REPETITION.
+  **(3)** The executor agent's prose still warned about "guessing at low
+  effort" after its frontmatter moved to medium in 1.7.1. The verification
+  suite gains a coherence section that checks each agent's prose against its
+  own frontmatter, that write-free agents do not describe editing, and that the
+  routing table cannot regress to the pre-boot-floor framing: 115 checks -> 126.
 - **1.7.8** - Puts the rule back to being a rule. Versions 1.7.1 through 1.7.7
   each folded a fresh measurement into the rule text, and by 1.7.7 the
   delegation bullet had grown to **17 lines** carrying five separate ideas plus
