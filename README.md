@@ -191,6 +191,15 @@ keeps every session honest about tiering - and never trades quality for cost.
 
 ## Release notes
 
+- **1.7.4** - Corrects the Haiku effort claim. Earlier versions said Haiku "has
+  no effort dial", and the reference Haiku agent carried no `effort:` line on
+  that basis. **Both were wrong.** Measured directly, same prompt, same model:
+  Haiku at `low` produced 1,149 output / 445 thinking tokens; at `max`, 1,979 /
+  925. The dial works - it simply has a narrow range. For contrast the same
+  prompt on Sonnet went 1,544 -> 14,673 output (155 -> 12,002 thinking), a 9.5x
+  swing against Haiku's 1.7x. Passing `--effort` to Haiku also does not error,
+  as had been assumed. The routing table now states the narrow range instead of
+  denying the dial, and the reference Haiku agent declares `effort: low`.
 - **1.7.3** - Retracts 1.7.2's central claim. 1.7.2 stated that declaring a
   narrow `tools:` list cuts an agent's boot cost ~4x. **That was wrong.** It
   rested on a group comparison - 23 "restricted" runs averaging 9.6K boot
