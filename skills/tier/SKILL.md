@@ -150,7 +150,8 @@ current model):
 · tests / builds / linters / migrations → local, no model
 · mechanical gathering, search fan-out, doc refresh → Sonnet (low/medium)
 · the SAME simple operation repeated over many items → Haiku (200K window;
-  narrow effort range). A one-off check is cheaper inline — see the boot floor
+  Claude Code sends NO effort for Haiku sub-agents — treat the dial as absent).
+  A one-off check is cheaper inline — see the boot floor
 · substantive builds, verifiers, correctness/security review, synthesis,
   final judgment → Opus (high, its default; xhigh only for demanding agentic
   work) — the default top tier since Opus 5
