@@ -31,6 +31,22 @@ compact, imperative, unambiguous. Install it verbatim — do not paraphrase,
 prettify, or reformat it.
 
 ## Steps
+0. **Global-coverage guard.** Before anything else, check the user-level
+   `~/.claude/CLAUDE.md` for the marker `model & effort tiering` and its
+   `tier-rule vX.Y.Z` tag (skip this check in a cloud sandbox — no user home
+   config there):
+   - Global tag SAME or NEWER than this skill's canonical block, and LOCAL
+     mode → the user is already covered in every local session; a project
+     install would load the same ~900-token rule TWICE every turn for zero
+     benefit. Say so and STOP. Mention that `/tier repo` is the one reason to
+     install anyway (web/mobile sessions read only committed repo files).
+   - Global tag OLDER than the canonical block → offer to upgrade the GLOBAL
+     file in place instead of installing locally — one copy, every project.
+     If the user declines, proceed with the normal install below.
+   - REPO mode → proceed regardless (web/mobile coverage is the point), but
+     note in one line that local sessions in this project will load both the
+     global and the repo copy — the accepted price of that coverage.
+   - No global block → proceed normally.
 1. Pick the mode: the word "repo" (or an explicit ask for web/mobile
    coverage) → repo mode. Otherwise — including an explicit "local" — local
    mode. EXCEPTION: if THIS session is itself running in a cloud sandbox
