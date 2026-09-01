@@ -152,22 +152,18 @@ current model):
 · the SAME simple operation repeated over many items → Haiku (200K window;
   Claude Code sends NO effort for Haiku sub-agents — treat the dial as absent).
   A one-off check is cheaper inline — see the boot floor
-· substantive builds, synthesis, final judgment → Opus (measured: LOW effort
-  held full quality on build-from-spec where Sonnet/high did not; xhigh only
-  for demanding agentic work) — the default top tier since Opus 5
-· **verification / correctness review → Fable 5.1 at LOW effort.** Measured
-  on a planted-bug review: Fable found the subtle bug 7/8 runs at any effort;
-  Opus 1/9 across low→max; Sonnet 1/8. Pick the MODEL for verification —
-  effort bought Opus nothing there.
+· substantive builds, synthesis, final judgment → Opus, LOW effort by default
+  (measured: held full quality where Sonnet/high did not; xhigh only for
+  demanding agentic work) — the default top tier since Opus 5
+· verification / correctness review → **Fable 5.1 at LOW effort** (measured:
+  caught the subtle bug Opus missed at every effort — pick the MODEL here)
 · Fable 5.1 = escalation ONLY (≈2× Opus on output, though its cache reads
   are HALF of Opus's, so long cache-bound sessions narrow the gap): the
   longest/hardest frontier reasoning,
   high-stakes research, tie-break after an Opus attempt fails, or explicit
   request. Unavailable? Opus at max IS the ceiling — never stall on it.
-· **Never `max` by default.** Measured: Sonnet/max spent 33K output tokens for
-  the result Sonnet/low reached with 2K, same score; Opus and Fable at max
-  cost 3-5× their low cell for no quality gain. `max` is for problems that
-  demonstrably failed at xhigh.
+· Never `max` by default — measured 3-5× the cost of `low` for no quality
+  gain; reserve it for problems that demonstrably failed at xhigh.
 · **Within a tier, always the NEWEST model** — same or lower price, better
   model (today: Fable 5.1, Opus 5, Sonnet 5, Haiku 4.5). Older versions cost
   the same or more for less; Opus/Sonnet 4.6 also lack `xhigh`. Pin by FULL
