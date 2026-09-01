@@ -223,6 +223,19 @@ so small one-shot work is cheaper done inline however cheap the model.
 
 ## Release notes
 
+- **1.9.0** - Newest-in-tier, and Fable 5.1. The per-version deny list ("never
+  Opus 4.6 or Sonnet 4.6") was a special case of a general rule the routing
+  table now states once: **within a tier, always the newest model** - same or
+  lower price, better model. Verified against the live pricing page: Opus 5,
+  4.8, 4.7 and 4.6 are all $5/$25; Sonnet 5's $2/$10 (introductory pricing now
+  made permanent) undercuts Sonnet 4.6's $3/$15; Fable 5.1 matches Fable 5's
+  $10/$50 with **cache reads at a quarter of the price** and materially higher
+  benchmarks. Fable 5.1 is therefore the Fable the rule means. Two practical
+  facts ride along: the short alias `fable` still resolves to Fable 5, so pin
+  by full model ID where an alias lags (agent frontmatter honors full IDs -
+  verified at runtime); and because Fable 5.1's cache reads are half of Opus
+  5's, long cache-bound sessions narrow the "2x Opus" gap the escalation rule
+  assumes. Block tag `tier-rule v1.9.0`; `/tier` upgrades older installs in place.
 - **1.8.1** - `/tier` is now aware of a user-level global rule. The skill only
   ever read PROJECT files, so a user carrying the rule in `~/.claude/CLAUDE.md`
   (which loads automatically in every session) who ran `/tier` in a project got

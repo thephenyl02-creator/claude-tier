@@ -84,7 +84,7 @@ prettify, or reformat it.
      the CANONICAL BLOCK into `CLAUDE.md` (replacing its old block) and
      DELETE the block from `CLAUDE.local.md`.
    - **Found only in the file matching the chosen mode** → version check:
-     · block contains the tag `tier-rule v1.8.0` → already current. In local
+     · block contains the tag `tier-rule v1.9.0` → already current. In local
        mode in a git repo, still run step 4 first (verify/repair the
        exclusion — it may be missing even when the block is current), then
        say the project is already tiered and STOP — do not duplicate.
@@ -139,7 +139,7 @@ auto-upgrade breaks.
 
 ```markdown
 ## Working preferences — model & effort tiering
-<!-- tier-rule v1.8.0 -->
+<!-- tier-rule v1.9.0 -->
 
 Quality first. Efficiency comes ONLY from routing mechanical work to cheaper
 tiers — never from downgrading work that needs a strong model.
@@ -154,16 +154,16 @@ current model):
 · substantive builds, verifiers, correctness/security review, synthesis,
   final judgment → Opus (high, its default; xhigh only for demanding agentic
   work) — the default top tier since Opus 5
-· Fable = escalation ONLY (≈2× Opus on output; on 5.1 its cache reads are
-  HALF Opus's, so long cache-bound sessions narrow the gap): longest/hardest
-  frontier reasoning,
+· Fable 5.1 = escalation ONLY (≈2× Opus on output, though its cache reads
+  are HALF of Opus's, so long cache-bound sessions narrow the gap): the
+  longest/hardest frontier reasoning,
   high-stakes research, tie-break after an Opus attempt fails, or explicit
   request. Unavailable? Opus at max IS the ceiling — never stall on it.
 · **Within a tier, always the NEWEST model** — same or lower price, better
   model (today: Fable 5.1, Opus 5, Sonnet 5, Haiku 4.5). Older versions cost
   the same or more for less; Opus/Sonnet 4.6 also lack `xhigh`. Pin by FULL
-  ID where the short alias lags (`fable` still resolves to Fable 5; Fable 5.1
-  is the same price with cache reads at ¼).
+  ID where a short alias lags — `fable` still resolves to Fable 5, which has
+  4× dearer cache reads than 5.1 for the same price.
 
 **Main session — model AND effort are frozen at session start**
 - The cache is keyed by both. Measured: changing either drops cache_read to
