@@ -13,32 +13,33 @@ clear rule into the file Claude Code always reads, and gets out of the way.
 
 ## What the rule does
 
-- **Plan on the highest model available**; every plan assigns a model tier
-  **and** an effort level (low to max) per work item.
-- **Routes work to the right tier:** deterministic batteries (tests, builds,
-  linters) run with no model at all; mechanical gathering to Sonnet;
-  substantive builds, verifiers, correctness/security reviews, and final
-  judgment to Opus - since Opus 5, Opus is the default top tier.
-- **Fable is an escalation, not a default:** roughly 2x Opus cost and heavier
-  token use for an overall lead that is now marginal (Opus 5 wins several
-  areas outright). The rule reserves Fable for the longest, hardest
-  frontier-reasoning work, high-stakes deep research, large or high-stakes
-  work in the domains where Fable actually benchmarks ahead (long-horizon
-  software engineering, legal/compliance-critical analysis, deep security
-  analysis), tie-break adjudication after strong models disagree, or an
-  explicit request.
-- **Subscription-aware:** on plans without Fable (e.g. Claude Pro), Opus is
-  simply the top tier - would-be escalations run on Opus at max effort, and
-  the rule never stalls on an unavailable model. No configuration needed; it
-  adapts to whatever models the session actually has.
-- **Routing is free:** the rule is a lookup table, not a deliberation. The
-  routing decision must never cost more tokens than it can save - small tasks
-  skip routing entirely and just run on the current model.
-- **Written for the model:** the installed block is compact, imperative
-  markdown optimized for Claude to follow (and cheap to load every session),
-  not prose for humans to study.
-- **Per-task fit:** *downgrade* to a cheaper model directly when the work is
-  clearly mechanical; *upgrade* only after asking you first.
+- **Plan and judge on the session's model; execute through pinned
+  sub-agents.** The main session's model and effort are frozen at start
+  (the prompt cache is keyed by both - switching either mid-session measured
+  20x the cost of the same turn), so sub-agents are the only tier lever.
+- **Routes work by shape:** tests, builds and linters run with no model;
+  gathering, search fan-out and doc refresh go to Sonnet at low effort; the
+  same simple operation over many items goes to Haiku; substantive builds,
+  synthesis, verification and final judgment go to **Opus at low effort** -
+  measured to hold full quality where Sonnet did not at any effort.
+- **Model is the strong lever, effort the weak one.** Effort spread within a
+  model measured 1.3-1.6x in cost; model spread 2-5x. Low is the default;
+  `max` is never a default (2-5x the cost of low for no correctness gain).
+- **Fable 5.1 is an escalation, not a default:** the hardest frontier
+  reasoning, high-stakes research, a tie-break after an Opus attempt fails,
+  or an explicit request. Measured total cost ran 1-2x Opus/low by task with
+  no quality edge on any shape measured. Without Fable on the plan, Opus at
+  max is the ceiling - the rule never stalls on an unavailable model.
+- **Newest model within a tier, always** - same or lower price, better model.
+- **Every sub-agent is pinned** (model, effort, tools) and pays a boot cost
+  before any work (~10K tokens on Haiku, ~44K on Opus, 3x that with
+  `tools: *`), so small one-shot work stays inline. Independent same-tier
+  agents go out in one batch; a pinned-low agent that meets more than its
+  brief replies `ESCALATE:` and is re-run one tier up.
+- **Routing is free:** the rule is a lookup table, not a deliberation. Small
+  tasks skip routing entirely and run on the current model.
+- **Per-task fit:** *downgrade* clearly mechanical work directly; *upgrade*
+  only after asking you first.
 - **Hard rule that overrides everything: never compromise quality.** Any doubt
   whether a downgrade would hurt = don't downgrade.
 
@@ -226,31 +227,24 @@ measured 3x the boot on the same model.
 ## Release notes
 
 - **1.10.0** - The measured rule, audited. Four sweep rounds (125 graded
-  agent runs across build, bug-fix, refactor, integration, long build,
-  verification, synthesis and a deliberately hard build, every grader
-  validated against a baseline and a reference before any model ran) settled
-  the model-versus-effort question: **model is the strong lever, effort the
-  weak one.** Opus at LOW effort held full quality on the one edge case Sonnet
-  failed at low, medium and high; a 19-test hard build came back perfect from
-  every cell, so a low pin does not degrade on difficulty - only on ambiguity,
-  which is what the new `ESCALATE:` hatch is for (a pinned-low agent that
-  meets more than its brief hands the task back; the caller re-runs it one
-  tier up). `max` is now "never by default": 2-5x the cost of `low` for no
-  correctness gain in 48 runs. Then an independent adversarial read of the
-  rule found that its headline verification claim ("Fable 5.1 catches what
-  Opus misses") rested on a grader flaw - the scored bug sat in a function
-  with no docstring while the spec said "does not do what the docstring
-  says". Re-measured with a fair criterion: Opus/low 4/4, Fable/low 4/4,
-  Sonnet/low 3/4. So the verification lane is retracted, Fable 5.1 is
-  escalation-only again with an honest cost line (list output 2x Opus,
-  measured total 1-2x by task, no quality edge on any shape measured), and
-  the reference agent set pins verification and integration to Opus/low -
-  the integrator had been paying 2.7x for a tighter summary a prompt line
-  buys. Boot cost gained a clause: it tracks the model AND whether the agent
-  takes `tools: *` (every MCP schema, measured 3x the boot), not which
-  built-ins it lists. A zero-token hook that rewrites unpinned `Agent` calls
-  was built, proven, and rejected as unnecessary at a 3% miss rate - the rule
-  stays one block with no moving parts. Block tag `tier-rule v1.10.0`.
+  agent runs over eight task shapes, every grader validated against a
+  baseline and a reference first) settled model-versus-effort: **model is the
+  strong lever, effort the weak one.** Opus at low held the one edge case
+  Sonnet failed at low, medium and high; a 19-test hard build came back
+  perfect from every cell, so a low pin degrades on ambiguity, not
+  difficulty - hence the `ESCALATE:` hatch (a pinned-low agent that meets
+  more than its brief hands the task back for a one-tier-up re-run). `max`
+  is never a default: 2-5x the cost of low for no correctness gain. An
+  independent adversarial read then found the headline verification claim
+  ("Fable catches what Opus misses") rested on a grader flaw; re-measured
+  fairly, Opus/low 4/4, Fable/low 4/4, Sonnet/low 3/4. The verification lane
+  is retracted, Fable 5.1 is escalation-only with an honest cost line (list
+  output 2x Opus, measured total 1-2x by task, no quality edge measured), and
+  verification and integration pin to Opus/low - the integrator had paid
+  2.7x for a tighter summary. Boot cost tracks the model and whether the
+  agent takes `tools: *` (3x), not which built-ins it lists. A zero-token
+  hook that rewrites unpinned `Agent` calls was built, proven and rejected
+  as unnecessary at a 3% miss rate. Block tag `tier-rule v1.10.0`.
 - **1.9.0** - Newest-in-tier, and Fable 5.1. The per-version deny list ("never
   Opus 4.6 or Sonnet 4.6") was a special case of a general rule the routing
   table now states once: **within a tier, always the newest model** - same or
