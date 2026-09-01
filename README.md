@@ -223,6 +223,18 @@ so small one-shot work is cheaper done inline however cheap the model.
 
 ## Release notes
 
+- **1.8.1** - `/tier` is now aware of a user-level global rule. The skill only
+  ever read PROJECT files, so a user carrying the rule in `~/.claude/CLAUDE.md`
+  (which loads automatically in every session) who ran `/tier` in a project got
+  a second ~900-token copy loading alongside the global on every turn - the
+  skill's own author accumulated six stale project copies this way before
+  noticing. New step 0 checks the user-level file first: already covered by a
+  same-or-newer global in local mode -> stop and say so; global older than the
+  skill -> offer to upgrade the GLOBAL in place (one copy, every project);
+  `/tier repo` proceeds regardless, since committed-file coverage for web and
+  mobile sessions is its whole point, noting that local sessions in that
+  project will then load both copies. Rule content is unchanged - the block tag
+  stays `tier-rule v1.8.0` and existing installs are untouched.
 - **1.8.0** - The first release since 1.6.0, and the first whose every number
   was measured rather than reasoned about. 1.6.0 was not broken; it was simply
   built on assumptions nobody had tested. Everything in between was unreleased
