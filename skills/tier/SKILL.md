@@ -154,11 +154,16 @@ current model):
 · substantive builds, verifiers, correctness/security review, synthesis,
   final judgment → Opus (high, its default; xhigh only for demanding agentic
   work) — the default top tier since Opus 5
-· Fable = escalation ONLY (≈2× Opus): longest/hardest frontier reasoning,
+· Fable = escalation ONLY (≈2× Opus on output; on 5.1 its cache reads are
+  HALF Opus's, so long cache-bound sessions narrow the gap): longest/hardest
+  frontier reasoning,
   high-stakes research, tie-break after an Opus attempt fails, or explicit
   request. Unavailable? Opus at max IS the ceiling — never stall on it.
-· Never Opus 4.6 or Sonnet 4.6 — same or higher price than their successors,
-  and neither supports `xhigh`.
+· **Within a tier, always the NEWEST model** — same or lower price, better
+  model (today: Fable 5.1, Opus 5, Sonnet 5, Haiku 4.5). Older versions cost
+  the same or more for less; Opus/Sonnet 4.6 also lack `xhigh`. Pin by FULL
+  ID where the short alias lags (`fable` still resolves to Fable 5; Fable 5.1
+  is the same price with cache reads at ¼).
 
 **Main session — model AND effort are frozen at session start**
 - The cache is keyed by both. Measured: changing either drops cache_read to
