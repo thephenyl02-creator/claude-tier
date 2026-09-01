@@ -219,10 +219,38 @@ tools: Read, Grep, Glob, Bash
 
 Boot cost is worth knowing before you write these: a sub-agent pays roughly
 10K tokens to start on Haiku and 44K on Opus, flat regardless of task size,
-so small one-shot work is cheaper done inline however cheap the model.
+so small one-shot work is cheaper done inline however cheap the model. List
+the tools you need rather than `*`: the wildcard loads every MCP schema and
+measured 3x the boot on the same model.
 
 ## Release notes
 
+- **1.10.0** - The measured rule, audited. Four sweep rounds (125 graded
+  agent runs across build, bug-fix, refactor, integration, long build,
+  verification, synthesis and a deliberately hard build, every grader
+  validated against a baseline and a reference before any model ran) settled
+  the model-versus-effort question: **model is the strong lever, effort the
+  weak one.** Opus at LOW effort held full quality on the one edge case Sonnet
+  failed at low, medium and high; a 19-test hard build came back perfect from
+  every cell, so a low pin does not degrade on difficulty - only on ambiguity,
+  which is what the new `ESCALATE:` hatch is for (a pinned-low agent that
+  meets more than its brief hands the task back; the caller re-runs it one
+  tier up). `max` is now "never by default": 2-5x the cost of `low` for no
+  correctness gain in 48 runs. Then an independent adversarial read of the
+  rule found that its headline verification claim ("Fable 5.1 catches what
+  Opus misses") rested on a grader flaw - the scored bug sat in a function
+  with no docstring while the spec said "does not do what the docstring
+  says". Re-measured with a fair criterion: Opus/low 4/4, Fable/low 4/4,
+  Sonnet/low 3/4. So the verification lane is retracted, Fable 5.1 is
+  escalation-only again with an honest cost line (list output 2x Opus,
+  measured total 1-2x by task, no quality edge on any shape measured), and
+  the reference agent set pins verification and integration to Opus/low -
+  the integrator had been paying 2.7x for a tighter summary a prompt line
+  buys. Boot cost gained a clause: it tracks the model AND whether the agent
+  takes `tools: *` (every MCP schema, measured 3x the boot), not which
+  built-ins it lists. A zero-token hook that rewrites unpinned `Agent` calls
+  was built, proven, and rejected as unnecessary at a 3% miss rate - the rule
+  stays one block with no moving parts. Block tag `tier-rule v1.10.0`.
 - **1.9.0** - Newest-in-tier, and Fable 5.1. The per-version deny list ("never
   Opus 4.6 or Sonnet 4.6") was a special case of a general rule the routing
   table now states once: **within a tier, always the newest model** - same or

@@ -84,7 +84,7 @@ prettify, or reformat it.
      the CANONICAL BLOCK into `CLAUDE.md` (replacing its old block) and
      DELETE the block from `CLAUDE.local.md`.
    - **Found only in the file matching the chosen mode** → version check:
-     · block contains the tag `tier-rule v1.9.0` → already current. In local
+     · block contains the tag `tier-rule v1.10.0` → already current. In local
        mode in a git repo, still run step 4 first (verify/repair the
        exclusion — it may be missing even when the block is current), then
        say the project is already tiered and STOP — do not duplicate.
@@ -139,7 +139,7 @@ auto-upgrade breaks.
 
 ```markdown
 ## Working preferences — model & effort tiering
-<!-- tier-rule v1.9.0 -->
+<!-- tier-rule v1.10.0 -->
 
 Quality first. Efficiency comes ONLY from routing mechanical work to cheaper
 tiers — never from downgrading work that needs a strong model.
@@ -152,18 +152,19 @@ current model):
 · the SAME simple operation repeated over many items → Haiku (200K window;
   Claude Code sends NO effort for Haiku sub-agents — treat the dial as absent).
   A one-off check is cheaper inline — see the boot floor
-· substantive builds, synthesis, final judgment → Opus, LOW effort by default
-  (measured: held full quality where Sonnet/high did not; xhigh only for
-  demanding agentic work) — the default top tier since Opus 5
-· verification / correctness review → **Fable 5.1 at LOW effort** (measured:
-  caught the subtle bug Opus missed at every effort — pick the MODEL here)
-· Fable 5.1 = escalation ONLY (≈2× Opus on output, though its cache reads
-  are HALF of Opus's, so long cache-bound sessions narrow the gap): the
-  longest/hardest frontier reasoning,
+· substantive builds, synthesis, final judgment, verification / correctness
+  review → Opus, LOW effort by default (measured: held full quality where
+  Sonnet did not at low, medium OR high; verification Opus/low 4/4 vs
+  Sonnet/low 3/4; xhigh only for demanding agentic work) — the default top
+  tier since Opus 5
+· Fable 5.1 = escalation ONLY: the longest/hardest frontier reasoning,
   high-stakes research, tie-break after an Opus attempt fails, or explicit
-  request. Unavailable? Opus at max IS the ceiling — never stall on it.
-· Never `max` by default — measured 3-5× the cost of `low` for no quality
-  gain; reserve it for problems that demonstrably failed at xhigh.
+  request. List output price is 2× Opus; measured TOTAL cost 1–2× Opus/low by
+  task, with no quality edge on any shape measured. Unavailable? Opus at max
+  IS the ceiling — never stall on it.
+· Never `max` by default — measured 2-5× the cost of `low` for no CORRECTNESS
+  gain (it bought only a tighter summary); reserve it for problems that
+  demonstrably failed at xhigh.
 · **Within a tier, always the NEWEST model** — same or lower price, better
   model (today: Fable 5.1, Opus 5, Sonnet 5, Haiku 4.5). Older versions cost
   the same or more for less; Opus/Sonnet 4.6 also lack `xhigh`. Pin by FULL
@@ -185,9 +186,10 @@ current model):
 **Sub-agents — the only tier lever once a session is running**
 - A sub-agent runs at its own model and effort in its own context, costing
   the main cache nothing — but it pays to BOOT first: ~10K on Haiku, ~44K on
-  Opus (≈$0.28 before any work happens). Boot tracks the MODEL, not the
-  agent's `tools:` list. So small one-shot work is cheaper INLINE, however
-  cheap the model.
+  Opus (≈$0.28 before any work happens). Boot tracks the MODEL and whether the
+  agent takes `tools: *` (every MCP schema — measured 3× the boot), not which
+  built-ins it lists. So small one-shot work is cheaper INLINE, however cheap
+  the model.
 - Delegate when the work is big enough to clear that boot AND either the tier
   drops meaningfully or the material would otherwise sit in the main context
   being re-read every later turn. A real tier drop can make delegation net
