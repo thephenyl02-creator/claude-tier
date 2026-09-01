@@ -195,8 +195,8 @@ current model):
 - **PIN EVERY SUB-AGENT.** An unpinned agent inherits the session model, so a
   frontier main model turns mechanical work into frontier-priced work with no
   visible signal. Rate-limited? Retry THAT agent on another tier — never drop
-  pins globally. Weak or wrong result? Re-run THAT agent one tier UP: a bad
-  cheap answer costs more than the right tier would have.
+  pins globally. Weak or wrong result, or a reply starting `ESCALATE:`? Re-run THAT agent one
+  tier UP: a bad cheap answer costs more than the right tier would have.
 - The `Agent` tool has **no effort parameter**. Pin effort in the agent's
   `.claude/agents/*.md` frontmatter (model, effort, tools), or via
   `Workflow`'s `agent(prompt, {model, effort})`.
