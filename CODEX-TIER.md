@@ -189,6 +189,12 @@ default.
 
 ## Benchmarking
 
+The [authoritative consolidated benchmark report](benchmarks/codex-tier-e2e/CONSOLIDATED-BENCHMARK-REPORT.md)
+is the canonical v1 summary. It reconciles the 29-pair calibration, invalid
+early trials, targeted tuning, fixture repairs, corrected Sol/low benchmark,
+always-Sol/max comparison, superseded evidence, and final parent-only routes.
+Raw artifacts remain under `benchmarks/codex-tier-e2e/`.
+
 The deterministic executor-validation manifest covers:
 
 1. high-volume, low-reasoning work;
@@ -212,7 +218,7 @@ Raw quality, verification, tokens, credits, retries, escalations, and latency
 are reported. Codex Tier does not publish a savings percentage until comparable
 verified runs support one.
 
-## Current environment findings
+## Final v1 environment findings
 
 As verified on August 25, 2026:
 
@@ -224,11 +230,19 @@ As verified on August 25, 2026:
   87 verification passes, zero retries, and zero error events.
 - Codex JSONL exposed input, cached input, output, and reasoning-output token
   counters. It did not expose Codex subscription credits.
-- The first narrow measured frontier contains `gpt-5.4-mini/low` for bulk
-  scan, difficult debugging, and security review. GPT-5.5 is dominated on
-  these fixtures and is retained only as an available registry candidate for
-  other workloads or future calibration.
-- No savings percentage is published.
+- Synthetic calibration initially placed `gpt-5.4-mini/low` on three narrow
+  frontiers, but realistic repository confirmation failed the relative quality
+  gate. That synthetic frontier is launch/executor evidence, not the final
+  production route.
+- Corrected evidence validates the Sol/low parent for bulk repository scan,
+  routine refactor, difficult debugging, security review, and architecture.
+- Versus Sol/low, corrected Tier usage was essentially neutral on the
+  workload-median exposed-token metric. Versus always Sol/max, the tested
+  workloads measured 9.83% median and 12.57% mean exposed-token reductions,
+  with 100% quality-gate pass rates.
+- These percentages are exposed-token results, not credit, billing, dollar,
+  or 5-hour-quota savings. Post-benchmark parent-route corrections are not
+  assigned a new percentage without new measurement.
 - Current Codex documentation supports explicit subagent `model` and
   `model_reasoning_effort` pins.
 - Current `codex exec` supports `--model`, repeated `--config`,

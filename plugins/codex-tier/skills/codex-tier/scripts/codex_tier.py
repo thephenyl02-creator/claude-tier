@@ -313,18 +313,28 @@ def merge_measured_frontiers(frontiers: dict[str, Any]) -> dict[str, Any]:
         return frontiers
     merged = copy.deepcopy(frontiers)
     for work_class, profile in measured.get("profiles", {}).items():
-        if work_class in merged.get("profiles", {}) and profile.get("candidates"):
-            current = merged["profiles"][work_class]
+        if work_class not in merged.get("profiles", {}):
+            continue
+        current = merged["profiles"][work_class]
+        if profile.get("routing_decision") == "parent":
+            current["candidates"] = []
+            current.pop("availability_fallback_candidates", None)
+            current["parent_only"] = True
+        elif profile.get("candidates"):
             current["availability_fallback_candidates"] = copy.deepcopy(
                 current.get("candidates", [])
             )
             current["candidates"] = copy.deepcopy(profile["candidates"])
-            current["calibration"] = {
-                "source": "real-codex-measurement",
-                "measured_at": measured.get("measured_at"),
-                "usage_metric": measured.get("usage_metric"),
-                "fixture_id": profile.get("fixture_id"),
-            }
+        else:
+            continue
+        current["calibration"] = {
+            "source": "real-codex-measurement",
+            "measured_at": profile.get("measured_at", measured.get("measured_at")),
+            "usage_metric": measured.get("usage_metric"),
+            "fixture_id": profile.get("fixture_id"),
+            "evidence_file": profile.get("evidence_file"),
+            "evidence_sha256": profile.get("evidence_sha256"),
+        }
     return merged
 
 
@@ -397,6 +407,10 @@ def validate_config(registry: dict[str, Any], frontiers: dict[str, Any]) -> list
         required = profile.get("required_quality")
         if not isinstance(required, (int, float)) or not 0 <= required <= 100:
             errors.append(f"{work_class} has invalid required_quality")
+        if profile.get("parent_only") not in (None, True, False):
+            errors.append(f"{work_class} has invalid parent_only flag")
+        if profile.get("parent_only") and profile.get("candidates"):
+            errors.append(f"{work_class} cannot be parent_only and define candidates")
         seen: set[str] = set()
         for candidate in profile.get("candidates", []):
             model_id = candidate.get("model")
@@ -503,6 +517,14 @@ def route_work_unit(
             **base,
             "execution_mode": "DIRECT",
             "reason": "Worker startup and context packaging would cost more than this tiny unit.",
+        }
+
+    if profile.get("parent_only"):
+        return {
+            **base,
+            "execution_mode": "DIRECT",
+            "requires_parent": True,
+            "reason": "Measured tuning found no cheaper quality-preserving worker; keep the work on the parent.",
         }
 
     models = registry_models(registry)

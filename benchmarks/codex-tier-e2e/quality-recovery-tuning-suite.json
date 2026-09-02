@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "mode": "tuning",
+  "benchmark_id": "codex-tier-v1-quality-recovery-tuning-v2",
+  "repository_commit": "75c2c69",
+  "repository_description": "Two-candidate recovery tuning for three routes that failed realistic frozen-evidence confirmation.",
+  "parent": {"model": "gpt-5.6-sol", "effort": "low"},
+  "verifier": {"model": "gpt-5.6-sol", "effort": "max"},
+  "repetitions_per_condition": 2,
+  "random_seed": 20260830,
+  "baseline_reuse": {
+    "results_file": "confirmation-results.json",
+    "repetition": 1
+  },
+  "candidate_pruning": {
+    "minimum_pass_rate": 1.0,
+    "dominance_rule": "equal-or-better median quality and equal-or-lower median total exposed tokens, with at least one strict improvement"
+  },
+  "quality_gate": {
+    "minimum_individual_score": 80,
+    "minimum_tiered_pass_rate_for_publication": 1.0,
+    "maximum_median_regression_points": 3,
+    "require_tiered_pass_rate_at_least_baseline": true
+  },
+  "workloads": [
+    {
+      "id": "real-bulk-release-audit",
+      "work_class": "bulk_repository_scan",
+      "frozen_evidence_only": true,
+      "classification": {"complexity": "mechanical", "volume": "large", "risk": "low", "context": "repository-wide"},
+      "task": "Audit this entire repository as if you are preparing a release-readiness handoff. Build a compact but complete map of the Codex Tier product surfaces, installers, plugin and skill packaging, routing and calibration code, tests, and generated benchmark evidence. Explain how the pieces connect; distinguish production files from test-only, generated, vendored, or local-account evidence; cite at least 12 exact repository paths; identify any stale-install or invalid-benchmark risks you can support from the current commit; and finish with five prioritized release checks. Inspect the repository with tools, do not edit files, distinguish confirmed facts from uncertainty, and stay under 900 words.",
+      "rubric": [
+        "Covers installers, plugin/skill packaging, router, calibration, tests, and evidence artifacts.",
+        "Cites at least 12 real paths and accurately distinguishes production from test/generated/local evidence.",
+        "Explains cross-file relationships rather than returning a flat file list.",
+        "Release risks and checks are evidence-backed and prioritized without invented defects."
+      ],
+      "deterministic_checks": {
+        "minimum_response_characters": 600,
+        "required_terms": [
+          "install-codex.ps1",
+          "install-codex.sh",
+          "plugin.json",
+          "SKILL.md",
+          "codex_tier.py",
+          "calibrate.py",
+          "benchmark.py",
+          "test_codex_tier.py",
+          "model-registry.json",
+          "measured-frontiers.json"
+        ],
+        "minimum_required_terms": 7
+      },
+      "tuning_candidates": [
+        {
+          "pair": "gpt-5.4-mini/high",
+          "historical_basis": "A materially higher effort on the low-consumption model that failed at low effort; retained as the strongest plausible mini variant without a broad sweep."
+        },
+        {
+          "pair": "gpt-5.6-terra/low",
+          "historical_basis": "Stronger-model alternative with conservative prior quality 72 and relative usage 0.28 for repository scanning."
+        }
+      ],
+      "pre_pruned_candidates": [
+        {
+          "pair": "gpt-5.4-mini/low",
+          "reason": "Frozen-evidence confirmation scored 84 versus baseline 92 and failed on a material Windows compatibility claim."
+        }
+      ]
+    },
+    {
+      "id": "real-probe-scope-debugging",
+      "work_class": "difficult_debugging",
+      "frozen_evidence_only": true,
+      "classification": {"complexity": "substantial", "volume": "moderate", "risk": "correctness-sensitive", "context": "repository-wide"},
+      "task": "Diagnose this production report against the current commit without changing files: 'After switching to a custom models_cache.json, Codex Tier still inherits launch-probe status from the default account, and measured-frontier fallback behaves inconsistently when the selected pair is unavailable.' Reproduce or refute each claim by tracing models_cache_path, apply_client_model_cache, apply_launch_probe_results, active_candidate_matrix, merge_measured_frontiers, load_config, and route_work_unit. Identify the exact conditions under which stale or cross-client evidence can and cannot apply, explain the unavailable-pair fallback behavior, separate confirmed defects from expected behavior, and propose the smallest fixes and regression tests only where justified. Use repository tools, cite exact symbols and paths, and stay under 900 words.",
+      "rubric": [
+        "Correctly reproduces or refutes both reported symptoms from the current code rather than accepting the report at face value.",
+        "Traces every named function and the relevant matrix-hash/path-scope checks accurately.",
+        "Explains measured-frontier and prior-candidate fallback behavior under explicit and probed unavailability.",
+        "Proposes minimal justified fixes/tests and clearly labels non-bugs or remaining uncertainty."
+      ],
+      "deterministic_checks": {
+        "minimum_response_characters": 600,
+        "required_terms": [
+          "models_cache_path",
+          "apply_client_model_cache",
+          "apply_launch_probe_results",
+          "active_candidate_matrix",
+          "merge_measured_frontiers",
+          "load_config",
+          "route_work_unit"
+        ],
+        "minimum_required_terms": 6
+      },
+      "tuning_candidates": [
+        {
+          "pair": "gpt-5.6-terra/xhigh",
+          "historical_basis": "Cheaper high-reasoning candidate with conservative prior quality 88 and relative usage 0.75."
+        },
+        {
+          "pair": "gpt-5.6-terra/max",
+          "historical_basis": "Strong Terra candidate with conservative prior quality 91 and relative usage 0.95."
+        }
+      ],
+      "pre_pruned_candidates": [
+        {
+          "pair": "gpt-5.4-mini/low",
+          "reason": "Frozen-evidence confirmation scored 66 versus baseline 92 and missed central probe-hash and measured-frontier behavior."
+        }
+      ]
+    },
+    {
+      "id": "real-security-trust-review",
+      "work_class": "security_review",
+      "frozen_evidence_only": true,
+      "classification": {"complexity": "frontier", "volume": "small", "risk": "security-sensitive", "context": "large-context"},
+      "task": "Perform an evidence-based security and trust-boundary review of Codex Tier's Windows and Unix installers, plugin marketplace integration, bounded codex exec wrapper, model-cache/probe ingestion, and content-free usage logging. Focus on command or argument injection, path traversal and unsafe writes, credential or prompt leakage, sandbox/approval weakening, cross-account calibration evidence, and plugin-source trust. Report only confirmed findings or clearly labeled defense-in-depth concerns; cite exact paths and symbols; explain exploit preconditions and impact; note existing mitigations; prioritize remediation; and explicitly dismiss plausible false positives when the code blocks them. Do not edit files and stay under 1,000 words.",
+      "rubric": [
+        "Covers all named trust boundaries with exact code evidence and accurate exploit preconditions.",
+        "Separates confirmed findings, defense-in-depth concerns, and blocked false positives.",
+        "Accurately evaluates sanitization, path containment, approval/sandbox flags, installer behavior, and local probe scope.",
+        "Prioritizes practical remediation without overstating severity or inventing vulnerabilities."
+      ],
+      "deterministic_checks": {
+        "minimum_response_characters": 700,
+        "required_terms": [
+          "install-codex.ps1",
+          "install-codex.sh",
+          "command_prefix",
+          "write_event",
+          "sandbox",
+          "approval",
+          "models_cache_path",
+          "apply_launch_probe_results",
+          "candidate_matrix_hash",
+          "log_file"
+        ],
+        "minimum_required_terms": 7
+      },
+      "tuning_candidates": [
+        {
+          "pair": "gpt-5.6-terra/max",
+          "historical_basis": "Lower-consumption strong-reasoning candidate with conservative prior quality 87 and relative usage 0.95."
+        },
+        {
+          "pair": "gpt-5.6-sol/medium",
+          "historical_basis": "Stronger parent-family candidate with conservative prior quality 91 and relative usage 0.90."
+        }
+      ],
+      "pre_pruned_candidates": [
+        {
+          "pair": "gpt-5.4-mini/low",
+          "reason": "Frozen-evidence confirmation scored 45 versus baseline 89 and omitted multiple central trust boundaries."
+        }
+      ]
+    }
+  ]
+}

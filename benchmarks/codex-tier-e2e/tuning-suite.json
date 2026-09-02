@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "mode": "tuning",
+  "benchmark_id": "codex-tier-v1-targeted-tuning",
+  "repository_commit": "75c2c69",
+  "repository_description": "Targeted tuning against the same fixed real repository commit as the historical end-to-end benchmark.",
+  "parent": {"model": "gpt-5.6-sol", "effort": "low"},
+  "verifier": {"model": "gpt-5.6-sol", "effort": "max"},
+  "repetitions_per_condition": 2,
+  "random_seed": 20260829,
+  "candidate_pruning": {
+    "minimum_pass_rate": 1.0,
+    "dominance_rule": "equal-or-better median quality and equal-or-lower median total exposed tokens, with at least one strict improvement"
+  },
+  "quality_gate": {
+    "minimum_individual_score": 80,
+    "minimum_tiered_pass_rate_for_publication": 1.0,
+    "maximum_median_regression_points": 3,
+    "require_tiered_pass_rate_at_least_baseline": true
+  },
+  "workloads": [
+    {
+      "id": "real-router-refactor-plan",
+      "work_class": "routine_refactor",
+      "classification": {"complexity": "routine", "volume": "moderate", "risk": "ordinary", "context": "multi-file"},
+      "task": "Prepare a behavior-preserving refactor plan for plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py. The goal is to separate client model discovery, launch-probe evidence, measured-frontier overlay, and routing policy into clearer units without changing CLI behavior or configuration formats. Inspect the implementation and tests. Name concrete functions and data flows, propose module or API boundaries, give an incremental migration sequence, identify compatibility and failure-mode risks, and specify exact tests that would prove preservation. Do not edit files. Cite exact repository paths and symbols, avoid generic advice, and stay under 900 words.",
+      "rubric": [
+        "Accurately traces the current discovery, probe, measured-frontier, and route control flow.",
+        "Proposes concrete boundaries and an incremental behavior-preserving migration.",
+        "Addresses CLI/config compatibility, stale evidence, availability fallback, and failure modes.",
+        "Specifies targeted tests grounded in the existing test suite and cites exact symbols and paths."
+      ],
+      "deterministic_checks": {
+        "minimum_response_characters": 500,
+        "required_terms": [
+          "models_cache_path",
+          "apply_client_model_cache",
+          "apply_launch_probe_results",
+          "active_candidate_matrix",
+          "merge_measured_frontiers",
+          "load_config",
+          "route_work_unit"
+        ],
+        "minimum_required_terms": 5
+      },
+      "tuning_candidates": [
+        {
+          "pair": "gpt-5.4-mini/medium",
+          "historical_basis": "Existing calibrated alternative at quality 72 and relative usage 0.20."
+        },
+        {
+          "pair": "gpt-5.6-terra/low",
+          "historical_basis": "Existing calibrated alternative at quality 76 and relative usage 0.28."
+        }
+      ],
+      "pre_pruned_candidates": [
+        {
+          "pair": "gpt-5.6-luna/high",
+          "reason": "Historical end-to-end run produced median quality 1 and -275.76% raw usage difference after failed escalation behavior."
+        }
+      ]
+    },
+    {
+      "id": "real-distribution-architecture",
+      "work_class": "architecture",
+      "classification": {"complexity": "substantial", "volume": "small", "risk": "ordinary", "context": "repository-wide"},
+      "task": "Review the current Codex Tier architecture for distribution to many Codex users and design a concrete v2 evolution. The design must preserve dynamic per-client model discovery while separating distributable defaults from account-local launch probes, measured usage, and workload frontiers. Inspect the registry, candidate matrix, frontier overlay, installers, plugin packaging, and benchmark artifacts. Propose ownership boundaries, schemas, storage locations, freshness and invalidation rules, routing fallback behavior, migration from v1, and observability. Analyze quality-first and consumption tradeoffs without introducing a fixed model hierarchy. Cite exact current paths and symbols, include failure scenarios and rollout tests, do not edit files, and stay under 1,000 words.",
+      "rubric": [
+        "Accurately identifies which current artifacts are distributable versus account-local and how they are consumed.",
+        "Defines concrete v2 ownership, schema, storage, freshness, invalidation, and fallback rules.",
+        "Includes a compatible migration and realistic failure scenarios, observability, and rollout tests.",
+        "Preserves quality-first routing without a global hierarchy and addresses consumption-metric uncertainty."
+      ],
+      "deterministic_checks": {
+        "minimum_response_characters": 600,
+        "required_terms": [
+          "model-registry.json",
+          "candidate-matrix.json",
+          "measured-frontiers.json",
+          "apply_client_model_cache",
+          "apply_launch_probe_results",
+          "merge_measured_frontiers",
+          "route_work_unit"
+        ],
+        "minimum_required_terms": 5
+      },
+      "tuning_candidates": [
+        {
+          "pair": "gpt-5.6-sol/medium",
+          "historical_basis": "Existing calibrated alternative at quality 92 and relative usage 0.90; it was the prior workload-specific escalation target."
+        },
+        {
+          "pair": "gpt-5.5/medium",
+          "historical_basis": "Existing calibrated alternative at quality 91 and relative usage 1.00; retained only to test whether it occupies a useful frontier point."
+        }
+      ],
+      "pre_pruned_candidates": [
+        {
+          "pair": "gpt-5.6-terra/xhigh",
+          "reason": "Historical end-to-end route consumed 123.49% more median tokens than baseline and required escalation."
+        }
+      ]
+    }
+  ]
+}

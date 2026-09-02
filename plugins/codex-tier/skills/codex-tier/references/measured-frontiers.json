@@ -1,62 +1,172 @@
 {
-  "measured_at": "2026-08-25T10:12:25.184054Z",
+  "measured_at": "2026-09-02T02:35:01.602151Z",
   "profiles": {
     "bulk_repository_scan": {
-      "candidates": [
+      "baseline": {
+        "effort": "low",
+        "median_quality": 96,
+        "median_total_exposed_tokens": 155373,
+        "model": "gpt-5.6-sol",
+        "pass_rate": 1.0
+      },
+      "candidates": [],
+      "compared_tier_condition": {
+        "effort": "low",
+        "median_quality": 94,
+        "median_total_exposed_tokens": 155369,
+        "model": "gpt-5.6-sol",
+        "pass_rate": 1.0
+      },
+      "evaluated_candidates": 1,
+      "evidence_file": "benchmarks/codex-tier-e2e/corrected-final-results.json",
+      "evidence_sha256": "36c8ab014eec04460d478429c78ca6545f05098ee34fb4f8f8d56108f1f09b06",
+      "fixture_id": "corrected-final-real-bulk-release-audit-v1",
+      "reason": "The corrected complete-repository fixture showed no cheaper quality-preserving worker; both measured conditions used the Sol/low parent and passed.",
+      "routing_decision": "parent",
+      "superseded_evidence": [
         {
-          "effort": "low",
-          "measured_output_tokens": 233,
-          "measured_total_exposed_tokens": 12382,
-          "measured_uncached_input_tokens": 501,
-          "model": "gpt-5.4-mini",
-          "quality": 100,
-          "relative_usage": 12382,
-          "usage_source": "real-codex-jsonl",
-          "verification": "pass"
+          "file": "plugins/codex-tier/skills/codex-tier/references/real-calibration-results.json",
+          "reason": "Synthetic calibration remains launch/executor evidence but is not authoritative for production routing."
+        },
+        {
+          "file": "benchmarks/codex-tier-e2e/confirmation-results.json",
+          "reason": "The candidate failed quality and the later corrected fixture is authoritative."
         }
-      ],
-      "evaluated_candidates": 29,
-      "fixture_id": "real-bulk-repository-scan-v1"
+      ]
+    },
+    "routine_refactor": {
+      "baseline": {
+        "effort": "low",
+        "median_quality": 88,
+        "median_total_exposed_tokens": 22004,
+        "model": "gpt-5.6-sol",
+        "pass_rate": 1.0
+      },
+      "candidates": [],
+      "compared_tier_condition": {
+        "effort": "low",
+        "median_quality": 89,
+        "median_total_exposed_tokens": 22020,
+        "model": "gpt-5.6-terra",
+        "pass_rate": 1.0
+      },
+      "evaluated_candidates": 2,
+      "evidence_file": "benchmarks/codex-tier-e2e/corrected-final-results.json",
+      "evidence_sha256": "36c8ab014eec04460d478429c78ca6545f05098ee34fb4f8f8d56108f1f09b06",
+      "fixture_id": "corrected-final-real-router-refactor-plan-v1",
+      "reason": "Sol/low used slightly fewer exposed tokens than Terra/low while both conditions passed the required quality gate; the cheapest reliable route is the parent.",
+      "routing_decision": "parent",
+      "superseded_evidence": [
+        {
+          "file": "benchmarks/codex-tier-e2e/tuning-results.json",
+          "reason": "The earlier Terra/low preference used a different evidence packet and is superseded by the corrected final comparison."
+        }
+      ]
     },
     "difficult_debugging": {
-      "candidates": [
+      "baseline": {
+        "effort": "low",
+        "median_quality": 94,
+        "median_total_exposed_tokens": 53112,
+        "model": "gpt-5.6-sol",
+        "pass_rate": 1.0
+      },
+      "candidates": [],
+      "compared_tier_condition": {
+        "effort": "xhigh",
+        "median_quality": 93,
+        "median_total_exposed_tokens": 62424,
+        "model": "gpt-5.6-terra",
+        "pass_rate": 1.0
+      },
+      "evaluated_candidates": 2,
+      "evidence_file": "benchmarks/codex-tier-e2e/corrected-final-results.json",
+      "evidence_sha256": "36c8ab014eec04460d478429c78ca6545f05098ee34fb4f8f8d56108f1f09b06",
+      "fixture_id": "corrected-final-real-probe-scope-debugging-v1",
+      "reason": "With the repaired complete call-flow evidence, Sol/low used fewer exposed tokens and achieved equal-or-better median quality than Terra/xhigh; keep the work on the parent.",
+      "routing_decision": "parent",
+      "superseded_evidence": [
         {
-          "effort": "low",
-          "measured_output_tokens": 442,
-          "measured_total_exposed_tokens": 12742,
-          "measured_uncached_input_tokens": 652,
-          "model": "gpt-5.4-mini",
-          "quality": 100,
-          "relative_usage": 12742,
-          "usage_source": "real-codex-jsonl",
-          "verification": "pass"
+          "file": "benchmarks/codex-tier-e2e/quality-recovery-tuning-v2-results.json",
+          "reason": "The earlier Terra/xhigh preference depended on a debugging fixture that omitted the merge_measured_frontiers implementation."
+        },
+        {
+          "file": "benchmarks/codex-tier-e2e/final-results.json",
+          "reason": "The original final debugging records used the invalid incomplete-evidence fixture."
         }
-      ],
-      "evaluated_candidates": 29,
-      "fixture_id": "real-difficult-debugging-v1"
+      ]
+    },
+    "architecture": {
+      "baseline": {
+        "effort": "low",
+        "median_quality": 94,
+        "median_total_exposed_tokens": 45814,
+        "model": "gpt-5.6-sol",
+        "pass_rate": 1.0
+      },
+      "candidates": [],
+      "compared_tier_condition": {
+        "effort": "low",
+        "median_quality": 93,
+        "median_total_exposed_tokens": 45756,
+        "model": "gpt-5.6-sol",
+        "pass_rate": 1.0
+      },
+      "evaluated_candidates": 1,
+      "evidence_file": "benchmarks/codex-tier-e2e/corrected-final-results.json",
+      "evidence_sha256": "36c8ab014eec04460d478429c78ca6545f05098ee34fb4f8f8d56108f1f09b06",
+      "fixture_id": "corrected-final-real-distribution-architecture-v1",
+      "reason": "No cheaper quality-preserving worker was validated; both corrected final conditions stayed on the Sol/low parent.",
+      "routing_decision": "parent",
+      "superseded_evidence": [
+        {
+          "file": "benchmarks/codex-tier-e2e/tuning-results.json",
+          "reason": "Historical tuning reached the same parent decision; corrected final evidence is authoritative."
+        }
+      ]
     },
     "security_review": {
-      "candidates": [
+      "baseline": {
+        "effort": "low",
+        "median_quality": 84,
+        "median_total_exposed_tokens": 28773,
+        "model": "gpt-5.6-sol",
+        "pass_rate": 1.0
+      },
+      "candidates": [],
+      "compared_tier_condition": {
+        "effort": "low",
+        "median_quality": 85,
+        "median_total_exposed_tokens": 28861,
+        "model": "gpt-5.6-sol",
+        "pass_rate": 1.0
+      },
+      "evaluated_candidates": 1,
+      "evidence_file": "benchmarks/codex-tier-e2e/corrected-final-results.json",
+      "evidence_sha256": "36c8ab014eec04460d478429c78ca6545f05098ee34fb4f8f8d56108f1f09b06",
+      "fixture_id": "corrected-final-real-security-trust-review-v1",
+      "reason": "No cheaper candidate preserved required quality; both corrected final conditions used the Sol/low parent and passed.",
+      "routing_decision": "parent",
+      "superseded_evidence": [
         {
-          "effort": "low",
-          "measured_output_tokens": 353,
-          "measured_total_exposed_tokens": 12492,
-          "measured_uncached_input_tokens": 491,
-          "model": "gpt-5.4-mini",
-          "quality": 100,
-          "relative_usage": 12492,
-          "usage_source": "real-codex-jsonl",
-          "verification": "pass"
+          "file": "benchmarks/codex-tier-e2e/confirmation-results.json",
+          "reason": "The cheaper candidate failed quality."
+        },
+        {
+          "file": "benchmarks/codex-tier-e2e/quality-recovery-tuning-v2-results.json",
+          "reason": "Its security scores were invalidated by the repaired deterministic gate."
+        },
+        {
+          "file": "benchmarks/codex-tier-e2e/security-gate-repair-results.json",
+          "reason": "The repair validated the gate but did not identify a cheaper reliable route; corrected final evidence is authoritative."
         }
-      ],
-      "evaluated_candidates": 29,
-      "fixture_id": "real-security-review-v1"
+      ]
     }
   },
   "schema_version": 1,
   "status": "real-codex-measurement",
   "usage_metric": {
-    "codex_credit_mapping": "unknown unless codex_usage_credits is populated",
+    "codex_credit_mapping": "unknown; Codex credits were not exposed",
     "definition": "input_tokens + output_tokens from real Codex JSONL",
     "primary": "total_exposed_tokens"
   }

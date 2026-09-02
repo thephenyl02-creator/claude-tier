@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "codex-tier-v1-final-fixture-correction",
+  "repository_commit": "75c2c69",
+  "repository_description": "Targeted final measurement correcting only the bulk-scan and difficult-debugging frozen evidence fixtures.",
+  "parent": {"model": "gpt-5.6-sol", "effort": "low"},
+  "verifier": {"model": "gpt-5.6-sol", "effort": "max"},
+  "repetitions_per_condition": 3,
+  "random_seed": 20260902,
+  "publish_savings": true,
+  "deterministic_screening": true,
+  "frozen_routing_policy": {
+    "bulk_repository_scan": "parent:gpt-5.6-sol/low",
+    "difficult_debugging": "gpt-5.6-terra/xhigh"
+  },
+  "quality_gate": {
+    "minimum_individual_score": 80,
+    "minimum_tiered_pass_rate_for_publication": 1.0,
+    "maximum_median_regression_points": 3,
+    "require_tiered_pass_rate_at_least_baseline": true
+  },
+  "workloads": [
+    {
+      "id": "real-bulk-release-audit",
+      "work_class": "bulk_repository_scan",
+      "frozen_evidence_only": true,
+      "complete_frozen_repository": true,
+      "classification": {"complexity": "mechanical", "volume": "large", "risk": "low", "context": "repository-wide"},
+      "task": "Using only the complete frozen repository evidence supplied below, audit the repository as if preparing a release-readiness handoff. The frozen packet contains the complete tracked-file manifest and complete contents of every tracked file at the fixed commit; treat that packet as the repository inspection surface and do not use repository or shell tools. Build a compact but complete map of the Codex Tier product surfaces, installers, plugin and skill packaging, routing and calibration code, tests, calibration fixtures, and generated benchmark evidence. Explain how the pieces connect; distinguish production files from test-only, generated, vendored, or account-local evidence; cite at least 12 exact repository paths; identify stale-install or invalid-benchmark risks supported by the evidence; and finish with five prioritized release checks. Do not edit files, distinguish confirmed facts from uncertainty, and stay under 900 words.",
+      "rubric": [
+        "Uses the complete frozen repository evidence to cover installers, plugin/skill packaging, router, calibration, tests, fixtures, and generated evidence artifacts.",
+        "Cites at least 12 real paths and accurately distinguishes production from test/generated/vendored/account-local evidence.",
+        "Explains cross-file relationships rather than returning a flat file list.",
+        "Release risks and checks are evidence-backed and prioritized without invented defects."
+      ],
+      "fixture_validation": {
+        "required_task_phrases": ["complete frozen repository evidence", "do not use repository or shell tools"],
+        "forbidden_task_or_rubric_phrases": ["inspect the repository with tools", "use repository tools"],
+        "require_all_tracked_files": true,
+        "required_complete_paths": [
+          "README.md",
+          "CODEX-TIER.md",
+          "install-codex.ps1",
+          "install-codex.sh",
+          ".claude-plugin/marketplace.json",
+          "plugins/codex-tier/.codex-plugin/plugin.json",
+          "plugins/codex-tier/skills/codex-tier/SKILL.md",
+          "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+          "plugins/codex-tier/skills/codex-tier/scripts/calibrate.py",
+          "plugins/codex-tier/skills/codex-tier/scripts/benchmark.py",
+          "plugins/codex-tier/skills/codex-tier/references/model-registry.json",
+          "plugins/codex-tier/skills/codex-tier/references/measured-frontiers.json",
+          "plugins/codex-tier/skills/codex-tier/references/real-calibration-results.json",
+          "tests/codex-tier/test_codex_tier.py"
+        ],
+        "required_evidence_terms": [
+          "COMPLETE TRACKED FILE COUNT: 50",
+          "install-codex.ps1",
+          "install-codex.sh",
+          "plugin.json",
+          "SKILL.md",
+          "codex_tier.py",
+          "calibrate.py",
+          "benchmark.py",
+          "test_codex_tier.py",
+          "model-registry.json",
+          "measured-frontiers.json",
+          "real-calibration-results.json"
+        ]
+      },
+      "deterministic_checks": {
+        "minimum_response_characters": 600,
+        "required_terms": ["install-codex.ps1", "install-codex.sh", "plugin.json", "SKILL.md", "codex_tier.py", "calibrate.py", "benchmark.py", "test_codex_tier.py", "model-registry.json", "measured-frontiers.json"],
+        "minimum_required_terms": 7
+      }
+    },
+    {
+      "id": "real-probe-scope-debugging",
+      "work_class": "difficult_debugging",
+      "frozen_evidence_only": true,
+      "complete_frozen_evidence_paths": [
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "tests/codex-tier/test_codex_tier.py",
+        "plugins/codex-tier/skills/codex-tier/references/model-registry.json",
+        "plugins/codex-tier/skills/codex-tier/references/candidate-matrix.json",
+        "plugins/codex-tier/skills/codex-tier/references/frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/measured-frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/real-calibration.md"
+      ],
+      "classification": {"complexity": "substantial", "volume": "moderate", "risk": "correctness-sensitive", "context": "repository-wide"},
+      "task": "Using only the complete frozen repository evidence supplied below, diagnose this production report against the fixed commit without changing files: 'After switching to a custom models_cache.json, Codex Tier still inherits launch-probe status from the default account, and measured-frontier fallback behaves inconsistently when the selected pair is unavailable.' The evidence contains the complete implementations and configuration/test dependencies required for this diagnosis; do not use repository or shell tools. Reproduce or refute each claim by tracing models_cache_path, apply_client_model_cache, apply_launch_probe_results, active_candidate_matrix, merge_measured_frontiers, load_config, and route_work_unit. Identify the exact conditions under which stale or cross-client evidence can and cannot apply, explain measured-frontier merge precedence and unavailable-pair fallback behavior, separate confirmed defects from expected behavior, and propose the smallest fixes and regression tests only where justified. Cite exact symbols and paths and stay under 900 words.",
+      "rubric": [
+        "Correctly reproduces or refutes both reported symptoms from the complete frozen implementation rather than accepting the report at face value.",
+        "Traces every named function, the full measured-frontier merge logic, and relevant matrix-hash/path-scope checks accurately.",
+        "Explains measured-versus-prior candidate precedence and fallback behavior under explicit and probed unavailability.",
+        "Proposes minimal justified fixes/tests and clearly labels non-bugs or remaining uncertainty."
+      ],
+      "fixture_validation": {
+        "required_task_phrases": ["complete frozen repository evidence", "do not use repository or shell tools"],
+        "forbidden_task_or_rubric_phrases": ["inspect the repository with tools", "use repository tools"],
+        "required_complete_paths": [
+          "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+          "tests/codex-tier/test_codex_tier.py",
+          "plugins/codex-tier/skills/codex-tier/references/model-registry.json",
+          "plugins/codex-tier/skills/codex-tier/references/candidate-matrix.json",
+          "plugins/codex-tier/skills/codex-tier/references/frontiers.json",
+          "plugins/codex-tier/skills/codex-tier/references/measured-frontiers.json"
+        ],
+        "required_evidence_terms": [
+          "def models_cache_path",
+          "def apply_client_model_cache",
+          "def apply_launch_probe_results",
+          "def active_candidate_matrix",
+          "def merge_measured_frontiers",
+          "for work_class, profile in measured.get",
+          "current[\"availability_fallback_candidates\"]",
+          "current[\"candidates\"] = copy.deepcopy(profile[\"candidates\"])",
+          "def load_config",
+          "def route_work_unit",
+          "candidate_matrix_hash",
+          "runtime_unavailable_pairs"
+        ]
+      },
+      "deterministic_checks": {
+        "minimum_response_characters": 600,
+        "required_terms": ["models_cache_path", "apply_client_model_cache", "apply_launch_probe_results", "active_candidate_matrix", "merge_measured_frontiers", "load_config", "route_work_unit"],
+        "minimum_required_terms": 6
+      }
+    }
+  ]
+}

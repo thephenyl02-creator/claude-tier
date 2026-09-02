@@ -1,0 +1,913 @@
+{
+  "analysis": null,
+  "baseline_reuse": {
+    "accepted_run_ids": [
+      "real-bulk-release-audit--baseline--r1",
+      "real-probe-scope-debugging--baseline--r1",
+      "real-security-trust-review--baseline--r1"
+    ],
+    "configured": true,
+    "identity_fields": [
+      "frozen_evidence_sha256",
+      "task_prompt_sha256",
+      "canonical_packet_sha256",
+      "repository_commit_and_tree",
+      "parent_pair",
+      "verifier_pair_and_protocol"
+    ],
+    "rejected": {},
+    "required_repetition": 1,
+    "reused_primary_runs": 3,
+    "source_results": "C:\\Users\\Fenil\\Documents\\ChatGPT\\Tier\\benchmarks\\codex-tier-e2e\\confirmation-results.json",
+    "source_sha256": "89e2db2f520f930dcbccf9ce61cfb051b89ce8aed5c5b3247514aca92dcd2695"
+  },
+  "benchmark_id": "codex-tier-v1-quality-recovery-tuning",
+  "codex_cli_version": "codex-cli 0.149.1",
+  "completed_at": null,
+  "credit_savings_published": false,
+  "credits_exposed": false,
+  "frozen_evidence": {
+    "real-bulk-release-audit": {
+      "characters": 131651,
+      "contains_task_rubric": false,
+      "extraction": "keyword matches with two lines of context; Python symbol inventory",
+      "packet_sha256": "e765e117287054320ecbd35c23421876402aa2f0896632628e2c0b225a3bbb78",
+      "paths": [
+        "README.md",
+        "CODEX-TIER.md",
+        "install.ps1",
+        "install.sh",
+        "install-codex.ps1",
+        "install-codex.sh",
+        ".claude-plugin/marketplace.json",
+        "plugins/codex-tier/.codex-plugin/plugin.json",
+        "plugins/codex-tier/skills/codex-tier/SKILL.md",
+        "plugins/codex-tier/skills/codex-tier/references/model-registry.md",
+        "plugins/codex-tier/skills/codex-tier/references/routing.md",
+        "plugins/codex-tier/skills/codex-tier/references/executor.md",
+        "plugins/codex-tier/skills/codex-tier/references/benchmarking.md",
+        "plugins/codex-tier/skills/codex-tier/references/real-calibration.md",
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "plugins/codex-tier/skills/codex-tier/scripts/calibrate.py",
+        "plugins/codex-tier/skills/codex-tier/scripts/benchmark.py",
+        "tests/codex-tier/test_codex_tier.py",
+        "tests/codex-tier/fake_codex.py"
+      ],
+      "shared_by_baseline_and_tier": true
+    },
+    "real-probe-scope-debugging": {
+      "characters": 22225,
+      "contains_task_rubric": false,
+      "extraction": "keyword matches with two lines of context; Python symbol inventory",
+      "packet_sha256": "e75659d7b68110d347e583867d524331d8cf57207f5b2894af29b617f58ff9d0",
+      "paths": [
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "tests/codex-tier/test_codex_tier.py",
+        "plugins/codex-tier/skills/codex-tier/references/model-registry.json",
+        "plugins/codex-tier/skills/codex-tier/references/candidate-matrix.json",
+        "plugins/codex-tier/skills/codex-tier/references/frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/measured-frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/real-calibration.md"
+      ],
+      "shared_by_baseline_and_tier": true
+    },
+    "real-security-trust-review": {
+      "characters": 44765,
+      "contains_task_rubric": false,
+      "extraction": "keyword matches with two lines of context; Python symbol inventory",
+      "packet_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "paths": [
+        "install.ps1",
+        "install.sh",
+        "install-codex.ps1",
+        "install-codex.sh",
+        ".claude-plugin/marketplace.json",
+        "plugins/codex-tier/.codex-plugin/plugin.json",
+        "plugins/codex-tier/skills/codex-tier/SKILL.md",
+        "plugins/codex-tier/skills/codex-tier/references/executor.md",
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "tests/codex-tier/test_codex_tier.py"
+      ],
+      "shared_by_baseline_and_tier": true
+    }
+  },
+  "independent_verifications": 18,
+  "mode": "targeted-tuning",
+  "new_primary_runs": 15,
+  "parent_pair": "gpt-5.6-sol/low",
+  "primary_runs": 18,
+  "primary_sandbox": "read-only",
+  "random_seed": 20260830,
+  "records": [
+    {
+      "aggregate": {
+        "error_events": 0,
+        "execution_latency_seconds": 60.824504,
+        "internal_retries": 0,
+        "tool_items": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cache_write_input_tokens_complete": true,
+          "cached_input_tokens": 110848,
+          "cached_input_tokens_complete": true,
+          "input_tokens": 155463,
+          "input_tokens_complete": true,
+          "output_tokens": 2438,
+          "output_tokens_complete": true,
+          "reasoning_output_tokens": 650,
+          "reasoning_output_tokens_complete": true,
+          "total_exposed_tokens": 157901,
+          "total_exposed_tokens_complete": true,
+          "uncached_input_tokens": 44615,
+          "uncached_input_tokens_complete": true
+        },
+        "wall_seconds": 60.979813,
+        "worker_choices": [
+          {
+            "effort": "low",
+            "model": "gpt-5.6-sol",
+            "pair": "gpt-5.6-sol/low",
+            "reason": "normal-codex-parent"
+          }
+        ]
+      },
+      "attempts": [
+        {
+          "attempt_id": "real-bulk-release-audit--baseline--r1--attempt-1",
+          "effort": "low",
+          "error": null,
+          "error_event_count": 0,
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 60.824504,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/low",
+          "reason": "normal-codex-parent",
+          "response": "## Release-readiness map\n\n**Scope.** This audit targets commit `75c2c6926bb317803e66946f72194788cac16ebe`. Repository shell access was blocked by the managed read-only policy before commands executed, so \u201cconfirmed\u201d below means verified against the supplied frozen manifest and exact file excerpts; unexcerpted metadata remains uncertain.\n\n### Product and packaging surfaces\n\nThe repository ships two independent products:\n\n- **Claude Tier** is the simpler `/tier` rule installer. Its production skill is `skills/tier/SKILL.md`; plugin metadata is `.claude-plugin/plugin.json`, with the HTTPS marketplace and SHA-256-pinned v1.6.0 release archive in `.claude-plugin/marketplace.json`. `.claude/settings.json` supports cloud-session discovery. `install.sh` and `install.ps1` install/update the Claude plugin and fall back to `~/.claude/skills/tier`.\n- **Codex Tier** is an explicit compute router documented by `CODEX-TIER.md`. Its marketplace entry is `.agents/plugins/marketplace.json`, plugin manifest is `plugins/codex-tier/.codex-plugin/plugin.json`, and distributable skill is `plugins/codex-tier/skills/codex-tier/SKILL.md`. `plugins/codex-tier/skills/codex-tier/agents/openai.yaml` disables implicit invocation. `install-codex.sh` and `install-codex.ps1` prefer the Codex plugin route, then atomically install a validated standalone copy under `.agents/skills/codex-tier`.\n\nThese products coexist but do not share routing logic (`README.md`, `CODEX-TIER.md`).\n\n### Codex Tier execution flow\n\n`plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py` is the production core:\n\n1. Overlay `references/model-registry.json` with the current client\u2019s model cache.\n2. Accept launch evidence from `references/candidate-matrix.json` only when client-cache path and candidate hash match.\n3. Merge measured candidates from `references/measured-frontiers.json` into workload profiles from `references/frontiers.json`.\n4. Classify a unit and return TOOL, DIRECT, or the lowest-usage model/effort clearing the quality floor and risk margin.\n5. Enforce a pinned worker through native workers or bounded `codex exec`, capture exposed usage, verify, and selectively escalate.\n\nOperational policy is split among `references/routing.md`, `references/executor.md`, and `references/model-registry.md`.\n\n### Tests and benchmark evidence\n\n`tests/codex-tier/test_codex_tier.py` covers configuration integrity, TOOL/DIRECT/WORKER selection, availability fallbacks, selective escalation, pin enforcement, sanitized logging, read-only execution, installer idempotence, and calibration planning. `tests/codex-tier/fake_codex.py`, `fake-codex.cmd`, and `fake-codex.sh` are test-only CLI doubles\u2014not evidence of real model availability.\n\nTwo harnesses are deliberately distinct:\n\n- `scripts/benchmark.py` plus `references/benchmark-suite.json`: deterministic/executor validation; plan-only by default and not an economic benchmark.\n- `scripts/calibrate.py` plus `references/real-calibration-suite.json`: official-CLI model \u00d7 effort probes and identical synthetic fixtures. Generated evidence lands in `references/real-calibration-results.json`, `references/candidate-matrix.json`, and `references/measured-frontiers.json`.\n\nThe fixture trees under `calibration-fixtures/` are synthetic test inputs. Within `bulk_repository_scan/`, `generated/schema.py` represents generated fixture content and `vendor/lib.js` vendored fixture content; neither is production code. The checked-in calibration JSON is generated, account/client-specific evidence from August 25, 2026\u2014not portable entitlement proof.\n\n## Supported risks\n\n1. **High\u2014unpinned Codex fallback install (confirmed):** both Codex installers fetch the mutable `main` branch (`install-codex.sh`, `install-codex.ps1`) without a commit pin or archive checksum. A release handoff cannot reproduce this commit exactly; branch movement or compromise can install different bytes. Claude\u2019s marketplace archive is SHA-256-pinned, highlighting the gap.\n\n2. **High\u2014measured-frontier freshness is insufficiently bound (confirmed):** `merge_measured_frontiers()` in `scripts/codex_tier.py` checks only `status == \"real-codex-measurement\"` before replacing production candidates. Unlike launch probes, it does not validate candidate-matrix hash, CLI version, measurement date, schema, or active client catalog. A stale but well-formed frontier can influence routing after model changes.\n\n3. **Medium\u2014benchmark generalization risk (confirmed limitation, not a defect):** `references/real-calibration.md` says there was one trial per pair on only three narrow synthetic fixtures. The resulting `gpt-5.4-mini/low` frontiers should not be treated as broad coding-performance evidence.\n\n4. **Medium\u2014local-account launch evidence is intentionally non-portable:** candidate probes are ignored when the recorded model-cache path differs. This is safe behavior, but releases must verify that fallback-to-advertised/registry availability is understood and tested on clean accounts.\n\n5. **Low\u2014shell installer artifact (confirmed, impact uncertain):** the shown candidate loop in `install-codex.sh` contains standalone `+` tokens between paths. Shell syntax remains valid, but it causes pointless probes for a file named `+` and suggests a generation/formatting defect.\n\n## Five prioritized release checks\n\n1. Pin and checksum both Codex standalone-download archives; install from the release tag/commit.\n2. Bind measured frontiers to schema, client catalog/hash, CLI version, fixtures, and measurement timestamp; reject stale evidence.\n3. Run the full unit suite and installer tests on Windows PowerShell, macOS/Linux Bash, and WSL.\n4. Perform clean-account plugin and fallback installs, upgrades, rollback tests, and duplicate-skill detection.\n5. Repeat calibration with multiple trials and broader fixtures; publish raw dispersion and limitations, not a savings percentage.",
+          "response_sha256": "676a79627883c575de24609a73bab1c08c1ba5fa82f88a7501e7d632e36655db",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 110848,
+            "input_tokens": 155463,
+            "output_tokens": 2438,
+            "reasoning_output_tokens": 650,
+            "total_exposed_tokens": 157901,
+            "uncached_input_tokens": 44615
+          },
+          "usage_limit_reset_hint": null,
+          "wall_seconds": 60.979813
+        }
+      ],
+      "benchmark_state": "complete",
+      "canonical_packet_sha256": "0fac98fc5a738bcb3166f7431bfb38b6e968e133e01ab402c256d8750dbe5b55",
+      "condition": "baseline",
+      "escalation_count": 0,
+      "external_retry_count": 0,
+      "final_response": "## Release-readiness map\n\n**Scope.** This audit targets commit `75c2c6926bb317803e66946f72194788cac16ebe`. Repository shell access was blocked by the managed read-only policy before commands executed, so \u201cconfirmed\u201d below means verified against the supplied frozen manifest and exact file excerpts; unexcerpted metadata remains uncertain.\n\n### Product and packaging surfaces\n\nThe repository ships two independent products:\n\n- **Claude Tier** is the simpler `/tier` rule installer. Its production skill is `skills/tier/SKILL.md`; plugin metadata is `.claude-plugin/plugin.json`, with the HTTPS marketplace and SHA-256-pinned v1.6.0 release archive in `.claude-plugin/marketplace.json`. `.claude/settings.json` supports cloud-session discovery. `install.sh` and `install.ps1` install/update the Claude plugin and fall back to `~/.claude/skills/tier`.\n- **Codex Tier** is an explicit compute router documented by `CODEX-TIER.md`. Its marketplace entry is `.agents/plugins/marketplace.json`, plugin manifest is `plugins/codex-tier/.codex-plugin/plugin.json`, and distributable skill is `plugins/codex-tier/skills/codex-tier/SKILL.md`. `plugins/codex-tier/skills/codex-tier/agents/openai.yaml` disables implicit invocation. `install-codex.sh` and `install-codex.ps1` prefer the Codex plugin route, then atomically install a validated standalone copy under `.agents/skills/codex-tier`.\n\nThese products coexist but do not share routing logic (`README.md`, `CODEX-TIER.md`).\n\n### Codex Tier execution flow\n\n`plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py` is the production core:\n\n1. Overlay `references/model-registry.json` with the current client\u2019s model cache.\n2. Accept launch evidence from `references/candidate-matrix.json` only when client-cache path and candidate hash match.\n3. Merge measured candidates from `references/measured-frontiers.json` into workload profiles from `references/frontiers.json`.\n4. Classify a unit and return TOOL, DIRECT, or the lowest-usage model/effort clearing the quality floor and risk margin.\n5. Enforce a pinned worker through native workers or bounded `codex exec`, capture exposed usage, verify, and selectively escalate.\n\nOperational policy is split among `references/routing.md`, `references/executor.md`, and `references/model-registry.md`.\n\n### Tests and benchmark evidence\n\n`tests/codex-tier/test_codex_tier.py` covers configuration integrity, TOOL/DIRECT/WORKER selection, availability fallbacks, selective escalation, pin enforcement, sanitized logging, read-only execution, installer idempotence, and calibration planning. `tests/codex-tier/fake_codex.py`, `fake-codex.cmd`, and `fake-codex.sh` are test-only CLI doubles\u2014not evidence of real model availability.\n\nTwo harnesses are deliberately distinct:\n\n- `scripts/benchmark.py` plus `references/benchmark-suite.json`: deterministic/executor validation; plan-only by default and not an economic benchmark.\n- `scripts/calibrate.py` plus `references/real-calibration-suite.json`: official-CLI model \u00d7 effort probes and identical synthetic fixtures. Generated evidence lands in `references/real-calibration-results.json`, `references/candidate-matrix.json`, and `references/measured-frontiers.json`.\n\nThe fixture trees under `calibration-fixtures/` are synthetic test inputs. Within `bulk_repository_scan/`, `generated/schema.py` represents generated fixture content and `vendor/lib.js` vendored fixture content; neither is production code. The checked-in calibration JSON is generated, account/client-specific evidence from August 25, 2026\u2014not portable entitlement proof.\n\n## Supported risks\n\n1. **High\u2014unpinned Codex fallback install (confirmed):** both Codex installers fetch the mutable `main` branch (`install-codex.sh`, `install-codex.ps1`) without a commit pin or archive checksum. A release handoff cannot reproduce this commit exactly; branch movement or compromise can install different bytes. Claude\u2019s marketplace archive is SHA-256-pinned, highlighting the gap.\n\n2. **High\u2014measured-frontier freshness is insufficiently bound (confirmed):** `merge_measured_frontiers()` in `scripts/codex_tier.py` checks only `status == \"real-codex-measurement\"` before replacing production candidates. Unlike launch probes, it does not validate candidate-matrix hash, CLI version, measurement date, schema, or active client catalog. A stale but well-formed frontier can influence routing after model changes.\n\n3. **Medium\u2014benchmark generalization risk (confirmed limitation, not a defect):** `references/real-calibration.md` says there was one trial per pair on only three narrow synthetic fixtures. The resulting `gpt-5.4-mini/low` frontiers should not be treated as broad coding-performance evidence.\n\n4. **Medium\u2014local-account launch evidence is intentionally non-portable:** candidate probes are ignored when the recorded model-cache path differs. This is safe behavior, but releases must verify that fallback-to-advertised/registry availability is understood and tested on clean accounts.\n\n5. **Low\u2014shell installer artifact (confirmed, impact uncertain):** the shown candidate loop in `install-codex.sh` contains standalone `+` tokens between paths. Shell syntax remains valid, but it causes pointless probes for a file named `+` and suggests a generation/formatting defect.\n\n## Five prioritized release checks\n\n1. Pin and checksum both Codex standalone-download archives; install from the release tag/commit.\n2. Bind measured frontiers to schema, client catalog/hash, CLI version, fixtures, and measurement timestamp; reject stale evidence.\n3. Run the full unit suite and installer tests on Windows PowerShell, macOS/Linux Bash, and WSL.\n4. Perform clean-account plugin and fallback installs, upgrades, rollback tests, and duplicate-skill detection.\n5. Repeat calibration with multiple trials and broader fixtures; publish raw dispersion and limitations, not a savings percentage.",
+      "final_response_sha256": "676a79627883c575de24609a73bab1c08c1ba5fa82f88a7501e7d632e36655db",
+      "frozen_evidence_characters": 131651,
+      "frozen_evidence_sha256": "e765e117287054320ecbd35c23421876402aa2f0896632628e2c0b225a3bbb78",
+      "infrastructure_attempts": [],
+      "initial_pair": "gpt-5.6-sol/low",
+      "parent_pair": "gpt-5.6-sol/low",
+      "quality": {
+        "critical_errors": [],
+        "dimensions": {
+          "actionability": 14,
+          "completeness": 18,
+          "correctness": 37,
+          "evidence": 23
+        },
+        "passed": true,
+        "score": 92,
+        "summary": "Strong, compact, commit-grounded audit covering both products, installers, packaging, routing, calibration, tests, and generated/local evidence with well over 12 accurate paths. The stale-frontier, mutable-main, narrow-calibration, portability, and shell-token risks are supported and prioritized sensibly. Minor deductions: it did not perform the explicitly requested tool inspection; it slightly over-attributes native-worker execution and verification to codex_tier.py rather than the surrounding skill workflow; and it omits that Claude\u2019s fallback installers also download mutable main archives and that installer tests primarily exercise local-source direct installs.",
+        "valid": true
+      },
+      "randomized_position": 12,
+      "repetition": 1,
+      "reused_from": {
+        "identity_verified": true,
+        "results_file": "C:\\Users\\Fenil\\Documents\\ChatGPT\\Tier\\benchmarks\\codex-tier-e2e\\confirmation-results.json",
+        "results_sha256": "89e2db2f520f930dcbccf9ce61cfb051b89ce8aed5c5b3247514aca92dcd2695",
+        "run_id": "real-bulk-release-audit--baseline--r1"
+      },
+      "routing_decision": null,
+      "run_id": "real-bulk-release-audit--baseline--r1",
+      "task_prompt_sha256": "d3c111d0a3086b2c4dcbf3f54cc462ed947e9eec74ab2b1985774a265b7fb690",
+      "verification_attempts": [
+        {
+          "attempt_id": "b3d3c7fd9ae74e828d1b85aeda2c22cd-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 131651,
+          "evidence_sha256": "e765e117287054320ecbd35c23421876402aa2f0896632628e2c0b225a3bbb78",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 96.081696,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":92,\"passed\":true,\"dimensions\":{\"correctness\":37,\"evidence\":23,\"completeness\":18,\"actionability\":14},\"critical_errors\":[],\"summary\":\"Strong, compact, commit-grounded audit covering both products, installers, packaging, routing, calibration, tests, and generated/local evidence with well over 12 accurate paths. The stale-frontier, mutable-main, narrow-calibration, portability, and shell-token risks are supported and prioritized sensibly. Minor deductions: it did not perform the explicitly requested tool inspection; it slightly over-attributes native-worker execution and verification to codex_tier.py rather than the surrounding skill workflow; and it omits that Claude\u2019s fallback installers also download mutable main archives and that installer tests primarily exercise local-source direct installs.\"}",
+          "response_sha256": "287bc0c4524ac52c2d568735ade5ef0584217abf1899953e8b7de2987d0bd4e3",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 11008,
+            "input_tokens": 52610,
+            "output_tokens": 4313,
+            "reasoning_output_tokens": 4142,
+            "total_exposed_tokens": 56923,
+            "uncached_input_tokens": 41602
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 96.272531
+        }
+      ],
+      "work_class": "bulk_repository_scan",
+      "workload_id": "real-bulk-release-audit"
+    },
+    {
+      "aggregate": {
+        "error_events": 0,
+        "execution_latency_seconds": 56.430618,
+        "internal_retries": 0,
+        "tool_items": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cache_write_input_tokens_complete": true,
+          "cached_input_tokens": 71680,
+          "cached_input_tokens_complete": true,
+          "input_tokens": 86244,
+          "input_tokens_complete": true,
+          "output_tokens": 2115,
+          "output_tokens_complete": true,
+          "reasoning_output_tokens": 603,
+          "reasoning_output_tokens_complete": true,
+          "total_exposed_tokens": 88359,
+          "total_exposed_tokens_complete": true,
+          "uncached_input_tokens": 14564,
+          "uncached_input_tokens_complete": true
+        },
+        "wall_seconds": 56.671417,
+        "worker_choices": [
+          {
+            "effort": "low",
+            "model": "gpt-5.6-sol",
+            "pair": "gpt-5.6-sol/low",
+            "reason": "normal-codex-parent"
+          }
+        ]
+      },
+      "attempts": [
+        {
+          "attempt_id": "real-probe-scope-debugging--baseline--r1--attempt-1",
+          "effort": "low",
+          "error": null,
+          "error_event_count": 0,
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 56.430618,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/low",
+          "reason": "normal-codex-parent",
+          "response": "## Diagnosis\n\nThe report combines one confirmed scoping defect with expected fallback behavior.\n\n### Cache and launch-probe evidence\n\n`load_config()` orders discovery correctly: registry snapshot \u2192 `apply_client_model_cache(...)` \u2192 `apply_launch_probe_results(...)` \u2192 optional measured-frontier merge (`plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py:331-338`).\n\n`models_cache_path(explicit)` honors an explicit path (`:147-149`). `apply_client_model_cache()` records that cache in `runtime_discovery`, marks only advertised model/effort combinations active, and disables registry models absent from the cache (`:157-221`). Missing or unreadable caches deliberately fall back to snapshot availability (`:171-189`).\n\nLaunch evidence is guarded by:\n\n1. exact discovery-path equality (`apply_launch_probe_results`, `:273-278`); and\n2. equality between the stored and current `candidate_matrix_hash` (`:279-284`).\n\nThe hash, however, contains only sorted pair names (`candidate_matrix_hash`, `:256-258`), not cache contents, `fetched_at`, client version, account identity, or probe time.\n\nConsequently:\n\n- An explicit custom cache at a **different path** cannot inherit the default cache\u2019s probes: it returns `runtime_probe_evidence.status = \"different-client-scope\"`.\n- A custom cache producing a **different pair set** cannot inherit them: it is `\"stale\"`.\n- A changed account/cache at the **same path with the same advertised pairs** can inherit old `executed`/`unavailable` statuses. This is a confirmed defect: path plus pair-set hash is insufficient client/account provenance.\n- Cache changes that preserve pairs but alter other metadata likewise remain undetected.\n- Only statuses `\"executed\"` and `\"unavailable\"` are accepted (`:289-296`); other report data cannot affect availability.\n\nThere is also an interface mismatch: only the `matrix --models-cache` command passes an explicit cache path (`cmd_matrix`, `:759-763`, `:1082`). `route_work_unit()` calls `load_config()` with no cache argument (`:429-442`), as do validation, inspection, and execution. Thus using `matrix --models-cache X` does **not switch routing to X**; routing continues with `models_cache_path()`\u2019s default. Calling that \u201cprobe inheritance\u201d is misleading\u2014the router never selected the custom cache. Whether this is a product defect depends on whether `--models-cache` was intended to configure subsequent commands; currently it is explicitly matrix-local.\n\n`active_candidate_matrix()` applies accepted probe status over cache advertisement: `executed` and `unavailable` become real-probe evidence; otherwise cache evidence remains (`:225-250`).\n\n### Measured-frontier fallback\n\n`merge_measured_frontiers()` is applied independently after registry/probe processing (`:308-338`). The routing safety boundary is later: `available_candidates()` requires the model to be allowed, the effort to remain supported by the active cache, and the pair not to appear in either probe-derived or caller-supplied unavailable sets (`:518-536`). Therefore measured data cannot force execution of an unavailable pair.\n\nWhen the preferred measured-frontier pair is unavailable, routing may:\n\n- choose another qualifying measured candidate; or\n- if every measured-frontier candidate is filtered out, select a qualifying prior calibrated candidate and set the explicit fallback reason (`:597-602`).\n\nThis is expected behavior, not inconsistency. Tests demonstrate both forms:\n\n- unavailable `gpt-5.4-mini/low` falls back to prior `gpt-5.6-luna/high` (`tests/codex-tier/test_codex_tier.py:105-115`);\n- unavailable `gpt-5.6-luna/high` selects adjacent `gpt-5.6-luna/xhigh` (`:117-119`).\n\nEscalation is intentionally different: candidates must be stronger than `escalate_from`; if none remain, routing declines rather than using the ordinary prior fallback (`codex_tier.py:551-574`).\n\n### Smallest justified fixes\n\n1. Bind probe reports to a stronger cache fingerprint\u2014at minimum normalized path, cache `fetched_at`, client version, and a hash of advertised model/effort records. If account identity is available without exposing secrets, include a one-way scope identifier.\n2. If custom-cache routing is intended, add `cache_path` to `route_work_unit()` and expose `--models-cache` consistently on route/validate/inspect/execute. Otherwise document `matrix --models-cache` as inspection-only.\n\nRegression tests should cover different path, changed pair set, same path/same pairs but changed cache fingerprint, explicit custom-cache routing, measured-pair fallback, adjacent measured candidate, and escalation with no stronger available candidate.",
+          "response_sha256": "ad99b6a9c3b335e84f60e928f43eeb76e943a4cb834df75839c2fb6f0b9efd2d",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 71680,
+            "input_tokens": 86244,
+            "output_tokens": 2115,
+            "reasoning_output_tokens": 603,
+            "total_exposed_tokens": 88359,
+            "uncached_input_tokens": 14564
+          },
+          "usage_limit_reset_hint": null,
+          "wall_seconds": 56.671417
+        }
+      ],
+      "benchmark_state": "complete",
+      "canonical_packet_sha256": "47a356979aaaadbefb88e1ad7ba6801c95fa82b0f42145eba3c0c62384198eda",
+      "condition": "baseline",
+      "escalation_count": 0,
+      "external_retry_count": 0,
+      "final_response": "## Diagnosis\n\nThe report combines one confirmed scoping defect with expected fallback behavior.\n\n### Cache and launch-probe evidence\n\n`load_config()` orders discovery correctly: registry snapshot \u2192 `apply_client_model_cache(...)` \u2192 `apply_launch_probe_results(...)` \u2192 optional measured-frontier merge (`plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py:331-338`).\n\n`models_cache_path(explicit)` honors an explicit path (`:147-149`). `apply_client_model_cache()` records that cache in `runtime_discovery`, marks only advertised model/effort combinations active, and disables registry models absent from the cache (`:157-221`). Missing or unreadable caches deliberately fall back to snapshot availability (`:171-189`).\n\nLaunch evidence is guarded by:\n\n1. exact discovery-path equality (`apply_launch_probe_results`, `:273-278`); and\n2. equality between the stored and current `candidate_matrix_hash` (`:279-284`).\n\nThe hash, however, contains only sorted pair names (`candidate_matrix_hash`, `:256-258`), not cache contents, `fetched_at`, client version, account identity, or probe time.\n\nConsequently:\n\n- An explicit custom cache at a **different path** cannot inherit the default cache\u2019s probes: it returns `runtime_probe_evidence.status = \"different-client-scope\"`.\n- A custom cache producing a **different pair set** cannot inherit them: it is `\"stale\"`.\n- A changed account/cache at the **same path with the same advertised pairs** can inherit old `executed`/`unavailable` statuses. This is a confirmed defect: path plus pair-set hash is insufficient client/account provenance.\n- Cache changes that preserve pairs but alter other metadata likewise remain undetected.\n- Only statuses `\"executed\"` and `\"unavailable\"` are accepted (`:289-296`); other report data cannot affect availability.\n\nThere is also an interface mismatch: only the `matrix --models-cache` command passes an explicit cache path (`cmd_matrix`, `:759-763`, `:1082`). `route_work_unit()` calls `load_config()` with no cache argument (`:429-442`), as do validation, inspection, and execution. Thus using `matrix --models-cache X` does **not switch routing to X**; routing continues with `models_cache_path()`\u2019s default. Calling that \u201cprobe inheritance\u201d is misleading\u2014the router never selected the custom cache. Whether this is a product defect depends on whether `--models-cache` was intended to configure subsequent commands; currently it is explicitly matrix-local.\n\n`active_candidate_matrix()` applies accepted probe status over cache advertisement: `executed` and `unavailable` become real-probe evidence; otherwise cache evidence remains (`:225-250`).\n\n### Measured-frontier fallback\n\n`merge_measured_frontiers()` is applied independently after registry/probe processing (`:308-338`). The routing safety boundary is later: `available_candidates()` requires the model to be allowed, the effort to remain supported by the active cache, and the pair not to appear in either probe-derived or caller-supplied unavailable sets (`:518-536`). Therefore measured data cannot force execution of an unavailable pair.\n\nWhen the preferred measured-frontier pair is unavailable, routing may:\n\n- choose another qualifying measured candidate; or\n- if every measured-frontier candidate is filtered out, select a qualifying prior calibrated candidate and set the explicit fallback reason (`:597-602`).\n\nThis is expected behavior, not inconsistency. Tests demonstrate both forms:\n\n- unavailable `gpt-5.4-mini/low` falls back to prior `gpt-5.6-luna/high` (`tests/codex-tier/test_codex_tier.py:105-115`);\n- unavailable `gpt-5.6-luna/high` selects adjacent `gpt-5.6-luna/xhigh` (`:117-119`).\n\nEscalation is intentionally different: candidates must be stronger than `escalate_from`; if none remain, routing declines rather than using the ordinary prior fallback (`codex_tier.py:551-574`).\n\n### Smallest justified fixes\n\n1. Bind probe reports to a stronger cache fingerprint\u2014at minimum normalized path, cache `fetched_at`, client version, and a hash of advertised model/effort records. If account identity is available without exposing secrets, include a one-way scope identifier.\n2. If custom-cache routing is intended, add `cache_path` to `route_work_unit()` and expose `--models-cache` consistently on route/validate/inspect/execute. Otherwise document `matrix --models-cache` as inspection-only.\n\nRegression tests should cover different path, changed pair set, same path/same pairs but changed cache fingerprint, explicit custom-cache routing, measured-pair fallback, adjacent measured candidate, and escalation with no stronger available candidate.",
+      "final_response_sha256": "ad99b6a9c3b335e84f60e928f43eeb76e943a4cb834df75839c2fb6f0b9efd2d",
+      "frozen_evidence_characters": 22225,
+      "frozen_evidence_sha256": "e75659d7b68110d347e583867d524331d8cf57207f5b2894af29b617f58ff9d0",
+      "infrastructure_attempts": [],
+      "initial_pair": "gpt-5.6-sol/low",
+      "parent_pair": "gpt-5.6-sol/low",
+      "quality": {
+        "critical_errors": [],
+        "dimensions": {
+          "actionability": 13,
+          "completeness": 18,
+          "correctness": 38,
+          "evidence": 23
+        },
+        "passed": true,
+        "score": 92,
+        "summary": "Strong, repository-grounded diagnosis that correctly refutes inheritance for a genuinely different custom-cache path, identifies the latent same-path/same-pair provenance defect, explains that routing never receives matrix\u2019s custom cache, and accurately distinguishes measured-candidate, prior-candidate, and escalation behavior. Minor deductions: a changed pair set is labeled \u201cstale\u201d only after the path check passes; probe-report absence/error gates and merge details are not fully traced; and the proposed cache fingerprint reduces staleness but cannot guarantee account isolation without a scope identifier. Regression tests should also explicitly compare caller-supplied versus probe-derived unavailability.",
+        "valid": true
+      },
+      "randomized_position": 7,
+      "repetition": 1,
+      "reused_from": {
+        "identity_verified": true,
+        "results_file": "C:\\Users\\Fenil\\Documents\\ChatGPT\\Tier\\benchmarks\\codex-tier-e2e\\confirmation-results.json",
+        "results_sha256": "89e2db2f520f930dcbccf9ce61cfb051b89ce8aed5c5b3247514aca92dcd2695",
+        "run_id": "real-probe-scope-debugging--baseline--r1"
+      },
+      "routing_decision": null,
+      "run_id": "real-probe-scope-debugging--baseline--r1",
+      "task_prompt_sha256": "78f325d24251e66f4b070fa6a46aace3d639b3dff86240d77aa3c31a180d45c6",
+      "verification_attempts": [
+        {
+          "attempt_id": "5102ac258b4a43838dcc225a90704838-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 22225,
+          "evidence_sha256": "e75659d7b68110d347e583867d524331d8cf57207f5b2894af29b617f58ff9d0",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 148.741345,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":92,\"passed\":true,\"dimensions\":{\"correctness\":38,\"evidence\":23,\"completeness\":18,\"actionability\":13},\"critical_errors\":[],\"summary\":\"Strong, repository-grounded diagnosis that correctly refutes inheritance for a genuinely different custom-cache path, identifies the latent same-path/same-pair provenance defect, explains that routing never receives matrix\u2019s custom cache, and accurately distinguishes measured-candidate, prior-candidate, and escalation behavior. Minor deductions: a changed pair set is labeled \u201cstale\u201d only after the path check passes; probe-report absence/error gates and merge details are not fully traced; and the proposed cache fingerprint reduces staleness but cannot guarantee account isolation without a scope identifier. Regression tests should also explicitly compare caller-supplied versus probe-derived unavailability.\"}",
+          "response_sha256": "7ae9ee2c81f17ec71390a78c3d6a8fe22531f61c2ab4a843b861f8467ba663d8",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 22121,
+            "output_tokens": 6381,
+            "reasoning_output_tokens": 6206,
+            "total_exposed_tokens": 28502,
+            "uncached_input_tokens": 22121
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 148.934162
+        }
+      ],
+      "work_class": "difficult_debugging",
+      "workload_id": "real-probe-scope-debugging"
+    },
+    {
+      "aggregate": {
+        "error_events": 0,
+        "execution_latency_seconds": 70.648674,
+        "internal_retries": 0,
+        "tool_items": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cache_write_input_tokens_complete": true,
+          "cached_input_tokens": 62720,
+          "cached_input_tokens_complete": true,
+          "input_tokens": 83027,
+          "input_tokens_complete": true,
+          "output_tokens": 2530,
+          "output_tokens_complete": true,
+          "reasoning_output_tokens": 755,
+          "reasoning_output_tokens_complete": true,
+          "total_exposed_tokens": 85557,
+          "total_exposed_tokens_complete": true,
+          "uncached_input_tokens": 20307,
+          "uncached_input_tokens_complete": true
+        },
+        "wall_seconds": 70.795385,
+        "worker_choices": [
+          {
+            "effort": "low",
+            "model": "gpt-5.6-sol",
+            "pair": "gpt-5.6-sol/low",
+            "reason": "normal-codex-parent"
+          }
+        ]
+      },
+      "attempts": [
+        {
+          "attempt_id": "real-security-trust-review--baseline--r1--attempt-1",
+          "effort": "low",
+          "error": null,
+          "error_event_count": 0,
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 70.648674,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/low",
+          "reason": "normal-codex-parent",
+          "response": "# Security and trust-boundary review\n\nReviewed frozen commit `75c2c6926bb317803e66946f72194788cac16ebe`. Findings are ordered by priority.\n\n## 1. High \u2014 Mutable, unverified installer sources can execute upstream-controlled code\n\n**Confirmed.** All direct-install fallbacks download the mutable `main` branch without pinning a commit or verifying a digest:\n\n- `install.ps1:23,186-215`\n- `install.sh:24,177-216`\n- `install-codex.ps1:8,214-220`\n- `install-codex.sh:10,182-203`\n\nThe Codex installers then validate the downloaded skill by executing its Python entry point:\n\n- `install-codex.sh:98-102`, `validate_source()`\n- `install-codex.ps1:88-90`, `Install-Direct()` \u2192 `Test-Source()`\n\nThus compromise of the GitHub repository/account, or unauthorized modification of `main`, gives code execution as the installer user before installation. HTTPS mitigates network interception but not upstream compromise or mutable-branch replacement.\n\nThe Claude marketplace payload is better protected: `.claude-plugin/marketplace.json:13-16` identifies a versioned release archive and SHA-256. However, the marketplace manifest itself is fetched from mutable `main` (`install.ps1:21,65-75`; `install.sh:22,135-147`), so its URL and digest can be replaced together. The Codex plugin route likewise trusts repository/marketplace resolution without a locally pinned identity or digest (`install-codex.ps1:143-153`; `install-codex.sh:161-166`).\n\n**Remediation:** pin installer downloads and marketplace manifests to immutable commit/version URLs and verify a digest shipped independently with the installer. Prefer signed release provenance. Never execute downloaded validation code before authenticity verification.\n\n## 2. Medium \u2014 Calibration/probe evidence is matrix-bound, but not account-bound\n\n**Defense-in-depth concern.** `apply_client_model_cache()`, `apply_launch_probe_results()`, and `merge_measured_frontiers()` ingest local runtime evidence in `plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py:157-335`. Launch-probe results are accepted only when they match the active candidate matrix (`apply_launch_probe_results()` at lines 261-262), which prevents stale evidence for a different model matrix.\n\nThe shown evidence does not establish binding to a Codex account, entitlement identity, CLI installation, or credential context. A shared/copied cache could therefore make availability or measured routing evidence from account A influence account B. Impact is misrouting, failed launches, or misleading cost/quality selection\u2014not credential disclosure or direct privilege escalation.\n\n**Remediation:** include a privacy-preserving account/entitlement fingerprint, CLI version, generation timestamp, and schema version in probe/calibration records; reject mismatches and expire old evidence. Keep raw account identifiers out of logs.\n\n## 3. Low \u2014 Installer containment is lexical and does not explicitly reject links\n\n**Defense-in-depth concern.** Windows verifies that the normalized destination string remains below `.agents\\skills` (`install-codex.ps1:93-100`), and Unix restricts deletion to specifically shaped stage names (`install-codex.sh:86-90`). These are meaningful traversal protections.\n\nNeither shown implementation explicitly rejects pre-existing junctions/symlinks in the install root or destination. An attacker already able to modify the user\u2019s `.agents`/`.claude` directories might redirect copying or cleanup toward another user-writable location. Marker files also determine whether existing trees may be replaced (`install-codex.ps1:110-128`; `install-codex.sh:125-129`; `install.ps1:139-149`; `install.sh:157-168`).\n\n**Remediation:** resolve final paths through links, reject reparse points/symlinks for roots and destinations, and create/install using no-follow semantics where available. This requires prior local filesystem access and is not a remote traversal primitive by itself.\n\n## Confirmed protections and dismissed false positives\n\n- **No command/argument injection found:** `cmd_execute()` constructs an argument list and invokes `subprocess.run(command, input=packet, ...)` without a shell (`codex_tier.py:895-935`). The packet is passed on stdin, not interpolated into arguments. Model, effort, sandbox, repository, and output values remain separate argv elements.\n- **Packets cannot silently weaken sandboxing:** sandbox selection is a wrapper argument with enumerated choices (`codex_tier.py:1099-1105`), not parsed from packet text. `danger-full-access` is exposed, but requires the trusted caller to request it; the documented worker contract allows only `read-only` or `workspace-write` (`references/executor.md:53-57`). Consider removing the broader choice to prevent orchestration mistakes.\n- **Approval policy is not shell-injected:** it is appended as two argv elements (`codex_tier.py:895-898`). Any weakening requires explicit caller-supplied configuration.\n- **Usage logs are content-free by construction:** `write_event()` emits only `EVENT_FIELDS` and sanitizes every string (`codex_tier.py:620-628`). Tests confirm prompts and failure packets are absent and common credentials are redacted (`tests/codex-tier/test_codex_tier.py:184-188,190-249`). Regex redaction is not a universal DLP guarantee, but the allowlist materially limits exposure.\n- **Arbitrary packet/log paths are not traversal defects:** `--packet-file` reads and `--log-file` appends to caller-selected paths (`codex_tier.py:672-682,883,1056-1057`). They confer no authority beyond that already held by the invoking user, though privileged automation should restrict these options.\n- Existing installer safeguards preserve unmarked hand-authored skills, use randomized temporary directories, validate expected skill files, quote shell arguments, and restore installer-managed Git environment state.",
+          "response_sha256": "fcf0c3e284c7361710a54fc6535aadfcb4dcba8c7f90a975d5f3e393db32f6f8",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 62720,
+            "input_tokens": 83027,
+            "output_tokens": 2530,
+            "reasoning_output_tokens": 755,
+            "total_exposed_tokens": 85557,
+            "uncached_input_tokens": 20307
+          },
+          "usage_limit_reset_hint": null,
+          "wall_seconds": 70.795385
+        }
+      ],
+      "benchmark_state": "complete",
+      "canonical_packet_sha256": "e09060108dad8864f7fd676fe05ec945982e5f0aac913784b4feb6510e435661",
+      "condition": "baseline",
+      "escalation_count": 0,
+      "external_retry_count": 0,
+      "final_response": "# Security and trust-boundary review\n\nReviewed frozen commit `75c2c6926bb317803e66946f72194788cac16ebe`. Findings are ordered by priority.\n\n## 1. High \u2014 Mutable, unverified installer sources can execute upstream-controlled code\n\n**Confirmed.** All direct-install fallbacks download the mutable `main` branch without pinning a commit or verifying a digest:\n\n- `install.ps1:23,186-215`\n- `install.sh:24,177-216`\n- `install-codex.ps1:8,214-220`\n- `install-codex.sh:10,182-203`\n\nThe Codex installers then validate the downloaded skill by executing its Python entry point:\n\n- `install-codex.sh:98-102`, `validate_source()`\n- `install-codex.ps1:88-90`, `Install-Direct()` \u2192 `Test-Source()`\n\nThus compromise of the GitHub repository/account, or unauthorized modification of `main`, gives code execution as the installer user before installation. HTTPS mitigates network interception but not upstream compromise or mutable-branch replacement.\n\nThe Claude marketplace payload is better protected: `.claude-plugin/marketplace.json:13-16` identifies a versioned release archive and SHA-256. However, the marketplace manifest itself is fetched from mutable `main` (`install.ps1:21,65-75`; `install.sh:22,135-147`), so its URL and digest can be replaced together. The Codex plugin route likewise trusts repository/marketplace resolution without a locally pinned identity or digest (`install-codex.ps1:143-153`; `install-codex.sh:161-166`).\n\n**Remediation:** pin installer downloads and marketplace manifests to immutable commit/version URLs and verify a digest shipped independently with the installer. Prefer signed release provenance. Never execute downloaded validation code before authenticity verification.\n\n## 2. Medium \u2014 Calibration/probe evidence is matrix-bound, but not account-bound\n\n**Defense-in-depth concern.** `apply_client_model_cache()`, `apply_launch_probe_results()`, and `merge_measured_frontiers()` ingest local runtime evidence in `plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py:157-335`. Launch-probe results are accepted only when they match the active candidate matrix (`apply_launch_probe_results()` at lines 261-262), which prevents stale evidence for a different model matrix.\n\nThe shown evidence does not establish binding to a Codex account, entitlement identity, CLI installation, or credential context. A shared/copied cache could therefore make availability or measured routing evidence from account A influence account B. Impact is misrouting, failed launches, or misleading cost/quality selection\u2014not credential disclosure or direct privilege escalation.\n\n**Remediation:** include a privacy-preserving account/entitlement fingerprint, CLI version, generation timestamp, and schema version in probe/calibration records; reject mismatches and expire old evidence. Keep raw account identifiers out of logs.\n\n## 3. Low \u2014 Installer containment is lexical and does not explicitly reject links\n\n**Defense-in-depth concern.** Windows verifies that the normalized destination string remains below `.agents\\skills` (`install-codex.ps1:93-100`), and Unix restricts deletion to specifically shaped stage names (`install-codex.sh:86-90`). These are meaningful traversal protections.\n\nNeither shown implementation explicitly rejects pre-existing junctions/symlinks in the install root or destination. An attacker already able to modify the user\u2019s `.agents`/`.claude` directories might redirect copying or cleanup toward another user-writable location. Marker files also determine whether existing trees may be replaced (`install-codex.ps1:110-128`; `install-codex.sh:125-129`; `install.ps1:139-149`; `install.sh:157-168`).\n\n**Remediation:** resolve final paths through links, reject reparse points/symlinks for roots and destinations, and create/install using no-follow semantics where available. This requires prior local filesystem access and is not a remote traversal primitive by itself.\n\n## Confirmed protections and dismissed false positives\n\n- **No command/argument injection found:** `cmd_execute()` constructs an argument list and invokes `subprocess.run(command, input=packet, ...)` without a shell (`codex_tier.py:895-935`). The packet is passed on stdin, not interpolated into arguments. Model, effort, sandbox, repository, and output values remain separate argv elements.\n- **Packets cannot silently weaken sandboxing:** sandbox selection is a wrapper argument with enumerated choices (`codex_tier.py:1099-1105`), not parsed from packet text. `danger-full-access` is exposed, but requires the trusted caller to request it; the documented worker contract allows only `read-only` or `workspace-write` (`references/executor.md:53-57`). Consider removing the broader choice to prevent orchestration mistakes.\n- **Approval policy is not shell-injected:** it is appended as two argv elements (`codex_tier.py:895-898`). Any weakening requires explicit caller-supplied configuration.\n- **Usage logs are content-free by construction:** `write_event()` emits only `EVENT_FIELDS` and sanitizes every string (`codex_tier.py:620-628`). Tests confirm prompts and failure packets are absent and common credentials are redacted (`tests/codex-tier/test_codex_tier.py:184-188,190-249`). Regex redaction is not a universal DLP guarantee, but the allowlist materially limits exposure.\n- **Arbitrary packet/log paths are not traversal defects:** `--packet-file` reads and `--log-file` appends to caller-selected paths (`codex_tier.py:672-682,883,1056-1057`). They confer no authority beyond that already held by the invoking user, though privileged automation should restrict these options.\n- Existing installer safeguards preserve unmarked hand-authored skills, use randomized temporary directories, validate expected skill files, quote shell arguments, and restore installer-managed Git environment state.",
+      "final_response_sha256": "fcf0c3e284c7361710a54fc6535aadfcb4dcba8c7f90a975d5f3e393db32f6f8",
+      "frozen_evidence_characters": 44765,
+      "frozen_evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "infrastructure_attempts": [],
+      "initial_pair": "gpt-5.6-sol/low",
+      "parent_pair": "gpt-5.6-sol/low",
+      "quality": {
+        "critical_errors": [],
+        "dimensions": {
+          "actionability": 14,
+          "completeness": 18,
+          "correctness": 35,
+          "evidence": 22
+        },
+        "passed": true,
+        "score": 89,
+        "summary": "Strong, well-prioritized review covering every named trust boundary with generally accurate preconditions, mitigations, and false-positive dismissals. Minor deductions: the supplied excerpts do not directly show PowerShell Test-Source executing Python; the Codex route does pin a repository identity, though not a revision or digest; and local probe scope is described less precisely than other areas. The symlink discussion is appropriately labeled defense-in-depth but somewhat broad about possible cleanup redirection.",
+        "valid": true
+      },
+      "randomized_position": 2,
+      "repetition": 1,
+      "reused_from": {
+        "identity_verified": true,
+        "results_file": "C:\\Users\\Fenil\\Documents\\ChatGPT\\Tier\\benchmarks\\codex-tier-e2e\\confirmation-results.json",
+        "results_sha256": "89e2db2f520f930dcbccf9ce61cfb051b89ce8aed5c5b3247514aca92dcd2695",
+        "run_id": "real-security-trust-review--baseline--r1"
+      },
+      "routing_decision": null,
+      "run_id": "real-security-trust-review--baseline--r1",
+      "task_prompt_sha256": "a45a9d405e8943850f1d5c4f6f9739e705026a6734b3b270c3cc21da25497aec",
+      "verification_attempts": [
+        {
+          "attempt_id": "20036fa8c3f04d899664f3cf36f146ec-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 44765,
+          "evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 120.9997,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":89,\"passed\":true,\"dimensions\":{\"correctness\":35,\"evidence\":22,\"completeness\":18,\"actionability\":14},\"critical_errors\":[],\"summary\":\"Strong, well-prioritized review covering every named trust boundary with generally accurate preconditions, mitigations, and false-positive dismissals. Minor deductions: the supplied excerpts do not directly show PowerShell Test-Source executing Python; the Codex route does pin a repository identity, though not a revision or digest; and local probe scope is described less precisely than other areas. The symlink discussion is appropriately labeled defense-in-depth but somewhat broad about possible cleanup redirection.\"}",
+          "response_sha256": "c27e4cfec2a2df920074e50fb002bc82814fc8c9eaa7abd8d069bc8e82537fd5",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 32342,
+            "output_tokens": 4587,
+            "reasoning_output_tokens": 4443,
+            "total_exposed_tokens": 36929,
+            "uncached_input_tokens": 32342
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 121.154548
+        }
+      ],
+      "work_class": "security_review",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "aggregate": {
+        "error_events": 0,
+        "execution_latency_seconds": 0,
+        "internal_retries": 0,
+        "tool_items": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cache_write_input_tokens_complete": true,
+          "cached_input_tokens": 0,
+          "cached_input_tokens_complete": true,
+          "input_tokens": 0,
+          "input_tokens_complete": true,
+          "output_tokens": 0,
+          "output_tokens_complete": true,
+          "reasoning_output_tokens": 0,
+          "reasoning_output_tokens_complete": true,
+          "total_exposed_tokens": 0,
+          "total_exposed_tokens_complete": true,
+          "uncached_input_tokens": 0,
+          "uncached_input_tokens_complete": true
+        },
+        "wall_seconds": 0,
+        "worker_choices": []
+      },
+      "attempts": [],
+      "benchmark_state": "awaiting_primary",
+      "candidate_pair": "gpt-5.6-terra/max",
+      "canonical_packet_sha256": "e09060108dad8864f7fd676fe05ec945982e5f0aac913784b4feb6510e435661",
+      "condition": "tiered",
+      "escalation_count": 0,
+      "external_retry_count": 1,
+      "final_response": "",
+      "final_response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "frozen_evidence_characters": 44765,
+      "frozen_evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "infrastructure_attempts": [
+        {
+          "attempt_id": "real-security-trust-review--tiered--gpt-5-6-terra-max--r2--attempt-1",
+          "effort": "max",
+          "error": "2026-08-29T19:16:21.894895Z WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell 2026-08-29T19:17:31.177214Z ERROR codex_core::tools::router: error=exec_command failed for `\"C:\\\\Users\\\\Fenil\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'git ls-tree -r --name-only 75c2c6926bb317803e66946f72194788cac16ebe'`: CreateProcess { message: \"Rejected(\\\"`\\\\\\\"C:\\\\\\\\\\\\\\\\Users\\\\\\\\\\\\\\\\Fenil\\\\\\\\\\\\\\\\.cache\\\\\\\\\\\\\\\\codex-runtimes\\\\\\\\\\\\\\\\codex-primary-runtime\\\\\\\\\\\\\\\\dependencies\\\\\\\\\\\\\\\\native\\\\\\\\\\\\\\\\powershell\\\\\\\\\\\\\\\\pwsh.exe\\\\\\\" -Command 'git ls-tree -r --name-only 75c2c6926bb317803e66946f72194788cac16ebe'` rejected: blocked by policy\\\")\" }",
+          "error_event_count": 0,
+          "exit_code": 124,
+          "failure_kind": "infrastructure",
+          "internal_retry_count": 0,
+          "latency_seconds": 300.080383,
+          "model": "gpt-5.6-terra",
+          "pair": "gpt-5.6-terra/max",
+          "reason": "targeted-tuning-candidate",
+          "response": "I\u2019ll perform a read-only static review against the specified commit, concentrating on enforced trust boundaries and distinguishing exploitable paths from policy hardening opportunities.",
+          "response_sha256": "6bce95a035bacc1bc3b4a075251bc619110f4bdb0453e4167e715b840bbafe31",
+          "success": false,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "reasoning_output_tokens": null,
+            "total_exposed_tokens": null,
+            "uncached_input_tokens": null
+          },
+          "usage_limit_reset_hint": null,
+          "wall_seconds": 300.276749
+        },
+        {
+          "attempt_id": "real-security-trust-review--tiered--gpt-5-6-terra-max--r2--attempt-2",
+          "effort": "max",
+          "error": "2026-08-29T19:21:22.490494Z WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell 2026-08-29T19:21:39.714049Z ERROR codex_core::tools::router: error=exec_command failed for `\"C:\\\\Users\\\\Fenil\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'git rev-parse HEAD'`: CreateProcess { message: \"Rejected(\\\"`\\\\\\\"C:\\\\\\\\\\\\\\\\Users\\\\\\\\\\\\\\\\Fenil\\\\\\\\\\\\\\\\.cache\\\\\\\\\\\\\\\\codex-runtimes\\\\\\\\\\\\\\\\codex-primary-runtime\\\\\\\\\\\\\\\\dependencies\\\\\\\\\\\\\\\\native\\\\\\\\\\\\\\\\powershell\\\\\\\\\\\\\\\\pwsh.exe\\\\\\\" -Command 'git rev-parse HEAD'` rejected: blocked by policy\\\")\" }",
+          "error_event_count": 0,
+          "exit_code": 124,
+          "failure_kind": "infrastructure",
+          "internal_retry_count": 0,
+          "latency_seconds": 300.102891,
+          "model": "gpt-5.6-terra",
+          "pair": "gpt-5.6-terra/max",
+          "reason": "execution-failure-retry",
+          "response": "I\u2019ll keep this read-only and verify the trust boundaries against the pinned commit, focusing on confirmed behavior rather than speculative installer issues.",
+          "response_sha256": "3b115240b79d6135b2290aea6f0d5f530cf0f78381b338e98736707c0d74a35a",
+          "success": false,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "reasoning_output_tokens": null,
+            "total_exposed_tokens": null,
+            "uncached_input_tokens": null
+          },
+          "usage_limit_reset_hint": null,
+          "wall_seconds": 300.269197
+        }
+      ],
+      "initial_pair": "gpt-5.6-terra/max",
+      "parent_pair": "gpt-5.6-sol/low",
+      "quality": null,
+      "randomized_position": 1,
+      "repetition": 2,
+      "routing_decision": {
+        "execution_mode": "WORKER",
+        "reason": "Explicit small candidate set for targeted tuning",
+        "selected": {
+          "effort": "max",
+          "model": "gpt-5.6-terra",
+          "pair": "gpt-5.6-terra/max"
+        }
+      },
+      "run_id": "real-security-trust-review--tiered--gpt-5-6-terra-max--r2",
+      "task_prompt_sha256": "a45a9d405e8943850f1d5c4f6f9739e705026a6734b3b270c3cc21da25497aec",
+      "verification_attempts": [],
+      "work_class": "security_review",
+      "workload_id": "real-security-trust-review"
+    }
+  ],
+  "repository_state": {
+    "clean": true,
+    "commit": "75c2c6926bb317803e66946f72194788cac16ebe",
+    "path": "C:\\Users\\Fenil\\Documents\\ChatGPT\\Tier\\.benchmark-state\\repo",
+    "tree": "dd890aa87fa6d8aab33f868f2ec54acf3f3fb382"
+  },
+  "reused_primary_runs": 3,
+  "routing": {
+    "real-bulk-release-audit": {
+      "candidates": [
+        {
+          "historical_basis": "A materially higher effort on the low-consumption model that failed at low effort; retained as the strongest plausible mini variant without a broad sweep.",
+          "pair": "gpt-5.4-mini/high"
+        },
+        {
+          "historical_basis": "Stronger-model alternative with conservative prior quality 72 and relative usage 0.28 for repository scanning.",
+          "pair": "gpt-5.6-terra/low"
+        }
+      ],
+      "mode": "targeted-tuning",
+      "pre_pruned_candidates": [
+        {
+          "pair": "gpt-5.4-mini/low",
+          "reason": "Frozen-evidence confirmation scored 84 versus baseline 92 and failed on a material Windows compatibility claim."
+        }
+      ]
+    },
+    "real-probe-scope-debugging": {
+      "candidates": [
+        {
+          "historical_basis": "Cheaper high-reasoning candidate with conservative prior quality 88 and relative usage 0.75.",
+          "pair": "gpt-5.6-terra/xhigh"
+        },
+        {
+          "historical_basis": "Strong Terra candidate with conservative prior quality 91 and relative usage 0.95.",
+          "pair": "gpt-5.6-terra/max"
+        }
+      ],
+      "mode": "targeted-tuning",
+      "pre_pruned_candidates": [
+        {
+          "pair": "gpt-5.4-mini/low",
+          "reason": "Frozen-evidence confirmation scored 66 versus baseline 92 and missed central probe-hash and measured-frontier behavior."
+        }
+      ]
+    },
+    "real-security-trust-review": {
+      "candidates": [
+        {
+          "historical_basis": "Lower-consumption strong-reasoning candidate with conservative prior quality 87 and relative usage 0.95.",
+          "pair": "gpt-5.6-terra/max"
+        },
+        {
+          "historical_basis": "Stronger parent-family candidate with conservative prior quality 91 and relative usage 0.90.",
+          "pair": "gpt-5.6-sol/medium"
+        }
+      ],
+      "mode": "targeted-tuning",
+      "pre_pruned_candidates": [
+        {
+          "pair": "gpt-5.4-mini/low",
+          "reason": "Frozen-evidence confirmation scored 45 versus baseline 89 and omitted multiple central trust boundaries."
+        }
+      ]
+    }
+  },
+  "run_status": "running",
+  "schedule": [
+    {
+      "candidate_pair": "gpt-5.6-terra/max",
+      "condition": "tiered",
+      "randomized_position": 1,
+      "repetition": 2,
+      "run_id": "real-security-trust-review--tiered--gpt-5-6-terra-max--r2",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "condition": "baseline",
+      "randomized_position": 2,
+      "repetition": 1,
+      "run_id": "real-security-trust-review--baseline--r1",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "candidate_pair": "gpt-5.6-terra/low",
+      "condition": "tiered",
+      "randomized_position": 3,
+      "repetition": 1,
+      "run_id": "real-bulk-release-audit--tiered--gpt-5-6-terra-low--r1",
+      "workload_id": "real-bulk-release-audit"
+    },
+    {
+      "condition": "baseline",
+      "randomized_position": 4,
+      "repetition": 2,
+      "run_id": "real-bulk-release-audit--baseline--r2",
+      "workload_id": "real-bulk-release-audit"
+    },
+    {
+      "condition": "baseline",
+      "randomized_position": 5,
+      "repetition": 2,
+      "run_id": "real-security-trust-review--baseline--r2",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "candidate_pair": "gpt-5.6-terra/max",
+      "condition": "tiered",
+      "randomized_position": 6,
+      "repetition": 2,
+      "run_id": "real-probe-scope-debugging--tiered--gpt-5-6-terra-max--r2",
+      "workload_id": "real-probe-scope-debugging"
+    },
+    {
+      "condition": "baseline",
+      "randomized_position": 7,
+      "repetition": 1,
+      "run_id": "real-probe-scope-debugging--baseline--r1",
+      "workload_id": "real-probe-scope-debugging"
+    },
+    {
+      "candidate_pair": "gpt-5.6-terra/low",
+      "condition": "tiered",
+      "randomized_position": 8,
+      "repetition": 2,
+      "run_id": "real-bulk-release-audit--tiered--gpt-5-6-terra-low--r2",
+      "workload_id": "real-bulk-release-audit"
+    },
+    {
+      "candidate_pair": "gpt-5.4-mini/high",
+      "condition": "tiered",
+      "randomized_position": 9,
+      "repetition": 2,
+      "run_id": "real-bulk-release-audit--tiered--gpt-5-4-mini-high--r2",
+      "workload_id": "real-bulk-release-audit"
+    },
+    {
+      "condition": "baseline",
+      "randomized_position": 10,
+      "repetition": 2,
+      "run_id": "real-probe-scope-debugging--baseline--r2",
+      "workload_id": "real-probe-scope-debugging"
+    },
+    {
+      "candidate_pair": "gpt-5.6-terra/max",
+      "condition": "tiered",
+      "randomized_position": 11,
+      "repetition": 1,
+      "run_id": "real-probe-scope-debugging--tiered--gpt-5-6-terra-max--r1",
+      "workload_id": "real-probe-scope-debugging"
+    },
+    {
+      "condition": "baseline",
+      "randomized_position": 12,
+      "repetition": 1,
+      "run_id": "real-bulk-release-audit--baseline--r1",
+      "workload_id": "real-bulk-release-audit"
+    },
+    {
+      "candidate_pair": "gpt-5.6-terra/max",
+      "condition": "tiered",
+      "randomized_position": 13,
+      "repetition": 1,
+      "run_id": "real-security-trust-review--tiered--gpt-5-6-terra-max--r1",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "candidate_pair": "gpt-5.6-terra/xhigh",
+      "condition": "tiered",
+      "randomized_position": 14,
+      "repetition": 2,
+      "run_id": "real-probe-scope-debugging--tiered--gpt-5-6-terra-xhigh--r2",
+      "workload_id": "real-probe-scope-debugging"
+    },
+    {
+      "candidate_pair": "gpt-5.6-sol/medium",
+      "condition": "tiered",
+      "randomized_position": 15,
+      "repetition": 2,
+      "run_id": "real-security-trust-review--tiered--gpt-5-6-sol-medium--r2",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "candidate_pair": "gpt-5.6-sol/medium",
+      "condition": "tiered",
+      "randomized_position": 16,
+      "repetition": 1,
+      "run_id": "real-security-trust-review--tiered--gpt-5-6-sol-medium--r1",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "candidate_pair": "gpt-5.6-terra/xhigh",
+      "condition": "tiered",
+      "randomized_position": 17,
+      "repetition": 1,
+      "run_id": "real-probe-scope-debugging--tiered--gpt-5-6-terra-xhigh--r1",
+      "workload_id": "real-probe-scope-debugging"
+    },
+    {
+      "candidate_pair": "gpt-5.4-mini/high",
+      "condition": "tiered",
+      "randomized_position": 18,
+      "repetition": 1,
+      "run_id": "real-bulk-release-audit--tiered--gpt-5-4-mini-high--r1",
+      "workload_id": "real-bulk-release-audit"
+    }
+  ],
+  "schema_version": 2,
+  "started_at": "2026-08-29T19:16:20.590583Z",
+  "suite_sha256": "90b4b51333070e3301f22790195f0947f5b6c0b5df456735e7e0b4998cb16c97",
+  "usage_metric": "input_tokens + output_tokens",
+  "verification_policy": "quality-remediation",
+  "verifier_approval_policy": "never",
+  "verifier_evidence": {
+    "real-bulk-release-audit": {
+      "characters": 131651,
+      "contains_task_rubric": false,
+      "extraction": "keyword matches with two lines of context; Python symbol inventory",
+      "packet_sha256": "e765e117287054320ecbd35c23421876402aa2f0896632628e2c0b225a3bbb78",
+      "paths": [
+        "README.md",
+        "CODEX-TIER.md",
+        "install.ps1",
+        "install.sh",
+        "install-codex.ps1",
+        "install-codex.sh",
+        ".claude-plugin/marketplace.json",
+        "plugins/codex-tier/.codex-plugin/plugin.json",
+        "plugins/codex-tier/skills/codex-tier/SKILL.md",
+        "plugins/codex-tier/skills/codex-tier/references/model-registry.md",
+        "plugins/codex-tier/skills/codex-tier/references/routing.md",
+        "plugins/codex-tier/skills/codex-tier/references/executor.md",
+        "plugins/codex-tier/skills/codex-tier/references/benchmarking.md",
+        "plugins/codex-tier/skills/codex-tier/references/real-calibration.md",
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "plugins/codex-tier/skills/codex-tier/scripts/calibrate.py",
+        "plugins/codex-tier/skills/codex-tier/scripts/benchmark.py",
+        "tests/codex-tier/test_codex_tier.py",
+        "tests/codex-tier/fake_codex.py"
+      ],
+      "shared_by_baseline_and_tier": true
+    },
+    "real-probe-scope-debugging": {
+      "characters": 22225,
+      "contains_task_rubric": false,
+      "extraction": "keyword matches with two lines of context; Python symbol inventory",
+      "packet_sha256": "e75659d7b68110d347e583867d524331d8cf57207f5b2894af29b617f58ff9d0",
+      "paths": [
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "tests/codex-tier/test_codex_tier.py",
+        "plugins/codex-tier/skills/codex-tier/references/model-registry.json",
+        "plugins/codex-tier/skills/codex-tier/references/candidate-matrix.json",
+        "plugins/codex-tier/skills/codex-tier/references/frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/measured-frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/real-calibration.md"
+      ],
+      "shared_by_baseline_and_tier": true
+    },
+    "real-security-trust-review": {
+      "characters": 44765,
+      "contains_task_rubric": false,
+      "extraction": "keyword matches with two lines of context; Python symbol inventory",
+      "packet_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "paths": [
+        "install.ps1",
+        "install.sh",
+        "install-codex.ps1",
+        "install-codex.sh",
+        ".claude-plugin/marketplace.json",
+        "plugins/codex-tier/.codex-plugin/plugin.json",
+        "plugins/codex-tier/skills/codex-tier/SKILL.md",
+        "plugins/codex-tier/skills/codex-tier/references/executor.md",
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "tests/codex-tier/test_codex_tier.py"
+      ],
+      "shared_by_baseline_and_tier": true
+    }
+  },
+  "verifier_execution_constraint": "No verifier tools; use condition-independent embedded repository evidence",
+  "verifier_pair": "gpt-5.6-sol/max",
+  "verifier_privacy": {
+    "candidate_answers_sanitized": true,
+    "credentials_or_secrets_allowed": false,
+    "environment_files_included": false,
+    "git_metadata_included": false,
+    "personal_paths_and_emails_redacted": true
+  },
+  "verifier_protocol_version": "embedded-repository-evidence-v1",
+  "verifier_repository_state_asserted_before_after": true,
+  "verifier_sandbox": "read-only",
+  "verifier_usage_included_in_savings": false
+}

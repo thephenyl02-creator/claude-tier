@@ -64,7 +64,7 @@ class RoutingTests(unittest.TestCase):
         self.assertEqual("DIRECT", decision["execution_mode"])
         self.assertFalse(decision["requires_parent"])
 
-    def test_high_volume_mechanical_work_uses_measured_frontier(self):
+    def test_bulk_route_uses_validated_parent(self):
         decision = route(
             work_class="bulk_repository_scan",
             complexity="mechanical",
@@ -72,24 +72,27 @@ class RoutingTests(unittest.TestCase):
             risk="low",
             context="repository-wide",
         )
-        self.assertEqual("WORKER", decision["execution_mode"])
-        self.assertEqual("gpt-5.4-mini/low", decision["selected"]["pair"])
-        self.assertEqual("real-codex-jsonl", decision["selected"]["usage_source"])
+        self.assertEqual("DIRECT", decision["execution_mode"])
+        self.assertTrue(decision["requires_parent"])
 
-    def test_ordinary_refactor_uses_luna_high(self):
+    def test_ordinary_refactor_uses_validated_parent(self):
         decision = route()
-        self.assertEqual("gpt-5.6-luna/high", decision["selected"]["pair"])
+        self.assertEqual("DIRECT", decision["execution_mode"])
+        self.assertTrue(decision["requires_parent"])
+        self.assertIsNone(decision["selected"])
 
-    def test_difficult_debugging_uses_measured_frontier(self):
+    def test_difficult_debugging_uses_validated_parent(self):
         decision = route(
             work_class="difficult_debugging",
             complexity="substantial",
             risk="correctness-sensitive",
             context="repository-wide",
         )
-        self.assertEqual("gpt-5.4-mini/low", decision["selected"]["pair"])
+        self.assertEqual("DIRECT", decision["execution_mode"])
+        self.assertTrue(decision["requires_parent"])
+        self.assertIsNone(decision["selected"])
 
-    def test_high_risk_review_uses_quality_passing_measured_frontier(self):
+    def test_security_route_uses_validated_parent(self):
         decision = route(
             work_class="security_review",
             complexity="frontier/ambiguous",
@@ -97,26 +100,14 @@ class RoutingTests(unittest.TestCase):
             risk="security-sensitive",
             context="large-context",
         )
-        self.assertEqual("gpt-5.4-mini/low", decision["selected"]["pair"])
-        self.assertGreaterEqual(
-            decision["selected"]["quality"], decision["selection_threshold"]
-        )
+        self.assertEqual("DIRECT", decision["execution_mode"])
+        self.assertTrue(decision["requires_parent"])
 
-    def test_model_unavailable_selects_another_frontier_candidate(self):
-        decision = route(
-            work_class="bulk_repository_scan",
-            complexity="mechanical",
-            volume="large",
-            risk="low",
-            context="repository-wide",
-            unavailable_pairs=["gpt-5.4-mini/low"],
-        )
-        self.assertEqual("gpt-5.6-luna/high", decision["selected"]["pair"])
-        self.assertIn("measured-frontier candidate is unavailable", decision["reason"])
-
-    def test_effort_unavailable_selects_adjacent_candidate(self):
-        decision = route(unavailable_pairs=["gpt-5.6-luna/high"])
-        self.assertEqual("gpt-5.6-luna/xhigh", decision["selected"]["pair"])
+    def test_superseded_worker_unavailability_does_not_reactivate_prior_route(self):
+        decision = route(unavailable_pairs=["gpt-5.6-terra/low"])
+        self.assertEqual("DIRECT", decision["execution_mode"])
+        self.assertTrue(decision["requires_parent"])
+        self.assertIsNone(decision["selected"])
 
     def test_no_viable_worker_keeps_quality_on_parent(self):
         decision = route(
@@ -130,15 +121,48 @@ class RoutingTests(unittest.TestCase):
         self.assertTrue(decision["requires_parent"])
 
     def test_selective_escalation_is_workload_specific(self):
-        decision = route(escalate_from="gpt-5.6-luna/high")
-        self.assertEqual("gpt-5.6-luna/xhigh", decision["selected"]["pair"])
+        decision = route(escalate_from="gpt-5.6-terra/low")
+        self.assertEqual("DIRECT", decision["execution_mode"])
+        self.assertTrue(decision["requires_parent"])
         architecture = route(
             work_class="architecture",
             complexity="substantial",
             risk="ordinary",
             context="repository-wide",
         )
-        self.assertEqual("gpt-5.6-terra/xhigh", architecture["selected"]["pair"])
+        self.assertEqual("DIRECT", architecture["execution_mode"])
+        self.assertTrue(architecture["requires_parent"])
+        self.assertIn("no cheaper quality-preserving worker", architecture["reason"])
+
+    def test_all_five_validated_workloads_are_parent_only(self):
+        cases = {
+            "bulk_repository_scan": {
+                "complexity": "mechanical", "volume": "large", "risk": "low",
+                "context": "repository-wide",
+            },
+            "routine_refactor": {
+                "complexity": "routine", "volume": "moderate", "risk": "ordinary",
+                "context": "multi-file",
+            },
+            "difficult_debugging": {
+                "complexity": "substantial", "volume": "moderate",
+                "risk": "correctness-sensitive", "context": "repository-wide",
+            },
+            "security_review": {
+                "complexity": "frontier", "volume": "small",
+                "risk": "security-sensitive", "context": "large-context",
+            },
+            "architecture": {
+                "complexity": "substantial", "volume": "moderate",
+                "risk": "ordinary", "context": "repository-wide",
+            },
+        }
+        for work_class, dimensions in cases.items():
+            with self.subTest(work_class=work_class):
+                decision = route(work_class=work_class, **dimensions)
+                self.assertEqual("DIRECT", decision["execution_mode"])
+                self.assertTrue(decision["requires_parent"])
+                self.assertIsNone(decision["selected"])
 
 
 class ExecutorTests(unittest.TestCase):

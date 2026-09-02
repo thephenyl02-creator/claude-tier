@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "mode": "tuning",
+  "benchmark_id": "codex-tier-v1-security-gate-repair",
+  "repository_commit": "75c2c69",
+  "repository_description": "Security-review-only rerun after repairing an overly brittle deterministic grounding gate.",
+  "parent": {"model": "gpt-5.6-sol", "effort": "low"},
+  "verifier": {"model": "gpt-5.6-sol", "effort": "max"},
+  "repetitions_per_condition": 2,
+  "random_seed": 20260901,
+  "candidate_pruning": {
+    "minimum_pass_rate": 1.0,
+    "dominance_rule": "equal-or-better median quality and equal-or-lower median total exposed tokens, with at least one strict improvement"
+  },
+  "quality_gate": {
+    "minimum_individual_score": 80,
+    "minimum_tiered_pass_rate_for_publication": 1.0,
+    "maximum_median_regression_points": 3,
+    "require_tiered_pass_rate_at_least_baseline": true
+  },
+  "workloads": [
+    {
+      "id": "real-security-trust-review",
+      "work_class": "security_review",
+      "frozen_evidence_only": true,
+      "classification": {"complexity": "frontier", "volume": "small", "risk": "security-sensitive", "context": "large-context"},
+      "task": "Perform an evidence-based security and trust-boundary review of Codex Tier's Windows and Unix installers, plugin marketplace integration, bounded codex exec wrapper, model-cache/probe ingestion, and content-free usage logging. Focus on command or argument injection, path traversal and unsafe writes, credential or prompt leakage, sandbox/approval weakening, cross-account calibration evidence, and plugin-source trust. Report only confirmed findings or clearly labeled defense-in-depth concerns; cite exact paths and symbols; explain exploit preconditions and impact; note existing mitigations; prioritize remediation; and explicitly dismiss plausible false positives when the code blocks them. Do not edit files and stay under 1,000 words.",
+      "rubric": [
+        "Covers all named trust boundaries with exact code evidence and accurate exploit preconditions.",
+        "Separates confirmed findings, defense-in-depth concerns, and blocked false positives.",
+        "Accurately evaluates sanitization, path containment, approval/sandbox flags, installer behavior, and local probe scope.",
+        "Prioritizes practical remediation without overstating severity or inventing vulnerabilities."
+      ],
+      "deterministic_checks": {
+        "minimum_response_characters": 700,
+        "required_term_groups": [
+          {
+            "label": "Windows installer",
+            "any_of": ["install-codex.ps1", "Windows installer", "PowerShell installer"]
+          },
+          {
+            "label": "Unix installer",
+            "any_of": ["install-codex.sh", "Unix installer", "shell installer"]
+          },
+          {
+            "label": "plugin marketplace/source trust",
+            "any_of": ["marketplace", "plugin source", "plugin.json"]
+          },
+          {
+            "label": "bounded codex exec wrapper",
+            "any_of": ["codex exec", "command_prefix", "cmd_execute", "bounded wrapper"]
+          },
+          {
+            "label": "model-cache/probe ingestion",
+            "any_of": ["model cache", "model-cache", "models_cache", "launch probe", "launch-probe", "apply_launch_probe_results", "candidate_matrix_hash"]
+          },
+          {
+            "label": "content-free usage logging",
+            "any_of": ["usage log", "usage logging", "write_event", "log_file", "content-free"]
+          }
+        ],
+        "minimum_required_groups": 5
+      },
+      "tuning_candidates": [
+        {
+          "pair": "gpt-5.6-terra/max",
+          "historical_basis": "Lower-consumption strong-reasoning candidate retained from the original security tuning pass."
+        },
+        {
+          "pair": "gpt-5.6-sol/medium",
+          "historical_basis": "Parent-family candidate retained from the original security tuning pass."
+        }
+      ],
+      "pre_pruned_candidates": [
+        {
+          "pair": "gpt-5.4-mini/low",
+          "reason": "Frozen-evidence confirmation failed the relative quality gate and omitted multiple central trust boundaries."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,346 @@
+{
+  "benchmark_id": "codex-tier-v1-corrected-final",
+  "composite_source_batches": [
+    {
+      "id": "original-final",
+      "random_seed": 20260901,
+      "selected_primary_runs": 18,
+      "selected_workloads": [
+        "real-distribution-architecture",
+        "real-router-refactor-plan",
+        "real-security-trust-review"
+      ],
+      "suite": "final-suite.json"
+    },
+    {
+      "id": "fixture-correction",
+      "random_seed": 20260902,
+      "selected_primary_runs": 12,
+      "selected_workloads": [
+        "real-bulk-release-audit",
+        "real-probe-scope-debugging"
+      ],
+      "suite": "fixture-correction-suite.json"
+    }
+  ],
+  "deterministic_screening": true,
+  "frozen_routing_policy": {
+    "architecture": "parent:gpt-5.6-sol/low",
+    "bulk_repository_scan": "parent:gpt-5.6-sol/low",
+    "difficult_debugging": "gpt-5.6-terra/xhigh",
+    "routine_refactor": "gpt-5.6-terra/low",
+    "security_review": "parent:gpt-5.6-sol/low"
+  },
+  "parent": {
+    "effort": "low",
+    "model": "gpt-5.6-sol"
+  },
+  "publish_savings": true,
+  "quality_gate": {
+    "maximum_median_regression_points": 3,
+    "minimum_individual_score": 80,
+    "minimum_tiered_pass_rate_for_publication": 1.0,
+    "require_tiered_pass_rate_at_least_baseline": true
+  },
+  "random_seed": 20260901,
+  "repetitions_per_condition": 3,
+  "report_title": "Corrected final Codex Tier benchmark",
+  "repository_commit": "75c2c69",
+  "repository_description": "Composite final result: three unchanged valid workloads plus the two repaired fixture reruns.",
+  "schema_version": 1,
+  "verifier": {
+    "effort": "max",
+    "model": "gpt-5.6-sol"
+  },
+  "workloads": [
+    {
+      "classification": {
+        "complexity": "mechanical",
+        "context": "repository-wide",
+        "risk": "low",
+        "volume": "large"
+      },
+      "complete_frozen_repository": true,
+      "deterministic_checks": {
+        "minimum_required_terms": 7,
+        "minimum_response_characters": 600,
+        "required_terms": [
+          "install-codex.ps1",
+          "install-codex.sh",
+          "plugin.json",
+          "SKILL.md",
+          "codex_tier.py",
+          "calibrate.py",
+          "benchmark.py",
+          "test_codex_tier.py",
+          "model-registry.json",
+          "measured-frontiers.json"
+        ]
+      },
+      "fixture_validation": {
+        "forbidden_task_or_rubric_phrases": [
+          "inspect the repository with tools",
+          "use repository tools"
+        ],
+        "require_all_tracked_files": true,
+        "required_complete_paths": [
+          "README.md",
+          "CODEX-TIER.md",
+          "install-codex.ps1",
+          "install-codex.sh",
+          ".claude-plugin/marketplace.json",
+          "plugins/codex-tier/.codex-plugin/plugin.json",
+          "plugins/codex-tier/skills/codex-tier/SKILL.md",
+          "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+          "plugins/codex-tier/skills/codex-tier/scripts/calibrate.py",
+          "plugins/codex-tier/skills/codex-tier/scripts/benchmark.py",
+          "plugins/codex-tier/skills/codex-tier/references/model-registry.json",
+          "plugins/codex-tier/skills/codex-tier/references/measured-frontiers.json",
+          "plugins/codex-tier/skills/codex-tier/references/real-calibration-results.json",
+          "tests/codex-tier/test_codex_tier.py"
+        ],
+        "required_evidence_terms": [
+          "COMPLETE TRACKED FILE COUNT: 50",
+          "install-codex.ps1",
+          "install-codex.sh",
+          "plugin.json",
+          "SKILL.md",
+          "codex_tier.py",
+          "calibrate.py",
+          "benchmark.py",
+          "test_codex_tier.py",
+          "model-registry.json",
+          "measured-frontiers.json",
+          "real-calibration-results.json"
+        ],
+        "required_task_phrases": [
+          "complete frozen repository evidence",
+          "do not use repository or shell tools"
+        ]
+      },
+      "frozen_evidence_only": true,
+      "id": "real-bulk-release-audit",
+      "rubric": [
+        "Uses the complete frozen repository evidence to cover installers, plugin/skill packaging, router, calibration, tests, fixtures, and generated evidence artifacts.",
+        "Cites at least 12 real paths and accurately distinguishes production from test/generated/vendored/account-local evidence.",
+        "Explains cross-file relationships rather than returning a flat file list.",
+        "Release risks and checks are evidence-backed and prioritized without invented defects."
+      ],
+      "task": "Using only the complete frozen repository evidence supplied below, audit the repository as if preparing a release-readiness handoff. The frozen packet contains the complete tracked-file manifest and complete contents of every tracked file at the fixed commit; treat that packet as the repository inspection surface and do not use repository or shell tools. Build a compact but complete map of the Codex Tier product surfaces, installers, plugin and skill packaging, routing and calibration code, tests, calibration fixtures, and generated benchmark evidence. Explain how the pieces connect; distinguish production files from test-only, generated, vendored, or account-local evidence; cite at least 12 exact repository paths; identify stale-install or invalid-benchmark risks supported by the evidence; and finish with five prioritized release checks. Do not edit files, distinguish confirmed facts from uncertainty, and stay under 900 words.",
+      "work_class": "bulk_repository_scan"
+    },
+    {
+      "classification": {
+        "complexity": "routine",
+        "context": "multi-file",
+        "risk": "ordinary",
+        "volume": "moderate"
+      },
+      "deterministic_checks": {
+        "minimum_required_terms": 5,
+        "minimum_response_characters": 500,
+        "required_terms": [
+          "models_cache_path",
+          "apply_client_model_cache",
+          "apply_launch_probe_results",
+          "active_candidate_matrix",
+          "merge_measured_frontiers",
+          "load_config",
+          "route_work_unit"
+        ]
+      },
+      "frozen_evidence_only": true,
+      "id": "real-router-refactor-plan",
+      "rubric": [
+        "Accurately traces the current discovery, probe, measured-frontier, and route control flow.",
+        "Proposes concrete boundaries and an incremental behavior-preserving migration.",
+        "Addresses CLI/config compatibility, stale evidence, availability fallback, and failure modes.",
+        "Specifies targeted tests grounded in the existing test suite and cites exact symbols and paths."
+      ],
+      "task": "Prepare a behavior-preserving refactor plan for plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py. The goal is to separate client model discovery, launch-probe evidence, measured-frontier overlay, and routing policy into clearer units without changing CLI behavior or configuration formats. Inspect the implementation and tests. Name concrete functions and data flows, propose module or API boundaries, give an incremental migration sequence, identify compatibility and failure-mode risks, and specify exact tests that would prove preservation. Do not edit files. Cite exact repository paths and symbols, avoid generic advice, and stay under 900 words.",
+      "work_class": "routine_refactor"
+    },
+    {
+      "classification": {
+        "complexity": "substantial",
+        "context": "repository-wide",
+        "risk": "correctness-sensitive",
+        "volume": "moderate"
+      },
+      "complete_frozen_evidence_paths": [
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "tests/codex-tier/test_codex_tier.py",
+        "plugins/codex-tier/skills/codex-tier/references/model-registry.json",
+        "plugins/codex-tier/skills/codex-tier/references/candidate-matrix.json",
+        "plugins/codex-tier/skills/codex-tier/references/frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/measured-frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/real-calibration.md"
+      ],
+      "deterministic_checks": {
+        "minimum_required_terms": 6,
+        "minimum_response_characters": 600,
+        "required_terms": [
+          "models_cache_path",
+          "apply_client_model_cache",
+          "apply_launch_probe_results",
+          "active_candidate_matrix",
+          "merge_measured_frontiers",
+          "load_config",
+          "route_work_unit"
+        ]
+      },
+      "fixture_validation": {
+        "forbidden_task_or_rubric_phrases": [
+          "inspect the repository with tools",
+          "use repository tools"
+        ],
+        "required_complete_paths": [
+          "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+          "tests/codex-tier/test_codex_tier.py",
+          "plugins/codex-tier/skills/codex-tier/references/model-registry.json",
+          "plugins/codex-tier/skills/codex-tier/references/candidate-matrix.json",
+          "plugins/codex-tier/skills/codex-tier/references/frontiers.json",
+          "plugins/codex-tier/skills/codex-tier/references/measured-frontiers.json"
+        ],
+        "required_evidence_terms": [
+          "def models_cache_path",
+          "def apply_client_model_cache",
+          "def apply_launch_probe_results",
+          "def active_candidate_matrix",
+          "def merge_measured_frontiers",
+          "for work_class, profile in measured.get",
+          "current[\"availability_fallback_candidates\"]",
+          "current[\"candidates\"] = copy.deepcopy(profile[\"candidates\"])",
+          "def load_config",
+          "def route_work_unit",
+          "candidate_matrix_hash",
+          "runtime_unavailable_pairs"
+        ],
+        "required_task_phrases": [
+          "complete frozen repository evidence",
+          "do not use repository or shell tools"
+        ]
+      },
+      "frozen_evidence_only": true,
+      "id": "real-probe-scope-debugging",
+      "rubric": [
+        "Correctly reproduces or refutes both reported symptoms from the complete frozen implementation rather than accepting the report at face value.",
+        "Traces every named function, the full measured-frontier merge logic, and relevant matrix-hash/path-scope checks accurately.",
+        "Explains measured-versus-prior candidate precedence and fallback behavior under explicit and probed unavailability.",
+        "Proposes minimal justified fixes/tests and clearly labels non-bugs or remaining uncertainty."
+      ],
+      "task": "Using only the complete frozen repository evidence supplied below, diagnose this production report against the fixed commit without changing files: 'After switching to a custom models_cache.json, Codex Tier still inherits launch-probe status from the default account, and measured-frontier fallback behaves inconsistently when the selected pair is unavailable.' The evidence contains the complete implementations and configuration/test dependencies required for this diagnosis; do not use repository or shell tools. Reproduce or refute each claim by tracing models_cache_path, apply_client_model_cache, apply_launch_probe_results, active_candidate_matrix, merge_measured_frontiers, load_config, and route_work_unit. Identify the exact conditions under which stale or cross-client evidence can and cannot apply, explain measured-frontier merge precedence and unavailable-pair fallback behavior, separate confirmed defects from expected behavior, and propose the smallest fixes and regression tests only where justified. Cite exact symbols and paths and stay under 900 words.",
+      "work_class": "difficult_debugging"
+    },
+    {
+      "classification": {
+        "complexity": "frontier",
+        "context": "large-context",
+        "risk": "security-sensitive",
+        "volume": "small"
+      },
+      "deterministic_checks": {
+        "minimum_required_groups": 5,
+        "minimum_response_characters": 700,
+        "required_term_groups": [
+          {
+            "any_of": [
+              "install-codex.ps1",
+              "Windows installer",
+              "PowerShell installer"
+            ],
+            "label": "Windows installer"
+          },
+          {
+            "any_of": [
+              "install-codex.sh",
+              "Unix installer",
+              "shell installer"
+            ],
+            "label": "Unix installer"
+          },
+          {
+            "any_of": [
+              "marketplace",
+              "plugin source",
+              "plugin.json"
+            ],
+            "label": "plugin marketplace/source trust"
+          },
+          {
+            "any_of": [
+              "codex exec",
+              "command_prefix",
+              "cmd_execute",
+              "bounded wrapper"
+            ],
+            "label": "bounded codex exec wrapper"
+          },
+          {
+            "any_of": [
+              "model cache",
+              "model-cache",
+              "models_cache",
+              "launch probe",
+              "launch-probe",
+              "apply_launch_probe_results",
+              "candidate_matrix_hash"
+            ],
+            "label": "model-cache/probe ingestion"
+          },
+          {
+            "any_of": [
+              "usage log",
+              "usage logging",
+              "write_event",
+              "log_file",
+              "content-free"
+            ],
+            "label": "content-free usage logging"
+          }
+        ]
+      },
+      "frozen_evidence_only": true,
+      "id": "real-security-trust-review",
+      "rubric": [
+        "Covers all named trust boundaries with exact code evidence and accurate exploit preconditions.",
+        "Separates confirmed findings, defense-in-depth concerns, and blocked false positives.",
+        "Accurately evaluates sanitization, path containment, approval/sandbox flags, installer behavior, and local probe scope.",
+        "Prioritizes practical remediation without overstating severity or inventing vulnerabilities."
+      ],
+      "task": "Perform an evidence-based security and trust-boundary review of Codex Tier's Windows and Unix installers, plugin marketplace integration, bounded codex exec wrapper, model-cache/probe ingestion, and content-free usage logging. Focus on command or argument injection, path traversal and unsafe writes, credential or prompt leakage, sandbox/approval weakening, cross-account calibration evidence, and plugin-source trust. Report only confirmed findings or clearly labeled defense-in-depth concerns; cite exact paths and symbols; explain exploit preconditions and impact; note existing mitigations; prioritize remediation; and explicitly dismiss plausible false positives when the code blocks them. Do not edit files and stay under 1,000 words.",
+      "work_class": "security_review"
+    },
+    {
+      "classification": {
+        "complexity": "substantial",
+        "context": "repository-wide",
+        "risk": "ordinary",
+        "volume": "small"
+      },
+      "deterministic_checks": {
+        "minimum_required_terms": 5,
+        "minimum_response_characters": 600,
+        "required_terms": [
+          "model-registry.json",
+          "candidate-matrix.json",
+          "measured-frontiers.json",
+          "apply_client_model_cache",
+          "apply_launch_probe_results",
+          "merge_measured_frontiers",
+          "route_work_unit"
+        ]
+      },
+      "frozen_evidence_only": true,
+      "id": "real-distribution-architecture",
+      "rubric": [
+        "Accurately identifies which current artifacts are distributable versus account-local and how they are consumed.",
+        "Defines concrete v2 ownership, schema, storage, freshness, invalidation, and fallback rules.",
+        "Includes a compatible migration and realistic failure scenarios, observability, and rollout tests.",
+        "Preserves quality-first routing without a global hierarchy and addresses consumption-metric uncertainty."
+      ],
+      "task": "Review the current Codex Tier architecture for distribution to many Codex users and design a concrete v2 evolution. The design must preserve dynamic per-client model discovery while separating distributable defaults from account-local launch probes, measured usage, and workload frontiers. Inspect the registry, candidate matrix, frontier overlay, installers, plugin packaging, and benchmark artifacts. Propose ownership boundaries, schemas, storage locations, freshness and invalidation rules, routing fallback behavior, migration from v1, and observability. Analyze quality-first and consumption tradeoffs without introducing a fixed model hierarchy. Cite exact current paths and symbols, include failure scenarios and rollout tests, do not edit files, and stay under 1,000 words.",
+      "work_class": "architecture"
+    }
+  ]
+}

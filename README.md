@@ -41,6 +41,11 @@ path. The active matrix is discovered per Codex client/account. See
 [CODEX-TIER.md](CODEX-TIER.md) for architecture,
 enforcement, configuration, logging, tests, and current limitations.
 
+The [authoritative consolidated benchmark report](benchmarks/codex-tier-e2e/CONSOLIDATED-BENCHMARK-REPORT.md)
+documents the complete calibration and benchmark history, corrected evidence,
+superseded results, final routing decisions, and the exact limits of the v1
+exposed-token claims.
+
 ---
 
 # Claude Tier

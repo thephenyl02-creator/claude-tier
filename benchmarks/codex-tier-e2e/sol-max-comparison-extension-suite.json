@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "comparison_id": "codex-tier-v1-always-sol-max-extension",
+  "source_suite": "corrected-final-suite.json",
+  "source_results": "corrected-final-results.json",
+  "prior_comparison_results": "sol-max-comparison-results.json",
+  "repository_commit": "75c2c69",
+  "comparison_pair": {
+    "model": "gpt-5.6-sol",
+    "effort": "max"
+  },
+  "verifier": {
+    "model": "gpt-5.6-sol",
+    "effort": "max"
+  },
+  "random_seed": 20260904,
+  "usage_metric": "input_tokens + output_tokens",
+  "minimum_quality_score": 80,
+  "maximum_quality_regression_points": 3,
+  "clarity_minimum_absolute_reduction_percent": 5,
+  "repetitions": [2, 3],
+  "workload_ids": [
+    "real-bulk-release-audit",
+    "real-router-refactor-plan",
+    "real-probe-scope-debugging",
+    "real-security-trust-review"
+  ]
+}

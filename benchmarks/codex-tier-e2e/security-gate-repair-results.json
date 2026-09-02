@@ -1,0 +1,1188 @@
+{
+  "analysis": {
+    "mode": "targeted-tuning",
+    "overall": {
+      "credit_savings_published": false,
+      "deterministic_failures": 0,
+      "final_benchmark_savings_published": false,
+      "new_primary_runs": 6,
+      "primary_runs": 6,
+      "reused_primary_runs": 0,
+      "strong_verifier_attempts": 7
+    },
+    "workloads": {
+      "real-security-trust-review": {
+        "baseline": {
+          "median_quality_score": 84.5,
+          "median_total_exposed_tokens": 30277.5,
+          "quality_pass_rate": 0.5,
+          "runs": 2
+        },
+        "candidates": {
+          "gpt-5.6-sol/medium": {
+            "absolute_quality_met": false,
+            "deterministic_failures": 0,
+            "historical_basis": "Parent-family candidate retained from the original security tuning pass.",
+            "median_quality_score": 81.5,
+            "median_total_exposed_tokens": 30389.0,
+            "prune_reason": "failed absolute quality gate",
+            "pruned": true,
+            "quality_pass_rate": 0.5,
+            "quality_preserved": false,
+            "relative_quality_met": true,
+            "runs": 2
+          },
+          "gpt-5.6-terra/max": {
+            "absolute_quality_met": false,
+            "deterministic_failures": 0,
+            "historical_basis": "Lower-consumption strong-reasoning candidate retained from the original security tuning pass.",
+            "median_quality_score": 82.0,
+            "median_total_exposed_tokens": 42241.5,
+            "prune_reason": "failed absolute quality gate",
+            "pruned": true,
+            "quality_pass_rate": 0.5,
+            "quality_preserved": false,
+            "relative_quality_met": true,
+            "runs": 2
+          }
+        },
+        "efficient_frontier": [],
+        "pre_pruned_candidates": [
+          {
+            "pair": "gpt-5.4-mini/low",
+            "reason": "Frozen-evidence confirmation failed the relative quality gate and omitted multiple central trust boundaries."
+          }
+        ],
+        "work_class": "security_review"
+      }
+    }
+  },
+  "baseline_reuse": {
+    "configured": false,
+    "rejected": {},
+    "reused_primary_runs": 0
+  },
+  "benchmark_id": "codex-tier-v1-security-gate-repair",
+  "codex_cli_version": "codex-cli 0.149.1",
+  "completed_at": "2026-09-01T20:56:24.585031Z",
+  "credit_savings_published": false,
+  "credits_exposed": false,
+  "frozen_evidence": {
+    "real-security-trust-review": {
+      "characters": 44765,
+      "contains_task_rubric": false,
+      "extraction": "keyword matches with two lines of context; Python symbol inventory",
+      "packet_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "paths": [
+        "install.ps1",
+        "install.sh",
+        "install-codex.ps1",
+        "install-codex.sh",
+        ".claude-plugin/marketplace.json",
+        "plugins/codex-tier/.codex-plugin/plugin.json",
+        "plugins/codex-tier/skills/codex-tier/SKILL.md",
+        "plugins/codex-tier/skills/codex-tier/references/executor.md",
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "tests/codex-tier/test_codex_tier.py"
+      ],
+      "shared_by_baseline_and_tier": true
+    }
+  },
+  "independent_verifications": 6,
+  "mode": "targeted-tuning",
+  "new_primary_runs": 6,
+  "parent_pair": "gpt-5.6-sol/low",
+  "primary_runs": 6,
+  "primary_sandbox": "read-only",
+  "random_seed": 20260901,
+  "records": [
+    {
+      "aggregate": {
+        "error_events": 0,
+        "execution_latency_seconds": 305.437616,
+        "internal_retries": 0,
+        "tool_items": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cache_write_input_tokens_complete": true,
+          "cached_input_tokens": 0,
+          "cached_input_tokens_complete": true,
+          "input_tokens": 29907,
+          "input_tokens_complete": true,
+          "output_tokens": 15783,
+          "output_tokens_complete": true,
+          "reasoning_output_tokens": 14502,
+          "reasoning_output_tokens_complete": true,
+          "total_exposed_tokens": 45690,
+          "total_exposed_tokens_complete": true,
+          "uncached_input_tokens": 29907,
+          "uncached_input_tokens_complete": true
+        },
+        "wall_seconds": 307.308631,
+        "worker_choices": [
+          {
+            "effort": "max",
+            "model": "gpt-5.6-terra",
+            "pair": "gpt-5.6-terra/max",
+            "reason": "targeted-tuning-candidate"
+          }
+        ]
+      },
+      "attempts": [
+        {
+          "attempt_id": "real-security-trust-review--tiered--gpt-5-6-terra-max--r2--attempt-1",
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 305.437616,
+          "model": "gpt-5.6-terra",
+          "pair": "gpt-5.6-terra/max",
+          "reason": "targeted-tuning-candidate",
+          "response": "## Evidence-based review \u2014 commit `75c2c6926bb317803e66946f72194788cac16ebe`\n\n### Confirmed findings\n\n1. **P1 \u2014 Mutable installer/plugin sources lack an installer-held trust anchor.**  \n   The fallback installers download mutable `main` archives: `install.sh:18-24,182-216`, `install.ps1:17-23,193-215`, `install-codex.sh:7-11,194-203`, and `install-codex.ps1:5-9,214-220`. No embedded checksum or signature verification is shown for those archives. More seriously, `install-codex.sh:98-102` runs the downloaded `scripts/codex_tier.py validate` before installation, so a substituted archive can execute code during installation.\n\n   The marketplace route also refreshes mutable remote metadata on every run: `install.sh:135-147` and `install.ps1:65-75` use a raw GitHub `main` manifest; `install-codex.sh:161-166` and `install-codex.ps1:143-152` add/upgrade a repository marketplace. `.claude-plugin/marketplace.json:13-16` has a release URL and SHA-256, which protects the archive only if the manifest itself is trusted; a mutable manifest can change both URL and hash. The supplied Codex `plugin.json` is empty, so Codex-side package verification cannot be established from this evidence.\n\n   **Precondition:** compromise of the GitHub repository/branch, release/marketplace publishing path, or another trusted delivery component\u2014not a passive network attacker while HTTPS remains intact.  \n   **Impact:** attacker-controlled skills/plugin code and instructions installed into the user\u2019s agent environment; the Unix Codex fallback additionally executes downloaded Python immediately.  \n   **Remediation:** pin fallback artifacts to immutable release assets or commits, verify an installer-embedded SHA-256 or signature, and make marketplace updates require a separately authenticated/pinned manifest trust root.\n\n2. **P1 \u2014 The \u201cbounded\u201d executor permits `danger-full-access`.**  \n   `plugins/codex-tier/skills/codex-tier/references/executor.md:53-57,65-68` documents only `read-only` and `workspace-write`. However, `codex_tier.py:1099-1105` accepts `danger-full-access`, and `cmd_execute` forwards `args.sandbox` directly to `codex exec` (`:895-912,933-937`).\n\n   **Precondition:** a process-level caller can invoke `codex_tier.py execute --sandbox danger-full-access`; the work packet alone does not alter this argument.  \n   **Impact:** if the underlying Codex CLI honors the flag, worker actions are no longer confined to the repository/workspace boundary.  \n   **Existing mitigation:** normal documented invocations select only the two narrower modes.  \n   **Remediation:** remove `danger-full-access` from this wrapper\u2019s accepted choices, or require a separate, trusted administrative opt-in that cannot be supplied by normal routing inputs.\n\n### Defense-in-depth concerns (not confirmed exploits)\n\n- **Cross-account cache/probe replay:** `apply_launch_probe_results` states it accepts probe status when it matches the active matrix (`codex_tier.py:261-262`), and a matrix hash exists (`:256`). No account, organization, or credential-context binding is visible in the supplied evidence. A cache/probe result from another account with the same model matrix could therefore be indistinguishable *if* the omitted cache schema permits replay. The likely effect is incorrect availability/calibration routing, not code execution. Bind evidence to the active client/account context, make cache files owner-only, and invalidate on identity/config changes. The visible error fallback in `apply_client_model_cache` (`:161-188`) is a useful resilience mitigation.\n\n- **Symlink/reparse-point write boundary:** Windows checks lexical containment with `GetFullPath` (`install-codex.ps1:93-100`), while Unix permits cleanup paths based on string patterns (`install-codex.sh:86-92,111-115`). Neither visible check proves that linked ancestors/reparse points resolve beneath the intended skills root. Exploitation requires an attacker able to create links or race a shared/attacker-controlled install root, such as via `CODEX_TIER_INSTALL_HOME`; normal per-user private directories reduce exposure. Resolve and validate final paths, reject reparse points/symlinked ancestors, and use private atomic staging directories.\n\n- **Content-free logging should remain allowlist-based:** `write_event` serializes selected event fields (`codex_tier.py:620-628`) and redacts common credential forms (`:632-639`), but redaction is not a substitute for rejecting arbitrary free-text metadata in future `record` callers (`:1031-1058`). Use fixed enums/numbers for persisted fields and omit diagnostic text by default.\n\n### Explicitly dismissed false positives\n\n- **Shell/argument injection is not evidenced in the executor:** `subprocess.run` receives a command list, not a shell string (`codex_tier.py:895-937`); model, effort, sandbox, and packet are separate arguments/stdin. Probe invocations are likewise fixed argument lists (`:785-860`).\n\n- **Normal installer overwrite/traversal is substantially guarded:** Codex Windows checks destination containment and leaf name; Unix restricts stage cleanup; both installer families use markers and preserve/move aside hand-authored skills (`install.ps1:131-156,201-224`; `install.sh:157-169,200-220`; `install-codex.ps1:110-134`; `install-codex.sh:125-159`).\n\n- **No confirmed prompt or raw-packet leakage into usage JSONL:** packets are passed as subprocess input (`codex_tier.py:672-682,933-937`), and tests verify both successful and failed packet content is absent from logs (`tests/codex-tier/test_codex_tier.py:177-188,190-213`). JSON serialization also prevents newline-based JSONL record injection.",
+          "response_sha256": "6ca4ef2039e0f5d87618dccd6940150c4d7caaa5cece04f2508240df86626686",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 29907,
+            "output_tokens": 15783,
+            "reasoning_output_tokens": 14502,
+            "total_exposed_tokens": 45690,
+            "uncached_input_tokens": 29907
+          },
+          "usage_limit_reset_hint": null,
+          "wall_seconds": 307.308631
+        }
+      ],
+      "benchmark_state": "complete",
+      "candidate_pair": "gpt-5.6-terra/max",
+      "canonical_packet_sha256": "591d5947266dbb9453817e5eb1384e5443f57bb3769a6bd1d2258d6bf6e43807",
+      "condition": "tiered",
+      "deterministic_screen": {
+        "decision": "needs_judgment",
+        "failures": [],
+        "matched_required_groups": [
+          "Windows installer",
+          "Unix installer",
+          "plugin marketplace/source trust",
+          "bounded codex exec wrapper",
+          "model-cache/probe ingestion",
+          "content-free usage logging"
+        ],
+        "matched_required_terms": [],
+        "minimum_required_groups": 5,
+        "minimum_required_terms": 0,
+        "missing_required_groups": [],
+        "required_group_count": 6,
+        "required_term_count": 0,
+        "response_characters": 5631
+      },
+      "escalation_count": 0,
+      "external_retry_count": 0,
+      "final_response": "## Evidence-based review \u2014 commit `75c2c6926bb317803e66946f72194788cac16ebe`\n\n### Confirmed findings\n\n1. **P1 \u2014 Mutable installer/plugin sources lack an installer-held trust anchor.**  \n   The fallback installers download mutable `main` archives: `install.sh:18-24,182-216`, `install.ps1:17-23,193-215`, `install-codex.sh:7-11,194-203`, and `install-codex.ps1:5-9,214-220`. No embedded checksum or signature verification is shown for those archives. More seriously, `install-codex.sh:98-102` runs the downloaded `scripts/codex_tier.py validate` before installation, so a substituted archive can execute code during installation.\n\n   The marketplace route also refreshes mutable remote metadata on every run: `install.sh:135-147` and `install.ps1:65-75` use a raw GitHub `main` manifest; `install-codex.sh:161-166` and `install-codex.ps1:143-152` add/upgrade a repository marketplace. `.claude-plugin/marketplace.json:13-16` has a release URL and SHA-256, which protects the archive only if the manifest itself is trusted; a mutable manifest can change both URL and hash. The supplied Codex `plugin.json` is empty, so Codex-side package verification cannot be established from this evidence.\n\n   **Precondition:** compromise of the GitHub repository/branch, release/marketplace publishing path, or another trusted delivery component\u2014not a passive network attacker while HTTPS remains intact.  \n   **Impact:** attacker-controlled skills/plugin code and instructions installed into the user\u2019s agent environment; the Unix Codex fallback additionally executes downloaded Python immediately.  \n   **Remediation:** pin fallback artifacts to immutable release assets or commits, verify an installer-embedded SHA-256 or signature, and make marketplace updates require a separately authenticated/pinned manifest trust root.\n\n2. **P1 \u2014 The \u201cbounded\u201d executor permits `danger-full-access`.**  \n   `plugins/codex-tier/skills/codex-tier/references/executor.md:53-57,65-68` documents only `read-only` and `workspace-write`. However, `codex_tier.py:1099-1105` accepts `danger-full-access`, and `cmd_execute` forwards `args.sandbox` directly to `codex exec` (`:895-912,933-937`).\n\n   **Precondition:** a process-level caller can invoke `codex_tier.py execute --sandbox danger-full-access`; the work packet alone does not alter this argument.  \n   **Impact:** if the underlying Codex CLI honors the flag, worker actions are no longer confined to the repository/workspace boundary.  \n   **Existing mitigation:** normal documented invocations select only the two narrower modes.  \n   **Remediation:** remove `danger-full-access` from this wrapper\u2019s accepted choices, or require a separate, trusted administrative opt-in that cannot be supplied by normal routing inputs.\n\n### Defense-in-depth concerns (not confirmed exploits)\n\n- **Cross-account cache/probe replay:** `apply_launch_probe_results` states it accepts probe status when it matches the active matrix (`codex_tier.py:261-262`), and a matrix hash exists (`:256`). No account, organization, or credential-context binding is visible in the supplied evidence. A cache/probe result from another account with the same model matrix could therefore be indistinguishable *if* the omitted cache schema permits replay. The likely effect is incorrect availability/calibration routing, not code execution. Bind evidence to the active client/account context, make cache files owner-only, and invalidate on identity/config changes. The visible error fallback in `apply_client_model_cache` (`:161-188`) is a useful resilience mitigation.\n\n- **Symlink/reparse-point write boundary:** Windows checks lexical containment with `GetFullPath` (`install-codex.ps1:93-100`), while Unix permits cleanup paths based on string patterns (`install-codex.sh:86-92,111-115`). Neither visible check proves that linked ancestors/reparse points resolve beneath the intended skills root. Exploitation requires an attacker able to create links or race a shared/attacker-controlled install root, such as via `CODEX_TIER_INSTALL_HOME`; normal per-user private directories reduce exposure. Resolve and validate final paths, reject reparse points/symlinked ancestors, and use private atomic staging directories.\n\n- **Content-free logging should remain allowlist-based:** `write_event` serializes selected event fields (`codex_tier.py:620-628`) and redacts common credential forms (`:632-639`), but redaction is not a substitute for rejecting arbitrary free-text metadata in future `record` callers (`:1031-1058`). Use fixed enums/numbers for persisted fields and omit diagnostic text by default.\n\n### Explicitly dismissed false positives\n\n- **Shell/argument injection is not evidenced in the executor:** `subprocess.run` receives a command list, not a shell string (`codex_tier.py:895-937`); model, effort, sandbox, and packet are separate arguments/stdin. Probe invocations are likewise fixed argument lists (`:785-860`).\n\n- **Normal installer overwrite/traversal is substantially guarded:** Codex Windows checks destination containment and leaf name; Unix restricts stage cleanup; both installer families use markers and preserve/move aside hand-authored skills (`install.ps1:131-156,201-224`; `install.sh:157-169,200-220`; `install-codex.ps1:110-134`; `install-codex.sh:125-159`).\n\n- **No confirmed prompt or raw-packet leakage into usage JSONL:** packets are passed as subprocess input (`codex_tier.py:672-682,933-937`), and tests verify both successful and failed packet content is absent from logs (`tests/codex-tier/test_codex_tier.py:177-188,190-213`). JSON serialization also prevents newline-based JSONL record injection.",
+      "final_response_sha256": "6ca4ef2039e0f5d87618dccd6940150c4d7caaa5cece04f2508240df86626686",
+      "frozen_evidence_characters": 44765,
+      "frozen_evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "infrastructure_attempts": [],
+      "initial_pair": "gpt-5.6-terra/max",
+      "parent_pair": "gpt-5.6-sol/low",
+      "quality": {
+        "critical_errors": [],
+        "dimensions": {
+          "actionability": 13,
+          "completeness": 16,
+          "correctness": 35,
+          "evidence": 23
+        },
+        "passed": true,
+        "score": 87,
+        "summary": "Strong, repository-grounded review with accurate supply-chain and sandbox findings, explicit preconditions, useful mitigations, and appropriately cautious defense-in-depth labeling. Exact citations are generally excellent. Main deductions: it does not substantively evaluate approval-policy or user-configuration handling, only partially covers installer command/environment trust and local probe scope, and arguably over-prioritizes danger-full-access as P1 despite requiring a process-level caller. The logging discussion is sound but frames arbitrary metadata mainly as a future risk rather than fully analyzing current record inputs.",
+        "valid": true
+      },
+      "randomized_position": 1,
+      "repetition": 2,
+      "routing_decision": {
+        "execution_mode": "WORKER",
+        "reason": "Explicit small candidate set for targeted tuning",
+        "selected": {
+          "effort": "max",
+          "model": "gpt-5.6-terra",
+          "pair": "gpt-5.6-terra/max"
+        }
+      },
+      "run_id": "real-security-trust-review--tiered--gpt-5-6-terra-max--r2",
+      "task_prompt_sha256": "a45a9d405e8943850f1d5c4f6f9739e705026a6734b3b270c3cc21da25497aec",
+      "verification_attempts": [
+        {
+          "attempt_id": "d0c07f716ced40d48a9ad6e865f919a7-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 44765,
+          "evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 142.284015,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":87,\"passed\":true,\"dimensions\":{\"correctness\":35,\"evidence\":23,\"completeness\":16,\"actionability\":13},\"critical_errors\":[],\"summary\":\"Strong, repository-grounded review with accurate supply-chain and sandbox findings, explicit preconditions, useful mitigations, and appropriately cautious defense-in-depth labeling. Exact citations are generally excellent. Main deductions: it does not substantively evaluate approval-policy or user-configuration handling, only partially covers installer command/environment trust and local probe scope, and arguably over-prioritizes danger-full-access as P1 despite requiring a process-level caller. The logging discussion is sound but frames arbitrary metadata mainly as a future risk rather than fully analyzing current record inputs.\"}",
+          "response_sha256": "9dd93e35d9b1d09312adc516ba167d30644ea733fba2080f8fbec209d6e06316",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 28565,
+            "output_tokens": 7243,
+            "reasoning_output_tokens": 7085,
+            "total_exposed_tokens": 35808,
+            "uncached_input_tokens": 28565
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 142.701844
+        }
+      ],
+      "work_class": "security_review",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "aggregate": {
+        "error_events": 0,
+        "execution_latency_seconds": 60.529007,
+        "internal_retries": 0,
+        "tool_items": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cache_write_input_tokens_complete": true,
+          "cached_input_tokens": 9984,
+          "cached_input_tokens_complete": true,
+          "input_tokens": 29907,
+          "input_tokens_complete": true,
+          "output_tokens": 1735,
+          "output_tokens_complete": true,
+          "reasoning_output_tokens": 516,
+          "reasoning_output_tokens_complete": true,
+          "total_exposed_tokens": 31642,
+          "total_exposed_tokens_complete": true,
+          "uncached_input_tokens": 19923,
+          "uncached_input_tokens_complete": true
+        },
+        "wall_seconds": 61.6175,
+        "worker_choices": [
+          {
+            "effort": "medium",
+            "model": "gpt-5.6-sol",
+            "pair": "gpt-5.6-sol/medium",
+            "reason": "targeted-tuning-candidate"
+          }
+        ]
+      },
+      "attempts": [
+        {
+          "attempt_id": "real-security-trust-review--tiered--gpt-5-6-sol-medium--r2--attempt-1",
+          "effort": "medium",
+          "error": null,
+          "error_event_count": 0,
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 60.529007,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/medium",
+          "reason": "targeted-tuning-candidate",
+          "response": "# Security and trust-boundary review\n\nCommit `75c2c6926bb317803e66946f72194788cac16ebe`.\n\n## Confirmed findings\n\n### High \u2014 Installers consume mutable, unsigned branch archives\n\nAll fallback installers download `main` rather than an immutable commit:\n\n- `install.ps1:23,186\u2013215`\n- `install.sh:24,177\u2013216`\n- `install-codex.ps1:8,214\u2013220`\n- `install-codex.sh:10,194\u2013203`\n\nThey validate expected files or run `codex_tier.py validate`, but do not authenticate archive contents with a pinned digest. Repository compromise, owner-account compromise, or malicious branch mutation can therefore install executable skill/plugin content with the invoking user\u2019s privileges.\n\nThe Claude marketplace path is better: `.claude-plugin/marketplace.json:13\u201316` pins release `v1.6.0` with SHA-256. However, installers obtain that manifest from mutable `main` (`install.ps1:21,65\u201375`; `install.sh:22,135\u2013147`), so repository control can replace both artifact URL and checksum. The Codex marketplace route adds the repository directly (`install-codex.ps1:143\u2013152`; `install-codex.sh:161\u2013166`); the supplied `plugins/codex-tier/.codex-plugin/plugin.json` excerpt contains no evidence of immutable source pinning.\n\n**Remediation:** publish versioned installers that pin archive commit/digest and pin or independently authenticate marketplace metadata. Treat automatic marketplace upgrades as code-install trust decisions.\n\n### Medium \u2014 Caller-selected log paths permit arbitrary append/following links\n\n`cmd_execute` and `cmd_record` accept unrestricted `--log-file` paths (`codex_tier.py:883,1056`). `write_event` creates parent directories and opens the target in append mode without containment, ownership, regular-file, or symlink checks (`620\u2013628`).\n\nAn actor able to influence wrapper arguments can create or append JSON under any path writable by the wrapper and can follow a pre-positioned symlink. This is not arbitrary-content overwrite\u2014the schema and append mode constrain content\u2014but it can corrupt sensitive writable files or plant files in trusted locations.\n\n**Remediation:** default to a private fixed log directory; reject paths outside it, symlinks/reparse points, and non-regular files; create with restrictive permissions.\n\n## Defense-in-depth concerns\n\n- **Privilege-policy exposure:** `--sandbox` explicitly permits `danger-full-access` (`codex_tier.py:1102\u20131105`), and `--approval-policy` is forwarded before `exec` (`895\u2013898`). Defaults and documentation favor read-only (`executor.md:53\u201369`), and tests exercise read-only versus workspace-write (`test_codex_tier.py:253\u2013294`), but no evidence shows that untrusted packets cannot influence these wrapper arguments. Restrict accepted policies at the caller boundary and consider removing full access from this bounded-worker interface.\n\n- **Local-source validation executes supplied code:** `CODEX_TIER_SOURCE_ROOT` selects a source (`install-codex.ps1:27,199\u2013203`; `install-codex.sh:26,169\u2013172`), and validation runs that source\u2019s `codex_tier.py validate` (`install-codex.sh:98\u2013103`; analogous `Install-Direct` at `install-codex.ps1:88\u201390`). Exploitation requires control of the installer\u2019s environment or chosen source, so this is not a privilege escalation by itself. Prefer structural/hash validation before executing downloaded or caller-selected source.\n\n- **Logging redaction is heuristic:** events are field-whitelisted and every string is sanitized (`codex_tier.py:620\u2013639`); tests confirm packets are absent and common credential forms are redacted (`test_codex_tier.py:184\u2013188,190\u2013249`). Nevertheless, worker stderr is surfaced and sanitized (`codex_tier.py:933\u20131015`), so an unusual secret lacking recognized labels could remain. Avoid persisting raw stderr or use strict error codes.\n\n- **Cross-account calibration binding is unclear:** launch probes are applied only when matching the active candidate matrix (`apply_launch_probe_results`, `codex_tier.py:261\u2013262`), which prevents stale-matrix reuse. The excerpts show no account/project identity binding for model cache, probes, or measured frontiers (`147\u2013188,261\u2013335`). Shared-home or copied-cache use could therefore import another account\u2019s availability/performance evidence. Bind evidence to a non-secret account/project fingerprint and invalidate on mismatch.\n\n## Dismissed plausible false positives\n\n- **Command/argument injection:** wrapper execution uses argument arrays and `subprocess.run(..., shell=False by default)` (`codex_tier.py:895\u2013935`); packet content travels on stdin, not in the command (`933\u2013936`). Model, effort, sandbox, and config values are separate arguments. No shell-command injection is evidenced.\n- **Installer variable injection:** shell installer expansions used as command arguments are quoted (`install.sh:135\u2013147`; `install-codex.sh:161\u2013166`); PowerShell routes likewise pass arrays (`install.ps1:65\u201375`; `install-codex.ps1:143\u2013152`).\n- **Broad installer deletion:** Unix Codex cleanup allowlists stage/old paths (`install-codex.sh:86\u201390`); Windows verifies the destination remains under `.agents\\skills` with the expected leaf (`install-codex.ps1:94\u2013101`). Claude fallback deletion requires an installer marker and removes the marker last (`install.ps1:134\u2013155`; `install.sh:153\u2013168`), preserving hand-authored copies via backup (`install.ps1:202\u2013215`; `install.sh:200\u2013216`). No traversal exploit is established from the supplied evidence.",
+          "response_sha256": "1164ce99ffabea7c2c258695651e4fbf143b099f57e464da644114d77fa943e9",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 9984,
+            "input_tokens": 29907,
+            "output_tokens": 1735,
+            "reasoning_output_tokens": 516,
+            "total_exposed_tokens": 31642,
+            "uncached_input_tokens": 19923
+          },
+          "usage_limit_reset_hint": null,
+          "wall_seconds": 61.6175
+        }
+      ],
+      "benchmark_state": "complete",
+      "candidate_pair": "gpt-5.6-sol/medium",
+      "canonical_packet_sha256": "591d5947266dbb9453817e5eb1384e5443f57bb3769a6bd1d2258d6bf6e43807",
+      "condition": "tiered",
+      "deterministic_screen": {
+        "decision": "needs_judgment",
+        "failures": [],
+        "matched_required_groups": [
+          "Windows installer",
+          "Unix installer",
+          "plugin marketplace/source trust",
+          "bounded codex exec wrapper",
+          "model-cache/probe ingestion",
+          "content-free usage logging"
+        ],
+        "matched_required_terms": [],
+        "minimum_required_groups": 5,
+        "minimum_required_terms": 0,
+        "missing_required_groups": [],
+        "required_group_count": 6,
+        "required_term_count": 0,
+        "response_characters": 5393
+      },
+      "escalation_count": 0,
+      "external_retry_count": 0,
+      "final_response": "# Security and trust-boundary review\n\nCommit `75c2c6926bb317803e66946f72194788cac16ebe`.\n\n## Confirmed findings\n\n### High \u2014 Installers consume mutable, unsigned branch archives\n\nAll fallback installers download `main` rather than an immutable commit:\n\n- `install.ps1:23,186\u2013215`\n- `install.sh:24,177\u2013216`\n- `install-codex.ps1:8,214\u2013220`\n- `install-codex.sh:10,194\u2013203`\n\nThey validate expected files or run `codex_tier.py validate`, but do not authenticate archive contents with a pinned digest. Repository compromise, owner-account compromise, or malicious branch mutation can therefore install executable skill/plugin content with the invoking user\u2019s privileges.\n\nThe Claude marketplace path is better: `.claude-plugin/marketplace.json:13\u201316` pins release `v1.6.0` with SHA-256. However, installers obtain that manifest from mutable `main` (`install.ps1:21,65\u201375`; `install.sh:22,135\u2013147`), so repository control can replace both artifact URL and checksum. The Codex marketplace route adds the repository directly (`install-codex.ps1:143\u2013152`; `install-codex.sh:161\u2013166`); the supplied `plugins/codex-tier/.codex-plugin/plugin.json` excerpt contains no evidence of immutable source pinning.\n\n**Remediation:** publish versioned installers that pin archive commit/digest and pin or independently authenticate marketplace metadata. Treat automatic marketplace upgrades as code-install trust decisions.\n\n### Medium \u2014 Caller-selected log paths permit arbitrary append/following links\n\n`cmd_execute` and `cmd_record` accept unrestricted `--log-file` paths (`codex_tier.py:883,1056`). `write_event` creates parent directories and opens the target in append mode without containment, ownership, regular-file, or symlink checks (`620\u2013628`).\n\nAn actor able to influence wrapper arguments can create or append JSON under any path writable by the wrapper and can follow a pre-positioned symlink. This is not arbitrary-content overwrite\u2014the schema and append mode constrain content\u2014but it can corrupt sensitive writable files or plant files in trusted locations.\n\n**Remediation:** default to a private fixed log directory; reject paths outside it, symlinks/reparse points, and non-regular files; create with restrictive permissions.\n\n## Defense-in-depth concerns\n\n- **Privilege-policy exposure:** `--sandbox` explicitly permits `danger-full-access` (`codex_tier.py:1102\u20131105`), and `--approval-policy` is forwarded before `exec` (`895\u2013898`). Defaults and documentation favor read-only (`executor.md:53\u201369`), and tests exercise read-only versus workspace-write (`test_codex_tier.py:253\u2013294`), but no evidence shows that untrusted packets cannot influence these wrapper arguments. Restrict accepted policies at the caller boundary and consider removing full access from this bounded-worker interface.\n\n- **Local-source validation executes supplied code:** `CODEX_TIER_SOURCE_ROOT` selects a source (`install-codex.ps1:27,199\u2013203`; `install-codex.sh:26,169\u2013172`), and validation runs that source\u2019s `codex_tier.py validate` (`install-codex.sh:98\u2013103`; analogous `Install-Direct` at `install-codex.ps1:88\u201390`). Exploitation requires control of the installer\u2019s environment or chosen source, so this is not a privilege escalation by itself. Prefer structural/hash validation before executing downloaded or caller-selected source.\n\n- **Logging redaction is heuristic:** events are field-whitelisted and every string is sanitized (`codex_tier.py:620\u2013639`); tests confirm packets are absent and common credential forms are redacted (`test_codex_tier.py:184\u2013188,190\u2013249`). Nevertheless, worker stderr is surfaced and sanitized (`codex_tier.py:933\u20131015`), so an unusual secret lacking recognized labels could remain. Avoid persisting raw stderr or use strict error codes.\n\n- **Cross-account calibration binding is unclear:** launch probes are applied only when matching the active candidate matrix (`apply_launch_probe_results`, `codex_tier.py:261\u2013262`), which prevents stale-matrix reuse. The excerpts show no account/project identity binding for model cache, probes, or measured frontiers (`147\u2013188,261\u2013335`). Shared-home or copied-cache use could therefore import another account\u2019s availability/performance evidence. Bind evidence to a non-secret account/project fingerprint and invalidate on mismatch.\n\n## Dismissed plausible false positives\n\n- **Command/argument injection:** wrapper execution uses argument arrays and `subprocess.run(..., shell=False by default)` (`codex_tier.py:895\u2013935`); packet content travels on stdin, not in the command (`933\u2013936`). Model, effort, sandbox, and config values are separate arguments. No shell-command injection is evidenced.\n- **Installer variable injection:** shell installer expansions used as command arguments are quoted (`install.sh:135\u2013147`; `install-codex.sh:161\u2013166`); PowerShell routes likewise pass arrays (`install.ps1:65\u201375`; `install-codex.ps1:143\u2013152`).\n- **Broad installer deletion:** Unix Codex cleanup allowlists stage/old paths (`install-codex.sh:86\u201390`); Windows verifies the destination remains under `.agents\\skills` with the expected leaf (`install-codex.ps1:94\u2013101`). Claude fallback deletion requires an installer marker and removes the marker last (`install.ps1:134\u2013155`; `install.sh:153\u2013168`), preserving hand-authored copies via backup (`install.ps1:202\u2013215`; `install.sh:200\u2013216`). No traversal exploit is established from the supplied evidence.",
+      "final_response_sha256": "1164ce99ffabea7c2c258695651e4fbf143b099f57e464da644114d77fa943e9",
+      "frozen_evidence_characters": 44765,
+      "frozen_evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "infrastructure_attempts": [],
+      "initial_pair": "gpt-5.6-sol/medium",
+      "parent_pair": "gpt-5.6-sol/low",
+      "quality": {
+        "critical_errors": [],
+        "dimensions": {
+          "actionability": 13,
+          "completeness": 16,
+          "correctness": 35,
+          "evidence": 23
+        },
+        "passed": true,
+        "score": 87,
+        "summary": "Strong, well-grounded review with accurate supply-chain, logging-path, sanitization, sandbox, and cross-account concerns, plus useful blocked false positives and practical remediation. Minor weaknesses: it does not fully assess local probe limits or caller-controlled packet/cache/repository/binary paths; the sandbox paragraph confusingly implies packet data might influence parsed CLI arguments despite stdin separation; PowerShell source-validation code execution is not directly shown by the cited excerpt; and sanitized stderr is surfaced rather than persisted as raw logging. These gaps do not amount to a critical error.",
+        "valid": true
+      },
+      "randomized_position": 2,
+      "repetition": 2,
+      "routing_decision": {
+        "execution_mode": "WORKER",
+        "reason": "Explicit small candidate set for targeted tuning",
+        "selected": {
+          "effort": "medium",
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/medium"
+        }
+      },
+      "run_id": "real-security-trust-review--tiered--gpt-5-6-sol-medium--r2",
+      "task_prompt_sha256": "a45a9d405e8943850f1d5c4f6f9739e705026a6734b3b270c3cc21da25497aec",
+      "verification_attempts": [
+        {
+          "attempt_id": "4e849b4dc1334229b555daa4056f7411-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 44765,
+          "evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 163.778617,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":87,\"passed\":true,\"dimensions\":{\"correctness\":35,\"evidence\":23,\"completeness\":16,\"actionability\":13},\"critical_errors\":[],\"summary\":\"Strong, well-grounded review with accurate supply-chain, logging-path, sanitization, sandbox, and cross-account concerns, plus useful blocked false positives and practical remediation. Minor weaknesses: it does not fully assess local probe limits or caller-controlled packet/cache/repository/binary paths; the sandbox paragraph confusingly implies packet data might influence parsed CLI arguments despite stdin separation; PowerShell source-validation code execution is not directly shown by the cited excerpt; and sanitized stderr is surfaced rather than persisted as raw logging. These gaps do not amount to a critical error.\"}",
+          "response_sha256": "451a96d552e0d35ce7aec406ff57328cc25d380d4054e1dae33e644ca7c1d299",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 28556,
+            "output_tokens": 6850,
+            "reasoning_output_tokens": 6690,
+            "total_exposed_tokens": 35406,
+            "uncached_input_tokens": 28556
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 164.117268
+        }
+      ],
+      "work_class": "security_review",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "aggregate": {
+        "error_events": 0,
+        "execution_latency_seconds": 256.611401,
+        "internal_retries": 0,
+        "tool_items": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cache_write_input_tokens_complete": true,
+          "cached_input_tokens": 9984,
+          "cached_input_tokens_complete": true,
+          "input_tokens": 27141,
+          "input_tokens_complete": true,
+          "output_tokens": 11652,
+          "output_tokens_complete": true,
+          "reasoning_output_tokens": 10498,
+          "reasoning_output_tokens_complete": true,
+          "total_exposed_tokens": 38793,
+          "total_exposed_tokens_complete": true,
+          "uncached_input_tokens": 17157,
+          "uncached_input_tokens_complete": true
+        },
+        "wall_seconds": 258.40359,
+        "worker_choices": [
+          {
+            "effort": "max",
+            "model": "gpt-5.6-terra",
+            "pair": "gpt-5.6-terra/max",
+            "reason": "targeted-tuning-candidate"
+          }
+        ]
+      },
+      "attempts": [
+        {
+          "attempt_id": "real-security-trust-review--tiered--gpt-5-6-terra-max--r1--attempt-1",
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 256.611401,
+          "model": "gpt-5.6-terra",
+          "pair": "gpt-5.6-terra/max",
+          "reason": "targeted-tuning-candidate",
+          "response": "## Security review \u2014 commit `75c2c6926bb317803e66946f72194788cac16ebe`\n\n### Confirmed findings\n\n1. **Priority 1 \u2014 mutable, unverified installer source can execute code (Unix Codex fallback).**  \n   `install-codex.sh` downloads `main.tar.gz` (`TARBALL_URL`, line 10), derives `SOURCE_SKILL` from it (lines 202\u2013203), then `install_direct()` calls `validate_source()` (lines 105\u2013120). `validate_source()` executes the downloaded `scripts/codex_tier.py` via Python (lines 98\u2013103) before any cryptographic verification.\n\n   **Preconditions:** an attacker can alter the GitHub repository\u2019s `main` branch/archive, or controls `CODEX_TIER_SOURCE_ROOT` (lines 26, 169\u2013172), and the user reaches direct-install mode.  \n   **Impact:** arbitrary code executes as the installing user. TLS (`curl -fsSL`) protects transport, not a compromised/mutable source.  \n   **Broader source-trust gap:** `install-codex.ps1` also downloads `main.zip` (`install-codex.ps1:8,214\u2013220`); `install.sh`/`install.ps1` use mutable `main` archives (`install.sh:18\u201324`; `install.ps1:17\u201323`) and a mutable raw-branch marketplace manifest (`install.sh:22`, `install.ps1:21`). The supplied excerpt does not show whether PowerShell `Test-Source()` executes downloaded code, so that pre-install execution claim is confirmed only for Unix.  \n   **Remediation:** distribute immutable, versioned artifacts; embed/verify a pinned digest or signature before extraction or executing validation; make local-source installation an explicit trusted-developer mode.\n\n2. **Priority 2 \u2014 the \u201cbounded\u201d executor accepts unrestricted sandbox mode.**  \n   `build_parser()` permits `danger-full-access` for `execute --sandbox` (`plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py:1099\u20131105`), and `cmd_execute()` forwards `args.sandbox` directly to `codex exec` (lines 895\u2013912). This conflicts with the documented executor policy, which specifies only `read-only|workspace-write` (`references/executor.md:53\u201357,65\u201368`).\n\n   **Preconditions:** a lower-trust orchestration component or caller can choose wrapper arguments while relying on the wrapper to enforce delegation limits.  \n   **Impact:** delegated work can receive full filesystem access rather than the documented bound. This is not a privilege escalation for a user already able to invoke Codex directly with that mode.  \n   **Mitigation present:** default is `read-only`; the work packet itself is stdin, not parsed as flags.  \n   **Remediation:** remove `danger-full-access` from this wrapper, enforce a maximum sandbox policy in `cmd_execute()`, and whitelist any approval-policy values.\n\n### Defense-in-depth concerns\n\n- **Log-path and error-content boundary.** `cmd_execute()` and `cmd_record()` accept arbitrary `--log-file` paths (`codex_tier.py:883,1056`); `write_event()` creates parent directories and appends to that path (`620\u2013628`). In a service/automation context where a less-trusted caller controls arguments, this is an arbitrary-path append/create primitive as the wrapper account. Restrict logs to an owned directory, resolve paths, and reject links/reparse points.\n\n  The normal packet is not logged: tests confirm both success and failure packets are absent from usage logs (`tests/codex-tier/test_codex_tier.py:177\u2013188,207\u2013213`). However, worker stderr is sanitized then logged on failure (`codex_tier.py:1015`), while `sanitize_error()` only redacts recognizable key/token forms (`632\u2013639`). If stderr contains unlabeled prompt or secret content, it may persist. This is not a confirmed normal-flow leak; safer design is to log fixed error classes/hashes rather than stderr text.\n\n- **Cache/probe provenance.** `load_config()` applies client cache then launch-probe results (`codex_tier.py:331\u2013336`), and `apply_launch_probe_results()` says it accepts only a matching active matrix (261\u2013262; supported by `candidate_matrix_hash()`, 256). The excerpt does not demonstrate account, endpoint, or entitlement binding for that evidence. A matching cache reused across accounts could misroute to unavailable or differently billed models, but no credential transfer or confirmed cross-account exploit is shown. Treat imported/shared evidence as advisory and bind it to account/endpoint plus a live probe.\n\n### False positives dismissed\n\n- No confirmed shell command injection: `cmd_execute()` uses `subprocess.run(command, ...)` with an argument list (`933\u2013937`), and `read_packet()` supplies packet content as stdin (`672\u2013682`), not shell syntax.\n- No straightforward installer `..` destination traversal is shown: PowerShell checks resolved destination containment and leaf name (`install-codex.ps1:94\u2013100`); Unix cleanup permits only generated stage/old paths and uses `rm -rf --` (`install-codex.sh:86\u201392`).\n- The Claude marketplace artifact has a SHA-256 (`.claude-plugin/marketplace.json:13\u201316`), which protects that declared archive; it does **not** anchor trust when the installer first fetches the manifest from mutable `main`.",
+          "response_sha256": "25001436c735bbff9bc1c61f983b419c77c897fa3415b9a136c80f3475c1c33a",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 9984,
+            "input_tokens": 27141,
+            "output_tokens": 11652,
+            "reasoning_output_tokens": 10498,
+            "total_exposed_tokens": 38793,
+            "uncached_input_tokens": 17157
+          },
+          "usage_limit_reset_hint": null,
+          "wall_seconds": 258.40359
+        }
+      ],
+      "benchmark_state": "complete",
+      "candidate_pair": "gpt-5.6-terra/max",
+      "canonical_packet_sha256": "591d5947266dbb9453817e5eb1384e5443f57bb3769a6bd1d2258d6bf6e43807",
+      "condition": "tiered",
+      "deterministic_screen": {
+        "decision": "needs_judgment",
+        "failures": [],
+        "matched_required_groups": [
+          "Windows installer",
+          "Unix installer",
+          "plugin marketplace/source trust",
+          "bounded codex exec wrapper",
+          "model-cache/probe ingestion",
+          "content-free usage logging"
+        ],
+        "matched_required_terms": [],
+        "minimum_required_groups": 5,
+        "minimum_required_terms": 0,
+        "missing_required_groups": [],
+        "required_group_count": 6,
+        "required_term_count": 0,
+        "response_characters": 4963
+      },
+      "escalation_count": 0,
+      "external_retry_count": 0,
+      "final_response": "## Security review \u2014 commit `75c2c6926bb317803e66946f72194788cac16ebe`\n\n### Confirmed findings\n\n1. **Priority 1 \u2014 mutable, unverified installer source can execute code (Unix Codex fallback).**  \n   `install-codex.sh` downloads `main.tar.gz` (`TARBALL_URL`, line 10), derives `SOURCE_SKILL` from it (lines 202\u2013203), then `install_direct()` calls `validate_source()` (lines 105\u2013120). `validate_source()` executes the downloaded `scripts/codex_tier.py` via Python (lines 98\u2013103) before any cryptographic verification.\n\n   **Preconditions:** an attacker can alter the GitHub repository\u2019s `main` branch/archive, or controls `CODEX_TIER_SOURCE_ROOT` (lines 26, 169\u2013172), and the user reaches direct-install mode.  \n   **Impact:** arbitrary code executes as the installing user. TLS (`curl -fsSL`) protects transport, not a compromised/mutable source.  \n   **Broader source-trust gap:** `install-codex.ps1` also downloads `main.zip` (`install-codex.ps1:8,214\u2013220`); `install.sh`/`install.ps1` use mutable `main` archives (`install.sh:18\u201324`; `install.ps1:17\u201323`) and a mutable raw-branch marketplace manifest (`install.sh:22`, `install.ps1:21`). The supplied excerpt does not show whether PowerShell `Test-Source()` executes downloaded code, so that pre-install execution claim is confirmed only for Unix.  \n   **Remediation:** distribute immutable, versioned artifacts; embed/verify a pinned digest or signature before extraction or executing validation; make local-source installation an explicit trusted-developer mode.\n\n2. **Priority 2 \u2014 the \u201cbounded\u201d executor accepts unrestricted sandbox mode.**  \n   `build_parser()` permits `danger-full-access` for `execute --sandbox` (`plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py:1099\u20131105`), and `cmd_execute()` forwards `args.sandbox` directly to `codex exec` (lines 895\u2013912). This conflicts with the documented executor policy, which specifies only `read-only|workspace-write` (`references/executor.md:53\u201357,65\u201368`).\n\n   **Preconditions:** a lower-trust orchestration component or caller can choose wrapper arguments while relying on the wrapper to enforce delegation limits.  \n   **Impact:** delegated work can receive full filesystem access rather than the documented bound. This is not a privilege escalation for a user already able to invoke Codex directly with that mode.  \n   **Mitigation present:** default is `read-only`; the work packet itself is stdin, not parsed as flags.  \n   **Remediation:** remove `danger-full-access` from this wrapper, enforce a maximum sandbox policy in `cmd_execute()`, and whitelist any approval-policy values.\n\n### Defense-in-depth concerns\n\n- **Log-path and error-content boundary.** `cmd_execute()` and `cmd_record()` accept arbitrary `--log-file` paths (`codex_tier.py:883,1056`); `write_event()` creates parent directories and appends to that path (`620\u2013628`). In a service/automation context where a less-trusted caller controls arguments, this is an arbitrary-path append/create primitive as the wrapper account. Restrict logs to an owned directory, resolve paths, and reject links/reparse points.\n\n  The normal packet is not logged: tests confirm both success and failure packets are absent from usage logs (`tests/codex-tier/test_codex_tier.py:177\u2013188,207\u2013213`). However, worker stderr is sanitized then logged on failure (`codex_tier.py:1015`), while `sanitize_error()` only redacts recognizable key/token forms (`632\u2013639`). If stderr contains unlabeled prompt or secret content, it may persist. This is not a confirmed normal-flow leak; safer design is to log fixed error classes/hashes rather than stderr text.\n\n- **Cache/probe provenance.** `load_config()` applies client cache then launch-probe results (`codex_tier.py:331\u2013336`), and `apply_launch_probe_results()` says it accepts only a matching active matrix (261\u2013262; supported by `candidate_matrix_hash()`, 256). The excerpt does not demonstrate account, endpoint, or entitlement binding for that evidence. A matching cache reused across accounts could misroute to unavailable or differently billed models, but no credential transfer or confirmed cross-account exploit is shown. Treat imported/shared evidence as advisory and bind it to account/endpoint plus a live probe.\n\n### False positives dismissed\n\n- No confirmed shell command injection: `cmd_execute()` uses `subprocess.run(command, ...)` with an argument list (`933\u2013937`), and `read_packet()` supplies packet content as stdin (`672\u2013682`), not shell syntax.\n- No straightforward installer `..` destination traversal is shown: PowerShell checks resolved destination containment and leaf name (`install-codex.ps1:94\u2013100`); Unix cleanup permits only generated stage/old paths and uses `rm -rf --` (`install-codex.sh:86\u201392`).\n- The Claude marketplace artifact has a SHA-256 (`.claude-plugin/marketplace.json:13\u201316`), which protects that declared archive; it does **not** anchor trust when the installer first fetches the manifest from mutable `main`.",
+      "final_response_sha256": "25001436c735bbff9bc1c61f983b419c77c897fa3415b9a136c80f3475c1c33a",
+      "frozen_evidence_characters": 44765,
+      "frozen_evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "infrastructure_attempts": [],
+      "initial_pair": "gpt-5.6-terra/max",
+      "parent_pair": "gpt-5.6-sol/low",
+      "quality": {
+        "critical_errors": [
+          "The answer incorrectly says worker stderr is written to the usage log. At codex_tier.py:1003, write_event() receives the content-free event; codex_tier.py:1015 places sanitized stderr only in the returned summary. This materially mischaracterizes a central logging boundary."
+        ],
+        "dimensions": {
+          "actionability": 13,
+          "completeness": 14,
+          "correctness": 30,
+          "evidence": 20
+        },
+        "passed": false,
+        "score": 77,
+        "summary": "Strongly grounded findings on mutable installer sources, danger-full-access, arbitrary log paths, and argv-based injection defenses, with practical remediation and qualified preconditions. However, it overstates SHA-256 protection without evidence that the marketplace consumer verifies it, omits the local cmd_inspect/run_probe scope, incompletely assesses approval-policy forwarding and installer marker/backup protections, and contains the critical stderr-logging error.",
+        "valid": true
+      },
+      "randomized_position": 3,
+      "repetition": 1,
+      "routing_decision": {
+        "execution_mode": "WORKER",
+        "reason": "Explicit small candidate set for targeted tuning",
+        "selected": {
+          "effort": "max",
+          "model": "gpt-5.6-terra",
+          "pair": "gpt-5.6-terra/max"
+        }
+      },
+      "run_id": "real-security-trust-review--tiered--gpt-5-6-terra-max--r1",
+      "task_prompt_sha256": "a45a9d405e8943850f1d5c4f6f9739e705026a6734b3b270c3cc21da25497aec",
+      "verification_attempts": [
+        {
+          "attempt_id": "1afea025c1044f23ad252115be3fe938-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 44765,
+          "evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 96.169966,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":77,\"passed\":false,\"dimensions\":{\"correctness\":30,\"evidence\":20,\"completeness\":14,\"actionability\":13},\"critical_errors\":[\"The answer incorrectly says worker stderr is written to the usage log. At codex_tier.py:1003, write_event() receives the content-free event; codex_tier.py:1015 places sanitized stderr only in the returned summary. This materially mischaracterizes a central logging boundary.\"],\"summary\":\"Strongly grounded findings on mutable installer sources, danger-full-access, arbitrary log paths, and argv-based injection defenses, with practical remediation and qualified preconditions. However, it overstates SHA-256 protection without evidence that the marketplace consumer verifies it, omits the local cmd_inspect/run_probe scope, incompletely assesses approval-policy forwarding and installer marker/backup protections, and contains the critical stderr-logging error.\"}",
+          "response_sha256": "63f59920d3956a8cce02884691c39966d271a7b259b52f0f711f0bc7b3a427be",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 28457,
+            "output_tokens": 5046,
+            "reasoning_output_tokens": 4854,
+            "total_exposed_tokens": 33503,
+            "uncached_input_tokens": 28457
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 96.340533
+        }
+      ],
+      "work_class": "security_review",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "aggregate": {
+        "error_events": 0,
+        "execution_latency_seconds": 67.611956,
+        "internal_retries": 0,
+        "tool_items": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cache_write_input_tokens_complete": true,
+          "cached_input_tokens": 9984,
+          "cached_input_tokens_complete": true,
+          "input_tokens": 27141,
+          "input_tokens_complete": true,
+          "output_tokens": 1995,
+          "output_tokens_complete": true,
+          "reasoning_output_tokens": 794,
+          "reasoning_output_tokens_complete": true,
+          "total_exposed_tokens": 29136,
+          "total_exposed_tokens_complete": true,
+          "uncached_input_tokens": 17157,
+          "uncached_input_tokens_complete": true
+        },
+        "wall_seconds": 68.510725,
+        "worker_choices": [
+          {
+            "effort": "medium",
+            "model": "gpt-5.6-sol",
+            "pair": "gpt-5.6-sol/medium",
+            "reason": "targeted-tuning-candidate"
+          }
+        ]
+      },
+      "attempts": [
+        {
+          "attempt_id": "real-security-trust-review--tiered--gpt-5-6-sol-medium--r1--attempt-1",
+          "effort": "medium",
+          "error": null,
+          "error_event_count": 0,
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 67.611956,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/medium",
+          "reason": "targeted-tuning-candidate",
+          "response": "# Security and trust-boundary review\n\nScope: commit `75c2c6926bb317803e66946f72194788cac16ebe`. Findings are based solely on the supplied frozen excerpts.\n\n## Confirmed findings\n\n### High \u2014 Unpinned fallback downloads can execute mutable upstream code\n\nAll direct installers download the repository\u2019s mutable `main` branch without verifying a digest or signature:\n\n- `install.sh:18-24,182-190`\n- `install.ps1:17-23,186-195`\n- `install-codex.sh:7-10,194-203`\n- `install-codex.ps1:5-8,214-220`\n\nA compromised GitHub account, repository, branch, or download path could replace installed skill/plugin content. The Codex installers additionally execute downloaded Python during validation: `install-codex.sh:98-102,105-107`; the analogous call is exposed through `Install-Direct`/`Test-Source` in `install-codex.ps1:88-90`. Thus compromise can become installer-time code execution, before the skill is used.\n\nMitigations: HTTPS transport; expected directory and file checks; deterministic validation; staging and rollback. These establish layout/consistency, not authenticity. The Claude marketplace\u2019s normal route is materially stronger because `.claude-plugin/marketplace.json:13-16` pins a versioned release archive and SHA-256.\n\nRemediation: use immutable release artifacts with embedded SHA-256/signature verification on every fallback; never execute validation code from an unauthenticated archive.\n\n### Medium \u2014 \u201cInstaller-owned\u201d marker is forgeable\n\nDestructive replacement trusts a predictable marker inside the target:\n\n- `install.sh:27,157-169,200-218`\n- `install.ps1:27,139-149,201-215`\n- `install-codex.sh:11,120-128`\n- `install-codex.ps1:9,107-113,128-134`\n\nAny same-account process able to write the target can add the marker and cause a later installer run to delete or move content that was not installer-created. Impact is loss/displacement of files under the fixed skill destination, not arbitrary-path deletion absent another filesystem primitive.\n\nMitigations: fixed plugin names, bounded destinations, backups for unmarked content, and marker-last cleanup. Codex PowerShell also verifies the destination remains under `.agents\\skills` (`install-codex.ps1:93-100`); Unix stage deletion accepts only strict prefixes (`install-codex.sh:86-92`).\n\nRemediation: store ownership metadata outside the replaceable directory and validate destination type/real path; treat symlinks/junctions as untrusted.\n\n### Medium \u2014 \u201cContent-free\u201d logs can leak unrecognized credential formats\n\n`write_event` logs only `EVENT_FIELDS` and sanitizes every string (`codex_tier.py:620-628`), so prompts and transcripts are structurally excluded. Tests confirm packet text is absent on success and failure (`tests/codex-tier/test_codex_tier.py:184-188,190-213`).\n\nHowever, `sanitize_error` is pattern-based (`codex_tier.py:632-639`). Secrets lacking an `sk-` form or a recognized label\u2014such as an unlabeled private token, URL query credential, or proprietary key format\u2014can remain in logged error metadata. Preconditions are a worker/tool error containing such a secret and a string field admitting that error. Impact is credential disclosure to readers of the JSONL log.\n\nRemediation: log stable error codes by default; require explicit opt-in for sanitized diagnostic text.\n\n## Defense-in-depth concerns\n\n- `execute --sandbox` permits `danger-full-access` (`codex_tier.py:1099-1105`), despite executor guidance documenting only `read-only|workspace-write` (`references/executor.md:53-57`). Approval policy is also optional (`codex_tier.py:895-898`). This is not an automatic sandbox bypass\u2014the caller must explicitly select it\u2014but removing or separately gating the dangerous choice would better enforce the stated boundary.\n- Model-cache and launch-probe inputs affect routing (`codex_tier.py:147-164,261-262,331-336`). Probe application is protected by an active-matrix match, but the excerpts show no account/provenance binding for measured frontiers (`merge_measured_frontiers`, line 308). Therefore cross-account calibration poisoning is not confirmed; account-scoped storage and signed provenance would strengthen it.\n- Codex marketplace installation names a repository rather than an immutable release (`install-codex.sh:161-166`; `install-codex.ps1:143-152`). The supplied `plugins/codex-tier/.codex-plugin/plugin.json` excerpt is empty, so source pinning cannot be verified. Treat this as unresolved plugin-source trust, not a confirmed defect.\n\n## Explicitly dismissed false positives\n\n- No shell/argument injection is evident: shell variables are quoted, PowerShell uses argument arrays, and Python invokes `subprocess.run` with argument lists (`codex_tier.py:895-935`), not a shell command string.\n- Packet contents are passed on stdin (`codex_tier.py:933-936`), so packet text cannot become CLI arguments.\n- User-selected packet/log paths permit arbitrary reads or appends under the invoking user\u2019s permissions (`codex_tier.py:672-682,883,1056-1057`), but they are explicit CLI inputs, not attacker-controlled traversal across an established trust boundary.\n- The installers do not blindly overwrite unmarked hand-authored skills; they move them aside (`install.ps1:202-210`; `install.sh:200-212`) and Codex installation stages/rolls back replacements.",
+          "response_sha256": "e41414eaae33044a89cb644fc3df0de846c4f7d0d462aa82aaa4ddfc48ceeabe",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 9984,
+            "input_tokens": 27141,
+            "output_tokens": 1995,
+            "reasoning_output_tokens": 794,
+            "total_exposed_tokens": 29136,
+            "uncached_input_tokens": 17157
+          },
+          "usage_limit_reset_hint": null,
+          "wall_seconds": 68.510725
+        }
+      ],
+      "benchmark_state": "complete",
+      "candidate_pair": "gpt-5.6-sol/medium",
+      "canonical_packet_sha256": "591d5947266dbb9453817e5eb1384e5443f57bb3769a6bd1d2258d6bf6e43807",
+      "condition": "tiered",
+      "deterministic_screen": {
+        "decision": "needs_judgment",
+        "failures": [],
+        "matched_required_groups": [
+          "Windows installer",
+          "Unix installer",
+          "plugin marketplace/source trust",
+          "model-cache/probe ingestion",
+          "content-free usage logging"
+        ],
+        "matched_required_terms": [],
+        "minimum_required_groups": 5,
+        "minimum_required_terms": 0,
+        "missing_required_groups": [
+          "bounded codex exec wrapper"
+        ],
+        "required_group_count": 6,
+        "required_term_count": 0,
+        "response_characters": 5254
+      },
+      "escalation_count": 0,
+      "external_retry_count": 0,
+      "final_response": "# Security and trust-boundary review\n\nScope: commit `75c2c6926bb317803e66946f72194788cac16ebe`. Findings are based solely on the supplied frozen excerpts.\n\n## Confirmed findings\n\n### High \u2014 Unpinned fallback downloads can execute mutable upstream code\n\nAll direct installers download the repository\u2019s mutable `main` branch without verifying a digest or signature:\n\n- `install.sh:18-24,182-190`\n- `install.ps1:17-23,186-195`\n- `install-codex.sh:7-10,194-203`\n- `install-codex.ps1:5-8,214-220`\n\nA compromised GitHub account, repository, branch, or download path could replace installed skill/plugin content. The Codex installers additionally execute downloaded Python during validation: `install-codex.sh:98-102,105-107`; the analogous call is exposed through `Install-Direct`/`Test-Source` in `install-codex.ps1:88-90`. Thus compromise can become installer-time code execution, before the skill is used.\n\nMitigations: HTTPS transport; expected directory and file checks; deterministic validation; staging and rollback. These establish layout/consistency, not authenticity. The Claude marketplace\u2019s normal route is materially stronger because `.claude-plugin/marketplace.json:13-16` pins a versioned release archive and SHA-256.\n\nRemediation: use immutable release artifacts with embedded SHA-256/signature verification on every fallback; never execute validation code from an unauthenticated archive.\n\n### Medium \u2014 \u201cInstaller-owned\u201d marker is forgeable\n\nDestructive replacement trusts a predictable marker inside the target:\n\n- `install.sh:27,157-169,200-218`\n- `install.ps1:27,139-149,201-215`\n- `install-codex.sh:11,120-128`\n- `install-codex.ps1:9,107-113,128-134`\n\nAny same-account process able to write the target can add the marker and cause a later installer run to delete or move content that was not installer-created. Impact is loss/displacement of files under the fixed skill destination, not arbitrary-path deletion absent another filesystem primitive.\n\nMitigations: fixed plugin names, bounded destinations, backups for unmarked content, and marker-last cleanup. Codex PowerShell also verifies the destination remains under `.agents\\skills` (`install-codex.ps1:93-100`); Unix stage deletion accepts only strict prefixes (`install-codex.sh:86-92`).\n\nRemediation: store ownership metadata outside the replaceable directory and validate destination type/real path; treat symlinks/junctions as untrusted.\n\n### Medium \u2014 \u201cContent-free\u201d logs can leak unrecognized credential formats\n\n`write_event` logs only `EVENT_FIELDS` and sanitizes every string (`codex_tier.py:620-628`), so prompts and transcripts are structurally excluded. Tests confirm packet text is absent on success and failure (`tests/codex-tier/test_codex_tier.py:184-188,190-213`).\n\nHowever, `sanitize_error` is pattern-based (`codex_tier.py:632-639`). Secrets lacking an `sk-` form or a recognized label\u2014such as an unlabeled private token, URL query credential, or proprietary key format\u2014can remain in logged error metadata. Preconditions are a worker/tool error containing such a secret and a string field admitting that error. Impact is credential disclosure to readers of the JSONL log.\n\nRemediation: log stable error codes by default; require explicit opt-in for sanitized diagnostic text.\n\n## Defense-in-depth concerns\n\n- `execute --sandbox` permits `danger-full-access` (`codex_tier.py:1099-1105`), despite executor guidance documenting only `read-only|workspace-write` (`references/executor.md:53-57`). Approval policy is also optional (`codex_tier.py:895-898`). This is not an automatic sandbox bypass\u2014the caller must explicitly select it\u2014but removing or separately gating the dangerous choice would better enforce the stated boundary.\n- Model-cache and launch-probe inputs affect routing (`codex_tier.py:147-164,261-262,331-336`). Probe application is protected by an active-matrix match, but the excerpts show no account/provenance binding for measured frontiers (`merge_measured_frontiers`, line 308). Therefore cross-account calibration poisoning is not confirmed; account-scoped storage and signed provenance would strengthen it.\n- Codex marketplace installation names a repository rather than an immutable release (`install-codex.sh:161-166`; `install-codex.ps1:143-152`). The supplied `plugins/codex-tier/.codex-plugin/plugin.json` excerpt is empty, so source pinning cannot be verified. Treat this as unresolved plugin-source trust, not a confirmed defect.\n\n## Explicitly dismissed false positives\n\n- No shell/argument injection is evident: shell variables are quoted, PowerShell uses argument arrays, and Python invokes `subprocess.run` with argument lists (`codex_tier.py:895-935`), not a shell command string.\n- Packet contents are passed on stdin (`codex_tier.py:933-936`), so packet text cannot become CLI arguments.\n- User-selected packet/log paths permit arbitrary reads or appends under the invoking user\u2019s permissions (`codex_tier.py:672-682,883,1056-1057`), but they are explicit CLI inputs, not attacker-controlled traversal across an established trust boundary.\n- The installers do not blindly overwrite unmarked hand-authored skills; they move them aside (`install.ps1:202-210`; `install.sh:200-212`) and Codex installation stages/rolls back replacements.",
+      "final_response_sha256": "e41414eaae33044a89cb644fc3df0de846c4f7d0d462aa82aaa4ddfc48ceeabe",
+      "frozen_evidence_characters": 44765,
+      "frozen_evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "infrastructure_attempts": [],
+      "initial_pair": "gpt-5.6-sol/medium",
+      "parent_pair": "gpt-5.6-sol/low",
+      "quality": {
+        "critical_errors": [
+          "The predictable-marker issue is overstated as a confirmed Medium vulnerability. Under the stated precondition\u2014a same-account process able to write the destination\u2014the actor ordinarily can already alter or delete that content, so no meaningful privilege or trust-boundary amplification is demonstrated. Moving metadata elsewhere under the same account would not address the claimed attacker.",
+          "The confirmed logging finding does not trace worker error text into an allowed EVENT_FIELDS field. The evidence shows packet exclusion and sanitization of allowlisted metadata; it proves that pattern-based redaction is incomplete, but not the asserted automatic worker-error-to-JSONL leakage path. Without identifying an admitted field and source, this should be defense-in-depth rather than a confirmed Medium finding."
+        ],
+        "dimensions": {
+          "actionability": 12,
+          "completeness": 16,
+          "correctness": 29,
+          "evidence": 19
+        },
+        "passed": false,
+        "score": 76,
+        "summary": "The answer is concise, well cited, and touches every named boundary. Its mutable-main supply-chain finding, argument-list/stdin analysis, sandbox concern, and cautious cross-account discussion are useful. However, it materially overclassifies two concerns and incompletely analyzes plugin trust: the Claude marketplace manifest is itself fetched from mutable main, so its archive hash is not an independent trust anchor against repository/account compromise. It also gives little detail on local probe scope and omits relevant wrapper mitigations such as config isolation and ephemeral execution.",
+        "valid": true
+      },
+      "randomized_position": 4,
+      "repetition": 1,
+      "routing_decision": {
+        "execution_mode": "WORKER",
+        "reason": "Explicit small candidate set for targeted tuning",
+        "selected": {
+          "effort": "medium",
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/medium"
+        }
+      },
+      "run_id": "real-security-trust-review--tiered--gpt-5-6-sol-medium--r1",
+      "task_prompt_sha256": "a45a9d405e8943850f1d5c4f6f9739e705026a6734b3b270c3cc21da25497aec",
+      "verification_attempts": [
+        {
+          "attempt_id": "a76abc5fdb004177b1f2b7d40d0eaa2c-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": "2026-09-01T17:06:26.286296Z WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell 2026-09-01T17:06:28.221029Z WARN codex_core::session_startup_prewarm: startup websocket prewarm setup failed: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 4:28 PM.",
+          "error_event_count": 1,
+          "evidence_characters": 44765,
+          "evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+          "exit_code": 1,
+          "failure_kind": "usage_limit",
+          "internal_retry_count": 0,
+          "latency_seconds": 5.604412,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "",
+          "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "success": false,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": null,
+            "output_tokens": null,
+            "reasoning_output_tokens": null,
+            "total_exposed_tokens": null,
+            "uncached_input_tokens": null
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 5.968562
+        },
+        {
+          "attempt_id": "c55243e31f6b497a8984847e1ac56699-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 44765,
+          "evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 150.443609,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":76,\"passed\":false,\"dimensions\":{\"correctness\":29,\"evidence\":19,\"completeness\":16,\"actionability\":12},\"critical_errors\":[\"The predictable-marker issue is overstated as a confirmed Medium vulnerability. Under the stated precondition\u2014a same-account process able to write the destination\u2014the actor ordinarily can already alter or delete that content, so no meaningful privilege or trust-boundary amplification is demonstrated. Moving metadata elsewhere under the same account would not address the claimed attacker.\",\"The confirmed logging finding does not trace worker error text into an allowed EVENT_FIELDS field. The evidence shows packet exclusion and sanitization of allowlisted metadata; it proves that pattern-based redaction is incomplete, but not the asserted automatic worker-error-to-JSONL leakage path. Without identifying an admitted field and source, this should be defense-in-depth rather than a confirmed Medium finding.\"],\"summary\":\"The answer is concise, well cited, and touches every named boundary. Its mutable-main supply-chain finding, argument-list/stdin analysis, sandbox concern, and cautious cross-account discussion are useful. However, it materially overclassifies two concerns and incompletely analyzes plugin trust: the Claude marketplace manifest is itself fetched from mutable main, so its archive hash is not an independent trust anchor against repository/account compromise. It also gives little detail on local probe scope and omits relevant wrapper mitigations such as config isolation and ephemeral execution.\"}",
+          "response_sha256": "eb5bca55ece4c3350175a9f65ecda104247ddfc6554788f3b04664c84dbc3003",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 32298,
+            "output_tokens": 8025,
+            "reasoning_output_tokens": 7731,
+            "total_exposed_tokens": 40323,
+            "uncached_input_tokens": 32298
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 150.844175
+        }
+      ],
+      "work_class": "security_review",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "aggregate": {
+        "error_events": 0,
+        "execution_latency_seconds": 61.475122,
+        "internal_retries": 0,
+        "tool_items": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cache_write_input_tokens_complete": true,
+          "cached_input_tokens": 9984,
+          "cached_input_tokens_complete": true,
+          "input_tokens": 27141,
+          "input_tokens_complete": true,
+          "output_tokens": 1850,
+          "output_tokens_complete": true,
+          "reasoning_output_tokens": 581,
+          "reasoning_output_tokens_complete": true,
+          "total_exposed_tokens": 28991,
+          "total_exposed_tokens_complete": true,
+          "uncached_input_tokens": 17157,
+          "uncached_input_tokens_complete": true
+        },
+        "wall_seconds": 61.811124,
+        "worker_choices": [
+          {
+            "effort": "low",
+            "model": "gpt-5.6-sol",
+            "pair": "gpt-5.6-sol/low",
+            "reason": "normal-codex-parent"
+          }
+        ]
+      },
+      "attempts": [
+        {
+          "attempt_id": "real-security-trust-review--baseline--r1--attempt-1",
+          "effort": "low",
+          "error": null,
+          "error_event_count": 0,
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 61.475122,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/low",
+          "reason": "normal-codex-parent",
+          "response": "# Security and trust-boundary review\n\nCommit `75c2c6926bb317803e66946f72194788cac16ebe`\n\n## Confirmed finding\n\n### High \u2014 Standalone installers execute unpinned content from a mutable branch\n\nAll four fallback installers download `main` rather than an immutable commit or authenticated release:\n\n- `install.ps1:23,186-215`\n- `install.sh:24,177-216`\n- `install-codex.ps1:8,214-220`\n- `install-codex.sh:10,194-203`\n\nThey verify only expected file presence or run the downloaded `codex_tier.py validate`; neither establishes provenance because malicious archive content can include both the validator and payload. HTTPS protects transport, not against repository compromise, branch replacement, or compromised release infrastructure.\n\nPrecondition: control of the GitHub repository/account or the ability to make GitHub serve altered branch content. Impact: attacker-controlled skill instructions and Python code are installed into trusted agent skill directories; later loading or installer validation can execute that code. The Codex installer is especially sensitive because `validate_source()` invokes the downloaded script (`install-codex.sh:98-103`; analogous `Install-Direct` validation at `install-codex.ps1:88-90`).\n\nExisting mitigation: the Claude marketplace manifest pins a versioned release archive and SHA-256 (`.claude-plugin/marketplace.json:13-16`). HTTPS, randomized temporary directories, layout checks, and post-copy checks reduce accidental corruption but do not fix provenance.\n\nRemediation: use immutable release assets for every route, embed and verify SHA-256 before extraction or execution, and preferably authenticate the manifest/signature independently. Never execute an archive-supplied validator before integrity verification.\n\n## Defense-in-depth concerns\n\n### Medium \u2014 Plugin-source identity is weaker on the Codex route\n\n`Invoke-PluginRoute`/`plugin_route` adds the shorthand repository name `thephenyl02-creator/claude-tier`, upgrades marketplace `codex-tier`, and accepts an installed plugin based only on its name (`install-codex.ps1:143-153`; `install-codex.sh:161-166`). The frozen `plugins/codex-tier/.codex-plugin/plugin.json` excerpt contains no manifest evidence from which publisher, version, source URL, or digest can be verified.\n\nPrecondition: marketplace resolution, cached metadata, or the upstream repository is compromised or confused. Impact: a different artifact named `codex-tier` may be trusted. Treat this as defense-in-depth because the evidence does not establish Codex CLI\u2019s own marketplace verification guarantees.\n\nRemediation: pin publisher/repository, version, and digest; verify those fields after installation rather than checking name alone.\n\n### Medium \u2014 Privilege controls are caller-selectable, without an internal ceiling\n\nThe wrapper exposes `danger-full-access` (`codex_tier.py:1099-1105`) and forwards arbitrary `--approval-policy` before `exec` (`cmd_execute`, lines 895-912). Defaults are safe (`read-only`), and arguments are passed explicitly, but any system exposing this wrapper to a less-trusted caller could permit sandbox or approval weakening.\n\nPrecondition: an untrusted party can control wrapper CLI arguments. Impact: worker commands may run with broader filesystem authority or reduced approval requirements.\n\nRemediation: remove `danger-full-access` from routine tier execution, allowlist approval policies, or require an out-of-band administrator opt-in.\n\n### Low \u2014 Calibration evidence lacks demonstrated account provenance\n\n`load_config()` combines the registry with local model-cache and launch-probe results (`codex_tier.py:331-336`) and can merge measured frontiers (`merge_measured_frontiers`, line 308). Launch probes are documented as accepted only when matching the active candidate-matrix hash (`apply_launch_probe_results`, lines 261-262), which prevents obvious stale-matrix reuse. The supplied evidence does not show account/workspace identity bound to cache, probe, or measured-frontier records.\n\nPrecondition: multiple accounts share a home/cache or calibration artifacts are copied between accounts. Impact: routing may rely on availability or quality measurements obtained under another account\u2019s entitlements or behavior.\n\nRemediation: bind evidence to a privacy-preserving account/organization fingerprint plus CLI version, matrix hash, and expiry; reject mismatches.\n\n### Low \u2014 \u201cContent-free\u201d logging depends on imperfect redaction\n\n`write_event()` restricts output to `EVENT_FIELDS` and sanitizes every string (`codex_tier.py:620-628`). `sanitize_error()` catches OpenAI-style keys and labeled credential forms (`632-639`), while tests confirm packets are absent on success and failure and common credentials are redacted (`tests/codex-tier/test_codex_tier.py:184-188,190-249`). Nevertheless, arbitrary unlabeled secrets or prompt fragments in metadata/error text are not provably removed by these regexes.\n\nRemediation: log enumerated error codes rather than worker text; truncate and redact before constructing events, not only at serialization.\n\n## Explicitly dismissed false positives\n\n- No shell command injection is evident in worker execution: `subprocess.run()` receives an argument list and the packet through stdin (`codex_tier.py:895-935`); model/config text is not shell-evaluated.\n- Installer variables are quoted or passed as PowerShell argument arrays, blocking ordinary whitespace/metacharacter injection (`install.sh:135-147`; `install.ps1:65-75`).\n- Windows direct installation checks that the resolved destination remains exactly under `.agents\\skills` (`install-codex.ps1:93-100`). Unix cleanup accepts only generated stage/old path patterns (`install-codex.sh:86-90`).\n- Existing hand-authored skills are moved aside, not deleted; marker-bearing copies alone are replaced (`install.ps1:139-156,202-215`; `install.sh:157-169,200-216`).\n- `--packet-file` and `--log-file` accept arbitrary local paths, but this is not independently exploitable unless an untrusted caller already has permission to invoke the wrapper with chosen arguments.",
+          "response_sha256": "09278eadb0aab9c7d96f6b8905c489a2d96a12690cbde0c606f2f284d28e1573",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 9984,
+            "input_tokens": 27141,
+            "output_tokens": 1850,
+            "reasoning_output_tokens": 581,
+            "total_exposed_tokens": 28991,
+            "uncached_input_tokens": 17157
+          },
+          "usage_limit_reset_hint": null,
+          "wall_seconds": 61.811124
+        }
+      ],
+      "benchmark_state": "complete",
+      "canonical_packet_sha256": "591d5947266dbb9453817e5eb1384e5443f57bb3769a6bd1d2258d6bf6e43807",
+      "condition": "baseline",
+      "deterministic_screen": {
+        "decision": "needs_judgment",
+        "failures": [],
+        "matched_required_groups": [
+          "Windows installer",
+          "Unix installer",
+          "plugin marketplace/source trust",
+          "bounded codex exec wrapper",
+          "model-cache/probe ingestion",
+          "content-free usage logging"
+        ],
+        "matched_required_terms": [],
+        "minimum_required_groups": 5,
+        "minimum_required_terms": 0,
+        "missing_required_groups": [],
+        "required_group_count": 6,
+        "required_term_count": 0,
+        "response_characters": 6064
+      },
+      "escalation_count": 0,
+      "external_retry_count": 0,
+      "final_response": "# Security and trust-boundary review\n\nCommit `75c2c6926bb317803e66946f72194788cac16ebe`\n\n## Confirmed finding\n\n### High \u2014 Standalone installers execute unpinned content from a mutable branch\n\nAll four fallback installers download `main` rather than an immutable commit or authenticated release:\n\n- `install.ps1:23,186-215`\n- `install.sh:24,177-216`\n- `install-codex.ps1:8,214-220`\n- `install-codex.sh:10,194-203`\n\nThey verify only expected file presence or run the downloaded `codex_tier.py validate`; neither establishes provenance because malicious archive content can include both the validator and payload. HTTPS protects transport, not against repository compromise, branch replacement, or compromised release infrastructure.\n\nPrecondition: control of the GitHub repository/account or the ability to make GitHub serve altered branch content. Impact: attacker-controlled skill instructions and Python code are installed into trusted agent skill directories; later loading or installer validation can execute that code. The Codex installer is especially sensitive because `validate_source()` invokes the downloaded script (`install-codex.sh:98-103`; analogous `Install-Direct` validation at `install-codex.ps1:88-90`).\n\nExisting mitigation: the Claude marketplace manifest pins a versioned release archive and SHA-256 (`.claude-plugin/marketplace.json:13-16`). HTTPS, randomized temporary directories, layout checks, and post-copy checks reduce accidental corruption but do not fix provenance.\n\nRemediation: use immutable release assets for every route, embed and verify SHA-256 before extraction or execution, and preferably authenticate the manifest/signature independently. Never execute an archive-supplied validator before integrity verification.\n\n## Defense-in-depth concerns\n\n### Medium \u2014 Plugin-source identity is weaker on the Codex route\n\n`Invoke-PluginRoute`/`plugin_route` adds the shorthand repository name `thephenyl02-creator/claude-tier`, upgrades marketplace `codex-tier`, and accepts an installed plugin based only on its name (`install-codex.ps1:143-153`; `install-codex.sh:161-166`). The frozen `plugins/codex-tier/.codex-plugin/plugin.json` excerpt contains no manifest evidence from which publisher, version, source URL, or digest can be verified.\n\nPrecondition: marketplace resolution, cached metadata, or the upstream repository is compromised or confused. Impact: a different artifact named `codex-tier` may be trusted. Treat this as defense-in-depth because the evidence does not establish Codex CLI\u2019s own marketplace verification guarantees.\n\nRemediation: pin publisher/repository, version, and digest; verify those fields after installation rather than checking name alone.\n\n### Medium \u2014 Privilege controls are caller-selectable, without an internal ceiling\n\nThe wrapper exposes `danger-full-access` (`codex_tier.py:1099-1105`) and forwards arbitrary `--approval-policy` before `exec` (`cmd_execute`, lines 895-912). Defaults are safe (`read-only`), and arguments are passed explicitly, but any system exposing this wrapper to a less-trusted caller could permit sandbox or approval weakening.\n\nPrecondition: an untrusted party can control wrapper CLI arguments. Impact: worker commands may run with broader filesystem authority or reduced approval requirements.\n\nRemediation: remove `danger-full-access` from routine tier execution, allowlist approval policies, or require an out-of-band administrator opt-in.\n\n### Low \u2014 Calibration evidence lacks demonstrated account provenance\n\n`load_config()` combines the registry with local model-cache and launch-probe results (`codex_tier.py:331-336`) and can merge measured frontiers (`merge_measured_frontiers`, line 308). Launch probes are documented as accepted only when matching the active candidate-matrix hash (`apply_launch_probe_results`, lines 261-262), which prevents obvious stale-matrix reuse. The supplied evidence does not show account/workspace identity bound to cache, probe, or measured-frontier records.\n\nPrecondition: multiple accounts share a home/cache or calibration artifacts are copied between accounts. Impact: routing may rely on availability or quality measurements obtained under another account\u2019s entitlements or behavior.\n\nRemediation: bind evidence to a privacy-preserving account/organization fingerprint plus CLI version, matrix hash, and expiry; reject mismatches.\n\n### Low \u2014 \u201cContent-free\u201d logging depends on imperfect redaction\n\n`write_event()` restricts output to `EVENT_FIELDS` and sanitizes every string (`codex_tier.py:620-628`). `sanitize_error()` catches OpenAI-style keys and labeled credential forms (`632-639`), while tests confirm packets are absent on success and failure and common credentials are redacted (`tests/codex-tier/test_codex_tier.py:184-188,190-249`). Nevertheless, arbitrary unlabeled secrets or prompt fragments in metadata/error text are not provably removed by these regexes.\n\nRemediation: log enumerated error codes rather than worker text; truncate and redact before constructing events, not only at serialization.\n\n## Explicitly dismissed false positives\n\n- No shell command injection is evident in worker execution: `subprocess.run()` receives an argument list and the packet through stdin (`codex_tier.py:895-935`); model/config text is not shell-evaluated.\n- Installer variables are quoted or passed as PowerShell argument arrays, blocking ordinary whitespace/metacharacter injection (`install.sh:135-147`; `install.ps1:65-75`).\n- Windows direct installation checks that the resolved destination remains exactly under `.agents\\skills` (`install-codex.ps1:93-100`). Unix cleanup accepts only generated stage/old path patterns (`install-codex.sh:86-90`).\n- Existing hand-authored skills are moved aside, not deleted; marker-bearing copies alone are replaced (`install.ps1:139-156,202-215`; `install.sh:157-169,200-216`).\n- `--packet-file` and `--log-file` accept arbitrary local paths, but this is not independently exploitable unless an untrusted caller already has permission to invoke the wrapper with chosen arguments.",
+      "final_response_sha256": "09278eadb0aab9c7d96f6b8905c489a2d96a12690cbde0c606f2f284d28e1573",
+      "frozen_evidence_characters": 44765,
+      "frozen_evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "infrastructure_attempts": [],
+      "initial_pair": "gpt-5.6-sol/low",
+      "parent_pair": "gpt-5.6-sol/low",
+      "quality": {
+        "critical_errors": [],
+        "dimensions": {
+          "actionability": 13,
+          "completeness": 16,
+          "correctness": 35,
+          "evidence": 22
+        },
+        "passed": true,
+        "score": 86,
+        "summary": "Strong, well-grounded review covering every named trust boundary with useful preconditions, mitigations, prioritization, and mostly exact citations. Minor deductions: it does not explicitly analyze the mutable `main` Claude marketplace manifest as a trust root; its path-safety dismissal overlooks junction/symlink nuances; arbitrary packet/log paths merit a defense-in-depth classification when exposed to less-trusted callers; and local probe scope is not fully explained. The claims that approval policies are arbitrary and that PowerShell validation executes downloaded code are also not completely established by the supplied excerpts. None is a critical error.",
+        "valid": true
+      },
+      "randomized_position": 5,
+      "repetition": 1,
+      "routing_decision": null,
+      "run_id": "real-security-trust-review--baseline--r1",
+      "task_prompt_sha256": "a45a9d405e8943850f1d5c4f6f9739e705026a6734b3b270c3cc21da25497aec",
+      "verification_attempts": [
+        {
+          "attempt_id": "9b564b4516024d85b1e8117f6f1b0475-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 44765,
+          "evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 121.07177,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":86,\"passed\":true,\"dimensions\":{\"correctness\":35,\"evidence\":22,\"completeness\":16,\"actionability\":13},\"critical_errors\":[],\"summary\":\"Strong, well-grounded review covering every named trust boundary with useful preconditions, mitigations, prioritization, and mostly exact citations. Minor deductions: it does not explicitly analyze the mutable `main` Claude marketplace manifest as a trust root; its path-safety dismissal overlooks junction/symlink nuances; arbitrary packet/log paths merit a defense-in-depth classification when exposed to less-trusted callers; and local probe scope is not fully explained. The claims that approval policies are arbitrary and that PowerShell validation executes downloaded code are also not completely established by the supplied excerpts. None is a critical error.\"}",
+          "response_sha256": "b3f845cb36cf95a88c6fbea14047dafc97d54acae4b250f0d763a585c162f04b",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 28554,
+            "output_tokens": 6383,
+            "reasoning_output_tokens": 6214,
+            "total_exposed_tokens": 34937,
+            "uncached_input_tokens": 28554
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 121.261774
+        }
+      ],
+      "work_class": "security_review",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "aggregate": {
+        "error_events": 0,
+        "execution_latency_seconds": 48.911315,
+        "internal_retries": 0,
+        "tool_items": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cache_write_input_tokens_complete": true,
+          "cached_input_tokens": 9984,
+          "cached_input_tokens_complete": true,
+          "input_tokens": 29907,
+          "input_tokens_complete": true,
+          "output_tokens": 1657,
+          "output_tokens_complete": true,
+          "reasoning_output_tokens": 455,
+          "reasoning_output_tokens_complete": true,
+          "total_exposed_tokens": 31564,
+          "total_exposed_tokens_complete": true,
+          "uncached_input_tokens": 19923,
+          "uncached_input_tokens_complete": true
+        },
+        "wall_seconds": 49.244309,
+        "worker_choices": [
+          {
+            "effort": "low",
+            "model": "gpt-5.6-sol",
+            "pair": "gpt-5.6-sol/low",
+            "reason": "normal-codex-parent"
+          }
+        ]
+      },
+      "attempts": [
+        {
+          "attempt_id": "real-security-trust-review--baseline--r2--attempt-1",
+          "effort": "low",
+          "error": null,
+          "error_event_count": 0,
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 48.911315,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/low",
+          "reason": "normal-codex-parent",
+          "response": "# Security and trust-boundary review\n\nCommit `75c2c6926bb317803e66946f72194788cac16ebe`\n\n## High priority\n\n### Confirmed: direct-install fallbacks execute mutable branch content\n\nAll four installers fetch `main`, not the reviewed commit or a signed release:\n\n- `install.ps1:21-23,186-215`\n- `install.sh:22-24,177-216`\n- `install-codex.ps1:8,214-220`\n- `install-codex.sh:10,194-203`\n\nThe Claude fallback checks only that `SKILL.md` exists; the Codex fallback runs the downloaded `codex_tier.py validate`, which is itself untrusted downloaded code (`install-codex.sh:98-102`; `install-codex.ps1:88-90`). Preconditions are a failed/forced plugin route plus upstream-repository, GitHub-delivery, or release-branch compromise. Impact is arbitrary skill installation and, for Codex validation, immediate code execution with installer privileges.\n\nThe Claude marketplace archive is better protected by a fixed SHA-256 (`.claude-plugin/marketplace.json:13-16`), but the installers obtain the marketplace manifest from mutable `main` (`install.ps1:21`; `install.sh:22`). Codex marketplace installation likewise identifies only `$Repo` (`install-codex.ps1:143-146`; `install-codex.sh:161-166`); the supplied empty `plugins/codex-tier/.codex-plugin/plugin.json` excerpt provides no evidence of source pinning.\n\n**Remediation:** fetch versioned release artifacts, verify embedded hashes before extraction, and never execute archive-supplied validation code before independent integrity verification.\n\n## Medium priority\n\n### Confirmed: wrapper permits explicit sandbox/approval weakening\n\n`build_parser` accepts `danger-full-access` (`codex_tier.py:1099-1105`), and `cmd_execute` forwards both sandbox and optional approval policy directly to Codex (`:895-912`). Preconditions are control of wrapper arguments; packet text alone cannot change these values. Impact is loss of the wrapper\u2019s default read-only boundary and potentially reduced confirmation requirements.\n\nMitigations include the safe `read-only` default, explicit argv construction, documented explicit pinning (`SKILL.md:67-70`), and tests distinguishing read-only from workspace-write behavior (`test_codex_tier.py:253-294`).\n\n**Remediation:** remove `danger-full-access` from normal routing, constrain approval policies to non-weaker values, or require a separately authenticated/operator-confirmed override.\n\n### Defense in depth: cache/calibration evidence is not demonstrably account-bound\n\n`load_config` incorporates client cache, launch probes, and measured frontiers (`codex_tier.py:308-336`). Launch-probe results are applied only when they match the active candidate-matrix hash (`:256-263`), which blocks stale evidence for a different matrix. However, the supplied evidence shows no account, organization, credential, endpoint, or environment identity attached to measured calibration evidence. A shared home/cache or copied calibration file could therefore influence routing across accounts if the omitted merge validation does not bind provenance.\n\nThis is **not confirmed cross-account exploitation**: the relevant persistence schema and full `merge_measured_frontiers` checks are absent. Bind evidence to a privacy-preserving account/environment fingerprint and reject mismatches.\n\n### Defense in depth: caller-selected paths allow arbitrary reads and appends\n\n`read_packet` reads any supplied path (`codex_tier.py:672-682`), while `--log-file` is expanded and opened in append mode with parent creation (`:620-628,883,1056-1057`). A caller already able to invoke the wrapper can therefore read a chosen file into the worker prompt or write JSONL through a chosen filesystem path, subject to OS permissions and the worker sandbox.\n\nNo path traversal parser bug is required; these are intentionally unrestricted path parameters. Restrict them to approved roots, reject symlinks where appropriate, and create logs with restrictive permissions.\n\n## Logging and leakage\n\nContent-free logging is substantially enforced: `write_event` serializes only `EVENT_FIELDS` and sanitizes every string (`codex_tier.py:620-628`); packets and final messages are not shown as log fields. Tests verify that successful and failed packets are absent and metadata credentials are redacted (`test_codex_tier.py:156-188,190-249`).\n\nResidual concern: `sanitize_error` is heuristic (`codex_tier.py:632-639`). Unlabeled secrets outside recognized key/token patterns may survive if present in stderr or caller metadata. Prefer structured error codes and allowlisted metadata over regex redaction.\n\n## Explicitly dismissed plausible false positives\n\n- **Shell/argument injection:** worker execution uses `subprocess.run(command, input=packet, \u2026)` with an argv list (`codex_tier.py:895-935`); packet content is stdin, not a command line. Model, effort, paths, and sandbox values cannot create extra OS arguments.\n- **Installer variable injection:** fixed plugin/repository values are consistently quoted or passed as PowerShell argument arrays (`install.sh:135-147`; `install.ps1:65-75`).\n- **Broad deletion of hand-authored skills:** marker checks preserve or move unmarked destinations (`install.ps1:139-155,202-215`; `install.sh:157-169,200-216`). Codex installers additionally validate destination shape or restrict cleanup names (`install-codex.ps1:94-105`; `install-codex.sh:86-90`).\n- **Raw prompt logging:** tests directly disprove it for success and worker failure (`test_codex_tier.py:188,207-213`).",
+          "response_sha256": "5a6a611e1124eb295c9ef01eb2fecd6f04ad1e4d220801484e84b6d5e2761205",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 9984,
+            "input_tokens": 29907,
+            "output_tokens": 1657,
+            "reasoning_output_tokens": 455,
+            "total_exposed_tokens": 31564,
+            "uncached_input_tokens": 19923
+          },
+          "usage_limit_reset_hint": null,
+          "wall_seconds": 49.244309
+        }
+      ],
+      "benchmark_state": "complete",
+      "canonical_packet_sha256": "591d5947266dbb9453817e5eb1384e5443f57bb3769a6bd1d2258d6bf6e43807",
+      "condition": "baseline",
+      "deterministic_screen": {
+        "decision": "needs_judgment",
+        "failures": [],
+        "matched_required_groups": [
+          "Windows installer",
+          "Unix installer",
+          "plugin marketplace/source trust",
+          "bounded codex exec wrapper",
+          "model-cache/probe ingestion",
+          "content-free usage logging"
+        ],
+        "matched_required_terms": [],
+        "minimum_required_groups": 5,
+        "minimum_required_terms": 0,
+        "missing_required_groups": [],
+        "required_group_count": 6,
+        "required_term_count": 0,
+        "response_characters": 5447
+      },
+      "escalation_count": 0,
+      "external_retry_count": 0,
+      "final_response": "# Security and trust-boundary review\n\nCommit `75c2c6926bb317803e66946f72194788cac16ebe`\n\n## High priority\n\n### Confirmed: direct-install fallbacks execute mutable branch content\n\nAll four installers fetch `main`, not the reviewed commit or a signed release:\n\n- `install.ps1:21-23,186-215`\n- `install.sh:22-24,177-216`\n- `install-codex.ps1:8,214-220`\n- `install-codex.sh:10,194-203`\n\nThe Claude fallback checks only that `SKILL.md` exists; the Codex fallback runs the downloaded `codex_tier.py validate`, which is itself untrusted downloaded code (`install-codex.sh:98-102`; `install-codex.ps1:88-90`). Preconditions are a failed/forced plugin route plus upstream-repository, GitHub-delivery, or release-branch compromise. Impact is arbitrary skill installation and, for Codex validation, immediate code execution with installer privileges.\n\nThe Claude marketplace archive is better protected by a fixed SHA-256 (`.claude-plugin/marketplace.json:13-16`), but the installers obtain the marketplace manifest from mutable `main` (`install.ps1:21`; `install.sh:22`). Codex marketplace installation likewise identifies only `$Repo` (`install-codex.ps1:143-146`; `install-codex.sh:161-166`); the supplied empty `plugins/codex-tier/.codex-plugin/plugin.json` excerpt provides no evidence of source pinning.\n\n**Remediation:** fetch versioned release artifacts, verify embedded hashes before extraction, and never execute archive-supplied validation code before independent integrity verification.\n\n## Medium priority\n\n### Confirmed: wrapper permits explicit sandbox/approval weakening\n\n`build_parser` accepts `danger-full-access` (`codex_tier.py:1099-1105`), and `cmd_execute` forwards both sandbox and optional approval policy directly to Codex (`:895-912`). Preconditions are control of wrapper arguments; packet text alone cannot change these values. Impact is loss of the wrapper\u2019s default read-only boundary and potentially reduced confirmation requirements.\n\nMitigations include the safe `read-only` default, explicit argv construction, documented explicit pinning (`SKILL.md:67-70`), and tests distinguishing read-only from workspace-write behavior (`test_codex_tier.py:253-294`).\n\n**Remediation:** remove `danger-full-access` from normal routing, constrain approval policies to non-weaker values, or require a separately authenticated/operator-confirmed override.\n\n### Defense in depth: cache/calibration evidence is not demonstrably account-bound\n\n`load_config` incorporates client cache, launch probes, and measured frontiers (`codex_tier.py:308-336`). Launch-probe results are applied only when they match the active candidate-matrix hash (`:256-263`), which blocks stale evidence for a different matrix. However, the supplied evidence shows no account, organization, credential, endpoint, or environment identity attached to measured calibration evidence. A shared home/cache or copied calibration file could therefore influence routing across accounts if the omitted merge validation does not bind provenance.\n\nThis is **not confirmed cross-account exploitation**: the relevant persistence schema and full `merge_measured_frontiers` checks are absent. Bind evidence to a privacy-preserving account/environment fingerprint and reject mismatches.\n\n### Defense in depth: caller-selected paths allow arbitrary reads and appends\n\n`read_packet` reads any supplied path (`codex_tier.py:672-682`), while `--log-file` is expanded and opened in append mode with parent creation (`:620-628,883,1056-1057`). A caller already able to invoke the wrapper can therefore read a chosen file into the worker prompt or write JSONL through a chosen filesystem path, subject to OS permissions and the worker sandbox.\n\nNo path traversal parser bug is required; these are intentionally unrestricted path parameters. Restrict them to approved roots, reject symlinks where appropriate, and create logs with restrictive permissions.\n\n## Logging and leakage\n\nContent-free logging is substantially enforced: `write_event` serializes only `EVENT_FIELDS` and sanitizes every string (`codex_tier.py:620-628`); packets and final messages are not shown as log fields. Tests verify that successful and failed packets are absent and metadata credentials are redacted (`test_codex_tier.py:156-188,190-249`).\n\nResidual concern: `sanitize_error` is heuristic (`codex_tier.py:632-639`). Unlabeled secrets outside recognized key/token patterns may survive if present in stderr or caller metadata. Prefer structured error codes and allowlisted metadata over regex redaction.\n\n## Explicitly dismissed plausible false positives\n\n- **Shell/argument injection:** worker execution uses `subprocess.run(command, input=packet, \u2026)` with an argv list (`codex_tier.py:895-935`); packet content is stdin, not a command line. Model, effort, paths, and sandbox values cannot create extra OS arguments.\n- **Installer variable injection:** fixed plugin/repository values are consistently quoted or passed as PowerShell argument arrays (`install.sh:135-147`; `install.ps1:65-75`).\n- **Broad deletion of hand-authored skills:** marker checks preserve or move unmarked destinations (`install.ps1:139-155,202-215`; `install.sh:157-169,200-216`). Codex installers additionally validate destination shape or restrict cleanup names (`install-codex.ps1:94-105`; `install-codex.sh:86-90`).\n- **Raw prompt logging:** tests directly disprove it for success and worker failure (`test_codex_tier.py:188,207-213`).",
+      "final_response_sha256": "5a6a611e1124eb295c9ef01eb2fecd6f04ad1e4d220801484e84b6d5e2761205",
+      "frozen_evidence_characters": 44765,
+      "frozen_evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "infrastructure_attempts": [],
+      "initial_pair": "gpt-5.6-sol/low",
+      "parent_pair": "gpt-5.6-sol/low",
+      "quality": {
+        "critical_errors": [
+          "The answer incorrectly says caller-selected packet reads and log-file appends are subject to the worker sandbox. `read_packet` and `write_event` run in the host wrapper outside the sandbox forwarded to Codex; only the wrapper process's OS permissions constrain them. This materially misstates the unsafe-path boundary and omits that privilege escalation requires a more-privileged wrapper or confused-deputy context."
+        ],
+        "dimensions": {
+          "actionability": 13,
+          "completeness": 16,
+          "correctness": 33,
+          "evidence": 21
+        },
+        "passed": false,
+        "score": 83,
+        "summary": "Strong, well-prioritized review with accurate core findings on mutable installer sources, explicit sandbox weakening, content-free logging, argv construction, and marker-based cleanup. Exact citations and cautious labeling are generally good. Beyond the critical sandbox error, it undercovers local probe scope, does not fully discuss installer containment and symlink/reparse risks, and overgeneralizes Windows validation-code execution from an excerpt that only shows `Test-Source` being called, not its implementation.",
+        "valid": true
+      },
+      "randomized_position": 6,
+      "repetition": 2,
+      "routing_decision": null,
+      "run_id": "real-security-trust-review--baseline--r2",
+      "task_prompt_sha256": "a45a9d405e8943850f1d5c4f6f9739e705026a6734b3b270c3cc21da25497aec",
+      "verification_attempts": [
+        {
+          "attempt_id": "f580777dfad740dc89c50171d99b633d-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 44765,
+          "evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 205.990396,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":83,\"passed\":false,\"dimensions\":{\"correctness\":33,\"evidence\":21,\"completeness\":16,\"actionability\":13},\"critical_errors\":[\"The answer incorrectly says caller-selected packet reads and log-file appends are subject to the worker sandbox. `read_packet` and `write_event` run in the host wrapper outside the sandbox forwarded to Codex; only the wrapper process's OS permissions constrain them. This materially misstates the unsafe-path boundary and omits that privilege escalation requires a more-privileged wrapper or confused-deputy context.\"],\"summary\":\"Strong, well-prioritized review with accurate core findings on mutable installer sources, explicit sandbox weakening, content-free logging, argv construction, and marker-based cleanup. Exact citations and cautious labeling are generally good. Beyond the critical sandbox error, it undercovers local probe scope, does not fully discuss installer containment and symlink/reparse risks, and overgeneralizes Windows validation-code execution from an excerpt that only shows `Test-Source` being called, not its implementation.\"}",
+          "response_sha256": "7ce478b32620f3fd684e66d22810e3b31f02f4815bd14d9fd63a9ae8da81d226",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 11008,
+            "input_tokens": 32282,
+            "output_tokens": 10749,
+            "reasoning_output_tokens": 10525,
+            "total_exposed_tokens": 43031,
+            "uncached_input_tokens": 21274
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 206.188112
+        }
+      ],
+      "work_class": "security_review",
+      "workload_id": "real-security-trust-review"
+    }
+  ],
+  "repository_state": {
+    "clean": true,
+    "commit": "75c2c6926bb317803e66946f72194788cac16ebe",
+    "path": "C:\\Users\\Fenil\\Documents\\ChatGPT\\Tier\\.benchmark-state\\repo",
+    "tree": "dd890aa87fa6d8aab33f868f2ec54acf3f3fb382"
+  },
+  "repository_state_after": {
+    "clean": true,
+    "commit": "75c2c6926bb317803e66946f72194788cac16ebe",
+    "path": "C:\\Users\\Fenil\\Documents\\ChatGPT\\Tier\\.benchmark-state\\repo",
+    "tree": "dd890aa87fa6d8aab33f868f2ec54acf3f3fb382"
+  },
+  "reused_primary_runs": 0,
+  "routing": {
+    "real-security-trust-review": {
+      "candidates": [
+        {
+          "historical_basis": "Lower-consumption strong-reasoning candidate retained from the original security tuning pass.",
+          "pair": "gpt-5.6-terra/max"
+        },
+        {
+          "historical_basis": "Parent-family candidate retained from the original security tuning pass.",
+          "pair": "gpt-5.6-sol/medium"
+        }
+      ],
+      "mode": "targeted-tuning",
+      "pre_pruned_candidates": [
+        {
+          "pair": "gpt-5.4-mini/low",
+          "reason": "Frozen-evidence confirmation failed the relative quality gate and omitted multiple central trust boundaries."
+        }
+      ]
+    }
+  },
+  "run_status": "complete",
+  "schedule": [
+    {
+      "candidate_pair": "gpt-5.6-terra/max",
+      "condition": "tiered",
+      "randomized_position": 1,
+      "repetition": 2,
+      "run_id": "real-security-trust-review--tiered--gpt-5-6-terra-max--r2",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "candidate_pair": "gpt-5.6-sol/medium",
+      "condition": "tiered",
+      "randomized_position": 2,
+      "repetition": 2,
+      "run_id": "real-security-trust-review--tiered--gpt-5-6-sol-medium--r2",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "candidate_pair": "gpt-5.6-terra/max",
+      "condition": "tiered",
+      "randomized_position": 3,
+      "repetition": 1,
+      "run_id": "real-security-trust-review--tiered--gpt-5-6-terra-max--r1",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "candidate_pair": "gpt-5.6-sol/medium",
+      "condition": "tiered",
+      "randomized_position": 4,
+      "repetition": 1,
+      "run_id": "real-security-trust-review--tiered--gpt-5-6-sol-medium--r1",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "condition": "baseline",
+      "randomized_position": 5,
+      "repetition": 1,
+      "run_id": "real-security-trust-review--baseline--r1",
+      "workload_id": "real-security-trust-review"
+    },
+    {
+      "condition": "baseline",
+      "randomized_position": 6,
+      "repetition": 2,
+      "run_id": "real-security-trust-review--baseline--r2",
+      "workload_id": "real-security-trust-review"
+    }
+  ],
+  "schema_version": 2,
+  "started_at": "2026-09-01T16:49:58.522406Z",
+  "suite_sha256": "a1b4cf304f06d9c28643b167ecf0b7b425bbc219143a535c47c9f1dd9a47f310",
+  "usage_limit_reset_hint": null,
+  "usage_metric": "input_tokens + output_tokens",
+  "verification_policy": "quality-remediation",
+  "verifier_approval_policy": "never",
+  "verifier_evidence": {
+    "real-security-trust-review": {
+      "characters": 44765,
+      "contains_task_rubric": false,
+      "extraction": "keyword matches with two lines of context; Python symbol inventory",
+      "packet_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "paths": [
+        "install.ps1",
+        "install.sh",
+        "install-codex.ps1",
+        "install-codex.sh",
+        ".claude-plugin/marketplace.json",
+        "plugins/codex-tier/.codex-plugin/plugin.json",
+        "plugins/codex-tier/skills/codex-tier/SKILL.md",
+        "plugins/codex-tier/skills/codex-tier/references/executor.md",
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "tests/codex-tier/test_codex_tier.py"
+      ],
+      "shared_by_baseline_and_tier": true
+    }
+  },
+  "verifier_execution_constraint": "No verifier tools; use condition-independent embedded repository evidence",
+  "verifier_pair": "gpt-5.6-sol/max",
+  "verifier_privacy": {
+    "candidate_answers_sanitized": true,
+    "credentials_or_secrets_allowed": false,
+    "environment_files_included": false,
+    "git_metadata_included": false,
+    "personal_paths_and_emails_redacted": true
+  },
+  "verifier_protocol_version": "embedded-repository-evidence-v1",
+  "verifier_repository_state_asserted_before_after": true,
+  "verifier_sandbox": "read-only",
+  "verifier_usage_included_in_savings": false
+}

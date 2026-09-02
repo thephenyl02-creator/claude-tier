@@ -1,0 +1,914 @@
+{
+  "analysis": {
+    "overall": {
+      "ambiguous_workloads": [
+        "real-bulk-release-audit",
+        "real-router-refactor-plan",
+        "real-probe-scope-debugging",
+        "real-security-trust-review"
+      ],
+      "best_case": {
+        "reduction_percent": 31.933209,
+        "workload_id": "real-security-trust-review"
+      },
+      "clear_workloads": 1,
+      "credits_exposed": false,
+      "mean_exposed_token_reduction_vs_always_sol_max_percent": 14.059509,
+      "median_exposed_token_reduction_vs_always_sol_max_percent": 9.833287,
+      "more_repetitions_needed_for_clear_workload_claims": true,
+      "more_repetitions_needed_for_publishable_aggregate_claim": true,
+      "note": "Each Sol/max workload has one observation; aggregate percentages are lightweight directional comparisons, not a repeated-run economic benchmark.",
+      "worst_case": {
+        "reduction_percent": 2.283863,
+        "workload_id": "real-probe-scope-debugging"
+      }
+    },
+    "workloads": {
+      "real-bulk-release-audit": {
+        "comparison": "ambiguous",
+        "comparison_reason": "the single Max observation overlaps the three Tier observations; absolute reduction is below the 5% clarity threshold",
+        "sol_max_latency_seconds": 130.235827,
+        "sol_max_passed": true,
+        "sol_max_quality": 95,
+        "sol_max_tokens": 159672,
+        "tier_median_latency_seconds": 36.136333,
+        "tier_median_quality": 94.0,
+        "tier_median_tokens": 155369.0,
+        "tier_observed_token_range": [
+          155312,
+          160131
+        ],
+        "tier_pass_rate": 1.0,
+        "tier_route_pairs": [
+          "gpt-5.6-sol/low"
+        ],
+        "tier_vs_max_exposed_token_reduction_percent": 2.6949,
+        "work_class": "bulk_repository_scan"
+      },
+      "real-distribution-architecture": {
+        "comparison": "clear",
+        "comparison_reason": "quality is comparable and the Max observation is separated from all Tier observations",
+        "sol_max_latency_seconds": 141.856261,
+        "sol_max_passed": true,
+        "sol_max_quality": 96,
+        "sol_max_tokens": 50746,
+        "tier_median_latency_seconds": 32.996776,
+        "tier_median_quality": 93.0,
+        "tier_median_tokens": 45756.0,
+        "tier_observed_token_range": [
+          45717,
+          49647
+        ],
+        "tier_pass_rate": 1.0,
+        "tier_route_pairs": [
+          "gpt-5.6-sol/low"
+        ],
+        "tier_vs_max_exposed_token_reduction_percent": 9.833287,
+        "work_class": "architecture"
+      },
+      "real-probe-scope-debugging": {
+        "comparison": "ambiguous",
+        "comparison_reason": "absolute reduction is below the 5% clarity threshold",
+        "sol_max_latency_seconds": 169.507811,
+        "sol_max_passed": true,
+        "sol_max_quality": 95,
+        "sol_max_tokens": 63883,
+        "tier_median_latency_seconds": 138.388742,
+        "tier_median_quality": 93.0,
+        "tier_median_tokens": 62424.0,
+        "tier_observed_token_range": [
+          58674,
+          63045
+        ],
+        "tier_pass_rate": 1.0,
+        "tier_route_pairs": [
+          "gpt-5.6-terra/xhigh"
+        ],
+        "tier_vs_max_exposed_token_reduction_percent": 2.283863,
+        "work_class": "difficult_debugging"
+      },
+      "real-router-refactor-plan": {
+        "comparison": "ambiguous",
+        "comparison_reason": "quality is not comparable under the frozen quality margin",
+        "sol_max_latency_seconds": 81.702923,
+        "sol_max_passed": true,
+        "sol_max_quality": 93,
+        "sol_max_tokens": 28804,
+        "tier_median_latency_seconds": 32.020381,
+        "tier_median_quality": 89.0,
+        "tier_median_tokens": 22020.0,
+        "tier_observed_token_range": [
+          21868,
+          22029
+        ],
+        "tier_pass_rate": 1.0,
+        "tier_route_pairs": [
+          "gpt-5.6-terra/low"
+        ],
+        "tier_vs_max_exposed_token_reduction_percent": 23.552284,
+        "work_class": "routine_refactor"
+      },
+      "real-security-trust-review": {
+        "comparison": "ambiguous",
+        "comparison_reason": "quality is not comparable under the frozen quality margin; the single Max observation overlaps the three Tier observations",
+        "sol_max_latency_seconds": 244.371153,
+        "sol_max_passed": true,
+        "sol_max_quality": 92,
+        "sol_max_tokens": 42401,
+        "tier_median_latency_seconds": 36.581695,
+        "tier_median_quality": 85.0,
+        "tier_median_tokens": 28861.0,
+        "tier_observed_token_range": [
+          28783,
+          65882
+        ],
+        "tier_pass_rate": 1.0,
+        "tier_route_pairs": [
+          "gpt-5.6-sol/low"
+        ],
+        "tier_vs_max_exposed_token_reduction_percent": 31.933209,
+        "work_class": "security_review"
+      }
+    }
+  },
+  "codex_cli_version": "codex-cli 0.149.1",
+  "comparison_id": "codex-tier-v1-always-sol-max-lightweight",
+  "comparison_pair": "gpt-5.6-sol/max",
+  "completed_at": "2026-09-02T03:40:45.554250Z",
+  "config_sha256": "89740358f89f06b21544c367824010f24bcaddec079f0db67b9cccb580087a8a",
+  "credit_savings_published": false,
+  "credits_exposed": false,
+  "frozen_evidence": {
+    "real-bulk-release-audit": {
+      "characters": 455341,
+      "contains_task_rubric": false,
+      "extraction": "complete tracked file contents with line numbers",
+      "fixture_validation": {
+        "all_tracked_files_included": true,
+        "required_complete_paths_verified": 14,
+        "required_evidence_terms_verified": 12,
+        "rubric_leaked_to_candidate_evidence": false,
+        "task_evidence_protocol_consistent": true,
+        "valid": true
+      },
+      "packet_sha256": "0c9202f0009664a4dba0cf261fcc56ad6c93161c321132706cb7da4f1450532b",
+      "paths": [
+        ".agents/plugins/marketplace.json",
+        ".claude-plugin/marketplace.json",
+        ".claude-plugin/plugin.json",
+        ".claude/settings.json",
+        ".github/FUNDING.yml",
+        ".gitignore",
+        "CODEX-TIER.md",
+        "LICENSE",
+        "README.md",
+        "install-codex.ps1",
+        "install-codex.sh",
+        "install.ps1",
+        "install.sh",
+        "plugins/codex-tier/.codex-plugin/plugin.json",
+        "plugins/codex-tier/skills/codex-tier/SKILL.md",
+        "plugins/codex-tier/skills/codex-tier/agents/openai.yaml",
+        "plugins/codex-tier/skills/codex-tier/calibration-fixtures/bulk_repository_scan/README.md",
+        "plugins/codex-tier/skills/codex-tier/calibration-fixtures/bulk_repository_scan/docs/guide.md",
+        "plugins/codex-tier/skills/codex-tier/calibration-fixtures/bulk_repository_scan/generated/schema.py",
+        "plugins/codex-tier/skills/codex-tier/calibration-fixtures/bulk_repository_scan/src/cache.py",
+        "plugins/codex-tier/skills/codex-tier/calibration-fixtures/bulk_repository_scan/vendor/lib.js",
+        "plugins/codex-tier/skills/codex-tier/calibration-fixtures/bulk_repository_scan/web/app.js",
+        "plugins/codex-tier/skills/codex-tier/calibration-fixtures/difficult_debugging/README.md",
+        "plugins/codex-tier/skills/codex-tier/calibration-fixtures/difficult_debugging/session_store.py",
+        "plugins/codex-tier/skills/codex-tier/calibration-fixtures/difficult_debugging/test_session_store.py",
+        "plugins/codex-tier/skills/codex-tier/calibration-fixtures/launch_probe/README.md",
+        "plugins/codex-tier/skills/codex-tier/calibration-fixtures/security_review/README.md",
+        "plugins/codex-tier/skills/codex-tier/calibration-fixtures/security_review/app.py",
+        "plugins/codex-tier/skills/codex-tier/calibration-fixtures/security_review/tokens.py",
+        "plugins/codex-tier/skills/codex-tier/references/benchmark-suite.json",
+        "plugins/codex-tier/skills/codex-tier/references/benchmarking.md",
+        "plugins/codex-tier/skills/codex-tier/references/candidate-matrix.json",
+        "plugins/codex-tier/skills/codex-tier/references/executor.md",
+        "plugins/codex-tier/skills/codex-tier/references/frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/measured-frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/model-registry.json",
+        "plugins/codex-tier/skills/codex-tier/references/model-registry.md",
+        "plugins/codex-tier/skills/codex-tier/references/real-calibration-output-schema.json",
+        "plugins/codex-tier/skills/codex-tier/references/real-calibration-results.json",
+        "plugins/codex-tier/skills/codex-tier/references/real-calibration-suite.json",
+        "plugins/codex-tier/skills/codex-tier/references/real-calibration.md",
+        "plugins/codex-tier/skills/codex-tier/references/routing.md",
+        "plugins/codex-tier/skills/codex-tier/scripts/benchmark.py",
+        "plugins/codex-tier/skills/codex-tier/scripts/calibrate.py",
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "skills/tier/SKILL.md",
+        "tests/codex-tier/fake-codex.cmd",
+        "tests/codex-tier/fake-codex.sh",
+        "tests/codex-tier/fake_codex.py",
+        "tests/codex-tier/test_codex_tier.py"
+      ],
+      "shared_by_baseline_and_tier": true
+    },
+    "real-distribution-architecture": {
+      "characters": 99453,
+      "contains_task_rubric": false,
+      "extraction": "keyword matches with two lines of context; Python symbol inventory",
+      "fixture_validation": {
+        "all_tracked_files_included": false,
+        "required_complete_paths_verified": 0,
+        "required_evidence_terms_verified": 0,
+        "rubric_leaked_to_candidate_evidence": false,
+        "task_evidence_protocol_consistent": true,
+        "valid": true
+      },
+      "packet_sha256": "1848996766b540b4e3612c86d3b6c2ee0f1cf77f10a6d136852da294472e7954",
+      "paths": [
+        "README.md",
+        "CODEX-TIER.md",
+        "install.ps1",
+        "install.sh",
+        "install-codex.ps1",
+        "install-codex.sh",
+        ".claude-plugin/marketplace.json",
+        "plugins/codex-tier/.codex-plugin/plugin.json",
+        "plugins/codex-tier/skills/codex-tier/SKILL.md",
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "plugins/codex-tier/skills/codex-tier/scripts/calibrate.py",
+        "plugins/codex-tier/skills/codex-tier/references/model-registry.json",
+        "plugins/codex-tier/skills/codex-tier/references/candidate-matrix.json",
+        "plugins/codex-tier/skills/codex-tier/references/frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/measured-frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/routing.md",
+        "plugins/codex-tier/skills/codex-tier/references/real-calibration.md"
+      ],
+      "shared_by_baseline_and_tier": true
+    },
+    "real-probe-scope-debugging": {
+      "characters": 124785,
+      "contains_task_rubric": false,
+      "extraction": "complete tracked file contents with line numbers",
+      "fixture_validation": {
+        "all_tracked_files_included": false,
+        "required_complete_paths_verified": 6,
+        "required_evidence_terms_verified": 12,
+        "rubric_leaked_to_candidate_evidence": false,
+        "task_evidence_protocol_consistent": true,
+        "valid": true
+      },
+      "packet_sha256": "edf52fc6661381911aad36014aed547ab5b5cff7c63eeab3c8f2e5ba536dff42",
+      "paths": [
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "tests/codex-tier/test_codex_tier.py",
+        "plugins/codex-tier/skills/codex-tier/references/model-registry.json",
+        "plugins/codex-tier/skills/codex-tier/references/candidate-matrix.json",
+        "plugins/codex-tier/skills/codex-tier/references/frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/measured-frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/real-calibration.md"
+      ],
+      "shared_by_baseline_and_tier": true
+    },
+    "real-router-refactor-plan": {
+      "characters": 21326,
+      "contains_task_rubric": false,
+      "extraction": "keyword matches with two lines of context; Python symbol inventory",
+      "fixture_validation": {
+        "all_tracked_files_included": false,
+        "required_complete_paths_verified": 0,
+        "required_evidence_terms_verified": 0,
+        "rubric_leaked_to_candidate_evidence": false,
+        "task_evidence_protocol_consistent": true,
+        "valid": true
+      },
+      "packet_sha256": "292e453d80a69a8f965b517a8c02f4c09d28ff291d1253ddc447be547b65138e",
+      "paths": [
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "tests/codex-tier/test_codex_tier.py",
+        "plugins/codex-tier/skills/codex-tier/references/model-registry.json",
+        "plugins/codex-tier/skills/codex-tier/references/candidate-matrix.json",
+        "plugins/codex-tier/skills/codex-tier/references/frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/measured-frontiers.json",
+        "plugins/codex-tier/skills/codex-tier/references/routing.md",
+        "plugins/codex-tier/skills/codex-tier/references/executor.md"
+      ],
+      "shared_by_baseline_and_tier": true
+    },
+    "real-security-trust-review": {
+      "characters": 44765,
+      "contains_task_rubric": false,
+      "extraction": "keyword matches with two lines of context; Python symbol inventory",
+      "fixture_validation": {
+        "all_tracked_files_included": false,
+        "required_complete_paths_verified": 0,
+        "required_evidence_terms_verified": 0,
+        "rubric_leaked_to_candidate_evidence": false,
+        "task_evidence_protocol_consistent": true,
+        "valid": true
+      },
+      "packet_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "paths": [
+        "install.ps1",
+        "install.sh",
+        "install-codex.ps1",
+        "install-codex.sh",
+        ".claude-plugin/marketplace.json",
+        "plugins/codex-tier/.codex-plugin/plugin.json",
+        "plugins/codex-tier/skills/codex-tier/SKILL.md",
+        "plugins/codex-tier/skills/codex-tier/references/executor.md",
+        "plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py",
+        "tests/codex-tier/test_codex_tier.py"
+      ],
+      "shared_by_baseline_and_tier": true
+    }
+  },
+  "identity": {
+    "real-bulk-release-audit": {
+      "canonical_packet_sha256": "bdfeed061995066ea55c47c3b89fa8e8c081b06efbaae8dfc466f6ae710f3c42",
+      "frozen_evidence_sha256": "0c9202f0009664a4dba0cf261fcc56ad6c93161c321132706cb7da4f1450532b",
+      "task_sha256": "f6051c13d80aaf038c8a3642a8fe919f293a81375ea0790184bb184456f84bcb"
+    },
+    "real-distribution-architecture": {
+      "canonical_packet_sha256": "53392f37ba730b1a136a13b2868b37b4feeadca5fc99c4a3c73ee021653c0973",
+      "frozen_evidence_sha256": "1848996766b540b4e3612c86d3b6c2ee0f1cf77f10a6d136852da294472e7954",
+      "task_sha256": "0d642676d8b2f5599e73a35de2dd77a5e8ea6bd6a4396742502ee2b2e4a4af4f"
+    },
+    "real-probe-scope-debugging": {
+      "canonical_packet_sha256": "a7fd1507e9d9c042b3c8216278584af6d725b3d68ab1d33552d1fe0d86fbc3e3",
+      "frozen_evidence_sha256": "edf52fc6661381911aad36014aed547ab5b5cff7c63eeab3c8f2e5ba536dff42",
+      "task_sha256": "306b1a65954c41abc1f0dd61b1d01efa3ae2ef7c25424908c8a538c6c8075373"
+    },
+    "real-router-refactor-plan": {
+      "canonical_packet_sha256": "079c6be3b6125c8fd52d3e3e0b98fe0fef089ea636b7b7b6523ddd139d539745",
+      "frozen_evidence_sha256": "292e453d80a69a8f965b517a8c02f4c09d28ff291d1253ddc447be547b65138e",
+      "task_sha256": "a191901633f37acc6d40fef4b865b3e9b7985bf189b0e014976504a6cfbf7ee7"
+    },
+    "real-security-trust-review": {
+      "canonical_packet_sha256": "591d5947266dbb9453817e5eb1384e5443f57bb3769a6bd1d2258d6bf6e43807",
+      "frozen_evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "task_sha256": "a45a9d405e8943850f1d5c4f6f9739e705026a6734b3b270c3cc21da25497aec"
+    }
+  },
+  "new_primary_runs": 5,
+  "records": [
+    {
+      "attempt": {
+        "attempt_id": "real-router-refactor-plan--always-sol-max--r1--attempt-1",
+        "effort": "max",
+        "error": null,
+        "error_event_count": 0,
+        "exit_code": 0,
+        "failure_kind": null,
+        "internal_retry_count": 0,
+        "latency_seconds": 81.702923,
+        "model": "gpt-5.6-sol",
+        "pair": "gpt-5.6-sol/max",
+        "reason": "always-sol-max-comparison",
+        "response": "## Refactor target and current flow\n\nAt commit `75c2c6926bb317803e66946f72194788cac16ebe`, configuration assembly is centralized in `plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py::load_config`:\n\n```text\nmodel-registry.json\n  \u2192 apply_client_model_cache\n  \u2192 apply_launch_probe_results\n  \u2192 runtime registry\n\nfrontiers.json\n  \u2192 merge_measured_frontiers (unless include_measured=False)\n  \u2192 routing frontiers\n\nruntime registry + routing frontiers\n  \u2192 validate_config\n  \u2192 route_work_unit\n```\n\nThe ordering is behavioral. Client discovery establishes `active_available` and `availability_evidence`; launch probes are then accepted only when their `candidate_matrix_hash` matches `candidate_matrix_hash(active_candidate_matrix(registry))` (`codex_tier.py::apply_launch_probe_results`). Measured frontiers preserve prior candidates as `availability_fallback_candidates` before overlaying measured candidates (`codex_tier.py::merge_measured_frontiers`).\n\n`route_work_unit` currently mixes loading, validation, request validation, runtime availability, candidate filtering, fallback, escalation, and explanation construction. Its observable consumers include `cmd_route`, while `cmd_validate`, `cmd_matrix`, `cmd_inspect`, and `cmd_execute` consume different parts of the assembled registry.\n\n## Proposed boundaries\n\nCreate a private sibling package under `plugins/codex-tier/skills/codex-tier/scripts/_codex_tier/`, retaining `scripts/codex_tier.py` as the CLI and compatibility facade.\n\n- `_codex_tier/model_discovery.py`\n  - Move `models_cache_path` and the implementation of `apply_client_model_cache`.\n  - Internal API: `discover_client_models(snapshot, cache_path) -> registry`.\n  - Preserve deep-copy behavior, all `runtime_discovery` fields, `active_available`, evidence strings, and sanitized cache-error fallback.\n\n- `_codex_tier/probe_evidence.py`\n  - Move `active_candidate_matrix`, `candidate_matrix_hash`, and `apply_launch_probe_results`.\n  - Internal API: `overlay_launch_probe(registry, report) -> registry`.\n  - Keep hash construction exactly: sorted `pair` strings joined by `\"\\n\"` and SHA-256. Preserve accepted statuses (`executed`, `unavailable`), stale-report handling, sorted `runtime_unavailable_pairs`, counts, and evidence labels.\n\n- `_codex_tier/frontier_overlay.py`\n  - Move `merge_measured_frontiers`.\n  - Internal API: `overlay_measured_frontiers(frontiers, measured) -> frontiers`.\n  - Filesystem reading should remain in the facade wrapper so existing default-path and missing-file behavior remains unchanged.\n\n- `_codex_tier/routing_policy.py`\n  - Move `normalize`, `normalize_dimension`, `pair_name`, `parse_pair`, `registry_models`, `validate_config`, `candidate_copy`, and the selection portion of `route_work_unit`.\n  - Add a pure API such as `select_route(registry, frontiers, request) -> decision`.\n  - Keep `codex_tier.py::route_work_unit` with its exact keyword signature; it should call `load_config`, validate, construct the request, and delegate.\n\n`codex_tier.py::load_config` should remain the sole public composition point, preserving cache \u2192 probe and base-frontier \u2192 measured-overlay ordering. Re-export every moved symbol because `tests/codex-tier/test_codex_tier.py` calls module functions directly.\n\n## Incremental migration\n\n1. Add full-output characterization tests before changing call paths.\n2. Extract matrix/hash helpers into `probe_evidence.py`; re-export them and confirm byte-equivalent matrix JSON.\n3. Extract discovery, leaving path lookup and the old public wrapper in `codex_tier.py`.\n4. Extract measured overlay similarly; preserve the `include_measured=False` path used by `cmd_matrix`.\n5. Introduce `select_route` by passing already-loaded dictionaries into copied policy code. Make `route_work_unit` a thin wrapper only after equivalence tests pass.\n6. Switch `load_config` to the extracted implementations.\n7. Leave parser construction, command handlers, logging, inspection, and executor functions in `codex_tier.py`; they are outside the desired separation and carry CLI risk.\n\n## Compatibility and failure-mode risks\n\n- Changing absent fields to `None`, dictionary insertion order, reason text, or list sorting could alter JSON CLI output.\n- Hashing any metadata beyond `pair`, or changing newline/sort behavior, would incorrectly mark checked-in launch evidence stale. The checked-in matrix expects 29 candidates and hash `4ceb8b\u2026382` (`references/candidate-matrix.json`).\n- Probe evidence must be applied after client discovery; reversing this can validate a report against the wrong active matrix.\n- The measured overlay must deep-copy prior candidates before replacement. Otherwise fallback routing or caller mutation can change.\n- `available_models` validation, explicit `unavailable_pairs`, and `runtime_unavailable_pairs` must retain their current union and exact `TierError` messages.\n- Moving default path values into import-time function defaults could break tests or installations that replace constants.\n- The new package must be included by existing installers. The packaging tests in `tests/codex-tier/test_codex_tier.py::PackagingAndInstallerTests` are therefore part of preservation, not incidental coverage.\n\n## Preservation tests\n\nAdd these exact characterization groups to `tests/codex-tier/test_codex_tier.py`:\n\n- `test_load_config_pipeline_golden`: compare the complete registry/frontier dictionaries for default loading and `include_measured=False`.\n- `test_client_discovery_missing_cache_golden` and `test_client_discovery_invalid_cache_golden`: assert complete output, evidence strings, error sanitization, and input non-mutation.\n- `test_probe_report_current_golden`, `test_probe_report_stale_golden`, and `test_probe_filters_invalid_results`: assert status maps, unavailable ordering, counts, matrix hash, and evidence.\n- `test_measured_overlay_golden_and_nonmutating`: assert complete profiles, preserved fallback candidates, untouched unrelated profiles, and no source mutation.\n- Parameterize routing inputs from existing `RoutingTests` and compare the entire decision dictionary, especially `test_deterministic_work_uses_tool`, `test_model_unavailable_selects_another_frontier_candidate`, and `test_effort_unavailable_selects_adjacent_candidate`.\n- Add exact-error assertions for unknown available models, malformed/unknown unavailable pairs, and invalid configuration.\n- Capture `main()` exit code and stdout JSON for `validate`, `matrix`, `route`, and `inspect`; retain all existing `ExecutorTests` and `PackagingAndInstallerTests`.\n\nUncertainty: the frozen excerpts omit parts of the cache and measured-overlay schemas. Their current full dictionaries should be captured as golden fixtures before extraction rather than reconstructed from assumptions.",
+        "response_sha256": "1dcbf942502e4e251492a56dfea766c35df6968b5cc1e680061b0b897e6ef34d",
+        "success": true,
+        "tool_item_count": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 9984,
+          "input_tokens": 25041,
+          "output_tokens": 3763,
+          "reasoning_output_tokens": 2333,
+          "total_exposed_tokens": 28804,
+          "uncached_input_tokens": 15057
+        },
+        "usage_limit_reset_hint": null,
+        "wall_seconds": 81.937983
+      },
+      "benchmark_state": "complete",
+      "canonical_packet_sha256": "079c6be3b6125c8fd52d3e3e0b98fe0fef089ea636b7b7b6523ddd139d539745",
+      "frozen_evidence_sha256": "292e453d80a69a8f965b517a8c02f4c09d28ff291d1253ddc447be547b65138e",
+      "infrastructure_attempts": [],
+      "pair": "gpt-5.6-sol/max",
+      "quality": {
+        "critical_errors": [],
+        "dimensions": {
+          "actionability": 14,
+          "completeness": 18,
+          "correctness": 38,
+          "evidence": 23
+        },
+        "passed": true,
+        "score": 93,
+        "summary": "Strong, repository-grounded plan. It correctly preserves cache\u2192probe ordering, hash validation, measured-frontier fallback candidates, public wrappers, CLI-sensitive output details, and packaging concerns, with a practical phased extraction sequence and targeted tests. Minor deductions: the current routing algorithm is traced only at a high level rather than detailing TOOL/DIRECT branches and quality/escalation selection, the launch-report filesystem boundary is less explicit than the measured-frontier boundary, and several proposed golden tests do not state exact expected fixture values.",
+        "valid": true
+      },
+      "randomized_position": 1,
+      "repetition": 1,
+      "run_id": "real-router-refactor-plan--always-sol-max--r1",
+      "task_prompt_sha256": "a191901633f37acc6d40fef4b865b3e9b7985bf189b0e014976504a6cfbf7ee7",
+      "verification_attempts": [
+        {
+          "attempt_id": "04b34abab48c4d0eab03d357154ce382-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 21326,
+          "evidence_sha256": "292e453d80a69a8f965b517a8c02f4c09d28ff291d1253ddc447be547b65138e",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 46.679851,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":93,\"passed\":true,\"dimensions\":{\"correctness\":38,\"evidence\":23,\"completeness\":18,\"actionability\":14},\"critical_errors\":[],\"summary\":\"Strong, repository-grounded plan. It correctly preserves cache\u2192probe ordering, hash validation, measured-frontier fallback candidates, public wrappers, CLI-sensitive output details, and packaging concerns, with a practical phased extraction sequence and targeted tests. Minor deductions: the current routing algorithm is traced only at a high level rather than detailing TOOL/DIRECT branches and quality/escalation selection, the launch-report filesystem boundary is less explicit than the measured-frontier boundary, and several proposed golden tests do not state exact expected fixture values.\"}",
+          "response_sha256": "5858d6856b80c1e9386763dd875529d2af9c8a6468cdd69d370cf52fc76e73ea",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 11008,
+            "input_tokens": 22066,
+            "output_tokens": 2223,
+            "reasoning_output_tokens": 2070,
+            "total_exposed_tokens": 24289,
+            "uncached_input_tokens": 11058
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 46.829109
+        }
+      ],
+      "work_class": "routine_refactor",
+      "workload_id": "real-router-refactor-plan"
+    },
+    {
+      "attempt": {
+        "attempt_id": "real-distribution-architecture--always-sol-max--r1--attempt-1",
+        "effort": "max",
+        "error": null,
+        "error_event_count": 0,
+        "exit_code": 0,
+        "failure_kind": null,
+        "internal_retry_count": 0,
+        "latency_seconds": 141.856261,
+        "model": "gpt-5.6-sol",
+        "pair": "gpt-5.6-sol/max",
+        "reason": "always-sol-max-comparison",
+        "response": "# Codex Tier v2 architecture proposal\n\n## Assessment\n\nThe routing core is sound, but distributable policy and one-machine observations are currently co-located. `plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py::load_config` loads packaged `model-registry.json`, applies `$CODEX_HOME/models_cache.json` through `apply_client_model_cache`, applies packaged launch results through `apply_launch_probe_results`, then unconditionally overlays packaged `measured-frontiers.json` through `merge_measured_frontiers`.\n\nStrengths include dynamic client filtering, workload-specific quality floors, usage-aware selection, and a quality-safe DIRECT result (`route_work_unit`; `references/routing.md`). `candidate_matrix_hash` prevents applying probes when the pair set changes.\n\nThe distribution risk is that account-local evidence ships inside the skill selected by `plugins/codex-tier/.codex-plugin/plugin.json`:\n\n- `references/candidate-matrix.json` records 29 probes from Codex CLI 0.149.1 and one client cache.\n- `apply_launch_probe_results` checks only the pair-set hash, not account, CLI version, age, or execution flags. The supplied artifact reports every pair successful, so no actual false exclusion is established, but another account with the same advertised matrix could incorrectly inherit future negative probes.\n- `references/measured-frontiers.json` contains machine-specific token observations. `merge_measured_frontiers` replaces matching default candidates without a compatibility or freshness gate, retaining priors only as `availability_fallback_candidates`.\n- `references/model-registry.json` mixes distributable metadata and priors with mutable notions such as `supported_efforts` and availability.\n\n## Ownership and storage\n\n| Layer | Owner and proposed location | Schema essentials |\n|---|---|---|\n| Distributable defaults | Maintainers; `plugins/codex-tier/skills/codex-tier/references/defaults/` | `defaults_version`, workload definitions, quality floors, candidate `(model, effort)` priors, provenance, confidence, and usage-proxy definition. Model metadata must not imply account availability. |\n| Client capabilities | Codex account/client; `$CODEX_HOME/codex-tier/state/capabilities.v2.json` | Cache hash, CLI version, anonymous auth-context fingerprint if exposed, discovered/expiry times, advertised models, efforts, and default effort. Preserve unknown discovered models, but do not route them without workload evidence. |\n| Launch probes | Client; `state/launch-probes.v2.json` | Capability fingerprint, pair, execution flags, status (`success`, `unsupported`, `transient_error`), reason code, timestamps, expiry. |\n| Measurements/frontiers | Client; `observations.v2.jsonl` and `frontiers.v2.json` | Fixture/scorer/router versions, pair, verification, quality, full token vector, nullable credits, duration, repetitions and dispersion. Derived candidates retain provenance. |\n| Release evidence | Maintainers; proposed `benchmarks/releases/<defaults_version>/` | Sanitized aggregate reports, including today\u2019s candidate matrix and calibration report, never loaded as account state. |\n\nRemove `relative_capability` from routing decisions: selection remains a per-workload Pareto problem, not a global model hierarchy. `scripts/calibrate.py::derive_frontiers` already supplies the appropriate quality/consumption dominance mechanism.\n\n## Freshness, invalidation, and routing\n\nRe-hash `$CODEX_HOME/models_cache.json` before routing; rebuild capabilities immediately on hash, CLI-version, or auth-context change. A last-known-good snapshot may survive a temporarily missing cache for 24 hours, clearly marked degraded; afterward use DIRECT.\n\nKey probes by capability fingerprint, CLI version, sandbox/approval flags, and executor version. Proposed TTLs: success 24 hours, explicit unsupported 6 hours, transient failure 5 minutes. Transient failures should not become hard exclusions. Invalidate all matching probes when any key changes.\n\nUse local frontiers only with matching fixture/scorer/router versions, matching capability set, at least three verified samples per point, and age under 30 days. Corrupt or incompatible local files are quarantined logically and ignored; writes should be atomic and concurrency-safe.\n\nRouting order:\n\n1. Keep tiny in-context work DIRECT, as `SKILL.md` already requires.\n2. Compute the workload floor and risk margin.\n3. Prefer fresh measured candidates whose conservative quality bound clears that threshold.\n4. Otherwise use packaged workload priors, intersected with discovered capabilities and valid probes.\n5. On availability failure, try the next qualifying Pareto candidate. On verification failure, escalate only to a higher-quality qualifying point.\n6. Never relax the quality floor. If none qualifies, return `DIRECT` with `requires_parent: true`.\n\n## Quality and consumption\n\nCurrent `calibrate.py::exposed_consumption` and `derive_frontiers` optimize `input_tokens + output_tokens`; both the candidate matrix and supplied calibration expose `codex_usage_credits: null`. Consequently, tokens are a useful local proxy, not proven subscription consumption. Do not mix credit-based and token-based frontiers or publish savings percentages. Prefer credits when exposed; otherwise retain the token vector, compare like-for-like runs using medians and dispersion, and account for worker startup. Quality should use verified workload fixtures and conservative bounds rather than saturated point scores alone.\n\n## Migration, observability, and rollout\n\nA v2 loader should translate `model-registry.json` and `frontiers.json` into initial defaults, but never import packaged `candidate-matrix.json` or `measured-frontiers.json` as client truth. Preserve the existing `$CODEX_HOME/codex-tier/usage.jsonl`. Keep one release of dual-schema reading, then remove the legacy runtime overlay.\n\nRetain the transactional validation in `install-codex.sh::install_direct` and `install-codex.ps1::Install-Direct`. Their standalone fallbacks download mutable `main` archives; distribute a versioned, digest-pinned Codex artifact analogous to `.claude-plugin/marketplace.json`, while keeping Claude Tier independent.\n\nExtend content-free events and `cmd_inspect` with defaults/capability/frontier fingerprints, freshness, rejected-candidate reason codes, fallback chain, threshold, metric source, launch outcome, and observed usage. Aggregation should be opt-in and anonymous.\n\nRollout tests must cover two clients with different caches and probes, account switching, cache/CLI changes, TTL boundaries, corrupt and concurrent state, unknown models, unavailable measured points, transient launches, failed verification, DIRECT safety, migration with log preservation, Windows/Unix plugin and standalone upgrades, digest rejection, shadow v1/v2 decisions, and rollback.",
+        "response_sha256": "30c2de68eda705362bf63b603158503dc258dccffee51ad251933ecb4708bb5f",
+        "success": true,
+        "tool_item_count": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 9984,
+          "input_tokens": 44196,
+          "output_tokens": 6550,
+          "reasoning_output_tokens": 5178,
+          "total_exposed_tokens": 50746,
+          "uncached_input_tokens": 34212
+        },
+        "usage_limit_reset_hint": null,
+        "wall_seconds": 142.346079
+      },
+      "benchmark_state": "complete",
+      "canonical_packet_sha256": "53392f37ba730b1a136a13b2868b37b4feeadca5fc99c4a3c73ee021653c0973",
+      "frozen_evidence_sha256": "1848996766b540b4e3612c86d3b6c2ee0f1cf77f10a6d136852da294472e7954",
+      "infrastructure_attempts": [],
+      "pair": "gpt-5.6-sol/max",
+      "quality": {
+        "critical_errors": [],
+        "dimensions": {
+          "actionability": 15,
+          "completeness": 19,
+          "correctness": 38,
+          "evidence": 24
+        },
+        "passed": true,
+        "score": 96,
+        "summary": "Excellent, repository-grounded proposal that correctly separates packaged priors from client-local discovery, probes, measurements, and derived frontiers. It provides concrete schemas, storage, TTLs, invalidation, quality-safe fallback, migration, observability, packaging improvements, failure coverage, and rollout tests without imposing a global model hierarchy. Minor deductions: calling the measured overlay \u201cunconditional\u201d overlooks load_config(include_measured=False), and benchmark.py/real-calibration artifact handling and first-run v2 bootstrapping could be described more explicitly.",
+        "valid": true
+      },
+      "randomized_position": 2,
+      "repetition": 1,
+      "run_id": "real-distribution-architecture--always-sol-max--r1",
+      "task_prompt_sha256": "0d642676d8b2f5599e73a35de2dd77a5e8ea6bd6a4396742502ee2b2e4a4af4f",
+      "verification_attempts": [
+        {
+          "attempt_id": "a240458e786240ea99c80ed9d033d832-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 99453,
+          "evidence_sha256": "1848996766b540b4e3612c86d3b6c2ee0f1cf77f10a6d136852da294472e7954",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 53.809127,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":96,\"passed\":true,\"dimensions\":{\"correctness\":38,\"evidence\":24,\"completeness\":19,\"actionability\":15},\"critical_errors\":[],\"summary\":\"Excellent, repository-grounded proposal that correctly separates packaged priors from client-local discovery, probes, measurements, and derived frontiers. It provides concrete schemas, storage, TTLs, invalidation, quality-safe fallback, migration, observability, packaging improvements, failure coverage, and rollout tests without imposing a global model hierarchy. Minor deductions: calling the measured overlay \u201cunconditional\u201d overlooks load_config(include_measured=False), and benchmark.py/real-calibration artifact handling and first-run v2 bootstrapping could be described more explicitly.\"}",
+          "response_sha256": "f5e75db8cefbdc69a3a019035023b4c683d21442eaf928ff56003bc5d41ae18a",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 50296,
+            "output_tokens": 2745,
+            "reasoning_output_tokens": 2588,
+            "total_exposed_tokens": 53041,
+            "uncached_input_tokens": 50296
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 53.949079
+        }
+      ],
+      "work_class": "architecture",
+      "workload_id": "real-distribution-architecture"
+    },
+    {
+      "attempt": {
+        "attempt_id": "real-bulk-release-audit--always-sol-max--r1--attempt-1",
+        "effort": "max",
+        "error": null,
+        "error_event_count": 0,
+        "exit_code": 0,
+        "failure_kind": null,
+        "internal_retry_count": 0,
+        "latency_seconds": 130.235827,
+        "model": "gpt-5.6-sol",
+        "pair": "gpt-5.6-sol/max",
+        "reason": "always-sol-max-comparison",
+        "response": "# Release-readiness handoff\n\nScope is commit `75c2c6926bb317803e66946f72194788cac16ebe`, using only the frozen 50-file packet. No code or tests were executed; \u201cconfirmed\u201d below means directly evidenced by tracked content.\n\n## Surface and dependency map\n\n- The repository contains two independent products. Codex Tier is documented by `README.md` and `CODEX-TIER.md`; Claude Tier remains separately packaged in `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`, `skills/tier/SKILL.md`, `install.sh`, and `install.ps1`.\n- Codex marketplace discovery starts at `.agents/plugins/marketplace.json`, whose local source is `plugins/codex-tier`. The plugin manifest `plugins/codex-tier/.codex-plugin/plugin.json` exposes the packaged skills directory and version `1.0.0+codex.20260825102200`.\n- The production skill entry point is `plugins/codex-tier/skills/codex-tier/SKILL.md`. It is deliberately explicit-only through `plugins/codex-tier/skills/codex-tier/agents/openai.yaml`, which sets `allow_implicit_invocation: false`.\n- `install-codex.sh` and `install-codex.ps1` validate Codex/Python, prefer marketplace installation, and otherwise copy the complete skill into `~/.agents/skills/codex-tier`. Marker files support idempotent replacement; unmarked, hand-authored copies are moved to backups. The PowerShell installer additionally handles an uncallable packaged Windows app by choosing the standalone skill.\n- The production engine is `plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py`. Its commands validate configuration, discover the matrix, classify and route work, inspect Codex, execute pinned workers, and append content-free usage events.\n- Routing flows from the client model cache through `references/model-registry.json`, conditionally applies hash- and path-matched probes from `references/candidate-matrix.json`, overlays measured candidates from `references/measured-frontiers.json`, and selects against workload priors and quality floors in `references/frontiers.json`. `references/routing.md` describes TOOL/DIRECT/WORKER selection; `references/executor.md` defines bounded packets and enforced `codex exec --model ... --config model_reasoning_effort=...`.\n- `scripts/benchmark.py` plus `references/benchmark-suite.json` is an executor/routing harness, plan-only by default and explicitly not economic calibration. `scripts/calibrate.py` plus `references/real-calibration-suite.json` requires an official CLI, probes the dynamic matrix, runs three read-only fixtures, scores structured output, and regenerates matrix, results, and measured frontiers.\n\n## File roles and evidence\n\nProduction configuration/code comprises the plugin, skill, router, installers, registry, prior frontiers, and routing/executor references. `tests/codex-tier/test_codex_tier.py` and `tests/codex-tier/fake_codex.py` are test-only; the shell/CMD wrappers only expose that fake CLI.\n\nEverything under `calibration-fixtures/` is synthetic test material, not vulnerable production code. That includes the deliberately flawed session store, the intentionally vulnerable `security_review/app.py` and `tokens.py`, and the bulk fixture\u2019s declared generated `generated/schema.py` and vendored `vendor/lib.js`.\n\n`references/candidate-matrix.json`, `references/real-calibration-results.json`, and `references/measured-frontiers.json` are generated, account-local evidence: they record an August 25, 2026 model cache, CLI `0.149.1`, 29 successful probes, and 87/87 verified workload runs. Credits were unavailable, so frontiers use exposed tokens\u2014not subscription cost\u2014and no savings percentage is claimed.\n\n## Supported risks\n\n- **Confirmed stale-calibration risk:** `merge_measured_frontiers()` accepts any artifact marked `real-codex-measurement`; unlike probe evidence, it checks no matrix hash, client scope, CLI version, suite hash, or age. Thus narrow historical quality scores can continue replacing production priors while a model remains available.\n- **Confirmed benchmark-generalization risk:** three one-shot, inline, tool-free fixtures reduce quality mainly to matching known file/category signatures. `real-calibration.md` itself limits the result to three narrow synthetic fixtures, yet the resulting `gpt-5.4-mini/low` score drives difficult-debugging and security-review routing.\n- **Confirmed fixture-drift risk:** calibration copies fixture directories but asks workers to analyze duplicated inline snapshots. File contents, packet text, and expected signatures can diverge without an explicit consistency check.\n- **Confirmed installer reproducibility risk:** both Codex fallback installers download mutable `main` archives without a digest or commit pin, unlike the SHA-256-pinned Claude archive.\n- **Uncertainty requiring validation:** installer tests force local-source/direct mode, while fake plugin commands fail. Therefore remote marketplace upgrade, clean plugin installation, mutable-archive fallback, and packaged-app behavior are not demonstrated by the tracked tests. No tracked CI workflow exists. The packet also displays widespread mojibake in user-facing Markdown; actual-byte corruption versus packet transcoding is uncertain.\n\n## Five prioritized release checks\n\n1. Bind measured frontiers to matrix, CLI, suite/fixture hashes, account scope, and freshness; reject stale overlays.\n2. Recalibrate with repeated, broader realistic fixtures\u2014especially security and concurrency\u2014and independently review frontier promotion.\n3. Test clean install, update, fallback, duplicate cleanup, and rollback on Windows, macOS, Linux, WSL, CLI, and packaged-app paths.\n4. Publish immutable, checksum-verified Codex installation artifacts and verify manifest/version consistency.\n5. Add CI gates for unit tests, installer tests, JSON/schema validation, fixture/packet parity, generated-evidence consistency, and UTF-8 rendering.",
+        "response_sha256": "1364cd75eb923d9ee327726fa6fa9c819c94ee2da0f80eacec0ae7435a75db18",
+        "success": true,
+        "tool_item_count": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 153344,
+          "input_tokens": 158409,
+          "output_tokens": 1263,
+          "reasoning_output_tokens": 31,
+          "total_exposed_tokens": 159672,
+          "uncached_input_tokens": 5065
+        },
+        "usage_limit_reset_hint": null,
+        "wall_seconds": 130.368227
+      },
+      "benchmark_state": "complete",
+      "canonical_packet_sha256": "bdfeed061995066ea55c47c3b89fa8e8c081b06efbaae8dfc466f6ae710f3c42",
+      "frozen_evidence_sha256": "0c9202f0009664a4dba0cf261fcc56ad6c93161c321132706cb7da4f1450532b",
+      "infrastructure_attempts": [],
+      "pair": "gpt-5.6-sol/max",
+      "quality": {
+        "critical_errors": [],
+        "dimensions": {
+          "actionability": 14,
+          "completeness": 19,
+          "correctness": 38,
+          "evidence": 24
+        },
+        "passed": true,
+        "score": 95,
+        "summary": "Strong, compact audit grounded in well over 12 exact paths. It connects packaging, installers, routing, calibration, fixtures, tests, and generated account-specific evidence; clearly separates production from test/generated/vendored material; and provides five prioritized, evidence-backed checks. Minor imprecision: Codex credits were not exposed rather than proven unavailable, and dimension-specific quality floors are hard-coded in codex_tier.py rather than all residing in frontiers.json. It also omits a few secondary details, but no central requirement or material risk is missed.",
+        "valid": true
+      },
+      "randomized_position": 3,
+      "repetition": 1,
+      "run_id": "real-bulk-release-audit--always-sol-max--r1",
+      "task_prompt_sha256": "f6051c13d80aaf038c8a3642a8fe919f293a81375ea0790184bb184456f84bcb",
+      "verification_attempts": [
+        {
+          "attempt_id": "6389b344c97249e28aa087fcf048b5aa-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 455341,
+          "evidence_sha256": "0c9202f0009664a4dba0cf261fcc56ad6c93161c321132706cb7da4f1450532b",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 73.970489,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":95,\"passed\":true,\"dimensions\":{\"correctness\":38,\"evidence\":24,\"completeness\":19,\"actionability\":14},\"critical_errors\":[],\"summary\":\"Strong, compact audit grounded in well over 12 exact paths. It connects packaging, installers, routing, calibration, fixtures, tests, and generated account-specific evidence; clearly separates production from test/generated/vendored material; and provides five prioritized, evidence-backed checks. Minor imprecision: Codex credits were not exposed rather than proven unavailable, and dimension-specific quality floors are hard-coded in codex_tier.py rather than all residing in frontiers.json. It also omits a few secondary details, but no central requirement or material risk is missed.\"}",
+          "response_sha256": "6749302e2ab89af1c46f266a112c62dc013923d75db0c2a7098703fc4ba5ea8e",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 155147,
+            "output_tokens": 3508,
+            "reasoning_output_tokens": 3347,
+            "total_exposed_tokens": 158655,
+            "uncached_input_tokens": 155147
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 74.118157
+        }
+      ],
+      "work_class": "bulk_repository_scan",
+      "workload_id": "real-bulk-release-audit"
+    },
+    {
+      "attempt": {
+        "attempt_id": "real-probe-scope-debugging--always-sol-max--r1--attempt-1",
+        "effort": "max",
+        "error": null,
+        "error_event_count": 0,
+        "exit_code": 0,
+        "failure_kind": null,
+        "internal_retry_count": 0,
+        "latency_seconds": 169.507811,
+        "model": "gpt-5.6-sol",
+        "pair": "gpt-5.6-sol/max",
+        "reason": "always-sol-max-comparison",
+        "response": "## Diagnosis\n\nThe report is only partly confirmed.\n\n### Custom cache and launch-probe evidence\n\n`models_cache_path` resolves in this order: explicit argument, `CODEX_TIER_MODELS_CACHE`, then `$CODEX_HOME/models_cache.json` (`plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py:147-154`). `apply_client_model_cache` records that chosen path in `runtime_discovery.path`; a valid cache restricts models and efforts to visible advertised entries, while a missing or invalid cache falls back to the registry snapshot (`codex_tier.py:157-222`).\n\n`load_config` then passes that registry to `apply_launch_probe_results` (`codex_tier.py:331-338`). Probe results are accepted only when:\n\n1. `candidate-matrix.json:model_discovery.path` exactly equals `runtime_discovery.path`; otherwise status is `different-client-scope`.\n2. Its `candidate_matrix_hash` equals a hash of the active model/effort pair names; otherwise status is `stale`.\n\nOnly then are `executed`/`unavailable` statuses installed (`codex_tier.py:261-305`). Therefore, a genuinely different custom pathname cannot inherit the checked-in default-account probe results. The categorical claim is refuted for `CODEX_TIER_MODELS_CACHE=/different/path/models_cache.json`.\n\nTwo real qualifications exist:\n\n- `matrix --models-cache` is invocation-local. Only `cmd_matrix` passes that argument to `load_config` (`codex_tier.py:759-763,1079-1083`). `route_work_unit` calls `load_config()` without a path, and the `route` CLI has no `--models-cache` option (`codex_tier.py:441,1085-1091`). Thus using only the matrix flag does not switch routing; routing continues with the environment/default cache. That is a confirmed CLI consistency defect, not probe inheritance.\n- Probe scoping is too weak for caches reused at the same pathname. `candidate_matrix_hash` hashes only sorted pair names (`codex_tier.py:256-258`); it ignores `cache_available`, `fetched_at`, `client_version`, account identity, and cache contents beyond that pair set. Consequently stale/cross-account statuses can apply after an account/cache replacement at the same path if the pair set is unchanged. They can even apply after a missing/cache-error fallback when the registry snapshot recreates the same pairs. A changed path or changed pair set prevents application; metadata-only changes do not.\n\nThe frozen probe artifact contains 29 `executed` pairs and no unavailable pair (`references/candidate-matrix.json`; corroborated by `tests/codex-tier/test_codex_tier.py:43-55`). Thus this commit\u2019s artifact cannot itself inject an unavailable status.\n\n### Measured-frontier precedence and fallback\n\n`merge_measured_frontiers` applies only files marked `real-codex-measurement`. For each matching, nonempty profile it:\n\n1. Copies the original `frontiers.json` candidates to `availability_fallback_candidates`.\n2. Replaces\u2014not combines\u2014the primary candidates with measured candidates.\n3. Adds calibration provenance (`codex_tier.py:308-328`).\n\nThe three measured profiles each contain only `gpt-5.4-mini/low` (`references/measured-frontiers.json:3-54`). Routing filters candidates by active model, currently supported effort, and the union of probe/explicit unavailable pairs (`codex_tier.py:508-536`). Prior candidates are considered only when **zero measured candidates remain available**, not merely when the cheapest measured candidate disappears or remaining measured candidates fail the quality threshold (`codex_tier.py:538-582`).\n\nFor the frozen one-candidate measured profiles, marking `gpt-5.4-mini/low` unavailable therefore deterministically activates the prior list. The bulk-scan regression already proves this selects `gpt-5.6-luna/high` and reports the fallback reason (`tests/codex-tier/test_codex_tier.py:105-115`). Unmeasured profiles instead select among their remaining ordinary candidates, as the Luna high\u2192xhigh test demonstrates (`test_codex_tier.py:117-119`). If neither measured nor prior candidates remain, or none clears threshold plus margin, routing conservatively returns `DIRECT` with `requires_parent=true`. These differences are expected behavior, not the reported inconsistency.\n\nOne adjacent defect is confirmed: after selecting a prior fallback candidate, a later `escalate_from` lookup searches only the replaced measured list (`codex_tier.py:552-561`), so that valid fallback pair is rejected as \u201cnot calibrated.\u201d\n\n### Smallest justified fixes/tests\n\n- Add `--models-cache` to `route`, thread it through `route_work_unit` to `load_config`, and test that matrix and route select the same cache.\n- Bind probes to a stronger discovery fingerprint: require a successful cache plus canonical path, catalog digest, `fetched_at`/client version, and a nonsecret account-scope identifier if available. Test different path, same-path refreshed cache, missing/error cache, and changed pair set.\n- For escalation, search the effective fallback calibration list when fallback is active; test unavailable measured pair \u2192 fallback worker \u2192 verification escalation.\n- No measured-selection fallback rewrite is justified by the frozen configuration. Add a multi-measured-candidate test to explicitly lock the \u201cfallback only after measured availability is exhausted\u201d contract.",
+        "response_sha256": "f71562d02fd0c74e075a9bc077b64a3c12cd79dade8e51f2f81f5d1b79a8de95",
+        "success": true,
+        "tool_item_count": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 9984,
+          "input_tokens": 56256,
+          "output_tokens": 7627,
+          "reasoning_output_tokens": 6493,
+          "total_exposed_tokens": 63883,
+          "uncached_input_tokens": 46272
+        },
+        "usage_limit_reset_hint": null,
+        "wall_seconds": 169.653038
+      },
+      "benchmark_state": "complete",
+      "canonical_packet_sha256": "a7fd1507e9d9c042b3c8216278584af6d725b3d68ab1d33552d1fe0d86fbc3e3",
+      "frozen_evidence_sha256": "edf52fc6661381911aad36014aed547ab5b5cff7c63eeab3c8f2e5ba536dff42",
+      "infrastructure_attempts": [],
+      "pair": "gpt-5.6-sol/max",
+      "quality": {
+        "critical_errors": [],
+        "dimensions": {
+          "actionability": 14,
+          "completeness": 18,
+          "correctness": 39,
+          "evidence": 24
+        },
+        "passed": true,
+        "score": 95,
+        "summary": "The candidate accurately refutes cross-path probe inheritance, identifies same-path/same-pair-set leakage and the route CLI cache-path gap, and correctly explains measured-frontier replacement, prior fallback, explicit/probed unavailability, and the escalation defect. It is strongly grounded in exact symbols, paths, lines, artifacts, and tests. Minor omissions are that active_candidate_matrix\u2019s status/evidence mapping is not traced explicitly, missing/invalid probe-artifact cases are not stated, and executed probe status is not distinguished from routing-impacting unavailable status. The proposed probe fingerprint is robust but broader than the smallest possible fix.",
+        "valid": true
+      },
+      "randomized_position": 4,
+      "repetition": 1,
+      "run_id": "real-probe-scope-debugging--always-sol-max--r1",
+      "task_prompt_sha256": "306b1a65954c41abc1f0dd61b1d01efa3ae2ef7c25424908c8a538c6c8075373",
+      "verification_attempts": [
+        {
+          "attempt_id": "88f6e045766d4de998ff79f08e240457-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 124785,
+          "evidence_sha256": "edf52fc6661381911aad36014aed547ab5b5cff7c63eeab3c8f2e5ba536dff42",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 123.326996,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":95,\"passed\":true,\"dimensions\":{\"correctness\":39,\"evidence\":24,\"completeness\":18,\"actionability\":14},\"critical_errors\":[],\"summary\":\"The candidate accurately refutes cross-path probe inheritance, identifies same-path/same-pair-set leakage and the route CLI cache-path gap, and correctly explains measured-frontier replacement, prior fallback, explicit/probed unavailability, and the escalation defect. It is strongly grounded in exact symbols, paths, lines, artifacts, and tests. Minor omissions are that active_candidate_matrix\u2019s status/evidence mapping is not traced explicitly, missing/invalid probe-artifact cases are not stated, and executed probe status is not distinguished from routing-impacting unavailable status. The proposed probe fingerprint is robust but broader than the smallest possible fix.\"}",
+          "response_sha256": "4c86eb3217370ebcd48fda85eb862eae74fb21f1de364366dfeb0757a88695db",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 53000,
+            "output_tokens": 5869,
+            "reasoning_output_tokens": 5696,
+            "total_exposed_tokens": 58869,
+            "uncached_input_tokens": 53000
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 123.471376
+        }
+      ],
+      "work_class": "difficult_debugging",
+      "workload_id": "real-probe-scope-debugging"
+    },
+    {
+      "attempt": {
+        "attempt_id": "real-security-trust-review--always-sol-max--r1--attempt-1",
+        "effort": "max",
+        "error": null,
+        "error_event_count": 0,
+        "exit_code": 0,
+        "failure_kind": null,
+        "internal_retry_count": 0,
+        "latency_seconds": 244.371153,
+        "model": "gpt-5.6-sol",
+        "pair": "gpt-5.6-sol/max",
+        "reason": "always-sol-max-comparison",
+        "response": "# Security and trust-boundary review\n\nCommit `75c2c6926bb317803e66946f72194788cac16ebe`. Based solely on the frozen excerpts; no runtime verification was performed.\n\n## Findings\n\n### P1 \u2014 Confirmed: mutable upstream sources are installed without an immutable trust anchor\n\nAll direct-install fallbacks download the repository\u2019s mutable `main` branch:\n\n- `install.sh`: `TARBALL_URL` and fallback copy (`L18\u201324`, `L177\u2013216`)\n- `install.ps1`: `$ZipUrl` and `Expand-Archive` (`L17\u201323`, `L186\u2013215`)\n- `install-codex.sh`: `TARBALL_URL` and fallback (`L7\u201310`, `L182\u2013203`)\n- `install-codex.ps1`: `$ZipUrl` and fallback (`L5\u20138`, `L214\u2013220`)\n\nThe Unix Codex installer then executes downloaded code during validation: `validate_source()` invokes `scripts/codex_tier.py validate` (`install-codex.sh:L98\u2013103`).\n\nThe Claude marketplace route is stronger because `.claude-plugin/marketplace.json:L13\u201316` pins a release archive with SHA-256. However, the installer obtains that digest from a mutable `main` manifest and updates it unconditionally (`install.sh:L135\u2013144`; `install.ps1:L65\u201375`). Thus the checksum protects against artifact corruption, but not compromise of the repository/maintainer account. The Codex marketplace route supplies only the repository identifier, with no digest or commit pin evidenced (`install-codex.sh:plugin_route`, `L161\u2013166`; `install-codex.ps1:Invoke-PluginRoute`, `L143\u2013153`).\n\n**Precondition:** compromise or malicious control of the upstream repository, marketplace resolution, or relevant publishing credentials.  \n**Impact:** arbitrary skill instructions/code under the installing user; the Unix Codex fallback executes it immediately.  \n**Mitigations:** HTTPS, hard-coded repository owner, randomized temporary directories, and the Claude release checksum.  \n**Remediation:** embed an expected release digest or signed provenance in each installer; download immutable release assets/commits; authenticate marketplace metadata independently of the mutable branch.\n\n### P2 \u2014 Defense in depth: the wrapper can weaken the intended execution policy\n\nThe documented wrapper contract permits `read-only|workspace-write` (`references/executor.md:L53\u201357`), but `build_parser()` additionally accepts `danger-full-access` (`scripts/codex_tier.py:L1099\u20131105`). `cmd_execute()` adds `--ask-for-approval` only when the optional argument is supplied (`L895\u2013898`), so approval behavior otherwise remains dependent on Codex defaults/configuration.\n\n**Precondition:** a caller or orchestration defect controls wrapper arguments; packet text alone cannot select these options.  \n**Impact:** a worker could run with broader filesystem access or weaker approval behavior than its parent intended.  \n**Mitigations:** sandbox defaults to `read-only`, is always passed explicitly (`L909\u2013913`), and the skill requires explicit worker parameters (`SKILL.md:L67\u201370`).  \n**Remediation:** remove `danger-full-access` from this wrapper or require a separate explicit authorization; always pin approval policy; reject any policy weaker than the parent\u2019s.\n\n### P2 \u2014 Defense in depth: calibration evidence is matrix-bound, but account binding is not established\n\n`load_config()` combines the local client model cache and launch-probe evidence (`scripts/codex_tier.py:L331\u2013336`). `apply_launch_probe_results()` promises acceptance only when evidence matches the active candidate matrix (`L261\u2013262`), supported by `candidate_matrix_hash()` (`L256`). The supplied evidence does not establish binding to an account, organization/project, authentication mode, Codex version, or freshness window.\n\n**Precondition:** probe/measured artifacts survive an account switch or are copied between accounts whose candidate matrices coincide.  \n**Impact:** stale availability or performance evidence may produce failed, unnecessarily expensive, or lower-quality routing. It does not grant model access or demonstrate cross-account credential disclosure.  \n**Mitigations:** current client-cache ingestion, matrix hashing, registry deep-copying, and fallback on cache errors (`L157\u2013188`).  \n**Remediation:** bind evidence to a non-secret account/project fingerprint, auth mode, client/model versions, cache hash, and timestamp; invalidate it when any changes.\n\n### P3 \u2014 Defense in depth: logging and caller-selected paths need stronger containment\n\n`write_event()` uses a fixed `EVENT_FIELDS` projection and sanitizes every string (`scripts/codex_tier.py:L620\u2013628`). Nevertheless, `sanitize_error()` is pattern-based (`L632\u2013639`), so an unlabeled secret placed in metadata is not guaranteed to be removed. Both `execute` and `record` accept an arbitrary expanded `--log-file`; `write_event()` creates parent directories and appends while following normal filesystem links (`L620\u2013628`, `L883`, `L1056\u20131058`).\n\n**Precondition:** sensitive values enter metadata, or an untrusted party controls wrapper arguments in a more-privileged invocation.  \n**Impact:** metadata leakage or JSON appended to an unintended writable file.  \n**Remediation:** restrict metadata to enumerated/categorical values, never persist raw errors, and constrain logs to a fixed private directory using exclusive/no-follow creation and restrictive permissions.\n\n## Explicitly dismissed plausible false positives\n\n- **Packet-driven command injection:** blocked. `cmd_execute()` passes a constructed argument list to `subprocess.run()` and sends the packet only through stdin (`L895\u2013935`); no shell parsing occurs. Sandbox values are enumerated.\n- **Ordinary installer argument injection/path traversal:** fixed plugin names, quoted shell expansions, `--` on critical Unix removals, randomized temporary roots, and Windows Codex\u2019s full-path/leaf check plus `-LiteralPath` materially constrain destinations (`install-codex.sh:L86\u2013120`; `install-codex.ps1:L93\u2013106`). No archive traversal exploit is established by the excerpts.\n- **Prompt logging:** tests confirm packet text is absent from logs on success and worker failure (`tests/codex-tier/test_codex_tier.py:L184\u2013188`, `L190\u2013213`), and credential-form sanitization is tested (`L215\u2013249`). No confirmed prompt or credential leak was found.\n- **Probe command injection:** inspection probes append fixed `--version`/help arguments as list elements (`scripts/codex_tier.py:L854\u2013860`); JSON/cache ingestion is not shown executing data as commands.",
+        "response_sha256": "535c0ec76f1947c6f7404c258fd09fa7d5fa8b241cc8b3e9280984d0f076221c",
+        "success": true,
+        "tool_item_count": 0,
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 9984,
+          "input_tokens": 31701,
+          "output_tokens": 10700,
+          "reasoning_output_tokens": 9322,
+          "total_exposed_tokens": 42401,
+          "uncached_input_tokens": 21717
+        },
+        "usage_limit_reset_hint": null,
+        "wall_seconds": 244.504937
+      },
+      "benchmark_state": "complete",
+      "canonical_packet_sha256": "591d5947266dbb9453817e5eb1384e5443f57bb3769a6bd1d2258d6bf6e43807",
+      "frozen_evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+      "infrastructure_attempts": [],
+      "pair": "gpt-5.6-sol/max",
+      "quality": {
+        "critical_errors": [],
+        "dimensions": {
+          "actionability": 14,
+          "completeness": 18,
+          "correctness": 37,
+          "evidence": 23
+        },
+        "passed": true,
+        "score": 92,
+        "summary": "Strong, well-grounded review covering every named trust boundary with accurate preconditions, mitigations, prioritization, and explicit false-positive dismissals. Minor deductions: installer marker/backup protections and local probe scope could be evaluated more fully; the packet-injection dismissal is slightly overbroad unless read specifically as shell/argument injection; and embedding a digest in an installer fetched from the same mutable branch would not itself create an independent trust anchor.",
+        "valid": true
+      },
+      "randomized_position": 5,
+      "repetition": 1,
+      "run_id": "real-security-trust-review--always-sol-max--r1",
+      "task_prompt_sha256": "a45a9d405e8943850f1d5c4f6f9739e705026a6734b3b270c3cc21da25497aec",
+      "verification_attempts": [
+        {
+          "attempt_id": "4a4d0b2a351f4cf48b48859f06947bee-verify-1",
+          "candidate_redactions": 0,
+          "effort": "max",
+          "error": null,
+          "error_event_count": 0,
+          "evidence_characters": 44765,
+          "evidence_sha256": "d6637b4aae0915b803d412a5fdf7e144f813960c25db987a76fc7a0815bc6b51",
+          "exit_code": 0,
+          "failure_kind": null,
+          "internal_retry_count": 0,
+          "latency_seconds": 149.285097,
+          "model": "gpt-5.6-sol",
+          "pair": "gpt-5.6-sol/max",
+          "reason": "independent-blinded-verifier",
+          "response": "{\"score\":92,\"passed\":true,\"dimensions\":{\"correctness\":37,\"evidence\":23,\"completeness\":18,\"actionability\":14},\"critical_errors\":[],\"summary\":\"Strong, well-grounded review covering every named trust boundary with accurate preconditions, mitigations, prioritization, and explicit false-positive dismissals. Minor deductions: installer marker/backup protections and local probe scope could be evaluated more fully; the packet-injection dismissal is slightly overbroad unless read specifically as shell/argument injection; and embedding a digest in an installer fetched from the same mutable branch would not itself create an independent trust anchor.\"}",
+          "response_sha256": "2339f4ea2cb83cd6b2c7fe8c17d302c983e9d138be29eb0bc8712eba302accca",
+          "success": true,
+          "tool_item_count": 0,
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 28694,
+            "output_tokens": 6353,
+            "reasoning_output_tokens": 6214,
+            "total_exposed_tokens": 35047,
+            "uncached_input_tokens": 28694
+          },
+          "usage_limit_reset_hint": null,
+          "verification_phase": "initial",
+          "wall_seconds": 149.429042
+        }
+      ],
+      "work_class": "security_review",
+      "workload_id": "real-security-trust-review"
+    }
+  ],
+  "repository_state": {
+    "clean": true,
+    "commit": "75c2c6926bb317803e66946f72194788cac16ebe",
+    "path": "C:\\Users\\Fenil\\Documents\\ChatGPT\\Tier\\.benchmark-state\\repo",
+    "tree": "dd890aa87fa6d8aab33f868f2ec54acf3f3fb382"
+  },
+  "run_status": "complete",
+  "schedule": [
+    {
+      "randomized_position": 1,
+      "repetition": 1,
+      "run_id": "real-router-refactor-plan--always-sol-max--r1",
+      "workload_id": "real-router-refactor-plan"
+    },
+    {
+      "randomized_position": 2,
+      "repetition": 1,
+      "run_id": "real-distribution-architecture--always-sol-max--r1",
+      "workload_id": "real-distribution-architecture"
+    },
+    {
+      "randomized_position": 3,
+      "repetition": 1,
+      "run_id": "real-bulk-release-audit--always-sol-max--r1",
+      "workload_id": "real-bulk-release-audit"
+    },
+    {
+      "randomized_position": 4,
+      "repetition": 1,
+      "run_id": "real-probe-scope-debugging--always-sol-max--r1",
+      "workload_id": "real-probe-scope-debugging"
+    },
+    {
+      "randomized_position": 5,
+      "repetition": 1,
+      "run_id": "real-security-trust-review--always-sol-max--r1",
+      "workload_id": "real-security-trust-review"
+    }
+  ],
+  "schema_version": 1,
+  "source_results_sha256": "36c8ab014eec04460d478429c78ca6545f05098ee34fb4f8f8d56108f1f09b06",
+  "started_at": "2026-09-02T03:20:27.010623Z",
+  "tier_primary_runs": 0,
+  "tier_reference": {
+    "real-bulk-release-audit": {
+      "median_latency_seconds": 36.136333,
+      "median_quality": 94.0,
+      "median_tokens": 155369.0,
+      "quality_pass_rate": 1.0,
+      "route_pairs": [
+        "gpt-5.6-sol/low"
+      ],
+      "runs": 3,
+      "tokens": [
+        160131,
+        155312,
+        155369
+      ]
+    },
+    "real-distribution-architecture": {
+      "median_latency_seconds": 32.996776,
+      "median_quality": 93.0,
+      "median_tokens": 45756.0,
+      "quality_pass_rate": 1.0,
+      "route_pairs": [
+        "gpt-5.6-sol/low"
+      ],
+      "runs": 3,
+      "tokens": [
+        45756,
+        49647,
+        45717
+      ]
+    },
+    "real-probe-scope-debugging": {
+      "median_latency_seconds": 138.388742,
+      "median_quality": 93.0,
+      "median_tokens": 62424.0,
+      "quality_pass_rate": 1.0,
+      "route_pairs": [
+        "gpt-5.6-terra/xhigh"
+      ],
+      "runs": 3,
+      "tokens": [
+        58674,
+        63045,
+        62424
+      ]
+    },
+    "real-router-refactor-plan": {
+      "median_latency_seconds": 32.020381,
+      "median_quality": 89.0,
+      "median_tokens": 22020.0,
+      "quality_pass_rate": 1.0,
+      "route_pairs": [
+        "gpt-5.6-terra/low"
+      ],
+      "runs": 3,
+      "tokens": [
+        21868,
+        22020,
+        22029
+      ]
+    },
+    "real-security-trust-review": {
+      "median_latency_seconds": 36.581695,
+      "median_quality": 85.0,
+      "median_tokens": 28861.0,
+      "quality_pass_rate": 1.0,
+      "route_pairs": [
+        "gpt-5.6-sol/low"
+      ],
+      "runs": 3,
+      "tokens": [
+        65882,
+        28783,
+        28861
+      ]
+    }
+  },
+  "usage_metric": "input_tokens + output_tokens",
+  "verifier_pair": "gpt-5.6-sol/max",
+  "verifier_protocol_version": "embedded-repository-evidence-v1",
+  "verifier_usage_included_in_reduction": false
+}

@@ -59,3 +59,8 @@ usage.
 The harness reports raw usage and does not invent a savings percentage. Publish
 a percentage only after comparable, verified trials establish the numerator,
 baseline, and Codex consumption metric.
+
+For the frozen v1 evidence hierarchy, corrected fixtures, final parent-only
+routes, superseded results, and permitted exposed-token claims, read the
+repository-level authoritative report:
+`benchmarks/codex-tier-e2e/CONSOLIDATED-BENCHMARK-REPORT.md`.
