@@ -199,7 +199,20 @@ else
     err "Could not extract the Codex Tier archive."
     exit 1
   fi
-  SOURCE_SKILL="$TMP/claude-tier-main/plugins/codex-tier/skills/codex-tier"
+  # GitHub names the archive's top-level folder <repo>-<branch>. Locate the
+  # folder that holds the skill instead of assuming the repo name, so renaming
+  # the repository can never break this path.
+  SOURCE_SKILL="$TMP/.not-found/plugins/codex-tier/skills/codex-tier"
+  for d in "$TMP"/*/; do
+    if [ -f "${d}plugins/codex-tier/skills/codex-tier/SKILL.md" ]; then
+      SOURCE_SKILL="${d}plugins/codex-tier/skills/codex-tier"
+      break
+    fi
+  done
+  if [ ! -f "$SOURCE_SKILL/SKILL.md" ]; then
+    err "The downloaded archive did not contain plugins/codex-tier/skills/codex-tier - the repo layout may have changed."
+    exit 1
+  fi
   install_direct "$SOURCE_SKILL" || {
     err "Standalone Codex Tier install failed."
     exit 1

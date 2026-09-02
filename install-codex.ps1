@@ -214,9 +214,17 @@
                 $Archive = Join-Path $TemporaryRoot 'claude-tier.zip'
                 Invoke-WebRequest -Uri $ZipUrl -OutFile $Archive -UseBasicParsing -ErrorAction Stop
                 Expand-Archive -LiteralPath $Archive -DestinationPath $TemporaryRoot -Force -ErrorAction Stop
-                $Source = Join-Path $TemporaryRoot (
-                    'claude-tier-main\plugins\codex-tier\skills\codex-tier'
-                )
+                # GitHub names the archive's top-level folder <repo>-<branch>.
+                # Locate the folder that holds the skill instead of assuming the
+                # repo name, so renaming the repository can never break this path.
+                $Source = $null
+                foreach ($Top in (Get-ChildItem -Path $TemporaryRoot -Directory -ErrorAction Stop)) {
+                    $Candidate = Join-Path $Top.FullName 'plugins\codex-tier\skills\codex-tier'
+                    if (Test-Path -LiteralPath (Join-Path $Candidate 'SKILL.md')) { $Source = $Candidate; break }
+                }
+                if (-not $Source) {
+                    throw 'the downloaded archive did not contain plugins/codex-tier/skills/codex-tier - the repo layout may have changed.'
+                }
                 if (-not (Install-Direct $Source $PythonBinary $TemporaryRoot)) {
                     $Failed = $true
                     return

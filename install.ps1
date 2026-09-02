@@ -191,8 +191,16 @@
                     Invoke-WebRequest -Uri $ZipUrl -OutFile $zip -UseBasicParsing -ErrorAction Stop
                     $stage = 'extract'
                     Expand-Archive -Path $zip -DestinationPath $tmp -Force -ErrorAction Stop
-                    $src = Join-Path $tmp "claude-tier-main\skills\$Plugin"
-                    if (-not (Test-Path (Join-Path $src 'SKILL.md'))) {
+                    # GitHub names the archive's top-level folder <repo>-<branch>.
+                    # Locate the folder that holds the skill instead of assuming
+                    # the repo name, so renaming the repository can never break
+                    # this path.
+                    $src = $null
+                    foreach ($top in (Get-ChildItem -Path $tmp -Directory -ErrorAction Stop)) {
+                        $candidate = Join-Path $top.FullName "skills\$Plugin"
+                        if (Test-Path (Join-Path $candidate 'SKILL.md')) { $src = $candidate; break }
+                    }
+                    if (-not $src) {
                         throw "the downloaded archive did not contain skills/$Plugin - the repo layout may have changed. Please report this: https://github.com/$Repo/issues"
                     }
                     $stage = 'copy'

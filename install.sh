@@ -187,7 +187,16 @@ else
     err "Could not extract the downloaded archive."
     exit 1
   fi
-  SRC="$TMP/claude-tier-main/skills/$PLUGIN"
+  # GitHub names the archive's top-level folder <repo>-<branch>. Locate the
+  # folder that holds the skill instead of assuming the repo name, so renaming
+  # the repository can never break this path.
+  SRC="$TMP/.not-found/skills/$PLUGIN"
+  for d in "$TMP"/*/; do
+    if [ -f "${d}skills/$PLUGIN/SKILL.md" ]; then
+      SRC="${d}skills/$PLUGIN"
+      break
+    fi
+  done
   if [ ! -f "$SRC/SKILL.md" ]; then
     err "The downloaded archive did not contain skills/$PLUGIN - the repo layout may have changed."
     err "Please report this: https://github.com/$REPO/issues"
