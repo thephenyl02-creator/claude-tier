@@ -498,6 +498,12 @@ def migrate_verifier_protocol(results: dict[str, Any]) -> None:
     results["verifier_protocol_migrated_at"] = utc_now()
 
 
+# Paths below name files in the FROZEN benchmark commit's tree (see
+# suite["repository_commit"]). repository_evidence() reads them from the --repo
+# checkout, which main() pins to that commit and requires clean via
+# assert_repository_state() before freezing; it is never THIS repository's
+# working tree. CODEX-TIER.md later moved to docs/codex-tier/README.md on
+# main; the frozen tree still has it at the root.
 VERIFIER_EVIDENCE_PATHS = {
     "real-bulk-release-audit": [
         "README.md",

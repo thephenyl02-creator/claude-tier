@@ -1,5 +1,7 @@
 # Codex Tier v1
 
+> Part of the [Claude Tier + Codex Tier](../../README.md) repository. Release history: [CHANGELOG](CHANGELOG.md).
+
 Codex Tier is a local, explicit, quality-constrained compute router for Codex.
 It is designed to reduce Codex usage without lowering the required quality.
 
@@ -180,6 +182,8 @@ credentials, private form responses, and raw transcripts are never logged.
 
 ## Validate and test
 
+All commands below run from the repository root.
+
 ```text
 python plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py validate
 python plugins/codex-tier/skills/codex-tier/scripts/codex_tier.py matrix
@@ -196,7 +200,7 @@ default.
 
 ## Benchmarking
 
-The [authoritative consolidated benchmark report](benchmarks/codex-tier-e2e/CONSOLIDATED-BENCHMARK-REPORT.md)
+The [authoritative consolidated benchmark report](../../benchmarks/codex-tier-e2e/CONSOLIDATED-BENCHMARK-REPORT.md)
 is the canonical v1 summary. It reconciles the 29-pair calibration, invalid
 early trials, targeted tuning, fixture repairs, corrected Sol/low benchmark,
 always-Sol/max comparison, superseded evidence, and final pinned Sol/low routes.

@@ -1,4 +1,8 @@
-# Codex Tier v1.0.0
+# Codex Tier changelog
+
+Each entry is a GitHub release tagged `codex-tier-vX.Y.Z`.
+
+## 1.0.0 (2026-09-02)
 
 Codex Tier is a quality-first model × reasoning-effort router for Codex. It
 routes work through deterministic tools, ordinary direct execution, or an
@@ -10,7 +14,7 @@ For the five stabilized v1 workload profiles, the released policy pins
 Ordinary `DIRECT` semantics remain available for workloads without a validated
 pinned route.
 
-## Scoped benchmark result
+### Scoped benchmark result
 
 The **final-route derived comparison** uses hash-compatible authoritative
 Sol/low and Sol/max observations; it is not a new post-correction Tier
@@ -26,7 +30,7 @@ always Sol/max**.
 These are exposed-token, or token-usage proxy, results. They are not claims
 about Codex credits, billing, dollars, or the five-hour usage quota.
 
-## Limitations
+### Limitations
 
 - The evidence covers a fixed workload, repository, model, and verifier
   environment.

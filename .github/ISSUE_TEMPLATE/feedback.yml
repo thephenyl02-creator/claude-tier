@@ -1,0 +1,33 @@
+name: Feedback
+description: Leave a note - what worked, what did not, what you would change.
+title: "[Feedback] "
+labels: ["feedback"]
+body:
+  - type: dropdown
+    id: product
+    attributes:
+      label: Which product?
+      options:
+        - Claude Tier (/tier)
+        - Codex Tier ($codex-tier)
+        - Both / the repository
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: Your note
+      description: A suggestion, a confusion, a result you measured, a thank-you. Anything goes.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version (optional)
+      placeholder: "e.g. tier 1.10.0, codex-tier 1.0.0"
+  - type: checkboxes
+    id: followup
+    attributes:
+      label: Follow-up
+      options:
+        - label: It is fine to reply on this issue with questions.

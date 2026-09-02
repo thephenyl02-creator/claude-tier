@@ -1,0 +1,44 @@
+name: Bug report
+description: Something did not install, route, or behave as documented.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: product
+    attributes:
+      label: Which product?
+      options:
+        - Claude Tier (/tier)
+        - Codex Tier ($codex-tier)
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - macOS
+        - Linux
+        - WSL
+        - Windows (PowerShell)
+        - Claude Code cloud (claude.ai/code)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you ran, what you expected, what you got.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Command output or logs (optional)
+      render: shell
+  - type: input
+    id: version
+    attributes:
+      label: Version (optional)
+      placeholder: "e.g. tier 1.10.0, codex-tier 1.0.0, claude --version, codex --version"
