@@ -15,9 +15,9 @@ the current product claim, wherever this report marks them superseded.
 
 Codex Tier's rule is quality first: use the cheapest route that reliably meets
 the required quality, and spend more only when quality requires it. Corrected
-evidence now validates the parent path for all five stabilized workload
-classes. In the controlled benchmark, that parent was fixed to
-`gpt-5.6-sol/low`.
+evidence validates `gpt-5.6-sol/low` for all five stabilized workload classes.
+The production router represents that measured pair as an explicitly pinned
+WORKER route, so it does not inherit a stronger invoking parent.
 
 Two comparisons answer different questions:
 
@@ -35,8 +35,9 @@ These are **exposed-token results** (`input_tokens + output_tokens`). They are
 not Codex-credit, billing, dollar, or 5-hour-quota savings. Codex exposed no
 mapping from token counters to those account-consumption measures.
 
-The route corrections made after the benchmark may improve the router further
-by removing two unnecessary workers. No new percentage is claimed without a
+The route corrections made after the benchmark may improve the router further.
+The final execution fix also pins Sol/low instead of inheriting Sol/max or
+Sol/xhigh from the invoking session. No new percentage is claimed without a
 new controlled measurement.
 
 ## Original goal and architecture
@@ -64,9 +65,10 @@ The active implementation and data are:
 - `plugins/codex-tier/skills/codex-tier/references/measured-frontiers.json`
 
 The router overlays real measured decisions on distributable priors. A
-measured `routing_decision: "parent"` empties the worker list, removes stale
-availability fallbacks, and marks the profile parent-only. This prevents a
-superseded worker from reappearing because of availability or escalation.
+measured `routing_decision: "validated_worker"` replaces the prior frontier
+with exactly one pinned pair and removes stale availability fallbacks. If that
+pair is unavailable, the router fails safely to DIRECT-current-parent rather
+than silently substituting an unvalidated candidate.
 
 ## Evidence hierarchy
 
@@ -224,8 +226,8 @@ hashes are preserved in `corrected-final-results.json`.
 ## Corrected Sol/low benchmark
 
 The parent/baseline was fixed to `gpt-5.6-sol/low`. The following table reports
-the routes used during measurement; routine and debugging are subsequently
-corrected to parent-only.
+the routes used during measurement; all five production profiles subsequently
+pin the validated Sol/low pair explicitly.
 
 | Workload | Measured Tier route | Baseline median tokens | Tier median tokens | Tier token change | Quality baseline/Tier | Pass baseline/Tier |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
@@ -278,20 +280,23 @@ has one Max observation. The completed artifact is
 
 ## Final validated routing
 
-All five measured profiles now resolve directly to the parent. The controlled
-parent pair was `gpt-5.6-sol/low`.
+All five measured profiles now resolve to an explicitly pinned
+`gpt-5.6-sol/low` worker. This is intentionally distinct from DIRECT, which
+continues to inherit the current parent model and reasoning effort.
 
 | Workload class | Final v1 route | Authoritative reason |
 | --- | --- | --- |
-| `bulk_repository_scan` | DIRECT parent (validated Sol/low) | No cheaper tested worker preserved quality; the corrected complete-repository conditions both passed on the parent. |
-| `routine_refactor` | DIRECT parent (validated Sol/low) | Sol/low used 22,004 median tokens versus 22,020 for Terra/low; both passed. |
-| `difficult_debugging` | DIRECT parent (validated Sol/low) | Sol/low used 53,112 median tokens and quality 94 versus Terra/xhigh at 62,424 and quality 93. |
-| `security_review` | DIRECT parent (validated Sol/low) | No cheaper candidate preserved required quality; corrected parent conditions passed. |
-| `architecture` | DIRECT parent (validated Sol/low) | No cheaper quality-preserving route was found. |
+| `bulk_repository_scan` | WORKER `gpt-5.6-sol/low` | No cheaper tested worker preserved quality; the corrected complete-repository conditions passed on Sol/low. |
+| `routine_refactor` | WORKER `gpt-5.6-sol/low` | Sol/low used 22,004 median tokens versus 22,020 for Terra/low; both passed. |
+| `difficult_debugging` | WORKER `gpt-5.6-sol/low` | Sol/low used 53,112 median tokens and quality 94 versus Terra/xhigh at 62,424 and quality 93. |
+| `security_review` | WORKER `gpt-5.6-sol/low` | No cheaper candidate preserved required quality; corrected Sol/low conditions passed. |
+| `architecture` | WORKER `gpt-5.6-sol/low` | No cheaper quality-preserving route was found. |
 
 The router does not retain a stronger route because it once looked promising
-under superseded evidence. Parent-only overlays also remove prior availability
-fallback candidates.
+under superseded evidence. Validated-worker overlays remove prior availability
+fallback candidates and enforce the measured pair independently of the current
+session. When Sol/low is unavailable, the router reports that fact and uses the
+quality-safe current-parent fallback.
 
 ## Superseded results
 
@@ -324,8 +329,8 @@ Defensible claims:
   metric.
 - Against always Sol/max, the tested workloads measured 9.83% median and
   12.57% mean exposed-token reductions, with 100% pass rates.
-- The final five stabilized routing profiles are parent-only under the
-  corrected evidence.
+- The final five stabilized routing profiles explicitly pin Sol/low under the
+  corrected evidence; they do not inherit Sol/max or Sol/xhigh.
 
 Limitations:
 
@@ -337,8 +342,9 @@ Limitations:
   have three.
 - Security passed both quality gates but Sol/max had a six-point higher median
   score, so this is not a quality-equivalence result.
-- Correcting routine and debugging to parent occurred after measurement. It may
-  improve the final router, but no post-correction percentage is claimed.
+- Correcting routine and debugging to Sol/low and enforcing Sol/low as a pinned
+  worker occurred after measurement. It may improve the final router, but no
+  post-correction percentage is claimed.
 - Future Codex model catalogs or usage semantics require new discovery and
   calibration rather than extrapolation from these numbers.
 

@@ -53,7 +53,7 @@ transformations, or file metadata. Do not buy model reasoning to imitate them.
 Use the current parent for a tiny unit already in context when worker startup
 and packet construction would cost more than the work. DIRECT is also the
 quality-safe fallback when no available pinned worker clears the configured
-quality bar.
+quality bar. DIRECT never changes or pins the current parent model or effort.
 
 ### WORKER
 
@@ -68,6 +68,11 @@ Prefer native Codex subagents when the active tool exposes explicit
 2. Send only the bounded work packet described in executor.md.
 3. Record the actual pinned pair. Never report a cheaper pair unless the tool
    call enforced it.
+
+A benchmark-validated baseline pair is a WORKER route, not DIRECT. If the
+router returns a validated worker, enforce its exact model and effort even when
+the invoking parent is a stronger or more expensive pair. Do not treat the word
+"baseline" in benchmark evidence as permission to inherit the current parent.
 
 If native workers on the current surface cannot enforce both pins, use the
 bounded `codex exec` wrapper in `scripts/codex_tier.py execute`. If neither

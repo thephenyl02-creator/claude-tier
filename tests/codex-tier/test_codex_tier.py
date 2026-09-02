@@ -9,6 +9,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -39,6 +40,30 @@ def route(**overrides):
     return codex_tier.route_work_unit(**values)
 
 
+VALIDATED_CASES = {
+    "bulk_repository_scan": {
+        "complexity": "mechanical", "volume": "large", "risk": "low",
+        "context": "repository-wide",
+    },
+    "routine_refactor": {
+        "complexity": "routine", "volume": "moderate", "risk": "ordinary",
+        "context": "multi-file",
+    },
+    "difficult_debugging": {
+        "complexity": "substantial", "volume": "moderate",
+        "risk": "correctness-sensitive", "context": "repository-wide",
+    },
+    "security_review": {
+        "complexity": "frontier", "volume": "small",
+        "risk": "security-sensitive", "context": "large-context",
+    },
+    "architecture": {
+        "complexity": "substantial", "volume": "moderate",
+        "risk": "ordinary", "context": "repository-wide",
+    },
+}
+
+
 class RoutingTests(unittest.TestCase):
     def test_registry_and_frontiers_validate(self):
         registry, frontiers = codex_tier.load_config()
@@ -53,6 +78,14 @@ class RoutingTests(unittest.TestCase):
         self.assertNotIn("none", {item["effort"] for item in matrix})
         self.assertEqual("current", registry["runtime_probe_evidence"]["status"])
         self.assertEqual([], registry["runtime_unavailable_pairs"])
+        for work_class in VALIDATED_CASES:
+            with self.subTest(work_class=work_class):
+                profile = frontiers["profiles"][work_class]
+                self.assertTrue(profile["validated_worker_only"])
+                self.assertEqual(
+                    "gpt-5.6-sol/low",
+                    codex_tier.candidate_copy(profile["candidates"][0])["pair"],
+                )
 
     def test_deterministic_work_uses_tool(self):
         decision = route(complexity="deterministic", risk="production-critical")
@@ -60,11 +93,16 @@ class RoutingTests(unittest.TestCase):
         self.assertIsNone(decision["selected"])
 
     def test_tiny_local_work_uses_direct(self):
-        decision = route(volume="tiny", context="local", risk="low")
+        decision = route(
+            work_class="structured_extraction",
+            volume="tiny",
+            context="local",
+            risk="low",
+        )
         self.assertEqual("DIRECT", decision["execution_mode"])
         self.assertFalse(decision["requires_parent"])
 
-    def test_bulk_route_uses_validated_parent(self):
+    def test_bulk_route_uses_validated_worker(self):
         decision = route(
             work_class="bulk_repository_scan",
             complexity="mechanical",
@@ -72,27 +110,25 @@ class RoutingTests(unittest.TestCase):
             risk="low",
             context="repository-wide",
         )
-        self.assertEqual("DIRECT", decision["execution_mode"])
-        self.assertTrue(decision["requires_parent"])
+        self.assertEqual("WORKER", decision["execution_mode"])
+        self.assertEqual("gpt-5.6-sol/low", decision["selected"]["pair"])
 
-    def test_ordinary_refactor_uses_validated_parent(self):
+    def test_ordinary_refactor_uses_validated_worker(self):
         decision = route()
-        self.assertEqual("DIRECT", decision["execution_mode"])
-        self.assertTrue(decision["requires_parent"])
-        self.assertIsNone(decision["selected"])
+        self.assertEqual("WORKER", decision["execution_mode"])
+        self.assertEqual("gpt-5.6-sol/low", decision["selected"]["pair"])
 
-    def test_difficult_debugging_uses_validated_parent(self):
+    def test_difficult_debugging_uses_validated_worker(self):
         decision = route(
             work_class="difficult_debugging",
             complexity="substantial",
             risk="correctness-sensitive",
             context="repository-wide",
         )
-        self.assertEqual("DIRECT", decision["execution_mode"])
-        self.assertTrue(decision["requires_parent"])
-        self.assertIsNone(decision["selected"])
+        self.assertEqual("WORKER", decision["execution_mode"])
+        self.assertEqual("gpt-5.6-sol/low", decision["selected"]["pair"])
 
-    def test_security_route_uses_validated_parent(self):
+    def test_security_route_uses_validated_worker(self):
         decision = route(
             work_class="security_review",
             complexity="frontier/ambiguous",
@@ -100,16 +136,15 @@ class RoutingTests(unittest.TestCase):
             risk="security-sensitive",
             context="large-context",
         )
-        self.assertEqual("DIRECT", decision["execution_mode"])
-        self.assertTrue(decision["requires_parent"])
+        self.assertEqual("WORKER", decision["execution_mode"])
+        self.assertEqual("gpt-5.6-sol/low", decision["selected"]["pair"])
 
     def test_superseded_worker_unavailability_does_not_reactivate_prior_route(self):
         decision = route(unavailable_pairs=["gpt-5.6-terra/low"])
-        self.assertEqual("DIRECT", decision["execution_mode"])
-        self.assertTrue(decision["requires_parent"])
-        self.assertIsNone(decision["selected"])
+        self.assertEqual("WORKER", decision["execution_mode"])
+        self.assertEqual("gpt-5.6-sol/low", decision["selected"]["pair"])
 
-    def test_no_viable_worker_keeps_quality_on_parent(self):
+    def test_unavailable_validated_pair_fails_safely_to_current_parent(self):
         decision = route(
             work_class="security_review",
             complexity="frontier",
@@ -119,9 +154,12 @@ class RoutingTests(unittest.TestCase):
         )
         self.assertEqual("DIRECT", decision["execution_mode"])
         self.assertTrue(decision["requires_parent"])
+        self.assertIsNone(decision["selected"])
+        self.assertIn("gpt-5.6-sol/low is unavailable", decision["reason"])
+        self.assertEqual("gpt-5.6-sol/low", decision["alternatives"][0]["pair"])
 
     def test_selective_escalation_is_workload_specific(self):
-        decision = route(escalate_from="gpt-5.6-terra/low")
+        decision = route(escalate_from="gpt-5.6-sol/low")
         self.assertEqual("DIRECT", decision["execution_mode"])
         self.assertTrue(decision["requires_parent"])
         architecture = route(
@@ -130,39 +168,66 @@ class RoutingTests(unittest.TestCase):
             risk="ordinary",
             context="repository-wide",
         )
-        self.assertEqual("DIRECT", architecture["execution_mode"])
-        self.assertTrue(architecture["requires_parent"])
-        self.assertIn("no cheaper quality-preserving worker", architecture["reason"])
+        self.assertEqual("WORKER", architecture["execution_mode"])
+        self.assertEqual("gpt-5.6-sol/low", architecture["selected"]["pair"])
 
-    def test_all_five_validated_workloads_are_parent_only(self):
-        cases = {
-            "bulk_repository_scan": {
-                "complexity": "mechanical", "volume": "large", "risk": "low",
-                "context": "repository-wide",
-            },
-            "routine_refactor": {
-                "complexity": "routine", "volume": "moderate", "risk": "ordinary",
-                "context": "multi-file",
-            },
-            "difficult_debugging": {
-                "complexity": "substantial", "volume": "moderate",
-                "risk": "correctness-sensitive", "context": "repository-wide",
-            },
-            "security_review": {
-                "complexity": "frontier", "volume": "small",
-                "risk": "security-sensitive", "context": "large-context",
-            },
-            "architecture": {
-                "complexity": "substantial", "volume": "moderate",
-                "risk": "ordinary", "context": "repository-wide",
-            },
-        }
-        for work_class, dimensions in cases.items():
-            with self.subTest(work_class=work_class):
-                decision = route(work_class=work_class, **dimensions)
-                self.assertEqual("DIRECT", decision["execution_mode"])
-                self.assertTrue(decision["requires_parent"])
-                self.assertIsNone(decision["selected"])
+    def test_all_five_validated_workloads_pin_sol_low_for_stronger_parents(self):
+        for parent_effort in ("max", "xhigh"):
+            for work_class, dimensions in VALIDATED_CASES.items():
+                with self.subTest(
+                    work_class=work_class, parent=f"gpt-5.6-sol/{parent_effort}"
+                ):
+                    decision = route(
+                        work_class=work_class,
+                        parent_model="gpt-5.6-sol",
+                        parent_effort=parent_effort,
+                        **dimensions,
+                    )
+                    self.assertEqual(
+                        f"gpt-5.6-sol/{parent_effort}",
+                        decision["invoking_parent"]["pair"],
+                    )
+                    self.assertEqual("WORKER", decision["execution_mode"])
+                    self.assertFalse(decision["requires_parent"])
+                    self.assertEqual("gpt-5.6-sol/low", decision["selected"]["pair"])
+
+    def test_validated_pair_unavailable_does_not_use_prior_fallback(self):
+        decision = route(unavailable_pairs=["gpt-5.6-sol/low"])
+        self.assertEqual("DIRECT", decision["execution_mode"])
+        self.assertTrue(decision["requires_parent"])
+        self.assertIsNone(decision["selected"])
+        self.assertEqual(
+            ["gpt-5.6-sol/low"],
+            [item["pair"] for item in decision["alternatives"]],
+        )
+
+    def test_client_cache_without_sol_fails_safely(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            cache = Path(temporary) / "models_cache.json"
+            cache.write_text(
+                json.dumps(
+                    {
+                        "client_version": "test",
+                        "fetched_at": "2026-09-02T00:00:00Z",
+                        "models": [
+                            {
+                                "slug": "gpt-5.6-luna",
+                                "visibility": "list",
+                                "supported_reasoning_levels": [{"effort": "low"}],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            with mock.patch.dict(
+                os.environ, {"CODEX_TIER_MODELS_CACHE": str(cache)}, clear=False
+            ):
+                decision = route()
+            self.assertEqual("DIRECT", decision["execution_mode"])
+            self.assertTrue(decision["requires_parent"])
+            self.assertIsNone(decision["selected"])
+            self.assertIn("gpt-5.6-sol/low is unavailable", decision["reason"])
 
 
 class ExecutorTests(unittest.TestCase):
@@ -186,9 +251,9 @@ class ExecutorTests(unittest.TestCase):
                     "--repo",
                     str(REPO_ROOT),
                     "--model",
-                    "gpt-5.6-luna",
+                    "gpt-5.6-sol",
                     "--effort",
-                    "high",
+                    "low",
                     "--sandbox",
                     "read-only",
                     "--codex-bin",
@@ -197,18 +262,21 @@ class ExecutorTests(unittest.TestCase):
                     str(log_file),
                     "--work-class",
                     "bulk_repository_scan",
+                    "--parent-model",
+                    "gpt-5.6-sol/max",
                 ],
                 packet="OBJECTIVE\nReturn a compact repository inventory.",
             )
             self.assertEqual(0, completed.returncode, completed.stderr)
             result = json.loads(completed.stdout)
             self.assertTrue(result["success"])
-            self.assertIn("MODEL=gpt-5.6-luna EFFORT=high", result["final_message"])
+            self.assertIn("MODEL=gpt-5.6-sol EFFORT=low", result["final_message"])
             self.assertEqual(100, result["usage"]["input_tokens"])
             event = json.loads(log_file.read_text(encoding="utf-8"))
-            self.assertEqual("gpt-5.6-luna", event["selected_model"])
-            self.assertEqual("high", event["selected_effort"])
-            self.assertEqual(30, event["reasoning_tokens"])
+            self.assertEqual("gpt-5.6-sol", event["selected_model"])
+            self.assertEqual("low", event["selected_effort"])
+            self.assertEqual("gpt-5.6-sol/max", event["parent_model"])
+            self.assertEqual(10, event["reasoning_tokens"])
             self.assertNotIn("repository inventory", log_file.read_text(encoding="utf-8"))
 
     def test_worker_failure_is_logged_without_raw_packet(self):

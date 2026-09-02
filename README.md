@@ -16,6 +16,11 @@ model × effort candidate expected to meet the quality bar with a confidence
 margin. It verifies the result and selectively escalates only the affected
 unit.
 
+For the five stabilized v1 workloads, corrected evidence selects an explicitly
+pinned `gpt-5.6-sol/low` worker. This remains Sol/low even when the invoking
+Codex session is running Sol/max or Sol/xhigh; ordinary DIRECT routes continue
+to mean the unchanged current parent.
+
 **macOS / Linux / WSL:**
 
 ```bash

@@ -9,7 +9,18 @@
         "model": "gpt-5.6-sol",
         "pass_rate": 1.0
       },
-      "candidates": [],
+      "candidates": [
+        {
+          "effort": "low",
+          "measured_total_exposed_tokens": 155373,
+          "model": "gpt-5.6-sol",
+          "pass_rate": 1.0,
+          "quality": 94,
+          "relative_usage": 155373,
+          "usage_source": "corrected-final-results",
+          "verification": "pass"
+        }
+      ],
       "compared_tier_condition": {
         "effort": "low",
         "median_quality": 94,
@@ -21,8 +32,8 @@
       "evidence_file": "benchmarks/codex-tier-e2e/corrected-final-results.json",
       "evidence_sha256": "36c8ab014eec04460d478429c78ca6545f05098ee34fb4f8f8d56108f1f09b06",
       "fixture_id": "corrected-final-real-bulk-release-audit-v1",
-      "reason": "The corrected complete-repository fixture showed no cheaper quality-preserving worker; both measured conditions used the Sol/low parent and passed.",
-      "routing_decision": "parent",
+      "reason": "The corrected complete-repository fixture showed no cheaper quality-preserving route than Sol/low. Pin the validated pair so a stronger invoking parent is not inherited.",
+      "routing_decision": "validated_worker",
       "superseded_evidence": [
         {
           "file": "plugins/codex-tier/skills/codex-tier/references/real-calibration-results.json",
@@ -42,7 +53,18 @@
         "model": "gpt-5.6-sol",
         "pass_rate": 1.0
       },
-      "candidates": [],
+      "candidates": [
+        {
+          "effort": "low",
+          "measured_total_exposed_tokens": 22004,
+          "model": "gpt-5.6-sol",
+          "pass_rate": 1.0,
+          "quality": 88,
+          "relative_usage": 22004,
+          "usage_source": "corrected-final-results",
+          "verification": "pass"
+        }
+      ],
       "compared_tier_condition": {
         "effort": "low",
         "median_quality": 89,
@@ -54,8 +76,8 @@
       "evidence_file": "benchmarks/codex-tier-e2e/corrected-final-results.json",
       "evidence_sha256": "36c8ab014eec04460d478429c78ca6545f05098ee34fb4f8f8d56108f1f09b06",
       "fixture_id": "corrected-final-real-router-refactor-plan-v1",
-      "reason": "Sol/low used slightly fewer exposed tokens than Terra/low while both conditions passed the required quality gate; the cheapest reliable route is the parent.",
-      "routing_decision": "parent",
+      "reason": "Sol/low used slightly fewer exposed tokens than Terra/low while both conditions passed the required quality gate. Pin Sol/low rather than inheriting the invoking parent.",
+      "routing_decision": "validated_worker",
       "superseded_evidence": [
         {
           "file": "benchmarks/codex-tier-e2e/tuning-results.json",
@@ -71,7 +93,18 @@
         "model": "gpt-5.6-sol",
         "pass_rate": 1.0
       },
-      "candidates": [],
+      "candidates": [
+        {
+          "effort": "low",
+          "measured_total_exposed_tokens": 53112,
+          "model": "gpt-5.6-sol",
+          "pass_rate": 1.0,
+          "quality": 94,
+          "relative_usage": 53112,
+          "usage_source": "corrected-final-results",
+          "verification": "pass"
+        }
+      ],
       "compared_tier_condition": {
         "effort": "xhigh",
         "median_quality": 93,
@@ -83,8 +116,8 @@
       "evidence_file": "benchmarks/codex-tier-e2e/corrected-final-results.json",
       "evidence_sha256": "36c8ab014eec04460d478429c78ca6545f05098ee34fb4f8f8d56108f1f09b06",
       "fixture_id": "corrected-final-real-probe-scope-debugging-v1",
-      "reason": "With the repaired complete call-flow evidence, Sol/low used fewer exposed tokens and achieved equal-or-better median quality than Terra/xhigh; keep the work on the parent.",
-      "routing_decision": "parent",
+      "reason": "With the repaired complete call-flow evidence, Sol/low used fewer exposed tokens and achieved equal-or-better median quality than Terra/xhigh. Pin the validated Sol/low pair.",
+      "routing_decision": "validated_worker",
       "superseded_evidence": [
         {
           "file": "benchmarks/codex-tier-e2e/quality-recovery-tuning-v2-results.json",
@@ -104,7 +137,18 @@
         "model": "gpt-5.6-sol",
         "pass_rate": 1.0
       },
-      "candidates": [],
+      "candidates": [
+        {
+          "effort": "low",
+          "measured_total_exposed_tokens": 45814,
+          "model": "gpt-5.6-sol",
+          "pass_rate": 1.0,
+          "quality": 93,
+          "relative_usage": 45814,
+          "usage_source": "corrected-final-results",
+          "verification": "pass"
+        }
+      ],
       "compared_tier_condition": {
         "effort": "low",
         "median_quality": 93,
@@ -116,8 +160,8 @@
       "evidence_file": "benchmarks/codex-tier-e2e/corrected-final-results.json",
       "evidence_sha256": "36c8ab014eec04460d478429c78ca6545f05098ee34fb4f8f8d56108f1f09b06",
       "fixture_id": "corrected-final-real-distribution-architecture-v1",
-      "reason": "No cheaper quality-preserving worker was validated; both corrected final conditions stayed on the Sol/low parent.",
-      "routing_decision": "parent",
+      "reason": "No cheaper quality-preserving worker was validated. Pin Sol/low so the measured baseline route is independent of the invoking parent.",
+      "routing_decision": "validated_worker",
       "superseded_evidence": [
         {
           "file": "benchmarks/codex-tier-e2e/tuning-results.json",
@@ -133,7 +177,18 @@
         "model": "gpt-5.6-sol",
         "pass_rate": 1.0
       },
-      "candidates": [],
+      "candidates": [
+        {
+          "effort": "low",
+          "measured_total_exposed_tokens": 28773,
+          "model": "gpt-5.6-sol",
+          "pass_rate": 1.0,
+          "quality": 84,
+          "relative_usage": 28773,
+          "usage_source": "corrected-final-results",
+          "verification": "pass"
+        }
+      ],
       "compared_tier_condition": {
         "effort": "low",
         "median_quality": 85,
@@ -145,8 +200,8 @@
       "evidence_file": "benchmarks/codex-tier-e2e/corrected-final-results.json",
       "evidence_sha256": "36c8ab014eec04460d478429c78ca6545f05098ee34fb4f8f8d56108f1f09b06",
       "fixture_id": "corrected-final-real-security-trust-review-v1",
-      "reason": "No cheaper candidate preserved required quality; both corrected final conditions used the Sol/low parent and passed.",
-      "routing_decision": "parent",
+      "reason": "No cheaper candidate preserved required quality. Pin the validated Sol/low pair rather than inheriting a stronger current parent.",
+      "routing_decision": "validated_worker",
       "superseded_evidence": [
         {
           "file": "benchmarks/codex-tier-e2e/confirmation-results.json",
@@ -163,7 +218,7 @@
       ]
     }
   },
-  "schema_version": 1,
+  "schema_version": 2,
   "status": "real-codex-measurement",
   "usage_metric": {
     "codex_credit_mapping": "unknown; Codex credits were not exposed",

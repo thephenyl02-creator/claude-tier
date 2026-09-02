@@ -316,10 +316,16 @@ def merge_measured_frontiers(frontiers: dict[str, Any]) -> dict[str, Any]:
         if work_class not in merged.get("profiles", {}):
             continue
         current = merged["profiles"][work_class]
-        if profile.get("routing_decision") == "parent":
+        routing_decision = profile.get("routing_decision")
+        if routing_decision == "parent":
             current["candidates"] = []
             current.pop("availability_fallback_candidates", None)
             current["parent_only"] = True
+        elif routing_decision == "validated_worker":
+            current["candidates"] = copy.deepcopy(profile.get("candidates", []))
+            current.pop("availability_fallback_candidates", None)
+            current.pop("parent_only", None)
+            current["validated_worker_only"] = True
         elif profile.get("candidates"):
             current["availability_fallback_candidates"] = copy.deepcopy(
                 current.get("candidates", [])
@@ -334,6 +340,7 @@ def merge_measured_frontiers(frontiers: dict[str, Any]) -> dict[str, Any]:
             "fixture_id": profile.get("fixture_id"),
             "evidence_file": profile.get("evidence_file"),
             "evidence_sha256": profile.get("evidence_sha256"),
+            "routing_decision": routing_decision,
         }
     return merged
 
@@ -411,6 +418,21 @@ def validate_config(registry: dict[str, Any], frontiers: dict[str, Any]) -> list
             errors.append(f"{work_class} has invalid parent_only flag")
         if profile.get("parent_only") and profile.get("candidates"):
             errors.append(f"{work_class} cannot be parent_only and define candidates")
+        if profile.get("validated_worker_only") not in (None, True, False):
+            errors.append(f"{work_class} has invalid validated_worker_only flag")
+        if profile.get("validated_worker_only"):
+            if profile.get("parent_only"):
+                errors.append(
+                    f"{work_class} cannot be parent_only and validated_worker_only"
+                )
+            if len(profile.get("candidates", [])) != 1:
+                errors.append(
+                    f"{work_class} validated_worker_only must define exactly one candidate"
+                )
+            if profile.get("availability_fallback_candidates"):
+                errors.append(
+                    f"{work_class} validated_worker_only cannot define availability fallbacks"
+                )
         seen: set[str] = set()
         for candidate in profile.get("candidates", []):
             model_id = candidate.get("model")
@@ -451,11 +473,24 @@ def route_work_unit(
     available_models: list[str] | None = None,
     unavailable_pairs: list[str] | None = None,
     escalate_from: str | None = None,
+    parent_model: str | None = None,
+    parent_effort: str | None = None,
 ) -> dict[str, Any]:
     registry, frontiers = load_config()
     errors = validate_config(registry, frontiers)
     if errors:
         raise TierError("Invalid routing configuration: " + "; ".join(errors))
+
+    models = registry_models(registry)
+    if (parent_model is None) != (parent_effort is None):
+        raise TierError("parent model and effort must be supplied together")
+    if parent_model is not None:
+        if parent_model not in models:
+            raise TierError(f"Unknown parent model: {parent_model}")
+        if parent_effort not in models[parent_model].get("supported_efforts", []):
+            raise TierError(
+                f"Unsupported parent pair: {pair_name(parent_model, str(parent_effort))}"
+            )
 
     profiles = frontiers["profiles"]
     if work_class not in profiles:
@@ -495,6 +530,15 @@ def route_work_unit(
         "next_escalation": None,
         "alternatives": [],
         "requires_parent": False,
+        "invoking_parent": (
+            {
+                "model": parent_model,
+                "effort": parent_effort,
+                "pair": pair_name(parent_model, str(parent_effort)),
+            }
+            if parent_model is not None
+            else None
+        ),
     }
 
     if complexity == "deterministic":
@@ -504,30 +548,6 @@ def route_work_unit(
             "reason": "Deterministic commands can reliably prove the result.",
         }
 
-    direct_eligible = (
-        volume == "tiny"
-        and complexity in {"mechanical", "routine"}
-        and risk in {"low", "ordinary"}
-        and context in {"minimal", "local"}
-        and required_quality <= 68
-        and escalate_from is None
-    )
-    if direct_eligible:
-        return {
-            **base,
-            "execution_mode": "DIRECT",
-            "reason": "Worker startup and context packaging would cost more than this tiny unit.",
-        }
-
-    if profile.get("parent_only"):
-        return {
-            **base,
-            "execution_mode": "DIRECT",
-            "requires_parent": True,
-            "reason": "Measured tuning found no cheaper quality-preserving worker; keep the work on the parent.",
-        }
-
-    models = registry_models(registry)
     runtime_available = {
         model_id
         for model_id, model in models.items()
@@ -556,6 +576,68 @@ def route_work_unit(
             and item["effort"] in models[item["model"]].get("supported_efforts", [])
             and pair_name(item["model"], item["effort"]) not in unavailable
         ]
+
+    if profile.get("validated_worker_only"):
+        configured = [candidate_copy(item) for item in profile.get("candidates", [])]
+        expected = configured[0]
+        expected_pair = expected["pair"]
+        if escalate_from:
+            if escalate_from != expected_pair:
+                raise TierError(f"{escalate_from} is not calibrated for {work_class}")
+            return {
+                **base,
+                "execution_mode": "DIRECT",
+                "requires_parent": True,
+                "alternatives": [expected],
+                "reason": (
+                    f"Validated pinned worker {expected_pair} failed verification and no "
+                    "alternative route is authorized; keep the unit on the current parent."
+                ),
+            }
+        validated = available_candidates(profile.get("candidates", []))
+        if not validated:
+            return {
+                **base,
+                "execution_mode": "DIRECT",
+                "requires_parent": True,
+                "alternatives": [expected],
+                "reason": (
+                    f"Validated pinned worker {expected_pair} is unavailable; do not "
+                    "substitute an unvalidated worker and keep the unit on the current parent."
+                ),
+            }
+        return {
+            **base,
+            "execution_mode": "WORKER",
+            "selected": validated[0],
+            "reason": (
+                f"Selected benchmark-validated pinned worker {expected_pair}; the invoking "
+                "parent model and effort are not inherited."
+            ),
+        }
+
+    direct_eligible = (
+        volume == "tiny"
+        and complexity in {"mechanical", "routine"}
+        and risk in {"low", "ordinary"}
+        and context in {"minimal", "local"}
+        and required_quality <= 68
+        and escalate_from is None
+    )
+    if direct_eligible:
+        return {
+            **base,
+            "execution_mode": "DIRECT",
+            "reason": "Worker startup and context packaging would cost more than this tiny unit.",
+        }
+
+    if profile.get("parent_only"):
+        return {
+            **base,
+            "execution_mode": "DIRECT",
+            "requires_parent": True,
+            "reason": "Measured tuning found no cheaper quality-preserving worker; keep the work on the parent.",
+        }
 
     candidates = available_candidates(profile.get("candidates", []))
     used_availability_fallback = False
@@ -755,6 +837,8 @@ def cmd_route(args: argparse.Namespace) -> int:
         available_models=args.available_model,
         unavailable_pairs=args.unavailable_pair,
         escalate_from=args.escalate_from,
+        parent_model=args.parent_model,
+        parent_effort=args.parent_effort,
     )
     print(json.dumps(decision, indent=2, sort_keys=True))
     return 0
@@ -1110,6 +1194,14 @@ def build_parser() -> argparse.ArgumentParser:
     route_parser.add_argument("--available-model", action="append")
     route_parser.add_argument("--unavailable-pair", action="append")
     route_parser.add_argument("--escalate-from")
+    route_parser.add_argument(
+        "--parent-model",
+        help="Optional invoking parent model for auditable route traces; never inherited by a WORKER.",
+    )
+    route_parser.add_argument(
+        "--parent-effort",
+        help="Optional invoking parent effort for auditable route traces; supply with --parent-model.",
+    )
     route_parser.set_defaults(func=cmd_route)
 
     inspect_parser = subparsers.add_parser("inspect", help="Inspect the local Codex execution surface")

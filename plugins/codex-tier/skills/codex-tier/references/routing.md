@@ -52,6 +52,12 @@ available worker clears the threshold, it returns DIRECT with
 `requires_parent: true`; this is a quality safeguard, not a failure to save
 usage.
 
+A measured `routing_decision: validated_worker` takes precedence over the
+generic tiny-unit DIRECT shortcut. It contains exactly one benchmark-validated
+pair and returns WORKER with that pair explicitly selected. The invoking parent
+may be supplied with `--parent-model` and `--parent-effort` for an auditable
+trace, but it never changes the validated selection.
+
 ## Availability
 
 The router reads the current client model cache and matching checked-in real
@@ -63,6 +69,12 @@ an explicit calibration.
 If every measured-frontier point is unavailable, the router may consult the
 prior candidate pool. Dominated pairs are not normal economic choices; they are
 availability fallbacks after the dominating point is infeasible.
+
+Validated-worker-only profiles are stricter: they never consult the prior
+candidate pool. If their exact pair is unavailable in the current model cache,
+unsupported at the required effort, or explicitly marked unavailable, routing
+returns DIRECT with `requires_parent: true` and names the unavailable pair.
+This preserves quality without silently substituting an unvalidated worker.
 
 ## Escalation
 

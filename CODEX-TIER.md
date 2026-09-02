@@ -85,6 +85,13 @@ Codex Tier has three execution modes:
 - **WORKER** — a bounded worker with an actually enforced model and reasoning
   effort.
 
+DIRECT preserves the invoking session's model and effort. A benchmark-validated
+baseline pair is therefore represented as WORKER, not DIRECT: the five
+stabilized v1 profiles explicitly pin `gpt-5.6-sol/low`, even when the invoking
+session is Sol/max or Sol/xhigh. If that exact pair is unavailable, routing
+fails safely to DIRECT-current-parent with `requires_parent: true`; it does not
+substitute an unvalidated prior candidate.
+
 Routing is deterministic and cheap. It does not benchmark multiple candidates
 during a live task and does not use a fixed cross-model escalation ladder.
 
@@ -192,7 +199,7 @@ default.
 The [authoritative consolidated benchmark report](benchmarks/codex-tier-e2e/CONSOLIDATED-BENCHMARK-REPORT.md)
 is the canonical v1 summary. It reconciles the 29-pair calibration, invalid
 early trials, targeted tuning, fixture repairs, corrected Sol/low benchmark,
-always-Sol/max comparison, superseded evidence, and final parent-only routes.
+always-Sol/max comparison, superseded evidence, and final pinned Sol/low routes.
 Raw artifacts remain under `benchmarks/codex-tier-e2e/`.
 
 The deterministic executor-validation manifest covers:
@@ -234,15 +241,17 @@ As verified on August 25, 2026:
   frontiers, but realistic repository confirmation failed the relative quality
   gate. That synthetic frontier is launch/executor evidence, not the final
   production route.
-- Corrected evidence validates the Sol/low parent for bulk repository scan,
-  routine refactor, difficult debugging, security review, and architecture.
+- Corrected evidence validates an explicitly pinned Sol/low worker for bulk
+  repository scan, routine refactor, difficult debugging, security review, and
+  architecture. This does not inherit the current parent pair.
 - Versus Sol/low, corrected Tier usage was essentially neutral on the
   workload-median exposed-token metric. Versus always Sol/max, the tested
   workloads measured 9.83% median and 12.57% mean exposed-token reductions,
   with 100% quality-gate pass rates.
 - These percentages are exposed-token results, not credit, billing, dollar,
-  or 5-hour-quota savings. Post-benchmark parent-route corrections are not
-  assigned a new percentage without new measurement.
+  or 5-hour-quota savings. The post-benchmark execution correction from
+  DIRECT-current-parent to pinned Sol/low is not assigned a new percentage
+  without new measurement.
 - Current Codex documentation supports explicit subagent `model` and
   `model_reasoning_effort` pins.
 - Current `codex exec` supports `--model`, repeated `--config`,

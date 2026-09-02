@@ -12,6 +12,10 @@ Use a native worker only when the active spawn tool exposes both inputs.
 Set the exact pair returned by the router. Keep the worker count at one unless
 independent parallel work has a concrete benefit.
 
+This includes measured validated-worker routes. A validated Sol/low baseline
+must be spawned as Sol/low even when the invoking parent is Sol/max, Sol/xhigh,
+or another pair; an unpinned spawn would inherit the parent and is invalid.
+
 The work packet contains only:
 
 ```text
