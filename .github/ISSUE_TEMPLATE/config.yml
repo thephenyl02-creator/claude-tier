@@ -1,5 +1,8 @@
 blank_issues_enabled: true
 contact_links:
+  - name: Feedback, questions, and results
+    url: https://github.com/thephenyl02-creator/claude-tier/discussions
+    about: Notes and questions belong in Discussions, not the issue tracker.
   - name: Claude Tier guide
     url: https://github.com/thephenyl02-creator/claude-tier/blob/main/docs/claude-tier/README.md
     about: What the rule does, every install path, and troubleshooting.

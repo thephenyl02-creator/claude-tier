@@ -95,9 +95,10 @@ holds the evidence and its limits.
 
 ## Feedback
 
-Notes, suggestions, and measured results are welcome:
-[leave feedback](https://github.com/thephenyl02-creator/claude-tier/issues/new?template=feedback.yml)
-or [report a bug](https://github.com/thephenyl02-creator/claude-tier/issues/new?template=bug_report.yml).
+Notes, questions, and measured results go in
+[Discussions](https://github.com/thephenyl02-creator/claude-tier/discussions).
+Something broken?
+[Report a bug](https://github.com/thephenyl02-creator/claude-tier/issues/new?template=bug_report.yml).
 
 ## Keywords
 
