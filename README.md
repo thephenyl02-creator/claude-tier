@@ -14,7 +14,7 @@ changelog, and installers.
 | Guide | [docs/claude-tier](docs/claude-tier/README.md) | [docs/codex-tier](docs/codex-tier/README.md) |
 | Changelog | [CHANGELOG](docs/claude-tier/CHANGELOG.md) | [CHANGELOG](docs/codex-tier/CHANGELOG.md) |
 
-Installable versions are on the [releases page](https://github.com/thephenyl02-creator/claude-tier/releases).
+Installable versions are on the [releases page](https://github.com/thephenyl02-creator/claude-codex-tier/releases).
 Each product owns its own directories: Claude Tier in `skills/tier/` and
 `docs/claude-tier/`; Codex Tier in `plugins/codex-tier/`, `docs/codex-tier/`,
 `tests/codex-tier/`, and `benchmarks/codex-tier-e2e/`. The four `install*`
@@ -28,19 +28,19 @@ back to a plain skill copy when the plugin route is blocked. Safe to re-run.
 macOS / Linux / WSL:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/thephenyl02-creator/claude-tier/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/thephenyl02-creator/claude-codex-tier/main/install.sh | bash
 ```
 
 Windows PowerShell:
 
 ```powershell
-irm https://raw.githubusercontent.com/thephenyl02-creator/claude-tier/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/thephenyl02-creator/claude-codex-tier/main/install.ps1 | iex
 ```
 
 Already have Claude Code? Two commands:
 
 ```
-claude plugin marketplace add thephenyl02-creator/claude-tier
+claude plugin marketplace add thephenyl02-creator/claude-codex-tier
 claude plugin install tier@claude-tier
 ```
 
@@ -64,19 +64,19 @@ and falls back to a standalone skill copy. Safe to re-run.
 macOS / Linux / WSL:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/thephenyl02-creator/claude-tier/main/install-codex.sh | bash
+curl -fsSL https://raw.githubusercontent.com/thephenyl02-creator/claude-codex-tier/main/install-codex.sh | bash
 ```
 
 Windows PowerShell:
 
 ```powershell
-irm https://raw.githubusercontent.com/thephenyl02-creator/claude-tier/main/install-codex.ps1 | iex
+irm https://raw.githubusercontent.com/thephenyl02-creator/claude-codex-tier/main/install-codex.ps1 | iex
 ```
 
 Already have Codex? Two commands:
 
 ```
-codex plugin marketplace add thephenyl02-creator/claude-tier
+codex plugin marketplace add thephenyl02-creator/claude-codex-tier
 codex plugin add codex-tier@codex-tier
 ```
 
@@ -96,9 +96,9 @@ holds the evidence and its limits.
 ## Feedback
 
 Notes, questions, and measured results go in
-[Discussions](https://github.com/thephenyl02-creator/claude-tier/discussions).
+[Discussions](https://github.com/thephenyl02-creator/claude-codex-tier/discussions).
 Something broken?
-[Report a bug](https://github.com/thephenyl02-creator/claude-tier/issues/new?template=bug_report.yml).
+[Report a bug](https://github.com/thephenyl02-creator/claude-codex-tier/issues/new?template=bug_report.yml).
 
 ## Keywords
 

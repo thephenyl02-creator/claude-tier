@@ -6,8 +6,8 @@
     "name": "Fenil K Ventures LLC",
     "url": "https://github.com/thephenyl02-creator"
   },
-  "homepage": "https://github.com/thephenyl02-creator/claude-tier/blob/main/docs/codex-tier/README.md",
-  "repository": "https://github.com/thephenyl02-creator/claude-tier",
+  "homepage": "https://github.com/thephenyl02-creator/claude-codex-tier/blob/main/docs/codex-tier/README.md",
+  "repository": "https://github.com/thephenyl02-creator/claude-codex-tier",
   "license": "MIT",
   "keywords": [
     "codex",
@@ -28,7 +28,7 @@
       "Read",
       "Write"
     ],
-    "websiteURL": "https://github.com/thephenyl02-creator/claude-tier",
+    "websiteURL": "https://github.com/thephenyl02-creator/claude-codex-tier",
     "defaultPrompt": [
       "$codex-tier Complete this task with quality-first compute routing."
     ]

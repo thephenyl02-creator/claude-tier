@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # claude-tier installer (macOS / Linux)
-# https://github.com/thephenyl02-creator/claude-tier
+# https://github.com/thephenyl02-creator/claude-codex-tier
 #
-#   curl -fsSL https://raw.githubusercontent.com/thephenyl02-creator/claude-tier/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/thephenyl02-creator/claude-codex-tier/main/install.sh | bash
 #
 # Handles the common blockers for new users: missing Claude Code CLI, PATH not
 # set, unwritable shell profile, and SSH-to-GitHub failures. If the plugin
@@ -15,7 +15,7 @@ if [ -z "${HOME:-}" ]; then
   exit 1
 fi
 
-REPO="thephenyl02-creator/claude-tier"
+REPO="thephenyl02-creator/claude-codex-tier"
 MARKETPLACE="claude-tier"
 # Raw-URL marketplace add needs no git at all (verified: the CLI downloads
 # and caches the manifest over HTTPS, and `marketplace update` re-fetches it).

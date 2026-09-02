@@ -1,8 +1,8 @@
 # Codex Tier installer (Windows PowerShell 5.1+ / pwsh)
-# irm https://raw.githubusercontent.com/thephenyl02-creator/claude-tier/main/install-codex.ps1 | iex
+# irm https://raw.githubusercontent.com/thephenyl02-creator/claude-codex-tier/main/install-codex.ps1 | iex
 
 & {
-    $Repo = 'thephenyl02-creator/claude-tier'
+    $Repo = 'thephenyl02-creator/claude-codex-tier'
     $Marketplace = 'codex-tier'
     $Plugin = 'codex-tier'
     $ZipUrl = "https://github.com/$Repo/archive/refs/heads/main.zip"

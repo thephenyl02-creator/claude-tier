@@ -1,7 +1,7 @@
 # claude-tier installer (Windows PowerShell 5.1+ / pwsh)
-# https://github.com/thephenyl02-creator/claude-tier
+# https://github.com/thephenyl02-creator/claude-codex-tier
 #
-#   irm https://raw.githubusercontent.com/thephenyl02-creator/claude-tier/main/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/thephenyl02-creator/claude-codex-tier/main/install.ps1 | iex
 #
 # Handles the common blockers for new users: missing Claude Code CLI and
 # SSH-to-GitHub failures. If the plugin route still fails, falls back to a
@@ -14,7 +14,7 @@
 # `irm | iex` it never calls exit, so the caller's session survives.
 
 & {
-    $Repo = 'thephenyl02-creator/claude-tier'
+    $Repo = 'thephenyl02-creator/claude-codex-tier'
     $Marketplace = 'claude-tier'
     # Raw-URL marketplace add needs no git at all (verified: the CLI
     # downloads and caches the manifest over HTTPS; update re-fetches it).

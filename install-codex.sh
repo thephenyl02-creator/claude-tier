@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Codex Tier installer (macOS / Linux / WSL)
-# curl -fsSL https://raw.githubusercontent.com/thephenyl02-creator/claude-tier/main/install-codex.sh | bash
+# curl -fsSL https://raw.githubusercontent.com/thephenyl02-creator/claude-codex-tier/main/install-codex.sh | bash
 
 set -u
 
-REPO="thephenyl02-creator/claude-tier"
+REPO="thephenyl02-creator/claude-codex-tier"
 MARKETPLACE="codex-tier"
 PLUGIN="codex-tier"
 TARBALL_URL="https://github.com/$REPO/archive/refs/heads/main.tar.gz"

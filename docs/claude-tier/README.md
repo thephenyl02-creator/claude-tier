@@ -56,13 +56,13 @@ Nothing needs to be installed first - not even Claude Code itself.
 **macOS / Linux / Ubuntu / WSL** (any bash shell):
 
 ```
-curl -fsSL https://raw.githubusercontent.com/thephenyl02-creator/claude-tier/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/thephenyl02-creator/claude-codex-tier/main/install.sh | bash
 ```
 
 **Windows** (PowerShell):
 
 ```
-irm https://raw.githubusercontent.com/thephenyl02-creator/claude-tier/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/thephenyl02-creator/claude-codex-tier/main/install.ps1 | iex
 ```
 
 The installer absorbs everything that usually goes wrong on a fresh machine:
@@ -78,20 +78,20 @@ re-run any time; it updates an existing install.
 From any terminal:
 
 ```
-claude plugin marketplace add thephenyl02-creator/claude-tier
+claude plugin marketplace add thephenyl02-creator/claude-codex-tier
 claude plugin install tier@claude-tier
 ```
 
 Or the same thing inside a Claude Code session:
 
 ```
-/plugin marketplace add thephenyl02-creator/claude-tier
+/plugin marketplace add thephenyl02-creator/claude-codex-tier
 /plugin install tier@claude-tier
 ```
 
 (Typed `/plugin` commands exist only in the terminal CLI. On the **desktop
 app**, click **+** next to the prompt box -> **Plugins** -> **Add plugin** ->
-add marketplace `thephenyl02-creator/claude-tier` -> install **tier**.)
+add marketplace `thephenyl02-creator/claude-codex-tier` -> install **tier**.)
 
 ### 3. Plugin authors & the git-averse: fully native, fully git-free
 
@@ -100,7 +100,7 @@ itself ships as a sha256-pinned zip archive - so the whole chain installs
 over plain HTTPS, even on machines with no git or SSH configured:
 
 ```
-claude plugin marketplace add https://raw.githubusercontent.com/thephenyl02-creator/claude-tier/main/.claude-plugin/marketplace.json
+claude plugin marketplace add https://raw.githubusercontent.com/thephenyl02-creator/claude-codex-tier/main/.claude-plugin/marketplace.json
 claude plugin install tier@claude-tier
 ```
 
@@ -112,7 +112,7 @@ session start:
 {
   "extraKnownMarketplaces": {
     "claude-tier": {
-      "source": { "source": "github", "repo": "thephenyl02-creator/claude-tier" }
+      "source": { "source": "github", "repo": "thephenyl02-creator/claude-codex-tier" }
     }
   },
   "enabledPlugins": { "tier@claude-tier": true }
