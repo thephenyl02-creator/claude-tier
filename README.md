@@ -49,7 +49,10 @@ enforcement, configuration, logging, tests, and current limitations.
 The [authoritative consolidated benchmark report](benchmarks/codex-tier-e2e/CONSOLIDATED-BENCHMARK-REPORT.md)
 documents the complete calibration and benchmark history, corrected evidence,
 superseded results, final routing decisions, and the exact limits of the v1
-exposed-token claims.
+exposed-token claims. It separates the directly measured pre-correction Tier
+comparison (9.83% median / 12.57% mean reduction versus always Sol/max) from
+the compatible-observation final-route derivation (13.82% median / 15.52%
+mean). Neither is a credit, billing, dollar, or quota-savings claim.
 
 ---
 

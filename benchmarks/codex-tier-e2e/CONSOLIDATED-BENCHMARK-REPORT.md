@@ -19,17 +19,22 @@ evidence validates `gpt-5.6-sol/low` for all five stabilized workload classes.
 The production router represents that measured pair as an explicitly pinned
 WORKER route, so it does not inherit a stronger invoking parent.
 
-Two comparisons answer different questions:
+Three views answer different questions:
 
 - **Versus Sol/low:** the corrected five-workload benchmark was essentially
   neutral on the primary workload-median exposed-token metric: `-0.073%`
   reduction, meaning a `0.073%` increase. The workload mean was a `3.556%`
   increase, driven by the now-superseded Terra/xhigh debugging route. Quality
   was preserved in `5/5` classes and both conditions passed at `100%`.
-- **Versus always Sol/max:** Codex Tier measured a **9.83% median** and
-  **12.57% mean exposed-token reduction** across the five tested workloads,
-  with `100%` quality-gate pass rates in both conditions. All five workload
-  reductions were positive.
+- **Directly measured pre-correction Tier versus always Sol/max:** Codex Tier
+  measured a **9.83% median** and **12.57% mean exposed-token reduction**
+  across the five tested workloads, with `100%` quality-gate pass rates in both
+  conditions. All five workload reductions were positive.
+- **Final-route derived comparison versus always Sol/max:** substituting the
+  compatible corrected Sol/low observations for all five now-pinned profiles
+  yields a **13.82% median** and **15.52% mean exposed-token reduction**. This
+  is a derived comparison from existing observations, not a new post-correction
+  Tier run.
 
 These are **exposed-token results** (`input_tokens + output_tokens`). They are
 not Codex-credit, billing, dollar, or 5-hour-quota savings. Codex exposed no
@@ -37,8 +42,9 @@ mapping from token counters to those account-consumption measures.
 
 The route corrections made after the benchmark may improve the router further.
 The final execution fix also pins Sol/low instead of inheriting Sol/max or
-Sol/xhigh from the invoking session. No new percentage is claimed without a
-new controlled measurement.
+Sol/xhigh from the invoking session. No new directly measured post-correction
+percentage is claimed; the compatible-observation derivation is labeled
+separately below.
 
 ## Original goal and architecture
 
@@ -278,6 +284,53 @@ has one Max observation. The completed artifact is
 `sol-max-comparison-final-results.json` (SHA-256
 `a9a9ebffe69cd506f0001318a9e197a167c5374bd62c51f8f543bc2c8054e115`).
 
+## Final-route derived comparison — existing observations only
+
+**Status: derived, not a new benchmark.** No Tier or Max model call was made for
+this analysis. The final v1 policy pins all five stabilized profiles to
+`gpt-5.6-sol/low`, so the derivation uses the three directly observed baseline
+Sol/low runs per workload from `corrected-final-results.json` and the existing
+combined Sol/max observations from `sol-max-comparison-final-results.json`.
+The formula remains `1 - Sol/low median / Sol/max median`.
+
+The observations are mechanically compatible:
+
+- all five task SHA-256 values, frozen-evidence SHA-256 values, and canonical
+  packet SHA-256 values match exactly between the corrected Sol/low source and
+  both Sol/max comparison batches;
+- repository commit `75c2c6926bb317803e66946f72194788cac16ebe` and tree
+  `dd890aa87fa6d8aab33f868f2ec54acf3f3fb382` match;
+- both use verifier `gpt-5.6-sol/max`, protocol
+  `embedded-repository-evidence-v1`, and usage metric
+  `input_tokens + output_tokens`;
+- the first Max comparison records source-results SHA-256
+  `36c8ab014eec04460d478429c78ca6545f05098ee34fb4f8f8d56108f1f09b06`,
+  which is the actual corrected-results file hash; the extension records prior
+  comparison SHA-256
+  `23d493eac98f7a15c76c5ae59bf3e4a726cac849fc9be05db16edaebbba807ea`,
+  which is the actual first Max-comparison file hash.
+
+| Workload | Sol/low runs | Max runs | Median Sol/low tokens | Median Max tokens | Derived reduction | Median quality Sol/low / Max | Pass Sol/low / Max | Median latency Sol/low / Max |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| bulk repository scan | 3 | 3 | 155,373 | 163,721 | 5.10% | 96 / 96 | 100% / 100% | 36.9s / 130.2s |
+| routine refactor | 3 | 3 | 22,004 | 25,532 | 13.82% | 88 / 89 | 100% / 100% | 31.8s / 81.7s |
+| difficult debugging | 3 | 3 | 53,112 | 63,883 | 16.86% | 94 / 94 | 100% / 100% | 31.7s / 165.1s |
+| security review | 3 | 3 | 28,773 | 42,378 | 32.10% | 84 / 91 | 100% / 100% | 36.7s / 207.3s |
+| architecture | 3 | 1 | 45,814 | 50,746 | 9.72% | 94 / 96 | 100% / 100% | 32.9s / 141.9s |
+
+Across workload classes, the derived median exposed-token reduction is
+**13.82%** and the mean is **15.52%**. The best case is security review at
+**32.10%** and the smallest reduction is bulk repository scan at **5.10%**.
+The calculation contains 15 Sol/low observations and 13 Max observations.
+Median quality across the five workload medians is 94 for both pairs, and all
+underlying observations passed their quality gates.
+
+This is an exposed-token comparison only. It is not a Codex-credit, billing,
+dollar, or 5-hour-quota result. It also is not a quality-equivalence claim:
+security's Sol/low median quality is seven points below Max, and architecture
+has only one Max observation. The directly measured pre-correction Tier result
+of 9.83% median and 12.57% mean remains reported separately above.
+
 ## Final validated routing
 
 All five measured profiles now resolve to an explicitly pinned
@@ -329,6 +382,9 @@ Defensible claims:
   metric.
 - Against always Sol/max, the tested workloads measured 9.83% median and
   12.57% mean exposed-token reductions, with 100% pass rates.
+- Combining compatible existing observations for the final all-Sol/low route
+  yields a derived 13.82% median and 15.52% mean exposed-token reduction versus
+  always Sol/max, with 100% pass rates. This is not a new Tier run.
 - The final five stabilized routing profiles explicitly pin Sol/low under the
   corrected evidence; they do not inherit Sol/max or Sol/xhigh.
 
@@ -341,10 +397,13 @@ Limitations:
 - Architecture has one direct Sol/max observation; the other Max workloads
   have three.
 - Security passed both quality gates but Sol/max had a six-point higher median
-  score, so this is not a quality-equivalence result.
+  score in the directly measured pre-correction comparison and a seven-point
+  higher median in the final-route derivation, so neither is a
+  quality-equivalence result.
 - Correcting routine and debugging to Sol/low and enforcing Sol/low as a pinned
-  worker occurred after measurement. It may improve the final router, but no
-  post-correction percentage is claimed.
+  worker occurred after measurement. There is no directly measured
+  post-correction Tier percentage; the reported 13.82% median and 15.52% mean
+  result is derived from compatible existing Sol/low and Max observations.
 - Future Codex model catalogs or usage semantics require new discovery and
   calibration rather than extrapolation from these numbers.
 

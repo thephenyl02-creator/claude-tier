@@ -248,10 +248,14 @@ As verified on August 25, 2026:
   workload-median exposed-token metric. Versus always Sol/max, the tested
   workloads measured 9.83% median and 12.57% mean exposed-token reductions,
   with 100% quality-gate pass rates.
+- For the final all-Sol/low route, mechanically compatible existing observations
+  imply a derived 13.82% median and 15.52% mean exposed-token reduction versus
+  always Sol/max. This is not a new post-correction Tier run and is reported
+  separately from the directly measured 9.83% / 12.57% result.
 - These percentages are exposed-token results, not credit, billing, dollar,
   or 5-hour-quota savings. The post-benchmark execution correction from
-  DIRECT-current-parent to pinned Sol/low is not assigned a new percentage
-  without new measurement.
+  DIRECT-current-parent to pinned Sol/low has no new directly measured
+  percentage.
 - Current Codex documentation supports explicit subagent `model` and
   `model_reasoning_effort` pins.
 - Current `codex exec` supports `--model`, repeated `--config`,
