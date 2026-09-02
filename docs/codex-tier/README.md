@@ -1,6 +1,6 @@
 # Codex Tier v1
 
-> Part of the [Claude Tier + Codex Tier](../../README.md) repository. Release history: [CHANGELOG](CHANGELOG.md).
+> Part of the [Claude Tier + Codex Tier](../../README.md) repository. Release history: [CHANGELOG](CHANGELOG.md). Plans: [ROADMAP](ROADMAP.md).
 
 Codex Tier is a local, explicit, quality-constrained compute router for Codex.
 It is designed to reduce Codex usage without lowering the required quality.
