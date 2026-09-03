@@ -36,6 +36,10 @@ python <skill-dir>/scripts/codex_tier.py route \
   --context <label>
 ```
 
+An optional `--quality-margin` can only raise the default confidence margin for
+the unit's risk level; it can never lower it, and values outside 0 to 20 are
+rejected.
+
 Read [routing.md](references/routing.md) before choosing a worker for an
 unfamiliar work class or when the classification materially changes the quality
 bar.

@@ -38,7 +38,9 @@ unrepresented workload, add a profile only after representative evidence.
 
 1. the work-class quality prior;
 2. dimension-specific quality floors;
-3. a risk-proportional confidence margin;
+3. a risk-proportional confidence margin (`--quality-margin` only raises the
+   default margin for the unit's risk level and can never lower it; values
+   outside 0 to 20 are rejected);
 4. the available candidates in that class's frontier;
 5. the lowest-relative-usage candidate that clears the resulting threshold.
 

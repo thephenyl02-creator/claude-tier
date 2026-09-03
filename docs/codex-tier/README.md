@@ -196,7 +196,12 @@ The first command validates registry/frontier integrity. The tests cover mode
 selection, multiple model/effort regions, unavailable candidates, selective
 escalation, bounded worker pin enforcement, usage capture, worker failure, and
 representative workload routing. The benchmark command is plan-only by
-default.
+default. The unit test command and the validate command also run in GitHub
+Actions on every push and pull request to main, on Ubuntu and Windows. Some
+tests skip by design: the repaired-fixture consistency check needs the frozen
+benchmark checkout under `.benchmark-state/repo`, which is not committed to the
+repository, and the installer tests run only on Windows, where Git Bash and
+PowerShell drive them.
 
 ## Benchmarking
 

@@ -501,9 +501,15 @@ def route_work_unit(
     volume = normalize_dimension(volume, VOLUME_ALIASES, "volume")
     risk = normalize_dimension(risk, RISK_ALIASES, "risk")
     context = normalize_dimension(context, CONTEXT_ALIASES, "context")
-    margin = DEFAULT_MARGIN[risk] if quality_margin is None else quality_margin
-    if not 0 <= margin <= 20:
-        raise TierError("quality margin must be between 0 and 20")
+    default_margin = DEFAULT_MARGIN[risk]
+    if quality_margin is None:
+        margin = default_margin
+        margin_raised = False
+    else:
+        if not 0 <= quality_margin <= 20:
+            raise TierError("quality margin must be between 0 and 20")
+        margin = max(default_margin, quality_margin)
+        margin_raised = quality_margin > default_margin
 
     profile = profiles[work_class]
     required_quality = max(
@@ -525,6 +531,7 @@ def route_work_unit(
         "classification": classification,
         "required_quality": required_quality,
         "quality_margin": margin,
+        "quality_margin_raised": margin_raised,
         "selection_threshold": threshold,
         "selected": None,
         "next_escalation": None,
@@ -1190,7 +1197,14 @@ def build_parser() -> argparse.ArgumentParser:
 
     route_parser = subparsers.add_parser("route", help="Choose TOOL, DIRECT, or a pinned worker")
     add_common_classification(route_parser)
-    route_parser.add_argument("--quality-margin", type=int)
+    route_parser.add_argument(
+        "--quality-margin",
+        type=int,
+        help=(
+            "Confidence margin (0-20). This can only raise the default margin for "
+            "the unit's risk level; a lower value is ignored."
+        ),
+    )
     route_parser.add_argument("--available-model", action="append")
     route_parser.add_argument("--unavailable-pair", action="append")
     route_parser.add_argument("--escalate-from")

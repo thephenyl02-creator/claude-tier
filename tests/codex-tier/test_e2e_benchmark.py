@@ -363,6 +363,10 @@ class BenchmarkTuningSmokeTests(unittest.TestCase):
             self.fixture_correction_suite["parent"],
         )
 
+    @unittest.skipUnless(
+        (ROOT / ".benchmark-state" / "repo").exists(),
+        "needs the frozen benchmark checkout under .benchmark-state/repo",
+    )
     def test_repaired_fixtures_are_complete_and_mechanically_consistent(self) -> None:
         workloads = {
             item["id"]: item for item in self.fixture_correction_suite["workloads"]

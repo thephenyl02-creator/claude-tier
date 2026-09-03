@@ -65,6 +65,30 @@ VALIDATED_CASES = {
 
 
 class RoutingTests(unittest.TestCase):
+    def test_quality_margin_below_risk_default_is_ignored(self):
+        default = codex_tier.DEFAULT_MARGIN["ordinary"]
+        decision = route(risk="ordinary", quality_margin=0)
+        self.assertEqual(default, decision["quality_margin"])
+        self.assertFalse(decision["quality_margin_raised"])
+
+    def test_quality_margin_above_risk_default_is_honoured(self):
+        default = codex_tier.DEFAULT_MARGIN["ordinary"]
+        decision = route(risk="ordinary", quality_margin=default + 3)
+        self.assertEqual(default + 3, decision["quality_margin"])
+        self.assertTrue(decision["quality_margin_raised"])
+
+    def test_quality_margin_equal_to_default_is_not_raised(self):
+        default = codex_tier.DEFAULT_MARGIN["ordinary"]
+        decision = route(risk="ordinary", quality_margin=default)
+        self.assertEqual(default, decision["quality_margin"])
+        self.assertFalse(decision["quality_margin_raised"])
+
+    def test_quality_margin_out_of_range_raises(self):
+        with self.assertRaises(codex_tier.TierError):
+            route(quality_margin=21)
+        with self.assertRaises(codex_tier.TierError):
+            route(quality_margin=-1)
+
     def test_registry_and_frontiers_validate(self):
         registry, frontiers = codex_tier.load_config()
         self.assertEqual([], codex_tier.validate_config(registry, frontiers))
@@ -76,8 +100,21 @@ class RoutingTests(unittest.TestCase):
         matrix = codex_tier.active_candidate_matrix(registry)
         self.assertEqual(29, len(matrix))
         self.assertNotIn("none", {item["effort"] for item in matrix})
-        self.assertEqual("current", registry["runtime_probe_evidence"]["status"])
-        self.assertEqual([], registry["runtime_unavailable_pairs"])
+        # The launch-probe report records the client cache path it was measured
+        # on. On that machine the evidence is "current"; anywhere else (CI, a
+        # fresh checkout) the router must report a different client scope
+        # rather than pretend the probe applies.
+        report = codex_tier.load_json(codex_tier.CANDIDATE_MATRIX_PATH)
+        same_client = report.get("model_discovery", {}).get("path") == registry.get(
+            "runtime_discovery", {}
+        ).get("path")
+        self.assertEqual(
+            "current" if same_client else "different-client-scope",
+            registry["runtime_probe_evidence"]["status"],
+        )
+        # Only set when the probe applies to this client; absent means nothing
+        # was marked unavailable, which is the same guarantee.
+        self.assertEqual([], registry.get("runtime_unavailable_pairs", []))
         for work_class in VALIDATED_CASES:
             with self.subTest(work_class=work_class):
                 profile = frontiers["profiles"][work_class]
@@ -501,6 +538,8 @@ class PackagingAndInstallerTests(unittest.TestCase):
             self.assertNotIn("savings_percent", result)
 
     def test_windows_installer_is_idempotent_and_preserves_unrelated_files(self):
+        if os.name != "nt":
+            self.skipTest("install-codex.ps1 builds Windows paths; run on Windows")
         powershell = shutil.which("powershell") or shutil.which("pwsh")
         if not powershell:
             self.skipTest("PowerShell is unavailable")
@@ -549,6 +588,8 @@ class PackagingAndInstallerTests(unittest.TestCase):
         self.assertEqual(0, completed.returncode, completed.stderr)
 
     def test_unix_installer_is_idempotent_with_local_source(self):
+        if os.name != "nt":
+            self.skipTest("this test drives Git Bash through cygpath; run on Windows")
         git_bash = Path(os.environ.get("ProgramFiles", r"C:\Program Files")) / "Git" / "bin" / "bash.exe"
         if not git_bash.exists():
             self.skipTest("Git Bash is unavailable")
