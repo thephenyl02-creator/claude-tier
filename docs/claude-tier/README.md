@@ -207,18 +207,52 @@ tiering, and never trades quality for cost.
 
 The rule tells you to pin a sub-agent's effort in `.claude/agents/*.md`
 frontmatter, because the `Agent` tool exposes no effort parameter. **`/tier`
-does not create agent files** - that part is yours. The minimal shape is:
+does not create agent files** - that part is yours.
 
-```markdown
----
-name: scout
-description: <one line on exactly when to reach for it>
-model: sonnet
-effort: low
-tools: Read, Grep, Glob, Bash
----
-<the agent's instructions>
+The seven agents used to measure the rule are published under
+[docs/claude-tier/agents/](agents/), one file each:
+
+| Role | Model | Effort | Tools | When |
+| --- | --- | --- | --- | --- |
+| [adjudicator](agents/adjudicator.md) | `claude-fable-5-1` | high | Read, Grep, Glob, Bash, WebFetch, WebSearch, ToolSearch | last-resort tie-break after an Opus attempt already failed |
+| [builder](agents/builder.md) | `opus` | low | Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch, ToolSearch | substantive implementation and design work from a spec |
+| [executor](agents/executor.md) | `sonnet` | low | Read, Write, Edit, Bash, Grep, Glob, ToolSearch | carries out a decision already made, across substantial work |
+| [integrator](agents/integrator.md) | `opus` | low | Read, Write, Edit, Grep, Glob, WebFetch, ToolSearch | merges several inputs into one coherent document or decision |
+| [scout](agents/scout.md) | `sonnet` | low | Read, Grep, Glob, Bash, WebFetch, WebSearch, ToolSearch | comprehension of bulk material, returning only distilled findings |
+| [sifter](agents/sifter.md) | `haiku` | low | Read, Grep, Glob, Bash, ToolSearch | one simple operation repeated across many items |
+| [verifier](agents/verifier.md) | `opus` | low | Read, Grep, Glob, Bash, WebFetch, WebSearch, ToolSearch | adversarially checks a claim or change, or finds a root cause |
+
+To use them, clone or download the repo, then copy the seven files into your
+personal agents directory.
+
+macOS / Linux:
+
 ```
+cp docs/claude-tier/agents/*.md ~/.claude/agents/
+```
+
+Windows (PowerShell):
+
+```
+Copy-Item .\docs\claude-tier\agents\*.md $HOME\.claude\agents\
+```
+
+Without git, fetch a single file directly, substituting the agent name:
+
+```
+https://raw.githubusercontent.com/thephenyl02-creator/claude-codex-tier/main/docs/claude-tier/agents/<name>.md
+```
+
+These files are **not auto-installed by the plugin**, and installing them is
+optional. They matter for one reason beyond convenience: the rule's
+one-tier-up clause relies on the `ESCALATE:` convention that the five agents pinned below the
+ceiling carry, so
+a pinned-low agent written without it will guess instead of handing the task
+back.
+
+The measurements behind the pins, including why verification and integration
+sit on Opus at low effort and why Fable stays escalation-only, are in the
+[1.10.0 changelog entry](CHANGELOG.md).
 
 Boot cost is worth knowing before you write these: a sub-agent pays roughly
 10K tokens to start on Haiku and 44K on Opus, flat regardless of task size,
